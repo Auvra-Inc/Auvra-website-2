@@ -16,11 +16,33 @@ export const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/auvra/' },
 ];
 
+// Explore Auvra is the primary call to action across the site.
+export const EXPLORE_HREF = '/download';
+
+// Main navigation (PRD section 5.1). Who We Serve items are homepage anchors, not separate pages.
+export const NAV = [
+  { title: 'Company', links: [{ label: 'About Auvra', href: '/about' }] },
+  { title: 'Technology', links: [{ label: 'Lens AI', href: '/lens-ai' }, { label: 'A-Chronos', href: '/a-chronos' }] },
+  {
+    title: 'Who We Serve',
+    links: [
+      { label: 'Families', href: '/#families' },
+      { label: 'Creators', href: '/#creators' },
+      { label: 'Communities', href: '/#communities' },
+      { label: 'Diaspora', href: '/#diaspora' },
+      { label: 'Museums & Institutions', href: '/#institutions' },
+    ],
+  },
+  { title: 'Insights', links: [{ label: 'Blog', href: '/blog' }, { label: 'Cultural Stories', href: '/cultural-stories' }, { label: 'Research', href: '/research' }] },
+];
+
+// Product pages, linked from the homepage ecosystem cards and contextual links (not a nav category).
 export const PRODUCTS = [
-  { label: 'My Vault', href: '/#my-vault' },
-  { label: 'Contribution Badges', href: '/#features' },
-  { label: 'Communities', href: '/#communities' },
-  { label: 'Auvra Passport', href: '/#features' },
+  { label: 'Cultural Preservation', href: '/cultural-preservation' },
+  { label: 'Contribution Badges', href: '/contribution-badges' },
+  { label: 'Collectible Badges', href: '/collectible-badges' },
+  { label: 'My Vault', href: '/my-vault' },
+  { label: 'Auvra Passport', href: '/auvra-passport' },
 ];
 
 export const FOOTER = [
@@ -47,7 +69,6 @@ export const FOOTER = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Blog', href: '/blog' },
-      { label: 'Institutional Access', href: '/institutional-access' },
     ],
   },
   {
