@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { CONTACT_EMAIL, PARTNERSHIPS_EMAIL, SOCIAL } from '../data/site.js';
+---
+<Base title="Contact · Auvra" description="Contact the Auvra team by email or with the form. We reply to families, communities, creators and institutions.">
+  <section class="wrap page-hero">
+    <p class="kicker">Contact</p>
+    <h1 class="h2">We'd love to hear from you</h1>
+    <p class="lead">Questions about Auvra, Lens AI, partnerships or the press? Send us a message and the team will reply.</p>
+  </section>
+  <section class="wrap contact" style="padding-bottom: var(--sec)">
+    <form class="form" data-form="contact" novalidate>
+      <label class="field">Your name<input name="name" autocomplete="name" required /></label>
+      <label class="field">Email<input name="email" type="email" autocomplete="email" required /></label>
+      <label class="field">Topic
+        <select name="topic">
+          <option>General question</option>
+          <option>Lens AI</option>
+          <option>Communities</option>
+          <option>Partnerships</option>
+          <option>Press</option>
+        </select>
+      </label>
+      <label class="field">Message<textarea name="message" required></textarea></label>
+      <div><button type="submit" class="btn btn--dark">Send message</button></div>
+      <p class="form__msg" role="status" aria-live="polite" data-form-msg></p>
+    </form>
+    <aside class="card contact__info">
+      <h2 class="contact__h">Email</h2>
+      <p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+      <h2 class="contact__h">Partnerships</h2>
+      <p><a href={`mailto:${PARTNERSHIPS_EMAIL}`}>{PARTNERSHIPS_EMAIL}</a></p>
+      <h2 class="contact__h">Company</h2>
+      <!-- TODO(Emmanuel): add the registered company address. -->
+      <p>Auvra Tech Ltd<br />Lagos, Nigeria</p>
+      <h2 class="contact__h">Follow us</h2>
+      <p>{SOCIAL.map((s, i) => <>{i > 0 && ' · '}<a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></>)}</p>
+      <p class="contact__inst">Representing a museum, archive or government body? <a href="/institutional-access">Apply for Institutional Access</a>.</p>
+    </aside>
+  </section>
+</Base>
+<style>
+  .contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: start; }
+  .contact__h { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; font-weight: 600; color: var(--olive); margin-top: 8px; }
+  .contact__info a { color: var(--blue); }
+  .contact__inst { margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+  @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+</style>
