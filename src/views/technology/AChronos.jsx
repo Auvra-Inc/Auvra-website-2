@@ -79,7 +79,7 @@ function ContextDiagram() {
           <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-lime">Record</p>
           <p className="mt-3 text-[24px] md:text-[28px] font-semibold leading-tight">“How our family began”</p>
           <p className="mt-2 text-[15px] text-[#BFE0E1]">Voice recording · 2:14</p>
-          <span className="wave mt-4 !h-8" aria-hidden="true">{Array.from({ length: 26 }).map((_, i) => <i key={i} style={{ '--h': `${22 + ((i * 37) % 70)}%`, background: '#BCE784' }} />)}</span>
+          <span className="wave mt-4 !h-8 !flex-none" aria-hidden="true">{Array.from({ length: 26 }).map((_, i) => <i key={i} style={{ '--h': `${22 + ((i * 37) % 70)}%`, background: '#BCE784' }} />)}</span>
           <p className="mt-4 text-[14px] text-[#BFE0E1]">The original is never replaced. Everything else is added around it.</p>
         </div>
         <Connector label="relates to" />
@@ -196,7 +196,7 @@ export default function AChronos() {
         <div className="wrap">
           <QA
             id="repr-title"
-            kicker="Cultural context & knowledge representation"
+            kicker="Knowledge representation"
             q="How can AI represent cultural context?"
             answer="By treating a cultural record as more than a file: as something connected to the people who shared it, the language and place it comes from, the community that holds it, and the other records that add to it."
             center
