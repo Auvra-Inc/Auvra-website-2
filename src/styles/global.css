@@ -814,3 +814,36 @@ html { overflow-x: clip; }
   @media (min-width: 768px) { .partners__track { gap: 80px; } .partners__track li { width: 140px; height: 52px; } .partners__track img { max-height: 34px; } @keyframes partnersMove { to { transform: translateX(calc(-50% - 40px)); } } }
   @media (prefers-reduced-motion: reduce) { .partners__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } .partners__track li[aria-hidden] { display: none; } }
 }
+@layer components {
+  .footer-logo { height: 24px; width: auto; display: block; }
+  @media (min-width: 768px) { .footer-logo { height: 28px; } }
+  .footer-social { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; color: #8A8580; transition: color .2s, background .2s; }
+  .footer-social:hover { color: #191717; background: #F1EFEC; }
+  /* Brand chevron pattern rising across the bottom, like the shopmystack.com footer. */
+  .footer-pattern { height: clamp(110px, 15vw, 220px); background: url('/brand/pattern-chevron.svg') 0 100% / 84px 45px repeat; clip-path: polygon(0 78%, 100% 0, 100% 100%, 0 100%); }
+  @media (min-width: 768px) { .footer-pattern { background-size: 132px 70px; } }
+}
+@layer components {
+  .nav__logo img { height: 20px !important; width: auto; }
+  @media (min-width: 768px) { .nav__logo img { height: 24px !important; } }
+  /* Glow sweep on Explore Auvra buttons, as before. */
+  .poster-cta.shimmer, .nav__cta.shimmer { position: relative; overflow: hidden; isolation: isolate; }
+  .poster-cta--dark { height: 48px; padding: 0 7px 0 22px; font-size: 15px; box-shadow: 0 14px 30px -14px rgba(25,23,23,.6); }
+  .nav__sub a { flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; }
+  .nav__sub-note { font-size: 12px; color: #8A8580; font-weight: 400; }
+}
+@layer components {
+  .scan-corners { position: absolute; inset: 14% 12% 36%; pointer-events: none;
+    background:
+      linear-gradient(#fff,#fff) top left / 34px 3px no-repeat, linear-gradient(#fff,#fff) top left / 3px 34px no-repeat,
+      linear-gradient(#fff,#fff) top right / 34px 3px no-repeat, linear-gradient(#fff,#fff) top right / 3px 34px no-repeat,
+      linear-gradient(#fff,#fff) bottom left / 34px 3px no-repeat, linear-gradient(#fff,#fff) bottom left / 3px 34px no-repeat,
+      linear-gradient(#fff,#fff) bottom right / 34px 3px no-repeat, linear-gradient(#fff,#fff) bottom right / 3px 34px no-repeat; }
+  .scan-line { position: absolute; left: 12%; right: 12%; top: 14%; height: 2px; background: linear-gradient(90deg, transparent, #fff, transparent); box-shadow: 0 0 14px 2px rgba(255,255,255,.6); animation: scanMove 2.8s ease-in-out infinite alternate; }
+  @keyframes scanMove { to { top: 63%; } }
+  @media (prefers-reduced-motion: reduce) { .scan-line { animation: none; top: 40%; } }
+}
+@layer components {
+  .footer-pattern { height: clamp(130px, 17vw, 260px); background-size: 120px 64px; clip-path: polygon(0 72%, 100% 0, 100% 100%, 0 100%); }
+  @media (min-width: 768px) { .footer-pattern { background-size: 210px 112px; } }
+}

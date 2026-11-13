@@ -32,7 +32,7 @@ const DIRECTION = [
 
 const ECOSYSTEM = [
   ['/cultural-preservation', 'Cultural Preservation', 'The records people preserve, with their context, are what A-Chronos research is about understanding.'],
-  ['/contribution-badges', 'Contribution Badges', 'Contributions add knowledge to a record without replacing it: exactly the kind of relationship A-Chronos studies.'],
+  ['/badges#contribution', 'Contribution Badges', 'Contributions add knowledge to a record without replacing it: exactly the kind of relationship A-Chronos studies.'],
   ['/auvra-passport', 'Auvra Passport', 'Attribution links people to their records, so understanding never comes at the cost of credit.'],
   ['/my-vault', 'My Vault', 'Private by default. Vault content is not used for AI training unless its owner explicitly consents.'],
 ];

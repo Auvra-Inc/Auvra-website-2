@@ -1,8 +1,0 @@
----
-import Base from '../layouts/Base.astro';
-import View, { FAQS } from '../views/products/ContributionBadges.jsx';
-const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
----
-<Base title="Contribution Badges · Attributable records of cultural contributions · Auvra" description="Contribution Badges are permanent, attributable records of cultural contributions. Learn the four contribution paths, how original records are kept, and how submitting, assessment and badge issuance will work." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'Contribution Badges' }]} jsonld={[faqLd]}>
-  <View />
-</Base>

@@ -2,12 +2,55 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/institutions", "destination": "/institutional-access", "permanent": true },
-    { "source": "/waitlist", "destination": "/download", "permanent": true },
-    { "source": "/blog/Introducing%20Auvra", "destination": "/blog/introducing-auvra", "permanent": true },
-    { "source": "/blog/Introducing Auvra", "destination": "/blog/introducing-auvra", "permanent": true },
-    { "source": "/terms-of-service", "destination": "/terms", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-    { "source": "/sitemap.txt", "destination": "/sitemap.xml", "permanent": true }
+    {
+      "source": "/institutions",
+      "destination": "/institutional-access",
+      "permanent": true
+    },
+    {
+      "source": "/waitlist",
+      "destination": "/download",
+      "permanent": true
+    },
+    {
+      "source": "/blog/Introducing%20Auvra",
+      "destination": "/blog/introducing-auvra",
+      "permanent": true
+    },
+    {
+      "source": "/blog/Introducing Auvra",
+      "destination": "/blog/introducing-auvra",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap.txt",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/contribution-badges",
+      "destination": "/badges#contribution",
+      "permanent": true
+    },
+    {
+      "source": "/collectible-badges",
+      "destination": "/badges#creator",
+      "permanent": true
+    },
+    {
+      "source": "/creator-badges",
+      "destination": "/badges#creator",
+      "permanent": true
+    }
   ]
 }

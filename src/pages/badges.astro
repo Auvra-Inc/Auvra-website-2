@@ -1,0 +1,43 @@
+---
+// Cultural Badges: one page for both badge types (Contribution Badges and Creator Badges).
+import Base from '../layouts/Base.astro';
+import ContributionView, { FAQS as CONTRIB_FAQS } from '../views/products/ContributionBadges.jsx';
+import CreatorView, { FAQS as CREATOR_FAQS } from '../views/products/CreatorBadges.jsx';
+import { CtaBlock } from '../components/Page.jsx';
+import { DEFINITIONS } from '../data/definitions.js';
+
+const faqs = [...CONTRIB_FAQS, ...CREATOR_FAQS];
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const types = [
+  { id: 'contribution', art: 'coin', name: 'Contribution Badges', text: DEFINITIONS.contributionBadges.short, tint: '#FFF4E8' },
+  { id: 'creator', art: 'chess-knight', name: 'Creator Badges', text: DEFINITIONS.creatorBadges.short, tint: '#ECE8FF' },
+];
+---
+<Base
+  title="Cultural Badges · Contribution Badges and Creator Badges · Auvra"
+  description="Cultural Badges are digital badges that keep cultural work credited. Contribution Badges record what people add to a cultural record; Creator Badges carry a creator’s own work with its context."
+  crumbs={[{ label: 'Technology', href: '/lens-ai' }, { label: 'Cultural Badges' }]}
+  jsonld={[faqLd]}
+>
+  <section class="bg-white" aria-labelledby="badges-title">
+    <div class="wrap pt-[108px] md:pt-[140px] pb-14 md:pb-20 text-center">
+      <nav class="crumbs [&_ol]:justify-center" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Cultural Badges</span></li></ol></nav>
+      <p class="kicker">Cultural Badges</p>
+      <h1 id="badges-title" class="mx-auto max-w-[16ch] font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance">What are Cultural Badges?</h1>
+      <p class="mx-auto mt-8 max-w-[44rem] text-[17px] md:text-xl leading-relaxed text-[#3A3631]">{DEFINITIONS.badges.long}</p>
+      <ul class="mx-auto mt-12 grid max-w-[920px] gap-4 md:grid-cols-2 text-left">
+        {types.map((t) => (
+          <li>
+            <a href={`#${t.id}`} class="group flex h-full items-center gap-5 rounded-[24px] p-5 md:p-6 transition-transform hover:-translate-y-1" style={`background:${t.tint}`}>
+              <img src={`/images/collage/${t.art}.webp`} alt="" class="h-20 md:h-24 w-auto flex-none object-contain" loading="lazy" />
+              <span class="flex flex-col gap-1.5"><b class="text-lg md:text-xl font-semibold">{t.name}</b><span class="text-[15px] text-[#4A4540]">{t.text}</span><span class="mt-1 text-sm font-medium underline underline-offset-4">Learn more ↓</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <div id="contribution" class="scroll-mt-20"><ContributionView embedded /></div>
+  <div id="creator" class="scroll-mt-20"><CreatorView embedded /></div>
+  <CtaBlock title="Keep culture credited" text="Contribute to the cultural record or share your own work with its story attached. Start on Auvra today." />
+</Base>

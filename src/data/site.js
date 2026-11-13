@@ -25,16 +25,22 @@ export const EXPLORE_HREF = '#get-app';
 
 // Main navigation (PRD section 5.1). Who We Serve items are homepage anchors, not separate pages.
 export const NAV = [
-  { title: 'Company', links: [{ label: 'About Auvra', href: '/about' }] },
-  { title: 'Technology', links: [{ label: 'Lens AI', href: '/lens-ai' }, { label: 'A-Chronos', href: '/a-chronos' }] },
+  { title: 'Company', href: '/about' },
+  {
+    title: 'Technology',
+    links: [
+      { label: 'Cultural Badges', href: '/badges', note: 'Contribution and Creator Badges' },
+      { label: 'Model · A-Chronos', href: '/a-chronos', note: 'Our cultural heritage model' },
+      { label: 'Lens AI', href: '/lens-ai', note: 'Transcribe, translate and Scan' },
+    ],
+  },
   { title: 'Insights', links: [{ label: 'Blog', href: '/blog' }, { label: 'Cultural Stories', href: '/cultural-stories' }, { label: 'Research', href: '/research' }] },
 ];
 
 // Product pages, linked from the homepage ecosystem cards and contextual links (not a nav category).
 export const PRODUCTS = [
   { label: 'Cultural Preservation', href: '/cultural-preservation' },
-  { label: 'Contribution Badges', href: '/contribution-badges' },
-  { label: 'Collectible Badges', href: '/collectible-badges' },
+  { label: 'Cultural Badges', href: '/badges' },
   { label: 'My Vault', href: '/my-vault' },
   { label: 'Auvra Passport', href: '/auvra-passport' },
 ];

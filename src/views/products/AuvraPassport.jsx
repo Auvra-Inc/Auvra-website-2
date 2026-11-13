@@ -31,18 +31,18 @@ const TINTS = { gold: 'bg-[#FFF4D6]', lime: 'bg-[#E8F1E4]', salmon: 'bg-[#FFE9E3
 // The three product relationships (sections 4–6).
 const LINKS = [
   {
-    id: 'contribution', href: '/contribution-badges', icon: 'shield', label: 'Contribution Badges', bg: 'bg-espresso', sub: 'text-[#E6D3CA]', accent: 'text-salmon',
+    id: 'contribution', href: '/badges#contribution', icon: 'shield', label: 'Contribution Badges', bg: 'bg-espresso', sub: 'text-[#E6D3CA]', accent: 'text-salmon',
     q: 'How does Auvra Passport relate to Contribution Badges?',
     a: 'When you add context, a memory or care to a cultural record, a Contribution Badge is designed to record that contribution. Auvra Passport is designed to connect those badges back to you, so your contributions across many records sit together under your name.',
     points: ['Your contributions, gathered in one place', 'Attribution that stays with the record', 'A history of how you have helped keep culture complete'],
     photo: 'elder', alt: 'An elder in a wide-brimmed hat and robes, the kind of knowledge holder whose memories contributions preserve',
   },
   {
-    id: 'collectible', href: '/collectible-badges', icon: 'gift', label: 'Collectible Badges', bg: 'bg-blue', sub: 'text-[#DCD5FF]', accent: 'text-[#DCD5FF]',
-    q: 'How does Auvra Passport relate to Collectible Badges?',
-    a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Collectible Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
+    id: 'creator', href: '/badges#creator', icon: 'gift', label: 'Creator Badges', bg: 'bg-blue', sub: 'text-[#DCD5FF]', accent: 'text-[#DCD5FF]',
+    q: 'How does Auvra Passport relate to Creator Badges?',
+    a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Creator Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
     points: ['Creators linked to the work they share', 'Claimed badges kept with their story', 'Credit that travels with every badge'],
-    photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum, the kind of creator whose work a Collectible Badge credits',
+    photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum, the kind of creator whose work a Creator Badge credits',
   },
   {
     id: 'vault', href: '/my-vault', icon: 'vault', label: 'My Vault', bg: 'bg-teal', sub: 'text-[#BFE0E1]', accent: 'text-lime',

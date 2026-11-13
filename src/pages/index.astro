@@ -11,13 +11,14 @@ import { MOVEMENT, EXPLORE_HREF } from '../data/site.js';
 import { DEFINITIONS } from '../data/definitions.js';
 import { FAQ_GROUPS } from '../data/faqs.js';
 
+const faqGroup = (t) => FAQ_GROUPS.find((g) => g.title === t).items;
 const homeFaqs = [
-  FAQ_GROUPS[0].items[0], // What is Auvra?
-  FAQ_GROUPS[0].items[1], // What problem is Auvra solving?
-  FAQ_GROUPS[2].items[0], // What is a Contribution Badge?
-  FAQ_GROUPS[4].items[0], // What is My Vault?
-  FAQ_GROUPS[5].items[0], // What is Lens AI?
-  FAQ_GROUPS[0].items[2], // Who is Auvra building for?
+  faqGroup('About Auvra')[0], // What is Auvra?
+  faqGroup('About Auvra')[1], // What problem is Auvra solving?
+  faqGroup('Cultural Badges')[0], // What is a Badge?
+  faqGroup('My Vault')[0], // What is My Vault?
+  faqGroup('Technology')[0], // What is Lens AI?
+  faqGroup('About Auvra')[2], // Who is Auvra building for?
 ];
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: homeFaqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 
@@ -27,12 +28,13 @@ const tiles = [
   { label: 'Own it and pass it on', icon: 'gift', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E2F0D6 45%, #C3DFAA 100%)', strip: '#D6EAC4' },
 ];
 const features = [
-  { art: 'pocket-watch', icon: 'globe', tint: '#E0EEEF', name: 'Cultural Preservation', text: DEFINITIONS.culturalPreservation.short, href: '/cultural-preservation' },
-  { art: 'coin', icon: 'shield', tint: '#FFE9E3', name: 'Contribution Badges', text: DEFINITIONS.contributionBadges.short, href: '/contribution-badges' },
-  { art: 'chess-knight', icon: 'gift', tint: '#ECE8FF', name: 'Collectible Badges', text: DEFINITIONS.collectibleBadges.short, href: '/collectible-badges' },
-  { art: 'key', icon: 'vault', tint: '#E8F1E4', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
-  { art: 'paper-plane', icon: 'passport', tint: '#F4F0E8', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
-  { art: 'magnifier', icon: 'speech', tint: '#ECE8FF', name: 'Lens AI & A-Chronos', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable, and research towards AI that understands cultural context.', href: '/lens-ai' },
+  { art: 'pocket-watch', name: 'Cultural Preservation', text: 'The heart of Auvra. Document stories, languages and traditions, and keep them credited with two types of digital badges.', href: '/cultural-preservation',
+    badges: [{ art: 'coin', name: 'Contribution Badges', href: '/badges#contribution' }, { art: 'chess-knight', name: 'Creator Badges', href: '/badges#creator' }] },
+  { art: 'key', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
+  { art: 'paper-plane', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
+  { art: 'magnifier', name: 'Lens AI', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable. You can always review and edit what it writes.', href: '/lens-ai' },
+  { art: 'camera', name: 'Scan', text: DEFINITIONS.scan.short, href: '/lens-ai#scan', isNew: true },
+  { art: 'hourglass', name: 'A-Chronos', text: DEFINITIONS.aChronos.short, href: '/a-chronos' },
 ];
 const steps = [
   { n: 1, title: 'Download Auvra', text: 'Create your free Auvra account in seconds on iPhone or Android.', bg: '#024B50', chip: '#0B6A70', accent: '#BCE784' },
@@ -68,7 +70,7 @@ const audiences = [
             <span class={`hero-line block md:whitespace-nowrap${b === 'culture.' ? ' serif-accent' : ''}`}><span class="hero-word block md:inline">{a}</span> <span class="hero-word block md:inline">{b}</span></span>
           ))}
         </h1>
-        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Preserve the stories, languages and traditions that make you who you are. Lens AI helps capture, transcribe and translate them, keeping your heritage alive for generations.</p>
+        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Keep the stories, languages and traditions that make you who you are, with Lens AI to capture and translate them.</p>
         <div class="hero-stores"><StoreButtons /></div>
       </div>
     </div>
@@ -178,7 +180,7 @@ const audiences = [
       <div class="flex flex-col max-md:items-center max-md:text-center">
         <p class="mb-4 text-sm md:text-base uppercase text-[#272727]">Product features</p>
         <h2 id="features-title" class="reveal ws-h mb-10 lg:mb-[3.4rem] text-[2.35rem] leading-[2.1rem] md:text-[3rem] md:leading-[3.4rem] lg:text-[3.75rem]">What you need to know about Auvra</h2>
-        <p class="reveal max-w-[300px] md:max-w-[600px] text-sm md:text-base lg:text-lg text-[#272727]">Preserve stories, languages and traditions as permanent, credited records. Lens AI transcribes and translates oral histories, tags cultural items and makes archives searchable.</p>
+        <p class="reveal max-w-[300px] md:max-w-[600px] text-sm md:text-base lg:text-lg text-[#272727]">One app for everything you keep: a private Vault, an identity that keeps you credited, badges for what you add and create, and AI that helps you understand what you hold.</p>
       </div>
       <div class="hidden md:block w-[300px] lg:w-[340px] flex-none -rotate-6">
         <PhoneFrame label="Lens AI in the Auvra app transcribing and translating a grandparent's recording">
@@ -196,8 +198,15 @@ const audiences = [
         <li class="flex flex-col">
           <img src={`/images/collage/${f.art}.webp`} alt="" aria-hidden="true" class="h-28 lg:h-32 w-auto self-start object-contain" loading="lazy" />
           <div class="reveal">
-            <h3 class="mt-6 lg:mt-8 mb-2 lg:mb-5 text-xl font-semibold text-[#252020]"><a href={f.href} class="hover:underline">{f.name}</a></h3>
+            <h3 class="mt-6 lg:mt-8 mb-2 lg:mb-5 flex items-center gap-2 text-xl font-semibold text-[#252020]"><a href={f.href} class="hover:underline">{f.name}</a>{f.isNew && <span class="rounded-full bg-[#191717] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-white">New</span>}</h3>
             <p class="text-base text-[#626262]">{f.text}</p>
+            {f.badges && (
+              <ul class="mt-4 flex flex-wrap gap-2" aria-label="Badge types">
+                {f.badges.map((b) => (
+                  <li><a href={b.href} class="inline-flex items-center gap-2 rounded-full border border-[#E7E2DA] bg-[#FBF8F1] py-1 pl-1 pr-3.5 text-[14px] font-medium text-[#252020] transition-colors hover:bg-[#F4F0E8]"><img src={`/images/collage/${b.art}.webp`} alt="" class="h-7 w-7 rounded-full bg-white object-contain p-0.5" loading="lazy" />{b.name}</a></li>
+                ))}
+              </ul>
+            )}
           </div>
         </li>
       ))}
@@ -271,7 +280,7 @@ const audiences = [
       <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
       <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#FFF4EE]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
     </div>
-    <a href={EXPLORE_HREF} class="poster-cta">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    <a href={EXPLORE_HREF} class="poster-cta poster-cta--dark shimmer">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </section>
 
   <!-- Curved gallery: photos glide along the curve; the heading and copy follow the photo in front -->
@@ -296,7 +305,7 @@ const audiences = [
     </div>
     <div class="wall-progress relative z-10" aria-hidden="true">{WALL_TOPICS.map((t, k) => <span class={`wall-pip${k === 0 ? ' is-on' : ''}`}></span>)}</div>
     <p class="sr-only">Music, film, art, family recordings and community archives. Upload it once, let Lens AI transcribe and organise it, and keep it credited to you.</p>
-    <a href={EXPLORE_HREF} class="poster-cta poster-cta--dark mt-8 relative z-10">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+    <a href={EXPLORE_HREF} class="poster-cta poster-cta--dark shimmer mt-8 relative z-10">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </section>
 
   <script>

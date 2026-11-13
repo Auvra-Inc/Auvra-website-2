@@ -8,11 +8,11 @@ export const PRODUCT_INFO = [
     text: 'The foundation: documenting stories, languages, memories and traditions so they can be carried forward.',
   },
   {
-    href: '/contribution-badges', label: 'Contribution Badges', icon: 'shield', tint: 'lime',
+    href: '/badges#contribution', label: 'Contribution Badges', icon: 'shield', tint: 'lime',
     text: 'Attributable records of the context, memories and care people add to what has already been preserved.',
   },
   {
-    href: '/collectible-badges', label: 'Collectible Badges', icon: 'gift', tint: 'salmon',
+    href: '/badges#creator', label: 'Creator Badges', icon: 'gift', tint: 'salmon',
     text: 'A way for creators to document, attribute and share cultural expressions as digital or physical badges.',
   },
   {

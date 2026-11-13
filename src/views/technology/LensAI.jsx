@@ -7,12 +7,15 @@ export const LENS_FAQS = [
   { q: 'What is Lens AI?', a: DEFINITIONS.lensAI.long },
   { q: 'Is Lens AI available yet?', a: 'Not yet. Lens AI is in development. Transcription and translation of voice notes and cultural tagging are being built now, and archive search is planned.' },
   { q: 'Which languages will Lens AI support?', a: 'Lens AI starts with African languages, English and French, with a focus on indigenous and underrepresented languages. The list is expected to grow as communities contribute recordings with their consent.' },
+  { q: 'What is Scan?', a: DEFINITIONS.scan.long },
   { q: 'Can I edit what Lens AI produces?', a: 'Yes. Every transcript, translation and tag is a draft that the person who shared the memory can review and correct. Lens AI supports people; it does not replace their knowledge or authority.' },
   { q: 'Does Auvra use my content to train Lens AI?', a: 'By default, no. Auvra does not use your personal content, including private Vault content, to train or improve Lens AI. Any programme to improve Lens AI would be opt-in, through a separate consent flow. See the AI Policy for details.' },
 ];
 
 // Current development status. Keep this table honest: only move a row to "Available now" once it has shipped.
 const CAPABILITIES = [
+  // TODO(Emmanuel): confirm
+  { name: 'Scan', text: 'Point your camera at an object, fabric, carving or place to see what it is, where it comes from and its cultural context.', status: 'planned' },
   // TODO(Emmanuel): confirm
   { name: 'Transcription and translation of voice notes', text: 'Turn a recorded memory into written text in its original language, with a translation alongside.', status: 'developing' },
   // TODO(Emmanuel): confirm
@@ -155,6 +158,36 @@ export default function LensAI({ demo }) {
               <p>Over time, this organisation is what will make archive search possible across everything a family or community has preserved. Archive search is planned.</p>
             </div>
           </QA>
+        </div>
+      </section>
+
+      {/* Scan: point the camera, learn the story */}
+      <section id="scan" className="scroll-mt-24 bg-[#191717] text-white py-20 md:py-32" aria-labelledby="scan-title">
+        <div className="wrap grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="max-lg:text-center">
+            <Kicker>Scan</Kicker>
+            <h2 id="scan-title" className={`reveal ${H2} max-w-[14ch] max-lg:mx-auto`}>What does Scan do?</h2>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BDB6AC] max-w-[560px] max-lg:mx-auto">{DEFINITIONS.scan.long}</p>
+            <ul className="mt-8 grid gap-3 text-left max-w-[520px] max-lg:mx-auto">
+              {[['Point', 'Aim your camera at a mask, a fabric, an instrument or a building.'], ['Recognise', 'Lens AI identifies what it is and where it is likely from.'], ['Learn and keep', 'See its story and context, then save it to your Vault with your own notes.']].map(([t, d], i) => (
+                <li key={t} className="flex gap-4 rounded-2xl bg-white/5 p-4"><span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-white text-[14px] font-semibold text-[#191717]">{i + 1}</span><span><b className="block text-[16px]">{t}</b><span className="text-[15px] text-[#BDB6AC]">{d}</span></span></li>
+              ))}
+            </ul>
+          </div>
+          <div className="reveal mx-auto w-full max-w-[380px]" aria-hidden="true">
+            <div className="scan-view relative overflow-hidden rounded-[32px] border border-white/10">
+              <Photo name="mask" alt="" className="aspect-[3/4] w-full object-cover" sizes="380px" />
+              <span className="scan-corners" />
+              <span className="scan-line" />
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white p-4 text-left text-[#191717] shadow-xl">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Scan · Recognised</p>
+                <p className="mt-1 text-[17px] font-semibold leading-tight">Carved wooden mask</p>
+                <p className="mt-1 text-[13px] text-grey">West Africa · worn at festivals and ceremonies to honour ancestors.</p>
+                <div className="mt-3 flex gap-2 text-[12px] font-medium"><span className="rounded-full bg-[#F2EFFF] px-2.5 py-1 text-blue">See its story</span><span className="rounded-full bg-[#F4F0E8] px-2.5 py-1">Save to Vault</span></div>
+              </div>
+            </div>
+            <p className="mt-3 text-center text-[13px] text-[#8A8580]">Illustrative example. Scan is planned.</p>
+          </div>
         </div>
       </section>
 

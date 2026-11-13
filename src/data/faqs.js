@@ -1,11 +1,11 @@
 // FAQ page content, grouped by the PRD's categories (section 16).
 // Answers marked `confirm: true` describe product status and must be checked by the Auvra team before launch.
-// Per the agreed scope, the Collectible Badge fee is not shown on the public site.
+// Per the agreed scope, any Creator Badge fee is not shown on the public site.
 export const FAQ_GROUPS = [
   {
     title: 'About Auvra',
     items: [
-      { q: 'What is Auvra?', a: 'Auvra is a cultural technology company building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
+      { q: 'What is Auvra?', a: 'Auvra is an AI-powered cultural preservation platform building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
       { q: 'What problem is Auvra solving?', a: 'Much of the world\'s cultural knowledge lives in memories, conversations, family recordings, photographs and community practices, scattered across personal devices and informal channels. When the people holding it are no longer present, stories, languages and traditions can become difficult to recover. Auvra provides systems built for continuity, not temporary storage.' },
       { q: 'Who is Auvra building for?', a: 'Families, creators, communities, diaspora audiences, and museums and institutions. Each plays a different role in keeping culture alive, and Auvra is designed to support all of them.' },
       { q: 'Is Auvra only focused on African culture?', a: 'No. Auvra is building for human culture everywhere. Our work began in Africa, where many languages and oral traditions are underrepresented in existing technology, but the platform is open to every culture and community.' },
@@ -21,6 +21,13 @@ export const FAQ_GROUPS = [
     ],
   },
   {
+    title: 'Cultural Badges',
+    items: [
+      { q: 'What is a Badge?', a: 'A Badge on Auvra is a digital badge that keeps cultural work credited to the people behind it. There are two types. A Contribution Badge is a permanent, attributable record of something you add to an existing cultural record, such as a memory, a correction or context. A Creator Badge lets a creator document and share their own cultural work, such as a song, an artwork or a craft, with its story and their name attached.' },
+      { q: 'What is the difference between Contribution Badges and Creator Badges?', a: 'Contribution Badges recognise what people add to records that already exist, so the original stays intact and every addition is credited. Creator Badges carry a creator’s own work, presented with its cultural context and the creator’s attribution.' },
+    ],
+  },
+  {
     title: 'Contribution Badges',
     items: [
       { q: 'What is a Contribution Badge?', a: 'A Contribution Badge is a permanent, attributable record of a cultural contribution. It preserves the original record and its context while allowing additional knowledge to be documented alongside it.' },
@@ -31,12 +38,12 @@ export const FAQ_GROUPS = [
     ],
   },
   {
-    title: 'Collectible Badges',
+    title: 'Creator Badges',
     items: [
-      { q: 'What is a Collectible Badge?', a: 'A Collectible Badge lets a creator document, attribute and share a cultural expression, such as an artwork, a song or a craft, with its cultural context, as a digital or physical item.' },
+      { q: 'What is a Creator Badge?', a: 'A Creator Badge lets a creator document, attribute and share a cultural expression, such as an artwork, a song or a craft, with its cultural context, as a digital or physical item.' },
       { q: 'Who can create one?', a: 'Creators who document and share cultural expressions: musicians, artists, storytellers, photographers, craft practitioners, performers and other cultural creators.' },
       { q: 'What can be represented?', a: 'Digital or physical cultural expressions, for example traditional artwork, music, cultural photography, craftsmanship and documented cultural practices, always presented with the creator\'s attribution and context.' },
-      { q: 'How does claiming work?', a: 'Audiences discover a Collectible Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
+      { q: 'How does claiming work?', a: 'Audiences discover a Creator Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
     ],
   },
   {

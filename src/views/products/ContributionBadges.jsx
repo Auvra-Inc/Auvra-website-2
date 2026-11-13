@@ -59,21 +59,26 @@ function StatusPill({ kind, label }) {
   return <span className={`status status--${kind} whitespace-nowrap`}>{label}</span>;
 }
 
-export default function ContributionBadges() {
+export default function ContributionBadges({ embedded = false }) {
+  // embedded: rendered inside /badges, so ids are prefixed and page-level pieces are skipped.
+  const pid = (x) => (embedded ? 'contribution-' + x : x);
+  const HTitle = embedded ? 'h2' : 'h1';
   return (
     <div className="overflow-x-clip">
       {/* Hero */}
-      <section className="bg-cream" aria-labelledby="page-title">
+      <section className="bg-cream" aria-labelledby={pid('page-title')}>
         <div className="wrap pt-[108px] md:pt-[130px] pb-12 md:pb-20 max-md:text-center">
+          {!embedded && (
           <nav className="crumbs max-md:[&_ol]:justify-center" aria-label="Breadcrumb">
             <ol><li><a href="/">Home</a></li><li><a href={PRODUCTS_CRUMB.href}>{PRODUCTS_CRUMB.label}</a></li><li><span aria-current="page">Contribution Badges</span></li></ol>
           </nav>
+          )}
           <p className="kicker">Contribution Badges</p>
-          <h1 id="page-title" className={`${H1} max-w-[15ch] max-md:mx-auto`}>Every contribution becomes part of the cultural record.</h1>
+          <HTitle id={pid('page-title')} className={`${H1} max-w-[15ch] max-md:mx-auto`}>Every contribution becomes part of the cultural record.</HTitle>
           <p className="mt-8 max-w-[46rem] text-[18px] md:text-xl leading-relaxed text-[#3A3631] max-md:mx-auto">{DEFINITIONS.contributionBadges.long}</p>
           <div className="mt-8 flex flex-wrap gap-3 max-md:justify-center">
-            <a className="btn btn--dark" href="#paths">The four paths</a>
-            <a className="btn btn--ghost" href="#experience">How contributing works</a>
+            <a className="btn btn--dark" href={'#' + pid('paths')}>The four paths</a>
+            <a className="btn btn--ghost" href={'#' + pid('experience')}>How contributing works</a>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr]">
@@ -83,11 +88,11 @@ export default function ContributionBadges() {
       </section>
 
       {/* 1 · What they are */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="what-title">
+      <section className="wrap py-20 md:py-32" aria-labelledby={pid('what-title')}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal max-md:text-center">
             <p className="kicker">What they are</p>
-            <h2 id="what-title" className={H2}>What is a Contribution Badge?</h2>
+            <h2 id={pid('what-title')} className={H2}>What is a Contribution Badge?</h2>
             <p className={ANSWER}>A Contribution Badge is a record that says who added something to Auvra’s cultural record, what they added and when. It is attached to the contribution itself, so the credit travels with the knowledge.</p>
             <p className="mt-4 text-[17px] md:text-lg leading-relaxed text-grey">Contributions are not only new uploads. Naming the people in an old photo, recording an elder’s memory, caring for a box of letters or teaching a tradition to the next generation are all contributions worth recording.</p>
           </div>
@@ -113,11 +118,11 @@ export default function ContributionBadges() {
       </section>
 
       {/* 2 · Why attribution */}
-      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby="why-title">
+      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby={pid('why-title')}>
         <div className="wrap">
           <div className="reveal mx-auto max-w-[860px] text-center">
             <p className="kicker !text-[#BDB6AA]">Attribution</p>
-            <h2 id="why-title" className={`${H2} mx-auto max-w-[18ch]`}>Why do cultural contributions need attribution?</h2>
+            <h2 id={pid('why-title')} className={`${H2} mx-auto max-w-[18ch]`}>Why do cultural contributions need attribution?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">Because cultural knowledge comes from people. When a memory, a translation or a correction loses its name, later readers cannot tell where it came from, how much to trust it, or whom to thank.</p>
           </div>
           <ul className="mt-14 grid gap-4 md:grid-cols-3">
@@ -136,10 +141,10 @@ export default function ContributionBadges() {
       </section>
 
       {/* 3 · Preservation and additional contributions */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="layers-title">
+      <section className="wrap py-20 md:py-32" aria-labelledby={pid('layers-title')}>
         <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
           <p className="kicker">Preservation and contribution</p>
-          <h2 id="layers-title" className={H2}>How do preservation and new contributions relate?</h2>
+          <h2 id={pid('layers-title')} className={H2}>How do preservation and new contributions relate?</h2>
           <p className={ANSWER}>The original record is kept. Added context never silently replaces it. Every later contribution sits alongside the original with its own name and date, so you can always see what was first documented and what was added since.</p>
         </div>
         <ol className="mt-14 grid gap-4 md:grid-cols-3">
@@ -159,11 +164,11 @@ export default function ContributionBadges() {
       </section>
 
       {/* 4 · Four contribution paths */}
-      <section id="paths" className="bg-linen py-20 md:py-32 scroll-mt-24" aria-labelledby="paths-title">
+      <section id={pid('paths')} className="bg-linen py-20 md:py-32 scroll-mt-24" aria-labelledby={pid('paths-title')}>
         <div className="wrap">
           <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
             <p className="kicker">Four contribution paths</p>
-            <h2 id="paths-title" className={H2}>What are the four contribution paths?</h2>
+            <h2 id={pid('paths-title')} className={H2}>What are the four contribution paths?</h2>
             <p className={ANSWER}>Contextual Validation, Memory & Oral Documentation, Physical & Digital Stewardship and Cultural Continuation. Each describes a different way people help keep a cultural record complete and alive.</p>
           </div>
           <ol className="mt-14 grid gap-4 md:grid-cols-2">
@@ -188,10 +193,10 @@ export default function ContributionBadges() {
       </section>
 
       {/* 5 · Examples */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="examples-title">
+      <section className="wrap py-20 md:py-32" aria-labelledby={pid('examples-title')}>
         <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
           <p className="kicker">Contribution examples</p>
-          <h2 id="examples-title" className={H2}>What does a contribution look like?</h2>
+          <h2 id={pid('examples-title')} className={H2}>What does a contribution look like?</h2>
           <p className={ANSWER}>Usually something small and personal: a name, a memory, a scanned letter, a lesson passed on. Here is one illustrative example for each path.</p>
         </div>
         <ul className="mt-14 grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -208,11 +213,11 @@ export default function ContributionBadges() {
       </section>
 
       {/* 6 · Record integrity */}
-      <section className="bg-teal text-white py-20 md:py-32" aria-labelledby="integrity-title">
+      <section className="bg-teal text-white py-20 md:py-32" aria-labelledby={pid('integrity-title')}>
         <div className="wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal max-md:text-center">
             <p className="kicker !text-[#BFE0E1]">Record integrity</p>
-            <h2 id="integrity-title" className={H2}>How is the history of a record protected?</h2>
+            <h2 id={pid('integrity-title')} className={H2}>How is the history of a record protected?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BFE0E1]">By adding, never overwriting. Each record keeps its original version and a visible history of every contribution made to it, so the story of how knowledge grew is part of the record itself.</p>
             <ul className="ticks mt-8 text-left max-md:inline-flex">
               <li>The original record is preserved as it was first documented</li>
@@ -228,10 +233,10 @@ export default function ContributionBadges() {
       </section>
 
       {/* 7 · Contribution experience */}
-      <section id="experience" className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby="experience-title">
+      <section id={pid('experience')} className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby={pid('experience-title')}>
         <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
           <p className="kicker">Contribution experience</p>
-          <h2 id="experience-title" className={H2}>How does contributing work?</h2>
+          <h2 id={pid('experience-title')} className={H2}>How does contributing work?</h2>
           <p className={ANSWER}>In three separate steps: you submit a contribution, it is assessed, and then a badge is issued. Each step is a distinct stage, and they are at different points of development.</p>
         </div>
         <ol className="mt-14 grid gap-4 lg:grid-cols-3">
@@ -251,11 +256,11 @@ export default function ContributionBadges() {
       </section>
 
       {/* 8 · Current status */}
-      <section className="wrap pb-20 md:pb-32" aria-labelledby="status-title">
+      <section className="wrap pb-20 md:pb-32" aria-labelledby={pid('status-title')}>
         <div className="reveal grid gap-10 rounded-[36px] bg-[#FFE9E3] p-8 md:p-14 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div className="max-md:text-center">
             <p className="kicker">Current product status</p>
-            <h2 id="status-title" className="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">Can I receive a Contribution Badge today?</h2>
+            <h2 id={pid('status-title')} className="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">Can I receive a Contribution Badge today?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#5A4A44]">Not yet. Contribution Badges are being built. Submitting contributions is in development; assessment and badge issuance are planned and are not live. We will publish how assessment works before any badge is issued, and update this page when that changes.</p>
           </div>
           <ul className="flex flex-col gap-3">
@@ -266,16 +271,16 @@ export default function ContributionBadges() {
         </div>
       </section>
 
-      <Related current="/contribution-badges" notes={{
+      {!embedded && (<Related current="/badges#contribution" notes={{
         '/cultural-preservation': 'Contributions add to records that have already been preserved, keeping their origin and context intact.',
-        '/collectible-badges': 'Collectible Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
+        '/badges#creator': 'Creator Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
         '/my-vault': 'Keep the recordings, photos and documents behind your contributions in your own private Vault.',
         '/auvra-passport': 'Auvra Passport is designed to connect you to the contributions you have made, so they stay attributed to you.',
-      }} />
+      }} />)}
 
-      <FaqBlock items={FAQS} title="Contribution Badge questions" />
+      <FaqBlock pid={pid} items={FAQS} title="Contribution Badge questions" />
 
-      <CtaBlock title="Add to the record" text="Every name, memory and lesson you document helps keep a culture complete. Explore how Auvra is building for it." />
+      {!embedded && <CtaBlock title="Add to the record" text="Every name, memory and lesson you document helps keep a culture complete. Explore how Auvra is building for it." />}
     </div>
   );
 }
@@ -304,12 +309,12 @@ function Related({ current, notes }) {
   );
 }
 
-function FaqBlock({ items, title }) {
+function FaqBlock({ items, title, pid = (x) => x }) {
   return (
-    <section className="wrap pb-20 md:pb-32 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16" aria-labelledby="faq-title">
+    <section className="wrap pb-20 md:pb-32 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16" aria-labelledby={pid('faq-title')}>
       <div className="max-md:text-center">
         <p className="kicker">Questions</p>
-        <h2 id="faq-title" className={`${H2} max-w-[12ch] max-md:mx-auto`}>{title}</h2>
+        <h2 id={pid('faq-title')} className={`${H2} max-w-[12ch] max-md:mx-auto`}>{title}</h2>
         <a className="btn btn--dark mt-8" href="/faqs">See all FAQs →</a>
       </div>
       <div className="border-t border-line">

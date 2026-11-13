@@ -4,19 +4,19 @@ import { DEFINITIONS } from '../../data/definitions.js';
 import { FAQ_GROUPS } from '../../data/faqs.js';
 import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
 
-// Note: by agreement the Collectible Badge fee is not shown anywhere on the public site.
+// Note: by agreement the Creator Badge fee is not shown anywhere on the public site.
 
 const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
 const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
 const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
 
 // FAQ answers reused verbatim from src/data/faqs.js.
-export const FAQS = FAQ_GROUPS.find((g) => g.title === 'Collectible Badges').items.slice(0, 4);
+export const FAQS = FAQ_GROUPS.find((g) => g.title === 'Creator Badges').items.slice(0, 4);
 
 const CREATORS = ['Musicians', 'Visual artists', 'Storytellers', 'Photographers', 'Craft practitioners', 'Performers'];
 
 const JOURNEY = [
-  { icon: 'globe', name: 'Discover', text: 'Find a Collectible Badge through a creator, a community or a story you come across on Auvra.' },
+  { icon: 'globe', name: 'Discover', text: 'Find a Creator Badge through a creator, a community or a story you come across on Auvra.' },
   { icon: 'speech', name: 'Read the story and context', text: 'See what the work is, where it comes from, what it means and who made it, before anything else.' },
   { icon: 'phone', name: 'Claim it in the app', text: 'Claim the badge through the Auvra app, and keep it with its story attached.' },
   { icon: 'shield', name: 'The creator stays credited', text: 'Wherever the badge goes, the creator’s name and the cultural context travel with it.' },
@@ -41,21 +41,26 @@ function Phone({ label, children, className = '' }) {
   );
 }
 
-export default function CollectibleBadges() {
+export default function CreatorBadges({ embedded = false }) {
+  // embedded: rendered inside /badges, so ids are prefixed and page-level pieces are skipped.
+  const pid = (x) => (embedded ? 'creator-' + x : x);
+  const HTitle = embedded ? 'h2' : 'h1';
   return (
     <div className="overflow-x-clip">
       {/* Hero */}
-      <section className="bg-[#ECE8FF]" aria-labelledby="page-title">
+      <section className="bg-[#ECE8FF]" aria-labelledby={pid('page-title')}>
         <div className="wrap pt-[108px] md:pt-[130px] pb-12 md:pb-20 max-md:text-center">
+          {!embedded && (
           <nav className="crumbs max-md:[&_ol]:justify-center" aria-label="Breadcrumb">
-            <ol><li><a href="/">Home</a></li><li><a href={PRODUCTS_CRUMB.href}>{PRODUCTS_CRUMB.label}</a></li><li><span aria-current="page">Collectible Badges</span></li></ol>
+            <ol><li><a href="/">Home</a></li><li><a href={PRODUCTS_CRUMB.href}>{PRODUCTS_CRUMB.label}</a></li><li><span aria-current="page">Creator Badges</span></li></ol>
           </nav>
-          <p className="kicker">Collectible Badges</p>
-          <h1 id="page-title" className={`${H1} max-w-[16ch] max-md:mx-auto`}>Give cultural expressions a way to travel across generations.</h1>
-          <p className="mt-8 max-w-[46rem] text-[18px] md:text-xl leading-relaxed text-[#3A3631] max-md:mx-auto">{DEFINITIONS.collectibleBadges.long}</p>
+          )}
+          <p className="kicker">Creator Badges</p>
+          <HTitle id={pid('page-title')} className={`${H1} max-w-[16ch] max-md:mx-auto`}>Give cultural expressions a way to travel across generations.</HTitle>
+          <p className="mt-8 max-w-[46rem] text-[18px] md:text-xl leading-relaxed text-[#3A3631] max-md:mx-auto">{DEFINITIONS.creatorBadges.long}</p>
           <div className="mt-8 flex flex-wrap gap-3 max-md:justify-center">
-            <a className="btn btn--dark" href="#claiming">How claiming works</a>
-            <a className="btn btn--ghost" href="#examples">See examples</a>
+            <a className="btn btn--dark" href={'#' + pid('claiming')}>How claiming works</a>
+            <a className="btn btn--ghost" href={'#' + pid('examples')}>See examples</a>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr]">
@@ -65,11 +70,11 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 1 · What they are */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="what-title">
+      <section className="wrap py-20 md:py-32" aria-labelledby={pid('what-title')}>
         <div className="reveal max-w-[900px] max-md:text-center max-md:mx-auto">
           <p className="kicker">What they are</p>
-          <h2 id="what-title" className={H2}>What is a Collectible Badge?</h2>
-          <p className={ANSWER}>A Collectible Badge is a cultural work presented together with its story. The creator documents the expression, explains where it comes from and what it means, and shares it as a digital or physical item that people can discover and claim, with the creator’s name attached.</p>
+          <h2 id={pid('what-title')} className={H2}>What is a Creator Badge?</h2>
+          <p className={ANSWER}>A Creator Badge is a cultural work presented together with its story. The creator documents the expression, explains where it comes from and what it means, and shares it as a digital or physical item that people can discover and claim, with the creator’s name attached.</p>
           <p className="mt-4 text-[17px] md:text-lg leading-relaxed text-grey">It is not a product listing. The context comes first: who made it, which community it belongs to, and why it matters.</p>
         </div>
         <ul className="reveal mt-10 flex flex-wrap gap-2 max-md:justify-center">
@@ -80,14 +85,14 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 2 · Role of creators */}
-      <section className="bg-espresso text-white py-20 md:py-32" aria-labelledby="creators-title">
+      <section className="bg-espresso text-white py-20 md:py-32" aria-labelledby={pid('creators-title')}>
         <div className="wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal order-2 lg:order-1">
             <Photo name="sculpture" alt="A sculptor at work on a carved wooden figure" sizes="(max-width: 1024px) 100vw, 50vw" className="aspect-[4/5] w-full rounded-[32px] object-cover" />
           </div>
           <div className="reveal order-1 lg:order-2 max-md:text-center">
             <p className="kicker !text-[#E6D3CA]">The role of creators</p>
-            <h2 id="creators-title" className={H2}>Who creates Collectible Badges?</h2>
+            <h2 id={pid('creators-title')} className={H2}>Who creates Creator Badges?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#E6D3CA]">Creators who document and share cultural expressions. They decide what to share, tell its story in their own words and remain its credited author.</p>
             <ul className="mt-8 flex flex-wrap gap-2 max-md:justify-center">
               {CREATORS.map((c) => <li key={c} className="rounded-full border border-white/25 px-4 py-2 text-[15px]">{c}</li>)}
@@ -98,12 +103,12 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 3 · Cultural context and attribution */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="context-title">
+      <section className="wrap py-20 md:py-32" aria-labelledby={pid('context-title')}>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal max-md:text-center">
             <p className="kicker">Context and attribution</p>
-            <h2 id="context-title" className={H2}>Why does every badge carry its context?</h2>
-            <p className={ANSWER}>Because a cultural expression separated from its story loses its meaning. Each Collectible Badge keeps the creator’s name, the community or tradition it comes from, and an explanation of what it is, so the work is understood the way its creator intended.</p>
+            <h2 id={pid('context-title')} className={H2}>Why does every badge carry its context?</h2>
+            <p className={ANSWER}>Because a cultural expression separated from its story loses its meaning. Each Creator Badge keeps the creator’s name, the community or tradition it comes from, and an explanation of what it is, so the work is understood the way its creator intended.</p>
           </div>
           <figure className="reveal mx-auto w-full max-w-[460px]">
             <dl className="overflow-hidden rounded-[28px] border border-line bg-white shadow-xl">
@@ -123,18 +128,18 @@ export default function CollectibleBadges() {
                 </div>
               ))}
             </dl>
-            <figcaption className="mt-3 text-center text-[14px] text-grey">What a Collectible Badge is designed to carry with it.</figcaption>
+            <figcaption className="mt-3 text-center text-[14px] text-grey">What a Creator Badge is designed to carry with it.</figcaption>
           </figure>
         </div>
       </section>
 
       {/* 4 · Formats */}
-      <section className="bg-linen py-20 md:py-32" aria-labelledby="formats-title">
+      <section className="bg-linen py-20 md:py-32" aria-labelledby={pid('formats-title')}>
         <div className="wrap">
           <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
             <p className="kicker">Digital and physical formats</p>
-            <h2 id="formats-title" className={H2}>Can a Collectible Badge be digital or physical?</h2>
-            <p className={ANSWER}>Both. A Collectible Badge may represent a digital expression, such as a recording or a photograph, or a physical one, such as a carving or a piece of beadwork. Either way, it carries the same context and attribution.</p>
+            <h2 id={pid('formats-title')} className={H2}>Can a Creator Badge be digital or physical?</h2>
+            <p className={ANSWER}>Both. A Creator Badge may represent a digital expression, such as a recording or a photograph, or a physical one, such as a carving or a piece of beadwork. Either way, it carries the same context and attribution.</p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-2">
             <article className="reveal flex flex-col gap-4 rounded-[32px] bg-blue p-8 md:p-12 text-white max-md:text-center max-md:items-center">
@@ -152,13 +157,13 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 5 · Discovery and claiming */}
-      <section id="claiming" className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby="claiming-title">
+      <section id={pid('claiming')} className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby={pid('claiming-title')}>
         <div className="grid items-center gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
           <div>
             <div className="reveal max-md:text-center">
               <p className="kicker">Discovery and claiming</p>
-              <h2 id="claiming-title" className={H2}>How does claiming work?</h2>
-              <p className={ANSWER}>Audiences discover a Collectible Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.</p>
+              <h2 id={pid('claiming-title')} className={H2}>How does claiming work?</h2>
+              <p className={ANSWER}>Audiences discover a Creator Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.</p>
             </div>
             <ol className="mt-10 flex flex-col gap-3">
               {JOURNEY.map((j, i) => (
@@ -173,14 +178,14 @@ export default function CollectibleBadges() {
               ))}
             </ol>
           </div>
-          <Phone label="Illustrative Collectible Badge screen in the Auvra app: a talking-drum recording with its creator, cultural context and a claim button" className="reveal">
+          <Phone label="Illustrative Creator Badge screen in the Auvra app: a talking-drum recording with its creator, cultural context and a claim button" className="reveal">
             <div className="h-full overflow-hidden bg-white text-carbon">
               <div className="relative h-[50%]">
                 <img src="/images/photos/drummer-blue-480.webp" alt="" className="h-full w-full object-cover" loading="lazy" />
                 <span className="absolute left-3 top-[13%] rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold">Illustrative example</span>
               </div>
               <div className="flex flex-col gap-2 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Collectible Badge · Digital</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Creator Badge · Digital</p>
                 <p className="text-[19px] font-semibold leading-tight">Ìyá Ìlù, the mother drum</p>
                 <p className="text-[12px] text-grey">Created by a talking-drum player · Ibadan</p>
                 <p className="font-serif text-[13px] leading-snug">A recording of the lead drum that “speaks” praise names, with an explanation of how its tones follow spoken Yoruba.</p>
@@ -192,11 +197,11 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 6 · Creator and audience */}
-      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby="relationship-title">
+      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby={pid('relationship-title')}>
         <div className="wrap">
           <div className="reveal mx-auto max-w-[900px] text-center">
             <p className="kicker !text-[#BDB6AA]">Creators and audiences</p>
-            <h2 id="relationship-title" className={`${H2} mx-auto max-w-[18ch]`}>What connects a creator to their audience?</h2>
+            <h2 id={pid('relationship-title')} className={`${H2} mx-auto max-w-[18ch]`}>What connects a creator to their audience?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">The story behind the work. Audiences do not just receive an item; they learn where it comes from and who made it. Creators keep their name on their work and can see it carried by people who value it.</p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-2">
@@ -221,10 +226,10 @@ export default function CollectibleBadges() {
       </section>
 
       {/* 7 · Examples */}
-      <section id="examples" className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby="examples-title">
+      <section id={pid('examples')} className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby={pid('examples-title')}>
         <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
           <p className="kicker">Example badges</p>
-          <h2 id="examples-title" className={H2}>What can a Collectible Badge represent?</h2>
+          <h2 id={pid('examples-title')} className={H2}>What can a Creator Badge represent?</h2>
           <p className={ANSWER}>Traditional artwork, music, cultural photography, craftsmanship and documented cultural expressions, always presented with the creator’s attribution and context.</p>
         </div>
         <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -250,16 +255,16 @@ export default function CollectibleBadges() {
         </ul>
       </section>
 
-      <Related current="/collectible-badges" notes={{
+      {!embedded && (<Related current="/badges#creator" notes={{
         '/cultural-preservation': 'The wider environment for documenting the traditions that creators draw on.',
-        '/contribution-badges': 'Where Collectible Badges carry a creator’s own work, Contribution Badges record what people add to existing records.',
+        '/badges#contribution': 'Where Creator Badges carry a creator’s own work, Contribution Badges record what people add to existing records.',
         '/my-vault': 'A private place to keep the recordings, photos and documents behind your work.',
         '/auvra-passport': 'Auvra Passport is designed to connect creators to the work they share, so it stays attributed to them.',
-      }} />
+      }} />)}
 
-      <FaqBlock items={FAQS} title="Collectible Badge questions" />
+      <FaqBlock pid={pid} items={FAQS} title="Creator Badge questions" />
 
-      <CtaBlock title="Share a tradition with its story" text="Discover how Auvra helps creators present cultural work with its context and their name attached." />
+      {!embedded && <CtaBlock title="Share a tradition with its story" text="Discover how Auvra helps creators present cultural work with its context and their name attached." />}
     </div>
   );
 }
@@ -270,7 +275,7 @@ function Related({ current, notes }) {
     <section className="wrap pb-20 md:pb-32" aria-labelledby="related-title">
       <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
         <p className="kicker">Across Auvra</p>
-        <h2 id="related-title" className={H2}>How do Collectible Badges fit into Auvra?</h2>
+        <h2 id="related-title" className={H2}>How do Creator Badges fit into Auvra?</h2>
       </div>
       <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((p) => (
@@ -288,12 +293,12 @@ function Related({ current, notes }) {
   );
 }
 
-function FaqBlock({ items, title }) {
+function FaqBlock({ items, title, pid = (x) => x }) {
   return (
-    <section className="wrap pb-20 md:pb-32 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16" aria-labelledby="faq-title">
+    <section className="wrap pb-20 md:pb-32 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16" aria-labelledby={pid('faq-title')}>
       <div className="max-md:text-center">
         <p className="kicker">Questions</p>
-        <h2 id="faq-title" className={`${H2} max-w-[12ch] max-md:mx-auto`}>{title}</h2>
+        <h2 id={pid('faq-title')} className={`${H2} max-w-[12ch] max-md:mx-auto`}>{title}</h2>
         <a className="btn btn--dark mt-8" href="/faqs">See all FAQs →</a>
       </div>
       <div className="border-t border-line">

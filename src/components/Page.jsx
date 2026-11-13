@@ -19,7 +19,7 @@ export function PageHero({ kicker, title, lead, crumbs, children }) {
   );
 }
 
-export function CtaBlock({ title, text, href = '/download', label = 'Explore Auvra' }) {
+export function CtaBlock({ title, text, href = '#get-app', label = 'Explore Auvra' }) {
   return (
     <section className="wrap cta-block-wrap">
       <div className="cta-block pattern-bg">

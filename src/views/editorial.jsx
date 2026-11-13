@@ -105,7 +105,7 @@ const CTA_TONES = {
   linen: { bg: '#F4F0E8', text: '#1C1A18', sub: '#5F5B55', btn: 'btn--dark', ghost: '' },
 };
 
-export function FinalCta({ id = 'cta-title', title, text, primary = { href: '/download', label: 'Explore Auvra' }, secondary, tone = 'carbon', icon }) {
+export function FinalCta({ id = 'cta-title', title, text, primary = { href: '#get-app', label: 'Explore Auvra' }, secondary, tone = 'carbon', icon }) {
   const t = CTA_TONES[tone] || CTA_TONES.carbon;
   return (
     <section className="px-3 md:px-6 pb-3 md:pb-6" aria-labelledby={id}>

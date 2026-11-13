@@ -43,8 +43,8 @@ const SERVES = [
 
 const PRODUCTS = [
   { n: '01', name: 'Cultural Preservation', href: '/cultural-preservation', chip: '#024B50', text: DEFINITIONS.culturalPreservation.short },
-  { n: '02', name: 'Contribution Badges', href: '/contribution-badges', chip: '#4A281C', text: DEFINITIONS.contributionBadges.short },
-  { n: '03', name: 'Collectible Badges', href: '/collectible-badges', chip: '#3310BE', text: DEFINITIONS.collectibleBadges.short },
+  { n: '02', name: 'Contribution Badges', href: '/badges#contribution', chip: '#4A281C', text: DEFINITIONS.contributionBadges.short },
+  { n: '03', name: 'Creator Badges', href: '/badges#creator', chip: '#3310BE', text: DEFINITIONS.creatorBadges.short },
   { n: '04', name: 'My Vault', href: '/my-vault', chip: '#1C1A18', text: DEFINITIONS.myVault.short },
   { n: '05', name: 'Auvra Passport', href: '/auvra-passport', chip: '#C2563F', text: DEFINITIONS.auvraPassport.short },
 ];
