@@ -21,9 +21,9 @@ const homeFaqs = [
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: homeFaqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 
 const tiles = [
-  { label: 'Record a memory', icon: 'mic', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E9DDFB 45%, #CDB8F0 100%)', strip: '#DCCBF7' },
+  { label: 'Record or upload', icon: 'mic', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E9DDFB 45%, #CDB8F0 100%)', strip: '#DCCBF7' },
   { label: 'Lens AI understands it', icon: 'sparkle', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #FFE3D6 45%, #FFC2AE 100%)', strip: '#FFD8C8' },
-  { label: 'Pass it down forever', icon: 'gift', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E2F0D6 45%, #C3DFAA 100%)', strip: '#D6EAC4' },
+  { label: 'Own it and pass it on', icon: 'gift', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E2F0D6 45%, #C3DFAA 100%)', strip: '#D6EAC4' },
 ];
 const features = [
   { art: 'pocket-watch', icon: 'globe', tint: '#E0EEEF', name: 'Cultural Preservation', text: DEFINITIONS.culturalPreservation.short, href: '/cultural-preservation' },
@@ -39,7 +39,7 @@ const steps = [
   { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#3310BE', chip: '#5A3BE0', accent: '#DCD5FF' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
-const GALLERY_WALL = ['coral-beads', 'gele', 'drummer-blue', 'emir', 'young-man', 'singers', 'beaded-hair', 'elder', 'mask', 'drums', 'masquerade'];
+const GALLERY_WALL = ['creator-studio', 'gele', 'creator-filmmaker', 'young-man', 'creator-photographer', 'singers', 'creator-painter', 'beaded-hair', 'creator-filmcrew', 'drummer-blue', 'elder'];
 const audiences = [
   { id: 'families', name: 'Families' }, { id: 'creators', name: 'Creators' }, { id: 'communities', name: 'Communities' },
   { id: 'diaspora', name: 'Diaspora' }, { id: 'institutions', name: 'Museums & Institutions' },
@@ -65,9 +65,9 @@ const audiences = [
       </div>
     </div>
     <div class="relative isolate grid h-[640px] md:h-[732px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-clip">
-      <img src="/images/photos/dancer-wheel-1400.webp" srcset="/images/photos/dancer-wheel-960.webp 960w, /images/photos/dancer-wheel-1400.webp 1400w" sizes="(max-width: 767px) 100vw, 34vw" alt="A dancer with eyes closed, spinning in a wide circle of eagle feathers against a blue sky" class="md:hidden lg:block h-full w-full object-cover object-[50%_25%]" fetchpriority="high" />
+      <img src="/images/photos/creator-painter-960.webp" srcset="/images/photos/creator-painter-480.webp 480w, /images/photos/creator-painter-960.webp 960w" sizes="(max-width: 767px) 100vw, 34vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="md:hidden lg:block h-full w-full object-cover object-[50%_30%]" fetchpriority="high" />
       <img src="/images/photos/dancer-sky-1400.webp" srcset="/images/photos/dancer-sky-960.webp 960w, /images/photos/dancer-sky-1400.webp 1400w" sizes="(max-width: 767px) 100vw, 50vw" alt="A dancer in a feathered bustle and fringed regalia leaping against a blue sky" class="hidden md:block h-full w-full object-cover object-[40%_30%]" loading="lazy" />
-      <img src="/images/photos/dancer-feathers-1400.webp" srcset="/images/photos/dancer-feathers-960.webp 960w, /images/photos/dancer-feathers-1400.webp 1400w" sizes="50vw" alt="A dancer with eyes closed, turning in fringed regalia and an eagle-feather bustle" class="hidden md:block h-full w-full object-cover object-[50%_25%]" loading="lazy" />
+      <img src="/images/photos/creator-photographer-960.webp" srcset="/images/photos/creator-photographer-480.webp 480w, /images/photos/creator-photographer-960.webp 960w" sizes="50vw" alt="A video creator in glasses at his desk, with a lit monitor behind him" class="hidden md:block h-full w-full object-cover object-[35%_40%]" loading="lazy" />
       <div class="hidden lg:block absolute left-[3.5%] top-[64%] z-10 w-[360px] rounded-[24px] bg-white/50 p-2">
         <div class="rounded-[18px] bg-white p-5 shadow-xl text-left">
           <div class="flex items-center gap-3"><img src="/images/photos/gele-480.webp" alt="" class="h-11 w-11 rounded-xl object-cover" /><p class="text-[16px] font-semibold leading-tight">Okafor Family Vault</p></div>
@@ -106,8 +106,8 @@ const audiences = [
   <!-- 2 · Dark intro + three tiles -->
   <section class="flex flex-col items-center gap-y-[7.5rem] bg-[#191717] pt-[4.4rem] md:pt-[8.75rem]" aria-labelledby="intro-title">
     <div class="reveal flex max-w-[820px] flex-col items-center gap-8 md:gap-[3.25rem] px-10 text-center">
-      <h2 id="intro-title" class="ws-h text-[#FBF8F1] text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">The cultural preservation platform built for you</h2>
-      <p class="max-w-[600px] text-sm md:text-lg md:leading-7 text-[#888]">Auvra is the home where families, creators and communities preserve the stories, languages and traditions that matter, so they are never lost and always credited to the people who carry them.</p>
+      <h2 id="intro-title" class="ws-h text-[#FBF8F1] text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">The platform built for families and creators</h2>
+      <p class="max-w-[600px] text-sm md:text-lg md:leading-7 text-[#888]">Whether you are recording your grandmother’s stories, releasing music, shooting film or making art, Auvra keeps your work and memories safe, organised and credited to you, for good.</p>
     </div>
     <ul class="grid w-full grid-cols-1 md:grid-cols-3 md:divide-x md:divide-[#2B2B2B]">
       {tiles.map((t) => (
@@ -161,17 +161,17 @@ const audiences = [
     <div class="mx-auto grid max-w-[1000px] grid-cols-2 md:grid-cols-[1.15fr_1fr_0.7fr] items-center gap-x-5 gap-y-6 md:gap-y-8" aria-hidden="true">
       <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-1">Your story</p>
       <img src="/images/photos/beadwork-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-2" loading="lazy" />
-      <img src="/images/photos/drummer-blue-480.webp" alt="" class="reveal max-md:order-2 aspect-square w-full rounded-md object-cover shadow-md" loading="lazy" />
+      <img src="/images/photos/creator-studio-480.webp" alt="" class="reveal max-md:order-2 aspect-square w-full rounded-md object-cover shadow-md" loading="lazy" />
       <img src="/images/photos/singers-480.webp" alt="" class="reveal aspect-[2/1] w-full rounded-md object-cover shadow-md max-md:order-4 max-md:aspect-square" loading="lazy" />
       <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] md:text-right max-md:col-span-2 max-md:order-3">isn't lost.</p>
-      <img src="/images/photos/coral-beads-480.webp" alt="" class="reveal max-md:order-4 max-md:aspect-square aspect-[3/4] w-full rounded-md object-cover shadow-md" loading="lazy" />
+      <img src="/images/photos/creator-filmcrew-480.webp" alt="" class="reveal max-md:order-4 max-md:aspect-square aspect-[3/4] w-full rounded-md object-cover shadow-md" loading="lazy" />
       <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-5">It's preserved.</p>
-      <img src="/images/photos/hands-braid-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-6 max-md:col-span-2" loading="lazy" />
+      <img src="/images/photos/creator-filmmaker-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-6 max-md:col-span-2" loading="lazy" />
       <div class="hidden md:flex flex-col items-center gap-1 text-[22px] font-medium">
         <span class="size-11 rounded-full border-2 border-carbon"></span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">20</span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">26</span><span class="size-11 rounded-full border-2 border-carbon"></span>
       </div>
     </div>
-    <p class="reveal mx-auto mt-16 md:mt-24 max-w-[560px] text-center text-[17px] md:text-xl"><b>Recorded</b> by the people who carry it, preserved <b>with intention</b>.</p>
+    <p class="reveal mx-auto mt-16 md:mt-24 max-w-[560px] text-center text-[17px] md:text-xl"><b>Made</b> by you, preserved <b>with intention</b>.</p>
   </section>
 
   <!-- 4 · Poster statement -->
@@ -180,9 +180,6 @@ const audiences = [
       ['stone-2', 'left-[-6%] top-[3%] w-[44vw] md:left-[6%] md:top-[8%] md:w-[230px]', '-8'],
       ['stone-3', 'right-[-4%] top-[4%] w-[30vw] md:right-[9%] md:top-[10%] md:w-[150px]', '-14'],
       ['stone-9', 'right-[-6%] bottom-[2%] w-[40vw] md:right-[5%] md:bottom-[10%] md:w-[230px]', '-6'],
-      ['stone-6', 'left-[-2%] bottom-[4%] w-[26vw] md:left-[10%] md:bottom-[12%] md:w-[130px]', '-12'],
-      ['stone-10', 'hidden md:block left-[30%] bottom-[5%] w-[120px]', '-10'],
-      ['stone-7', 'hidden md:block right-[30%] top-[6%] w-[70px] rotate-12', '-16'],
     ].map(([n, pos, px]) => <img src={`/images/artifacts/${n}.webp`} alt="" aria-hidden="true" class={`artifact absolute -z-10 ${pos}`} data-parallax={px} loading="lazy" />)}
     <div class="reveal flex flex-col items-center">
       <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
