@@ -25,7 +25,7 @@ export function CtaBlock({ title, text, href = '#get-app', label = 'Explore Auvr
       <div className="cta-block pattern-bg">
         <h2 className="h2">{title}</h2>
         {text && <p>{text}</p>}
-        <a className="btn btn--lemon" href={href}>{label}</a>
+        <a className="poster-cta shimmer" href={href}>{label}<span className="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></span></a>
       </div>
     </section>
   );

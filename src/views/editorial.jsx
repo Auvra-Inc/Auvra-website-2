@@ -115,9 +115,9 @@ export function FinalCta({ id = 'cta-title', title, text, primary = { href: '#ge
           {icon}
           <h2 id={id} className="reveal ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.9] text-[clamp(40px,7.4vw,100px)] text-balance">{nb(title)}</h2>
           {text && <p className="reveal max-w-[480px] text-[17px] md:text-lg" style={{ color: t.sub }}>{text}</p>}
-          <div className="flex flex-wrap justify-center gap-3">
-            <a href={primary.href} className={`btn ${t.btn} shimmer !px-10 !min-h-[60px]`}>{primary.label}</a>
-            {secondary && <a href={secondary.href} className={`btn btn--ghost !min-h-[60px] ${t.ghost}`}>{secondary.label}</a>}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a href={primary.href} className={`poster-cta shimmer ${t.btn === 'btn--dark' ? 'poster-cta--dark' : ''}`}>{primary.label}<span className="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></span></a>
+            {secondary && <a href={secondary.href} className={`ghost-cta ${t.btn === 'btn--dark' ? 'ghost-cta--dark' : ''}`}>{secondary.label}</a>}
           </div>
         </div>
       </div>

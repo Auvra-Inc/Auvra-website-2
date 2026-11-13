@@ -1007,3 +1007,12 @@ html { overflow-x: clip; }
   @media (prefers-reduced-motion: reduce) { .nav__panel--in, .nav__sub--in, .hero-word { animation: none; } }
   html { scroll-behavior: auto; }
 }
+@layer components {
+  /* Compact secondary pill to sit beside the Explore Auvra button */
+  .ghost-cta { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid rgba(251,248,241,.55); color: #FBF8F1; font-size: 15px; font-weight: 500; text-decoration: none; transition: background .2s, border-color .2s; }
+  .ghost-cta:hover { background: rgba(255,255,255,.08); border-color: #FBF8F1; }
+  .ghost-cta--dark { border-color: rgba(25,23,23,.35); color: #191717; }
+  .ghost-cta--dark:hover { background: rgba(25,23,23,.05); border-color: #191717; }
+  /* All standard buttons: compact, like the rest of the site */
+  .btn { min-height: 44px; padding: 0 20px; font-size: 15px; }
+}
