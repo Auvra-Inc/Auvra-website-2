@@ -46,12 +46,10 @@ export default function Nav({ pathname = '/' }) {
     <header className="nav" ref={navRef} data-open={open ? '' : undefined} data-scrolled={scrolled || open ? '' : undefined}>
       <div className="nav__pill">
         <a href="/" className="nav__logo" aria-label="Auvra home">
-          <img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="112" height="32" />
+          <img src="/brand/auvra-horizontal-carbon.svg" alt="Auvra" width="120" height="30" />
         </a>
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</a>
-          <a className="nav__btn" href={STORE.appStore} {...ext} aria-label="Download on the App Store"><AppleGlyph size={20} /></a>
-          <a className="nav__btn" href={STORE.googlePlay} {...ext} aria-label="Get it on Google Play"><PlayGlyph size={18} /></a>
           <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
             {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>

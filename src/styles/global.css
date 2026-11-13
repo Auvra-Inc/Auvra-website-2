@@ -681,3 +681,8 @@ html { overflow-x: clip; }
   .rugs__dots { position: absolute; left: 93.6%; top: 71.6%; width: 6cqw; display: flex; flex-direction: column; gap: 0; }
   .rugs__dots span { display: grid; place-items: center; width: 6cqw; height: 6cqw; border: max(1px, .32cqw) solid #111; border-radius: 50%; font-size: 3cqw; font-weight: 500; line-height: 1; letter-spacing: -0.04em; margin-top: -0.25cqw; }
 }
+@layer components {
+  .nav__logo img { height: 28px !important; width: auto; }
+  .nav .nav__cta { display: inline-flex !important; align-items: center; }
+  @media (max-width: 380px) { .nav .nav__cta { padding: 0 14px !important; font-size: 14px !important; } }
+}
