@@ -151,7 +151,6 @@ export const MOVEMENT = [
   { ...p('singers'), alt: 'Women in patterned cloth singing together' },
   { ...p('elder'), alt: 'An elder in a feathered cap at a ceremony' },
   { ...p('beaded-hair'), alt: 'A woman wearing a beaded headdress' },
-  { ...p('drums'), alt: 'Drummers playing at a festival' },
 ];
 
 export const DRIFT = ['dancers', 'procession', 'singers', 'face-paint', 'drummers-row', 'crowd', 'shrine', 'coral-beads', 'gele', 'red-cap', 'drum-street', 'village'].map((n) => p(n).thumb);

@@ -37,7 +37,7 @@
 //   author: { name: 'Auvra Stories team' },
 //   date: '2027-01-15',
 //   cover: { src: '/images/photos/singers-960.webp', alt: 'Describe what the image shows', credit: 'Photographer name' },
-//   gallery: [{ src: '/images/photos/drums-960.webp', alt: 'Describe what the image shows', caption: 'Caption', credit: 'Photographer name' }],
+//   gallery: [{ src: '/images/photos/example-960.webp', alt: 'Describe what the image shows', caption: 'Caption', credit: 'Photographer name' }],
 //   sources: [{ label: 'Recorded conversation with the contributor, January 2027' }],
 //   body: [
 //     { type: 'p', text: 'Opening paragraph.' },
