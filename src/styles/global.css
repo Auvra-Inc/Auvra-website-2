@@ -746,3 +746,43 @@ html { overflow-x: clip; }
   .poster-cta__icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #191717; color: #fff; transition: transform .25s; }
   .poster-cta:hover .poster-cta__icon { transform: rotate(45deg); }
 }
+@layer components {
+  /* Moving curved wall */
+  .wall { position: relative; margin: 24px 0 8px; }
+  .wall__stage { position: relative; height: clamp(250px, 26vw, 400px); perspective: 1000px; overflow: hidden; }
+  .wall__card { position: absolute; left: 50%; top: 50%; width: clamp(96px, 9.5vw, 156px); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 10px; box-shadow: 0 18px 30px -18px rgba(0,0,0,.5); transition: opacity .4s, box-shadow .4s, filter .4s; will-change: transform; backface-visibility: hidden; filter: saturate(.85); }
+  .wall__card.is-front { filter: none; box-shadow: 0 0 0 3px #fff, 0 26px 40px -16px rgba(0,0,0,.55); }
+  .wall-sec.is-moving .wall__card.is-front { box-shadow: 0 18px 30px -18px rgba(0,0,0,.5); }
+  @media (max-width: 767px) { .wall__stage { height: 200px; perspective: 520px; } .wall__card { width: 84px; border-radius: 8px; } }
+
+  .wall__chips { position: relative; height: 36px; margin-top: -14px; z-index: 120; }
+  .wall__chip { position: absolute; left: 50%; top: 0; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 999px; background: #fff; color: #191717; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 10px 24px -12px rgba(0,0,0,.35); opacity: 0; transform: translate(-50%, 8px) scale(.92); transition: opacity .35s, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .wall__chip.is-on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  .wall__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent); animation: wallPulse 1.6s ease-in-out infinite; }
+  @keyframes wallPulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--c) 8%, transparent); } }
+
+  .wall-words { display: grid; }
+  .wall-word { grid-area: 1 / 1; font-style: italic; color: var(--c); opacity: 0; filter: blur(8px); transform: translateY(.35em); transition: opacity .5s, filter .5s, transform .6s cubic-bezier(.2,.8,.2,1); }
+  .wall-word.is-on { opacity: 1; filter: none; transform: none; }
+
+  .wall-copy { display: grid; min-height: 5.2em; }
+  .wall-line { grid-area: 1 / 1; margin: 18px 0 0; font-size: 16px; line-height: 1.6; color: #3A3631; opacity: 0; transform: translateY(10px); transition: opacity .45s, transform .55s cubic-bezier(.2,.8,.2,1); }
+  .wall-line.is-on { opacity: 1; transform: none; transition-delay: .12s; }
+  @media (min-width: 768px) { .wall-line { font-size: 18px; } }
+
+  .wall-progress { display: flex; justify-content: center; gap: 6px; margin-top: 18px; }
+  .wall-pip { width: 18px; height: 4px; padding: 0; border: 0; border-radius: 4px; background: rgba(25,23,23,.15); cursor: pointer; transition: width .4s, background .4s; }
+  .wall-pip.is-on { width: 34px; background: var(--c); }
+
+  .poster-cta--dark { background: #191717; color: #fff; }
+  .poster-cta--dark:hover { background: #2A2727; }
+  .poster-cta--dark .poster-cta__icon { background: #fff; color: #191717; }
+
+  @media (prefers-reduced-motion: reduce) { .wall__card, .wall-word, .wall-line, .wall__chip { transition: none; } .wall__dot { animation: none; } }
+}
+@layer components {
+  .wall-words { justify-items: center; text-align: center; }
+  .wall-word { white-space: nowrap; }
+  @media (max-width: 767px) { .wall-sec > p.font-serif { font-size: 34px; } }
+  @media (max-width: 380px) { .wall-sec > p.font-serif { font-size: 30px; } }
+}

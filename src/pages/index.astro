@@ -40,7 +40,15 @@ const steps = [
   { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#3310BE', chip: '#5A3BE0', accent: '#DCD5FF' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
-const GALLERY_WALL = ['creator-studio', 'gele', 'creator-filmmaker', 'young-man', 'creator-joy', 'singers', 'creator-painter', 'beaded-hair', 'creator-filmcrew', 'drummer-blue', 'elder'];
+const WALL_CARDS = ['singers', 'drummer-blue', 'creator-filmmaker', 'creator-filmcrew', 'creator-painter', 'creator-studio', 'hands-braid', 'elder', 'coral-beads', 'dancers', 'creator-joy', 'creator-beach', 'gele', 'young-man'];
+const WALL_TOPICS = [
+  { word: 'music', label: 'Music', card: 0, color: '#7C5CFF', line: 'Songs, voice notes and live sessions, transcribed by Lens AI and credited to the artist who made them.' },
+  { word: 'films', label: 'Film', card: 2, color: '#E0563B', line: 'Short films and behind-the-scenes footage, kept in one place with the story behind every shot.' },
+  { word: 'art', label: 'Art & craft', card: 4, color: '#2F8F6B', line: 'Paintings, craft and design work, documented with the context that makes them yours.' },
+  { word: 'family', label: 'Family recordings', card: 6, color: '#C8842B', line: 'Grandma’s voice, recorded once and translated by Lens AI for every generation after her.' },
+  { word: 'community', label: 'Community archives', card: 8, color: '#2B6FD6', line: 'Festivals, songs and ceremonies, kept by the communities that carry them, with their permission.' },
+  { word: 'moments', label: 'Everyday moments', card: 10, color: '#D94C8A', line: 'The photos and moments in between, kept safe and private in your Vault.' },
+];
 const audiences = [
   { id: 'families', name: 'Families' }, { id: 'creators', name: 'Creators' }, { id: 'communities', name: 'Communities' },
   { id: 'diaspora', name: 'Diaspora' }, { id: 'institutions', name: 'Museums & Institutions' },
@@ -266,18 +274,88 @@ const audiences = [
     <a href={EXPLORE_HREF} class="poster-cta">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </section>
 
-  <!-- Curved gallery: everything people create -->
-  <section class="relative overflow-hidden bg-[#E9E9E9] pt-24 md:pt-28 pb-20 md:pb-28 text-center" aria-labelledby="gallery-title">
-    <h2 id="gallery-title" class="reveal relative z-10 mx-auto max-w-[16ch] px-6 font-serif text-[40px] md:text-[64px] leading-[1.02] text-carbon">One home. Everything you create.</h2>
-    <div class="curved curved--big w-full" aria-hidden="true">
-      {GALLERY_WALL.map((n, i, arr) => {
-        const o = i - (arr.length - 1) / 2;
-        return <img src={`/images/photos/${n}-480.webp`} alt="" class="curved__card" style={`--o:${o};--a:${Math.abs(o)}`} loading="lazy" />;
-      })}
+  <!-- Curved gallery: photos glide along the curve; the heading and copy follow the photo in front -->
+  <section class="wall-sec relative overflow-hidden bg-[#E9E9E9] pt-24 md:pt-28 pb-20 md:pb-28 text-center" aria-labelledby="gallery-title" data-wall data-stops={JSON.stringify(WALL_TOPICS.map((t) => t.card))}>
+    <h2 id="gallery-title" class="sr-only">One home. Everything you create: music, films, art, family stories, community archives and everyday moments.</h2>
+    <p class="reveal relative z-10 mx-auto px-6 font-serif text-[40px] md:text-[64px] leading-[1.02] text-carbon" aria-hidden="true">
+      <span class="block">One home for</span>
+      <span class="wall-words">
+        {WALL_TOPICS.map((t, k) => <span class={`wall-word${k === 0 ? ' is-on' : ''}`} style={`--c:${t.color}`}>your {t.word}.</span>)}
+      </span>
+    </p>
+    <div class="wall" aria-hidden="true">
+      <div class="wall__stage">
+        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-480.webp`} alt="" class="wall__card" data-i={i} loading="lazy" />)}
+      </div>
+      <div class="wall__chips">
+        {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`} style={`--c:${t.color}`}><span class="wall__dot"></span>{t.label}</span>)}
+      </div>
     </div>
-    <p class="reveal relative z-10 mx-auto max-w-[36rem] px-6 text-[16px] md:text-[18px] leading-relaxed text-[#3A3631]">Music, film, art, family recordings and community archives. Upload it once, let Lens AI transcribe and organise it, and keep it credited to you.</p>
-    <a href={EXPLORE_HREF} class="btn btn--dark shimmer mt-8 !min-h-[56px] !px-10 relative z-10">Explore Auvra</a>
+    <div class="wall-copy relative z-10 mx-auto max-w-[34rem] px-6" aria-hidden="true">
+      {WALL_TOPICS.map((t, k) => <p class={`wall-line${k === 0 ? ' is-on' : ''}`}>{t.line}</p>)}
+    </div>
+    <div class="wall-progress relative z-10" aria-hidden="true">{WALL_TOPICS.map((t, k) => <button type="button" tabindex="-1" class={`wall-pip${k === 0 ? ' is-on' : ''}`} data-k={k} style={`--c:${t.color}`}></button>)}</div>
+    <p class="sr-only">Music, film, art, family recordings and community archives. Upload it once, let Lens AI transcribe and organise it, and keep it credited to you.</p>
+    <a href={EXPLORE_HREF} class="poster-cta poster-cta--dark mt-8 relative z-10">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </section>
+
+  <script>
+    // Curved wall: cards travel along a concave curve and pause on each topic's photo.
+    const sec = document.querySelector('[data-wall]');
+    if (sec) {
+      const cards = [...sec.querySelectorAll('.wall__card')];
+      const N = cards.length;
+      const stops = JSON.parse(sec.dataset.stops || '[]');
+      const words = sec.querySelectorAll('.wall-word');
+      const lines = sec.querySelectorAll('.wall-line');
+      const chips = sec.querySelectorAll('.wall__chip');
+      const pips = sec.querySelectorAll('.wall-pip');
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let pos = 0, topic = 0, anim = null, timer = null, visible = false;
+
+      const layout = () => {
+        const w = cards[0].offsetWidth || 80;
+        const sp = w * 1.08;
+        const mob = innerWidth < 768;
+        cards.forEach((c, i) => {
+          let o = ((i - pos) % N + N) % N; if (o > N / 2) o -= N;
+          const a = Math.abs(o);
+          const x = Math.sign(o) * (a * sp + a * a * sp * (mob ? 0.09 : 0.06));
+          const s = 1 + a * a * (mob ? 0.045 : 0.035) + a * (mob ? 0.06 : 0.05);
+          const rot = o * (mob ? -14 : -11);
+          c.style.transform = `translate(-50%, -50%) translateX(${x}px) rotateY(${rot}deg) scale(${s})`;
+          c.style.zIndex = String(100 - Math.round(a * 10));
+          c.style.opacity = a > N / 2 - 1.2 ? '0' : '1';
+          c.classList.toggle('is-front', a < 0.35);
+        });
+      };
+      const show = (k) => {
+        [words, lines, chips, pips].forEach((list) => list.forEach((el, j) => el.classList.toggle('is-on', j === k)));
+      };
+      const go = (k) => {
+        topic = (k + stops.length) % stops.length;
+        let target = stops[topic];
+        let d = ((target - pos) % N + N) % N; if (d > N / 2) d -= N;
+        const from = pos, to = pos + d, t0 = performance.now(), dur = reduce ? 0 : 1300;
+        cancelAnimationFrame(anim);
+        sec.classList.add('is-moving');
+        const step = (t) => {
+          const p = dur ? Math.min(1, (t - t0) / dur) : 1;
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          pos = from + (to - from) * e; layout();
+          if (p < 1) anim = requestAnimationFrame(step);
+          else { pos = ((to % N) + N) % N; sec.classList.remove('is-moving'); }
+        };
+        anim = requestAnimationFrame(step);
+        setTimeout(() => show(topic), dur * 0.45);
+      };
+      const loop = () => { clearTimeout(timer); timer = setTimeout(() => { if (visible) go(topic + 1); loop(); }, reduce ? 6000 : 3800); };
+      pips.forEach((p) => p.addEventListener('click', () => { go(+p.dataset.k); loop(); }));
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.2 }).observe(sec);
+      addEventListener('resize', layout);
+      pos = stops[0] || 0; layout(); show(0); loop();
+    }
+  </script>
 
   <!-- 5 · How it works -->
   <section id="how-it-works" class="flex flex-col gap-y-14 md:flex-row md:gap-x-16 lg:gap-x-[6.9rem] overflow-hidden px-8 lg:pl-[5.5rem] pt-[3.75rem] md:pt-[6.25rem] pb-[3.6rem] md:pb-[10.5rem]" aria-labelledby="how-title">
