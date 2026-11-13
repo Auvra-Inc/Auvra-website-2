@@ -53,17 +53,16 @@ const audiences = [
 >
   <!-- 1 · Hero -->
   <section id="home" class="flex flex-col" aria-labelledby="hero-title">
-    <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-40" style="background: linear-gradient(180deg, #5C8A9A 0%, #6E9DAD 55%, #7AA9B8 100%)">
+    <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-44 pb-20 md:pb-28" style="background: linear-gradient(180deg, #DDD5C5 0%, #E8E2D6 35%, #F4F0E8 70%, #FAF8F4 100%)">
       <div class="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center gap-10 md:gap-8 text-center">
-        <h1 id="hero-title" class="ws-h text-[#FBF8F1] !leading-[0.86] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.9]">
+        <h1 id="hero-title" class="ws-h text-carbon !leading-[0.86] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.9]">
           {[['Your', 'story.'], ['Your', 'culture.'], ['Your', 'legacy.']].map(([a, b]) => (
             <span class="block md:whitespace-nowrap"><span class="hero-word block md:inline">{a}</span> <span class="hero-word serif-accent block md:inline">{b}</span></span>
           ))}
         </h1>
-        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#FBF8F1]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
+        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
         <div class="hero-stores"><StoreButtons /></div>
       </div>
-      <img src="/images/hero-flowers-1600.webp" srcset="/images/hero-flowers-900.webp 900w, /images/hero-flowers-1600.webp 1600w" sizes="100vw" alt="A white and a peach gerbera daisy against a clear blue sky" class="relative z-0 -mx-3 md:-mx-[3.25rem] mt-[-6%] md:mt-8 h-[320px] md:h-[480px] w-[calc(100%+1.5rem)] md:w-[calc(100%+6.5rem)] max-w-none object-cover object-[45%_100%] [mask-image:linear-gradient(180deg,transparent_0%,black_25%)]" fetchpriority="high" />
     </div>
     <div class="relative isolate grid h-[640px] md:h-[732px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-clip">
       <img src="/images/photos/creator-painter-960.webp" srcset="/images/photos/creator-painter-480.webp 480w, /images/photos/creator-painter-960.webp 960w" sizes="(max-width: 767px) 100vw, 34vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="md:hidden lg:block h-full w-full object-cover object-[50%_30%]" fetchpriority="high" />
