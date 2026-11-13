@@ -1,3 +1,4 @@
+import { photoSrcset } from '../../data/hires.js';
 // Shared pieces for the five product pages.
 
 export const PRODUCTS_CRUMB = { label: 'Products', href: '/#ecosystem' };
@@ -30,7 +31,7 @@ export function Photo({ name, alt, className = '', eager = false, sizes = '(max-
     <img
       className={className}
       src={`/images/photos/${name}-960.webp`}
-      srcSet={`/images/photos/${name}-480.webp 480w, /images/photos/${name}-960.webp 960w`}
+      srcSet={photoSrcset(name)}
       sizes={sizes}
       alt={alt}
       loading={eager ? 'eager' : 'lazy'}

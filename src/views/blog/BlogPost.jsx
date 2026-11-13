@@ -38,7 +38,7 @@ export default function BlogPost({ slug }) {
           <div className="post-grid">
             {related.map((r) => (
               <article className="post-card" key={r.slug}>
-                <a className="post-card__img" href={`/blog/${r.slug}`} tabIndex={-1} aria-hidden="true"><img src={r.thumb} alt="" loading="lazy" /></a>
+                <a className="post-card__img" href={`/blog/${r.slug}`} tabIndex={-1} aria-hidden="true"><img src={r.image || r.thumb} alt="" loading="lazy" /></a>
                 <p className="post-meta"><time dateTime={r.date}>{formatDate(r.date)}</time></p>
                 <h3 className="post-card__title"><a href={`/blog/${r.slug}`}>{r.title}</a></h3>
               </article>

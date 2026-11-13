@@ -1,3 +1,4 @@
+import { photoSrcset } from '../data/hires.js';
 // Shared editorial pieces for the About, Lens AI, A-Chronos and Research pages.
 // They follow the homepage's visual language: big uppercase Clash Display headings,
 // centred text on phones, dark carbon bands and `reveal` scroll-ins. Everything here is
@@ -26,7 +27,7 @@ export function Photo({ name, alt, className = '', eager = false, sizes = '(max-
     <img
       className={className}
       src={`/images/photos/${name}-960.webp`}
-      srcSet={`/images/photos/${name}-480.webp 480w, /images/photos/${name}-960.webp 960w`}
+      srcSet={photoSrcset(name)}
       sizes={sizes}
       alt={alt}
       width="960"

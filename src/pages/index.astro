@@ -8,6 +8,7 @@ import Carousel from '../components/Carousel.jsx';
 import Faq from '../components/Faq.jsx';
 import StoreButtons from '../components/StoreButtons.jsx';
 import { MOVEMENT, EXPLORE_HREF } from '../data/site.js';
+import { photoSrcset } from '../data/hires.js';
 import { DEFINITIONS } from '../data/definitions.js';
 import { FAQ_GROUPS } from '../data/faqs.js';
 
@@ -42,7 +43,7 @@ const steps = [
   { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#3310BE', chip: '#5A3BE0', accent: '#DCD5FF' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
-const WALL_CARDS = ['singers', 'drummer-blue', 'creator-filmmaker', 'creator-filmcrew', 'creator-painter', 'creator-studio', 'hands-braid', 'elder', 'coral-beads', 'dancers', 'creator-joy', 'creator-beach', 'gele', 'young-man'];
+const WALL_CARDS = ['singers', 'drummer-blue', 'creator-filmmaker', 'creator-filmcrew', 'creator-painter', 'carnival', 'hands-braid', 'elder', 'coral-beads', 'dancers', 'creator-joy', 'creator-beach', 'gele', 'young-man'];
 const WALL_TOPICS = [
   { word: 'music', label: 'Music', card: 0, line: 'Songs, voice notes and live sessions, transcribed by Lens AI and credited to the artist who made them.' },
   { word: 'films', label: 'Film', card: 2, line: 'Short films and behind-the-scenes footage, kept in one place with the story behind every shot.' },
@@ -80,7 +81,7 @@ const audiences = [
     <!-- Phone: sliding photos, each with its own app card -->
     <div class="hero-slides md:hidden" aria-label="Examples of what people keep on Auvra">
       <div class="hero-slide" style="--i:0">
-        <img src="/images/photos/creator-painter-960.webp" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="object-[50%_30%]" fetchpriority="high" />
+        <img src="/images/photos/creator-painter-960.webp" srcset={photoSrcset('creator-painter')} sizes="100vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="object-[50%_30%]" fetchpriority="high" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3">
             <img src="/images/photos/hands-braid-480.webp" alt="" class="h-12 w-12 rounded-xl object-cover" />
@@ -101,7 +102,7 @@ const audiences = [
         </div>
       </div>
       <div class="hero-slide" style="--i:2">
-        <img src="/images/photos/creator-beach-960.webp" alt="A young woman laughing on a seaside wall under a bright blue sky" class="object-[48%_55%]" loading="lazy" />
+        <img src="/images/photos/creator-beach-960.webp" srcset={photoSrcset('creator-beach')} sizes="100vw" alt="A young woman laughing on a seaside wall under a bright blue sky" class="object-[48%_55%]" loading="lazy" />
         <div class="hero-slide__card hero-slide__card--top">
           <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[#E8F1E4]"><Icon3D name="vault" size={34} /></span><div class="text-left"><p class="text-[16px] font-semibold leading-tight">Mensah Family Vault</p><p class="text-[13px] text-grey">Private · shared by invitation</p></div></div>
           <ul class="mt-4 space-y-2.5 text-[14px]">
@@ -111,14 +112,14 @@ const audiences = [
         </div>
       </div>
       <div class="hero-slide" style="--i:3">
-        <img src="/images/photos/creator-filmmaker-960.webp" alt="A filmmaker operating a video camera rig" class="object-[60%_35%]" loading="lazy" />
+        <img src="/images/photos/creator-filmmaker-960.webp" srcset={photoSrcset('creator-filmmaker')} sizes="100vw" alt="A filmmaker operating a video camera rig" class="object-[60%_35%]" loading="lazy" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[#FFE9E3]"><Icon3D name="shield" size={34} /></span><div class="text-left"><p class="text-[16px] font-semibold leading-tight">Short film · Lagos nights</p><p class="text-[13px] text-grey">Uploaded by the director · 12:40</p></div></div>
           <div class="mt-4 flex items-center justify-between rounded-xl bg-linen px-3 py-2.5 text-[14px]"><span class="font-semibold text-[#2F6B12]">✓ Preserved</span><span class="text-grey">Credited to you</span></div>
         </div>
       </div>
       <div class="hero-slide" style="--i:4">
-        <img src="/images/photos/creator-braids-960.webp" alt="A smiling young woman with long braids and painted nails, face turned to the sun" class="object-[55%_30%]" loading="lazy" />
+        <img src="/images/photos/creator-braids-960.webp" srcset="/images/photos/creator-braids-960.webp 960w, /images/photos/creator-braids-1200.webp 1200w" sizes="100vw" alt="A smiling young woman with long braids and painted nails, face turned to the sun" class="object-[55%_30%]" loading="lazy" />
         <div class="hero-notif">
           <div class="hero-notif__head"><span>Notification Center</span><span class="hero-notif__x" aria-hidden="true">×</span></div>
           <div class="hero-notif__stack">
@@ -136,7 +137,7 @@ const audiences = [
       <div class="hero-slides__dots" aria-hidden="true">{[0, 1, 2, 3, 4].map((i) => <span style={`--i:${i}`}></span>)}</div>
     </div>
     <div class="relative isolate hidden md:grid h-[640px] md:h-[732px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-clip">
-      <img src="/images/photos/creator-painter-960.webp" srcset="/images/photos/creator-painter-480.webp 480w, /images/photos/creator-painter-960.webp 960w" sizes="(max-width: 767px) 100vw, 34vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="md:hidden lg:block h-full w-full object-cover object-[50%_30%]" fetchpriority="high" />
+      <img src="/images/photos/creator-painter-960.webp" srcset={photoSrcset('creator-painter')} sizes="(max-width: 767px) 100vw, 34vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="md:hidden lg:block h-full w-full object-cover object-[50%_30%]" fetchpriority="high" />
       <img src="/images/photos/dancer-sky-1400.webp" srcset="/images/photos/dancer-sky-960.webp 960w, /images/photos/dancer-sky-1400.webp 1400w" sizes="(max-width: 767px) 100vw, 50vw" alt="A dancer in a feathered bustle and fringed regalia leaping against a blue sky" class="hidden md:block h-full w-full object-cover object-[40%_30%]" loading="lazy" />
       <img src="/images/photos/creator-joy-1400.webp" srcset="/images/photos/creator-joy-480.webp 480w, /images/photos/creator-joy-960.webp 960w, /images/photos/creator-joy-1400.webp 1400w" sizes="34vw" alt="A young woman with curly hair laughing with her arms wide under a blue sky" class="hidden md:block h-full w-full object-cover object-[52%_30%]" loading="lazy" />
       <div class="hidden lg:block absolute left-[3.5%] top-[64%] z-10 w-[360px] rounded-[24px] bg-white/50 p-2">
@@ -313,7 +314,7 @@ const audiences = [
     </p>
     <div class="wall" aria-hidden="true">
       <div class="wall__stage">
-        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-480.webp`} alt="" class="wall__card" data-i={i} loading="lazy" />)}
+        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-960.webp`} alt="" class="wall__card" data-i={i} loading="lazy" />)}
       </div>
       <div class="wall__chips">
         {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`}><span class="wall__dot"></span>{t.label}</span>)}

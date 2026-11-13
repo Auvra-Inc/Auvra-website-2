@@ -8,7 +8,7 @@ function PostCard({ p, featured = false }) {
   return (
     <article className={`post-card${featured ? ' post-card--featured' : ''}`}>
       <a className="post-card__img" href={`/blog/${p.slug}`} tabIndex={-1} aria-hidden="true">
-        <img src={featured ? p.image : p.thumb} alt="" loading={featured ? 'eager' : 'lazy'} />
+        <img src={p.image} alt="" loading={featured ? 'eager' : 'lazy'} />
       </a>
       <div className="post-card__body">
         <p className="post-meta"><span className="post-cat">{p.category}</span> · <time dateTime={p.date}>{formatDate(p.date)}</time> · {p.readingTime} min read</p>
