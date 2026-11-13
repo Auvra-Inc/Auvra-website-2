@@ -17,15 +17,22 @@ export default function Nav({ pathname = '/' }) {
   // Like the previous goauvra.com: the pill stays fixed and turns frosted once you scroll.
   useEffect(() => {
     // Hides while scrolling down so it never covers the content; any scroll up brings it back.
+    // It only hides after a deliberate scroll down (160px past the hero top), and shows again on a small scroll up.
     let ticking = false;
     let lastY = window.scrollY;
+    let downRun = 0;
+    let upRun = 0;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
+        const d = y - lastY;
+        lastY = y;
         setScrolled(y > 50);
-        if (Math.abs(y - lastY) > 6) { setHidden(y > lastY && y > 80); lastY = y; }
+        if (y < 320) { setHidden(false); downRun = 0; upRun = 0; }
+        else if (d > 0) { downRun += d; upRun = 0; if (downRun > 160) setHidden(true); }
+        else if (d < 0) { upRun -= d; downRun = 0; if (upRun > 12) setHidden(false); }
         ticking = false;
       });
     };

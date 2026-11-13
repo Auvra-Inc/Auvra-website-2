@@ -786,3 +786,7 @@ html { overflow-x: clip; }
   @media (max-width: 767px) { .wall-sec > p.font-serif { font-size: 34px; } }
   @media (max-width: 380px) { .wall-sec > p.font-serif { font-size: 30px; } }
 }
+@layer components {
+  .nav { transition: transform .6s cubic-bezier(.22,.8,.24,1), opacity .5s ease; }
+  .nav[data-hidden] { transition: transform .7s cubic-bezier(.55,0,.35,1) .08s, opacity .6s ease .15s; }
+}
