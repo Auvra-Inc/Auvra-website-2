@@ -189,7 +189,7 @@ export default function CulturalPreservation() {
       <div id="connections" className="pt-20 md:pt-32 scroll-mt-24">
         <Related current="/cultural-preservation" notes={{
           '/contribution-badges': 'When someone adds context, a memory or care to a preserved record, a Contribution Badge is designed to record that contribution.',
-          '/collectible-badges': 'Creators can document and share cultural expressions as collectibles, with their context and attribution kept intact.',
+          '/collectible-badges': 'Creators can document and share cultural expressions as badges, with their context and attribution kept intact.',
           '/my-vault': 'The private place where individuals and families keep the materials they are preserving.',
           '/auvra-passport': 'Connects you to the records you have preserved and the contributions you have made.',
         }} />

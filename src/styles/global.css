@@ -633,3 +633,13 @@ html { overflow-x: clip; }
   .mood__pill { display: grid; place-items: center; }
   @media (min-width: 768px) { .mood__pill { width: 31%; height: 21%; padding: 0; } }
 }
+@layer components {
+  /* Store buttons as in the reference: two large black pills side by side, also on phones. */
+  .hero-stores { width: 100%; max-width: 560px; }
+  .hero-stores .stores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .hero-stores .store { justify-content: center; gap: 12px; min-height: 68px; border-radius: 20px; padding: 10px 14px; background: #191717; color: #fff; }
+  .hero-stores .store span { align-items: center; text-align: center; }
+  .hero-stores .store small { font-size: clamp(11px, 3vw, 14px); font-weight: 400; opacity: .95; }
+  .hero-stores .store b { font-size: clamp(16px, 4.6vw, 22px); font-weight: 700; letter-spacing: -0.01em; }
+  .hero-stores .store svg { flex: none; width: clamp(20px, 5.4vw, 26px); height: auto; }
+}

@@ -53,14 +53,14 @@ const audiences = [
 >
   <!-- 1 · Hero -->
   <section id="home" class="flex flex-col" aria-labelledby="hero-title">
-    <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-44 pb-20 md:pb-28" style="background: linear-gradient(180deg, #DDD5C5 0%, #E8E2D6 35%, #F4F0E8 70%, #FAF8F4 100%)">
+    <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-44 pb-20 md:pb-28" style="background: linear-gradient(180deg, #F4F0E8 0%, #F7F4EE 45%, #FCFBF8 75%, #FFFFFF 100%)">
       <div class="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center gap-10 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon !leading-[0.86] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.9]">
           {[['Your', 'story.'], ['Your', 'culture.'], ['Your', 'legacy.']].map(([a, b]) => (
             <span class={`block md:whitespace-nowrap${b === 'culture.' ? ' serif-accent' : ''}`}><span class="hero-word block md:inline">{a}</span> <span class="hero-word block md:inline">{b}</span></span>
           ))}
         </h1>
-        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
+        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Preserve the stories, languages and traditions that make you who you are. Lens AI helps capture, transcribe and translate them, keeping your heritage alive for generations.</p>
         <div class="hero-stores"><StoreButtons /></div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export const DEFINITIONS = {
   },
   collectibleBadges: {
     name: 'Collectible Badges',
-    short: 'A way for creators to document, attribute and distribute cultural expressions as collectible digital or physical badges.',
+    short: 'A way for creators to document, attribute and distribute cultural expressions as digital or physical badges.',
     long: 'A Collectible Badge lets a creator document, attribute and distribute a cultural expression, such as an artwork, a song or a craft, as a digital or physical item that carries its cultural context and the creator’s attribution.',
   },
   myVault: {

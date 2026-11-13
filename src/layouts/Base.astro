@@ -17,7 +17,7 @@ const ogImage = image.startsWith('http') ? image : SITE + image;
 const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE}/#organization`,
   name: 'Auvra', legalName: 'Auvra Tech Ltd', url: SITE, logo: `${SITE}/brand/auvra-logo-carbon.svg`, email: CONTACT_EMAIL,
-  description: 'Auvra is a cultural technology company building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
+  description: 'Auvra is an AI-powered cultural preservation platform building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
   sameAs: SOCIAL.map((s) => s.href), address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
 };
 const site = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'Auvra', url: SITE, publisher: { '@id': `${SITE}/#organization` } };
@@ -34,6 +34,7 @@ const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="Auvra, AI cultural preservation, cultural preservation platform, Lens AI, oral history transcription, translation, African languages, heritage, family history, diaspora" />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#FFFFFF" />

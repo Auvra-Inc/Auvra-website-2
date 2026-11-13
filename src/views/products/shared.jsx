@@ -13,7 +13,7 @@ export const PRODUCT_INFO = [
   },
   {
     href: '/collectible-badges', label: 'Collectible Badges', icon: 'gift', tint: 'salmon',
-    text: 'A way for creators to document, attribute and share cultural expressions as collectible items.',
+    text: 'A way for creators to document, attribute and share cultural expressions as digital or physical badges.',
   },
   {
     href: '/my-vault', label: 'My Vault', icon: 'vault', tint: 'blue',
