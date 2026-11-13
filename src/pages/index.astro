@@ -57,7 +57,7 @@ const audiences = [
       <div class="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center gap-10 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon !leading-[0.86] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.9]">
           {[['Your', 'story.'], ['Your', 'culture.'], ['Your', 'legacy.']].map(([a, b]) => (
-            <span class="block md:whitespace-nowrap"><span class="hero-word block md:inline">{a}</span> <span class="hero-word serif-accent block md:inline">{b}</span></span>
+            <span class="block md:whitespace-nowrap"><span class="hero-word block md:inline">{a}</span> <span class={`hero-word block md:inline${b === 'culture.' ? ' serif-accent' : ''}`}>{b}</span></span>
           ))}
         </h1>
         <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
@@ -106,7 +106,7 @@ const audiences = [
   <!-- 2 · Dark intro + three tiles -->
   <section class="flex flex-col items-center gap-y-[7.5rem] bg-[#191717] pt-[4.4rem] md:pt-[8.75rem]" aria-labelledby="intro-title">
     <div class="reveal flex max-w-[820px] flex-col items-center gap-8 md:gap-[3.25rem] px-10 text-center">
-      <h2 id="intro-title" class="ws-h text-[#FBF8F1] text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">The platform built for <span class="serif-accent">families and creators</span></h2>
+      <h2 id="intro-title" class="ws-h text-[#FBF8F1] text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">The platform built for families and creators</h2>
       <p class="max-w-[600px] text-sm md:text-lg md:leading-7 text-[#888]">Whether you are recording your grandmother’s stories, releasing music, shooting film or making art, Auvra keeps your work and memories safe, organised and credited to you, for good.</p>
     </div>
     <ul class="grid w-full grid-cols-1 md:grid-cols-3 md:divide-x md:divide-[#2B2B2B]">
@@ -206,7 +206,7 @@ const audiences = [
       ['stone-9', 'right-[-6%] bottom-[2%] w-[40vw] md:right-[5%] md:bottom-[10%] md:w-[230px]', '-6'],
     ].map(([n, pos, px]) => <img src={`/images/artifacts/${n}.webp`} alt="" aria-hidden="true" class={`artifact absolute -z-10 ${pos}`} data-parallax={px} loading="lazy" />)}
     <div class="reveal flex flex-col items-center">
-      <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than <span class="serif-accent">a scroll</span></h2>
+      <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
       <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#FFF4EE]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
     </div>
     <a href={EXPLORE_HREF} class="btn btn--dark shimmer !min-h-[64px] !px-12">Explore Auvra</a>
@@ -229,7 +229,7 @@ const audiences = [
   <section id="how-it-works" class="flex flex-col gap-y-14 md:flex-row md:gap-x-16 lg:gap-x-[6.9rem] overflow-hidden px-8 lg:pl-[5.5rem] pt-[3.75rem] md:pt-[6.25rem] pb-[3.6rem] md:pb-[10.5rem]" aria-labelledby="how-title">
     <div class="flex max-w-[480px] flex-none flex-col">
       <p class="mb-2.5 uppercase text-[#272727]">How it works</p>
-      <h2 id="how-title" class="reveal ws-h mb-8 md:mb-14 text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">Simple steps to get you <span class="serif-accent">started</span></h2>
+      <h2 id="how-title" class="reveal ws-h mb-8 md:mb-14 text-[2.5rem] leading-[2.1rem] md:text-[3.75rem] md:leading-[3.4rem]">Simple steps to get you started</h2>
       <Carousel client:visible label="step" target="steps-track" />
     </div>
     <ol id="steps-track" class="snap-row !gap-2 py-5 md:py-10 pr-2" tabindex="0" aria-label="How Auvra works, step by step">
@@ -249,7 +249,7 @@ const audiences = [
   <section id="faqs" class="flex flex-col gap-y-[11rem] md:gap-y-[14rem] lg:gap-y-[19rem] bg-[#191717] py-[3.75rem] md:pt-[6.5rem] md:pb-[10.5rem]" aria-labelledby="faq-title">
     <div class="flex flex-col items-center">
       <div class="mb-10 flex items-center" aria-hidden="true"><img src="/images/artifacts/ceramic-3.webp" alt="" class="artifact w-[110px] md:w-[150px] -rotate-6" loading="lazy" /><img src="/images/artifacts/ceramic-2.webp" alt="" class="artifact -ml-4 w-[130px] md:w-[180px] -translate-y-6" loading="lazy" /><img src="/images/artifacts/ceramic-4.webp" alt="" class="artifact -ml-4 w-[90px] md:w-[130px] rotate-6 translate-y-4" loading="lazy" /></div>
-      <h2 id="faq-title" class="reveal ws-h mb-[6.5rem] max-w-xs md:max-w-xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">Got questions? Here are some <span class="serif-accent">answers</span></h2>
+      <h2 id="faq-title" class="reveal ws-h mb-[6.5rem] max-w-xs md:max-w-xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">Got questions? Here are some answers</h2>
       <div class="ws-faq w-full max-w-[946px] px-8 md:px-4">
         <Faq client:visible items={homeFaqs} firstOpen={false} />
         <p class="mt-8 text-center"><a href="/faqs" class="inline-flex min-h-11 items-center text-[#FBF8F1] underline underline-offset-4">See all FAQs</a></p>
@@ -257,7 +257,7 @@ const audiences = [
     </div>
     <div id="community" class="flex flex-col items-center">
       <div class="reveal flex flex-col items-center">
-        <h2 class="ws-h mb-8 md:mb-16 max-w-2xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">More than a platform<br /> <span class="serif-accent">a movement</span></h2>
+        <h2 class="ws-h mb-8 md:mb-16 max-w-2xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">More than a platform<br /> a movement</h2>
         <p class="mb-8 max-w-xs md:max-w-[698px] text-center text-sm md:text-lg leading-7 text-[#888]">Auvra is building a community of families, storytellers, creators and cultural keepers who believe culture deserves a permanent home. Join early and help shape it.</p>
         <ul class="mb-6 flex max-w-xs md:max-w-none flex-wrap justify-center gap-2" aria-label="Who we serve">
           {audiences.map((a) => <li id={a.id} class="scroll-mt-28"><span class="inline-flex min-h-11 items-center rounded-full border border-[#3A3632] px-4 text-sm text-[#FBF8F1]">{a.name}</span></li>)}
