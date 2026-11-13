@@ -415,4 +415,72 @@ const audiences = [
       </div>
     </div>
   </section>
+  <!-- App showcase: Scan an object, then read and listen to the stories behind it -->
+  <section class="app-show relative overflow-hidden pt-20 md:pt-28 pb-16 md:pb-24" aria-labelledby="show-title">
+    <div class="reveal mx-auto max-w-[760px] px-6 text-center">
+      <p class="mb-3 text-sm uppercase tracking-[0.12em] text-[#5B5560]">Inside the Auvra app</p>
+      <h2 id="show-title" class="ws-h text-[2.6rem] leading-[2.4rem] md:text-[4.2rem] md:leading-[3.9rem] text-carbon">Point. Discover. <span class="serif-accent">Preserve.</span></h2>
+      <p class="mx-auto mt-5 max-w-[34rem] text-[15px] md:text-lg leading-relaxed text-[#4A4540]">Scan an object to learn its story, then listen to, read and translate the stories families have kept.</p>
+    </div>
+
+    <div class="app-show__row">
+      <!-- Scan -->
+      <div class="app-show__item">
+        <PhoneFrame label="Illustrative Scan screen in the Auvra app: the camera frames a carved wooden mask and Auvra shows what it is and where it comes from">
+          <div class="relative flex h-full flex-col bg-[#FBF8F1]">
+            <div class="relative h-[56%] flex-none overflow-hidden">
+              <img src="/images/photos/mask-960.webp" alt="" class="h-full w-full object-cover object-[50%_22%]" loading="lazy" />
+              <span class="app-scan-frame"></span>
+            </div>
+            <div class="app-sheet">
+              <span class="app-sheet__handle"></span>
+              <div class="flex items-center gap-2 rounded-full bg-[#F0ECE5] p-1.5 pr-3">
+                <span class="grid h-7 w-7 flex-none place-items-center rounded-full bg-carbon"><img src="/brand/auvra-mark-linen.svg" alt="" class="h-3.5 w-3.5" /></span>
+                <img src="/images/photos/mask-480.webp" alt="" class="h-7 w-7 flex-none rounded-md object-cover object-top" loading="lazy" />
+                <span class="truncate text-[10.5px] text-[#9A948D]">Ask Lens AI about this object</span>
+              </div>
+              <p class="mt-3 text-center text-[10px] text-[#6B6560]">You found</p>
+              <p class="text-center font-serif italic text-[25px] leading-tight text-carbon">Carved mask</p>
+              <div class="mt-2.5 flex gap-3 overflow-hidden border-b border-[#E7E2DA] text-[9.5px] whitespace-nowrap">
+                <span class="border-b-2 border-carbon pb-1.5 font-semibold text-carbon">Lens AI overview</span><span class="pb-1.5 text-[#6B6560]">Origin</span><span class="pb-1.5 text-[#6B6560]">Similar</span><span class="pb-1.5 text-[#6B6560]">Stories</span>
+              </div>
+              <div class="mt-2.5 flex gap-2.5">
+                <p class="flex-1 text-[9.5px] leading-[1.45] text-[#3A3631]">Carved wooden masks like this are worn at festivals and ceremonies across West Africa to honour ancestors and mark important moments.</p>
+                <div class="grid w-[34%] flex-none grid-cols-2 gap-1 self-start rounded-lg bg-carbon p-1">
+                  <img src="/images/photos/sculpture-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/masquerade-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/face-paint-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/carnival-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </PhoneFrame>
+        <p class="app-show__cap"><b>Scan</b> Point your camera at an object to see what it is and where it comes from.</p>
+      </div>
+
+      <!-- Story -->
+      <div class="app-show__item app-show__item--offset">
+        <PhoneFrame label="Illustrative story screen in the Auvra app: a family story about the talking drum, with options to listen, read, translate and take a quiz">
+          <div class="flex h-full flex-col gap-2.5 bg-gradient-to-b from-[#DCEBF5] to-[#C9D8E6] px-3 pt-[16%] pb-3">
+            <div class="relative flex h-[40%] flex-none items-center justify-center overflow-hidden rounded-[18px] bg-gradient-to-b from-[#B9DBF0] to-[#E3EEF6]">
+              <span class="absolute left-3 top-3 rounded-md bg-white px-2 py-0.5 text-[10px] font-medium text-[#3D6E92]">Story 3</span>
+              <Icon3D name="mic" size={120} />
+            </div>
+            <div class="flex items-center justify-between rounded-full bg-white px-3 py-2 text-[9.5px] text-[#9AA7B3]">
+              <span>Listen</span><span class="text-[#D0D8DF]">|</span><span class="font-semibold text-[#2F5F84]">Read</span><span class="text-[#D0D8DF]">|</span><span>Translate</span><span class="text-[#D0D8DF]">|</span><span>Quiz</span>
+            </div>
+            <div class="app-story flex-1 overflow-hidden rounded-[18px] bg-white px-4 pt-4">
+              <p class="text-[17px] font-medium leading-tight text-carbon">How the talking drum speaks</p>
+              <p class="mt-1 text-[9.5px] text-[#9A948D]">Told by Baba Tunde · Yoruba → English</p>
+              <p class="mt-2.5 text-[10.5px] leading-[1.6] text-[#3A3631]">Long before phones, the talking drum carried messages between villages. By squeezing the cords along its sides, a drummer changes its pitch to follow the tones of Yoruba speech, so a rhythm can greet a king, announce a birth or call people home. My father learned it from his father, and he taught me on evenings like this one.</p>
+            </div>
+          </div>
+        </PhoneFrame>
+        <p class="app-show__cap"><b>Stories</b> Listen, read and translate the stories your family has kept.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 md:mt-14 flex justify-center"><a href={EXPLORE_HREF} class="poster-cta poster-cta--dark shimmer">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div>
+  </section>
 </Base>

@@ -884,3 +884,31 @@ html { overflow-x: clip; }
   .hero-notif__icon { display: grid; place-items: center; flex: none; width: 46px; height: 46px; border-radius: 50%; background: #191717; }
   .hero-notif__icon img { width: 24px; height: 24px; }
 }
+@layer components {
+  .app-show { background: linear-gradient(180deg, #F2E6EF 0%, #E9E5F4 45%, #DCE6F0 100%); }
+  .app-show__row { display: flex; gap: 20px; margin-top: 44px; padding: 10px 24px 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .app-show__row::-webkit-scrollbar { display: none; }
+  .app-show__item { flex: none; width: min(74vw, 300px); scroll-snap-align: center; }
+  .app-show__item .phone-frame { max-width: none; }
+  .app-show__cap { margin-top: 18px; text-align: center; font-size: 14px; line-height: 1.5; color: #4A4540; }
+  .app-show__cap b { display: block; font-size: 15px; color: #191717; }
+  @media (min-width: 768px) {
+    .app-show__row { justify-content: center; gap: 72px; overflow: visible; margin-top: 64px; }
+    .app-show__item { width: 300px; }
+    .app-show__item:first-child .phone-frame { transform: rotate(-4deg); }
+    .app-show__item--offset { margin-top: 80px; }
+    .app-show__item--offset .phone-frame { transform: rotate(3deg); }
+  }
+  .app-scan-frame { position: absolute; left: 22%; right: 22%; top: 16%; bottom: 14%; pointer-events: none;
+    background:
+      linear-gradient(#fff,#fff) top left / 22px 2.5px no-repeat, linear-gradient(#fff,#fff) top left / 2.5px 22px no-repeat,
+      linear-gradient(#fff,#fff) top right / 22px 2.5px no-repeat, linear-gradient(#fff,#fff) top right / 2.5px 22px no-repeat,
+      linear-gradient(#fff,#fff) bottom left / 22px 2.5px no-repeat, linear-gradient(#fff,#fff) bottom left / 2.5px 22px no-repeat,
+      linear-gradient(#fff,#fff) bottom right / 22px 2.5px no-repeat, linear-gradient(#fff,#fff) bottom right / 2.5px 22px no-repeat;
+    border-radius: 14px; animation: scanPulse 2.4s ease-in-out infinite; }
+  @keyframes scanPulse { 50% { transform: scale(.96); opacity: .8; } }
+  .app-sheet { position: relative; z-index: 2; margin-top: -22px; flex: 1; border-radius: 22px 22px 0 0; background: #FBF8F1; padding: 10px 12px 12px; box-shadow: 0 -10px 30px -20px rgba(0,0,0,.4); }
+  .app-sheet__handle { display: block; width: 34px; height: 4px; margin: 0 auto 8px; border-radius: 4px; background: #D9D3CA; }
+  .app-story { -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+  @media (prefers-reduced-motion: reduce) { .app-scan-frame { animation: none; } }
+}
