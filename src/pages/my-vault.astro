@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import View, { FAQS } from '../views/products/MyVault.jsx';
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+<Base title="My Vault · A private home for your family’s memories and records · Auvra" description="My Vault is a private space to keep and organise recordings, photos, documents and cultural materials, and to share them with the family members you invite." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'My Vault' }]} jsonld={[faqLd]}>
+  <View />
+</Base>

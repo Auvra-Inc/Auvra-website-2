@@ -32,12 +32,10 @@ export default function Nav({ pathname = '/' }) {
     <header className="nav" ref={navRef} data-open={open ? '' : undefined}>
       <div className="nav__pill">
         <a href="/" className="nav__logo" aria-label="Auvra home">
-          <img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="112" height="32" />
+          <img className="nav__logo-full" src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="126" height="36" /><img className="nav__logo-mark" src="/brand/auvra-mark-carbon.svg" alt="Auvra" width="40" height="40" />
         </a>
         <div className="nav__actions">
-          <a href={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</a>
-          <a className="nav__btn nav__store" href={STORE.appStore} {...ext} aria-label="Download on the App Store"><AppleGlyph /></a>
-          <a className="nav__btn nav__store" href={STORE.googlePlay} {...ext} aria-label="Get it on Google Play"><PlayGlyph /></a>
+          <a href={EXPLORE_HREF} className="btn btn--dark shimmer nav__cta">Explore Auvra</a>
           <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
             {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
@@ -78,7 +76,11 @@ export default function Nav({ pathname = '/' }) {
                   );
                 })}
               </ul>
-              <a href={EXPLORE_HREF} className="btn btn--dark nav__panel-cta" onClick={() => close()}>Explore Auvra</a>
+              <div className="nav__panel-row">
+                <a href={EXPLORE_HREF} className="btn btn--dark nav__panel-cta" onClick={() => close()}>Explore Auvra</a>
+                <a className="nav__btn" href={STORE.appStore} {...ext} aria-label="Download on the App Store"><AppleGlyph /></a>
+                <a className="nav__btn" href={STORE.googlePlay} {...ext} aria-label="Get it on Google Play"><PlayGlyph /></a>
+              </div>
             </nav>
             <a className="nav__inst" href="/institutional-access" onClick={() => close()}>
               <img src="/images/photos/museum-480.webp" alt="" width="480" height="360" loading="lazy" />

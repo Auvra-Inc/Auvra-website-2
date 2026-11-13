@@ -58,3 +58,25 @@ export function Body({ blocks = [] }) {
 }
 
 export const names = (people = []) => people.map((p) => p.name).join(', ');
+
+// Listing/template hero in the homepage style: big uppercase title, centred, with breadcrumbs.
+export function InsHero({ kicker, title, lead, crumbs, small = false, children }) {
+  return (
+    <section className="ins-hero">
+      <div className="wrap">
+        {crumbs && (
+          <nav className="crumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              {crumbs.map((c, i) => <li key={i}>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+            </ol>
+          </nav>
+        )}
+        {kicker && <p className="kicker">{kicker}</p>}
+        <h1 className={`ins-hero__title${small ? ' ins-hero__title--sm' : ''}`}>{title}</h1>
+        {lead && <p className="ins-hero__lead">{lead}</p>}
+        {children}
+      </div>
+    </section>
+  );
+}

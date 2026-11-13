@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import '../../styles/insights.css';
+import ResearchPage from '../../views/insights/ResearchPage.jsx';
+import { RESEARCH } from '../../data/research.js';
+import { SITE } from '../../data/site.js';
+export function getStaticPaths() { return RESEARCH.map((item) => ({ params: { slug: item.slug }, props: { item } })); }
+const { item } = Astro.props;
+const paperLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: item.title,
+  abstract: item.abstract,
+  description: item.summary,
+  datePublished: item.date,
+  url: `${SITE}/research/${item.slug}`,
+  author: (item.authors || []).map((a) => ({ '@type': 'Person', name: a.name, ...(a.affiliation ? { affiliation: { '@type': 'Organization', name: a.affiliation } } : {}) })),
+  publisher: { '@id': `${SITE}/#organization` },
+  ...(item.cover ? { image: SITE + item.cover.src } : {}),
+  ...(item.pdf ? { encoding: { '@type': 'MediaObject', encodingFormat: 'application/pdf', contentUrl: item.pdf.startsWith('http') ? item.pdf : SITE + item.pdf } } : {}),
+  ...(item.references?.length ? { citation: item.references.map((r) => r.text) } : {}),
+};
+---
+<Base title={`${item.title} · Research · Auvra`} description={item.summary} image={item.cover?.src} ogType="article" crumbs={[{ label: 'Insights', href: '/blog' }, { label: 'Research', href: '/research' }, { label: item.title }]} jsonld={[paperLd]}>
+  <ResearchPage item={item} />
+</Base>

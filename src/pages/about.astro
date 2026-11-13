@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import About, { ABOUT_FAQS } from '../views/About.jsx';
+import { faqJsonLd } from '../views/editorial.jsx';
+import { SITE } from '../data/site.js';
+import { COMPANY } from '../data/definitions.js';
+
+const description = 'About Auvra, the cultural technology company building the permanent home for human culture: our story, mission, vision, principles and the ecosystem we are building.';
+const aboutLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  '@id': `${SITE}/about#webpage`,
+  url: `${SITE}/about`,
+  name: 'About Auvra',
+  description,
+  isPartOf: { '@id': `${SITE}/#website` },
+  about: { '@id': `${SITE}/#organization` },
+  mainEntity: { '@id': `${SITE}/#organization`, '@type': 'Organization', name: 'Auvra', description: COMPANY.long },
+};
+---
+<Base
+  title="About Auvra · Our Mission, Vision and Principles"
+  description={description}
+  crumbs={[{ label: 'About Auvra' }]}
+  jsonld={[aboutLd, faqJsonLd(ABOUT_FAQS)]}
+>
+  <About />
+</Base>

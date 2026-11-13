@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import LensAI, { LENS_FAQS } from '../views/technology/LensAI.jsx';
+import { faqJsonLd } from '../views/editorial.jsx';
+import { SITE } from '../data/site.js';
+import { DEFINITIONS } from '../data/definitions.js';
+
+const description = 'Lens AI is Auvra’s AI initiative for cultural documentation: transcription, translation and tagging for oral histories and underrepresented languages, always reviewed by people.';
+const lensLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE}/lens-ai#webpage`,
+  url: `${SITE}/lens-ai`,
+  name: 'Lens AI',
+  description: DEFINITIONS.lensAI.long,
+  isPartOf: { '@id': `${SITE}/#website` },
+  publisher: { '@id': `${SITE}/#organization` },
+};
+---
+<Base
+  title="Lens AI · AI for Oral Histories, Languages and Cultural Documentation · Auvra"
+  description={description}
+  crumbs={[{ label: 'Technology' }, { label: 'Lens AI' }]}
+  jsonld={[lensLd, faqJsonLd(LENS_FAQS)]}
+>
+  <LensAI>
+    <PhoneFrame slot="demo" label="Illustrative Lens AI conversation in the Auvra app: a voice memory in Igbo is transcribed and translated into English, with a prompt to review names and places">
+      <div class="flex h-full flex-col bg-[#FBF8F1] text-carbon">
+        <div class="flex items-center gap-2.5 border-b border-[#ECE7DD] bg-white px-4 pb-3 pt-[15%]">
+          <span class="grid h-8 w-8 place-items-center rounded-full bg-blue text-[13px] font-semibold text-white">✦</span>
+          <div class="text-left leading-tight"><p class="text-[14px] font-semibold">Lens AI</p><p class="text-[10px] text-grey">Illustrative example</p></div>
+        </div>
+        <div class="flex flex-1 flex-col gap-2.5 overflow-hidden px-3 py-3 text-left text-[12px] leading-snug">
+          <div class="ml-auto max-w-[86%] rounded-2xl rounded-br-md bg-carbon p-2.5 text-white">
+            <div class="flex items-center gap-2">
+              <span class="grid h-6 w-6 flex-none place-items-center rounded-full bg-white text-[9px] text-carbon">▶</span>
+              <span class="wave !h-5" aria-hidden="true">{Array.from({ length: 18 }).map((_, i) => <i style={`--h:${25 + ((i * 37) % 70)}%; background:#fff`}></i>)}</span>
+            </div>
+            <p class="mt-1.5 text-[11px] text-white/80">Grandma Nneoma · Igbo · 2:14</p>
+          </div>
+          <div class="ml-auto max-w-[86%] rounded-2xl rounded-br-md bg-carbon px-3 py-2 text-white">Can you transcribe this and translate it for the children?</div>
+          <div class="max-w-[92%] rounded-2xl rounded-bl-md bg-white p-3 shadow-sm">
+            <p>Here is a draft. Please check the names and places before saving.</p>
+            <p class="mt-2 text-[9px] font-semibold uppercase tracking-wider text-blue">Igbo · transcript</p>
+            <p class="font-serif text-[13px]">Nna nna anyị si Nnewi bịa</p>
+            <p class="mt-1.5 text-[9px] font-semibold uppercase tracking-wider text-blue">English · translation</p>
+            <p class="font-serif text-[13px]">Our great-grandfather came from Nnewi</p>
+            <p class="mt-2 flex flex-wrap gap-1"><span class="rounded-full bg-[#ECE8FF] px-2 py-0.5 text-[10px] font-semibold text-blue">Family history</span><span class="rounded-full bg-[#ECE8FF] px-2 py-0.5 text-[10px] font-semibold text-blue">Nnewi</span></p>
+          </div>
+          <div class="flex gap-1.5">
+            <span class="flex-1 rounded-full border border-carbon py-2 text-center text-[11px] font-semibold">Edit draft</span>
+            <span class="flex-1 rounded-full bg-carbon py-2 text-center text-[11px] font-semibold text-white">Looks right</span>
+          </div>
+        </div>
+      </div>
+    </PhoneFrame>
+  </LensAI>
+</Base>

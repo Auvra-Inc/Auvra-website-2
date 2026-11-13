@@ -1,10 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro';
+import '../../styles/insights.css';
 import StoryPage from '../../views/insights/StoryPage.jsx';
 import { STORIES } from '../../data/stories.js';
+import { SITE } from '../../data/site.js';
 export function getStaticPaths() { return STORIES.map((story) => ({ params: { slug: story.slug }, props: { story } })); }
 const { story } = Astro.props;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: story.title,
+  description: story.summary,
+  datePublished: story.date,
+  url: `${SITE}/cultural-stories/${story.slug}`,
+  ...(story.cover ? { image: SITE + story.cover.src } : {}),
+  author: story.author ? { '@type': 'Person', name: story.author.name } : { '@id': `${SITE}/#organization` },
+  contributor: story.contributor ? { '@type': 'Person', name: story.contributor.name } : undefined,
+  publisher: { '@id': `${SITE}/#organization` },
+};
 ---
-<Base title={`${story.title} · Cultural Stories · Auvra`} description={story.summary} crumbs={[{ label: 'Cultural Stories', href: '/cultural-stories' }, { label: story.title }]}>
+<Base title={`${story.title} · Cultural Stories · Auvra`} description={story.summary} image={story.cover?.src} ogType="article" crumbs={[{ label: 'Insights', href: '/blog' }, { label: 'Cultural Stories', href: '/cultural-stories' }, { label: story.title }]} jsonld={[articleLd]}>
   <StoryPage story={story} />
 </Base>

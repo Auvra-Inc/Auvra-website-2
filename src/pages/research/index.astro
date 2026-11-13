@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import '../../styles/insights.css';
+import Research, { ResearchListing } from '../../views/insights/Research.jsx';
+import { RESEARCH } from '../../data/research.js';
+import { SITE } from '../../data/site.js';
+
+const description = 'Research from Auvra on language technology, oral documentation, cultural knowledge representation and responsible AI for cultural heritage, including Lens AI and A-Chronos.';
+const listLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${SITE}/research#webpage`,
+  url: `${SITE}/research`,
+  name: 'Auvra Research',
+  description,
+  isPartOf: { '@id': `${SITE}/#website` },
+  publisher: { '@id': `${SITE}/#organization` },
+  ...(RESEARCH.length ? { hasPart: RESEARCH.map((r) => ({ '@type': 'ScholarlyArticle', headline: r.title, url: `${SITE}/research/${r.slug}`, datePublished: r.date })) } : {}),
+};
+---
+<Base title="Research · Language Technology and AI for Cultural Heritage · Auvra" description={description} crumbs={[{ label: 'Insights', href: '/blog' }, { label: 'Research' }]} jsonld={[listLd]}>
+  <Research>
+    <ResearchListing slot="listing" client:visible />
+  </Research>
+</Base>

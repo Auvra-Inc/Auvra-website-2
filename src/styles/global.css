@@ -529,3 +529,44 @@ ul, ol { padding: 0; list-style: none; }
 @media (max-width: 760px) { .carousel__btn { width: 56px; height: 56px; } }
 
 }
+
+/* ============ Wysemarket-style header, shimmer button, CTA footer ============ */
+@layer components {
+  .nav { position: absolute; top: 0; left: 0; right: 0; width: auto; max-width: none; margin: 0; padding: 36px 32px 0; z-index: 50; }
+  @media (min-width: 1024px) { .nav { padding: 42px 52px 0; } }
+  .nav__pill { background: transparent; box-shadow: none; padding: 0; border-radius: 0; }
+  .nav__logo img { height: 34px; }
+  .nav__actions { gap: 10px; align-items: center; }
+  .nav__cta { display: inline-flex !important; min-height: 46px; padding: 0 22px; font-size: 16px; background: #191717; }
+  .nav__menu { width: 46px; height: 46px; border-radius: 50%; background: #191717; color: #fff; }
+  .nav__menu:hover { background: #3a3632; }
+  .nav__panel { left: 16px; right: 16px; top: calc(100% + 12px); }
+  @media (min-width: 1024px) { .nav__panel { left: auto; right: 52px; width: 760px; } }
+  .nav__panel-row { display: flex; gap: 8px; align-items: center; margin: 12px 16px 4px; }
+  .nav__panel-row .nav__panel-cta { margin: 0; flex: 1; }
+  @media (max-width: 380px) { .nav { padding: 28px 18px 0; } .nav__cta { padding: 0 16px; font-size: 15px; } }
+  .shimmer { position: relative; overflow: hidden; isolation: isolate; }
+  .shimmer::before { content: ''; position: absolute; top: 0; left: -100%; width: 75%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.3), rgba(255,255,255,0)); transform: skew(-25deg); animation: shimmer 2.5s linear infinite; z-index: -1; }
+  @keyframes shimmer { to { left: 125%; } }
+  .ws-h { font-weight: 700; text-transform: uppercase; letter-spacing: -0.045em; line-height: .9; text-wrap: balance; }
+  .footer-cta { position: relative; isolation: isolate; overflow-x: clip; padding: 40px 14px 0; background: linear-gradient(180deg, #DBC9F5 0%, #FF8F77 35%, #FBF8F1 75%, #fff 100%); }
+  @media (min-width: 768px) { .footer-cta { padding: 104px 72px 0; } }
+  .footer-cta__card { position: relative; overflow: hidden; border-radius: 40px 40px 0 0; background: linear-gradient(180deg, #FBF8F1, #fff); padding: 0 24px 40px; }
+  .footer-cta__deco { position: absolute; pointer-events: none; z-index: 2; }
+}
+@layer components {
+  .ws-faq .faq { border-top: 1px solid #2B2B2B; }
+  .ws-faq .faq__item { border-bottom: 1px solid #2B2B2B; }
+  .ws-faq .faq__q { color: #FBF8F1; font-size: 17px; font-weight: 500; min-height: 64px; }
+  .ws-faq .faq__icon { background: transparent; }
+  .ws-faq .faq__icon::before, .ws-faq .faq__icon::after { background: #fff; width: 16px; height: 3.5px; }
+  .ws-faq .faq__q[aria-expanded='true'] .faq__icon { background: transparent; }
+  .ws-faq .faq__a p { color: #8F8A84; font-size: 16px; }
+  .page-hero { padding-top: 150px; }
+  @media (min-width: 1024px) { .page-hero { padding-top: 170px; } }
+}
+@layer components {
+  .nav__cta { white-space: nowrap; }
+  .nav__logo-mark { display: none; height: 40px !important; width: auto; }
+  @media (max-width: 767px) { .nav__logo-full { display: none; } .nav__logo-mark { display: block; } .nav__cta { min-height: 50px; padding: 0 24px; font-size: 17px; } .nav__menu { width: 50px; height: 50px; } }
+}

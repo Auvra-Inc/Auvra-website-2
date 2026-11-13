@@ -1,21 +1,45 @@
 ---
-import { FOOTER, CONTACT_EMAIL, SOCIAL } from '../data/site.js';
+// Wysemarket-style closing block on every page: gradient band, cream card with a big call to action,
+// and the four footer groups in the right half.
+import Sunburst from './Sunburst.astro';
+import Icon3D from './Icon3D.jsx';
+import { FOOTER, CONTACT_EMAIL, SOCIAL, EXPLORE_HREF } from '../data/site.js';
+const { title = 'What we keep today, tomorrow remembers.', text = 'Help build the permanent home for human culture. Start preserving your family’s story today.' } = Astro.props;
 ---
-<footer class="footer">
-  <div class="wrap footer__top">
-    <div class="footer__brand">
-      <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="140" height="40" loading="lazy" /></a>
-      <p>Building the Permanent Home for Human Culture.</p>
-      <a class="footer__mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-      <ul class="footer__social">{SOCIAL.map((s) => <li><a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>
+<footer class="footer-cta" aria-labelledby="footer-cta-title">
+  <Icon3D name="gift" size={150} className="footer-cta__deco hidden md:block left-[-20px] top-[18%] -rotate-12" />
+  <Icon3D name="vault" size={150} className="footer-cta__deco hidden md:block right-[-10px] top-[6%] rotate-12" />
+  <div class="footer-cta__card">
+    <Sunburst class="!top-[17%] !w-[min(820px,150vw)]" />
+    <div class="relative z-10 mx-auto flex max-w-[880px] flex-col items-center gap-6 pt-28 md:pt-[11rem] pb-28 md:pb-40 text-center">
+      <h2 id="footer-cta-title" class="ws-h text-[clamp(42px,8vw,88px)]">{title}</h2>
+      <p class="max-w-[420px] text-[16px] md:text-[17px] text-[#3A3631]">{text}</p>
+      <a href={EXPLORE_HREF} class="btn btn--dark shimmer !min-h-[64px] !px-12 mt-4">Explore Auvra</a>
     </div>
-    {FOOTER.map((col) => (
-      <nav class="footer__col" aria-label={col.title}>
-        <h2>{col.title}</h2>
-        <ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
-      </nav>
-    ))}
+    <div class="relative z-10 grid md:grid-cols-2 gap-10">
+      <div class="flex flex-col gap-4">
+        <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="150" height="42" loading="lazy" class="h-10 w-auto" /></a>
+        <p class="text-grey">Building the Permanent Home for Human Culture.</p>
+        <a class="font-medium underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </div>
+      <div class="flex flex-col divide-y divide-[#E8E8E8]">
+        <div class="grid grid-cols-2 gap-8 pb-10">
+          {FOOTER.map((col) => (
+            <nav aria-label={col.title} class="flex flex-col gap-4">
+              <h2 class="text-xs uppercase tracking-[0.12em] text-[#626262]">{col.title}</h2>
+              <ul class="flex flex-col">{col.links.map((l) => <li><a class="inline-flex min-h-[40px] items-center text-[15px] md:text-base hover:underline" href={l.href}>{l.label}</a></li>)}</ul>
+            </nav>
+          ))}
+        </div>
+        <div class="py-8 flex flex-col gap-4">
+          <h2 class="text-xs uppercase tracking-[0.12em] text-[#626262]">Follow us</h2>
+          <ul class="flex flex-wrap gap-x-6">{SOCIAL.map((s) => <li><a class="inline-flex min-h-[44px] items-center hover:underline" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>
+        </div>
+        <div class="py-8 flex flex-col gap-2 text-sm text-[#626262]">
+          <span>© Auvra. All rights reserved.</span>
+          <span>Auvra was created to give families, creators and communities a permanent home for the culture they carry.</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer__word" aria-hidden="true">AUVRA</div>
-  <div class="wrap footer__bottom"><span>© Auvra. All rights reserved.</span><span>Lagos, Nigeria</span></div>
 </footer>

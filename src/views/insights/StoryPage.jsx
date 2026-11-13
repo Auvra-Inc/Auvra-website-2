@@ -1,7 +1,7 @@
-import { PageHero, CtaBlock } from '../../components/Page.jsx';
+import { FinalCta } from '../editorial.jsx';
 import { STORIES } from '../../data/stories.js';
 import { StoryCard } from './CulturalStories.jsx';
-import { Body, formatDate } from './shared.jsx';
+import { Body, formatDate, InsHero } from './shared.jsx';
 
 // Template for one Cultural Story. Routes are generated per entry in src/data/stories.js.
 export default function StoryPage({ story }) {
@@ -11,7 +11,7 @@ export default function StoryPage({ story }) {
 
   return (
     <>
-      <PageHero kicker={story.category} title={story.title} lead={story.summary}
+      <InsHero small kicker={story.category} title={story.title} lead={story.summary}
         crumbs={[{ label: 'Insights', href: '/blog' }, { label: 'Cultural Stories', href: '/cultural-stories' }, { label: story.title }]}>
         <dl className="ins-facts">
           {story.contributor && <div><dt>Shared by</dt><dd>{story.contributor.name}{story.contributor.role ? `, ${story.contributor.role}` : ''}</dd></div>}
@@ -19,7 +19,7 @@ export default function StoryPage({ story }) {
           {place && <div><dt>Community &amp; place</dt><dd>{place}</dd></div>}
           {story.date && <div><dt>Published</dt><dd><time dateTime={story.date}>{formatDate(story.date)}</time></dd></div>}
         </dl>
-      </PageHero>
+      </InsHero>
 
       {story.cover && (
         <figure className="wrap ins-cover reveal">
@@ -40,7 +40,7 @@ export default function StoryPage({ story }) {
 
       {story.gallery?.length > 0 && (
         <section className="wrap ins-block reveal" aria-labelledby="gal-title">
-          <h2 id="gal-title" className="h3">Gallery</h2>
+          <h2 id="gal-title" className="ins-h2">Gallery</h2>
           <div className="ins-gallery">
             {story.gallery.map((g, i) => (
               <figure key={i}>
@@ -54,7 +54,7 @@ export default function StoryPage({ story }) {
 
       {story.sources?.length > 0 && (
         <section className="wrap ins-block reveal" aria-labelledby="src-title">
-          <h2 id="src-title" className="h3">Sources and references</h2>
+          <h2 id="src-title" className="ins-h2">Sources and references</h2>
           <ol className="ins-refs">
             {story.sources.map((s, i) => <li key={i}>{s.href ? <a href={s.href} rel="noopener">{s.label}</a> : s.label}</li>)}
           </ol>
@@ -63,12 +63,12 @@ export default function StoryPage({ story }) {
 
       {related.length > 0 && (
         <section className="wrap ins-block reveal" aria-labelledby="rel-title">
-          <h2 id="rel-title" className="h3">Related stories</h2>
+          <h2 id="rel-title" className="ins-h2">Related stories</h2>
           <div className="ins-grid">{related.map((s) => <StoryCard key={s.slug} story={s} />)}</div>
         </section>
       )}
 
-      <CtaBlock title="Preserve your story" text="Record the stories, languages and traditions your family carries, and keep them credited to you for generations." />
+      <FinalCta id="story-cta" title="Preserve your story." text="Record the stories, languages and traditions your family carries, and keep them credited to you for generations." secondary={{ href: '/cultural-stories', label: 'More stories' }} />
     </>
   );
 }
