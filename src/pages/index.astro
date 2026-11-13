@@ -179,6 +179,20 @@ const audiences = [
     </div>
   </section>
 
+  <!-- Moods: slow cross-fading textures with a glass label -->
+  <section class="bg-white px-3 md:px-10 py-20 md:py-28" aria-labelledby="moods-title">
+    <h2 id="moods-title" class="reveal ws-h mx-auto mb-10 md:mb-14 max-w-[16ch] text-center text-[clamp(38px,6vw,72px)]">Whatever you make, Auvra keeps it.</h2>
+    <div class="moods mx-auto max-w-[1240px]" aria-hidden="true">
+      {['Stories', 'Music', 'Languages', 'Film', 'Family', 'Art', 'Recipes', 'Voices', 'Memories'].map((label, i) => (
+        <div class="mood" style={`--i:${i}`}>
+          <img src={`/images/moods/mood-${i}.webp`} alt="" loading="lazy" />
+          <span class="mood__pill">{label}</span>
+        </div>
+      ))}
+    </div>
+    <p class="sr-only">Auvra keeps stories, music, languages, film, family recordings, art, recipes, voices and memories.</p>
+  </section>
+
   <!-- Statement: words and photos interleaved -->
   <section class="bg-white px-6 py-20 md:py-32" aria-labelledby="statement-title">
     <h2 id="statement-title" class="sr-only">Your story isn't lost. It's preserved.</h2>
