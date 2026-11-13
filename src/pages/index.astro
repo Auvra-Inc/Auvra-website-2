@@ -42,12 +42,12 @@ const steps = [
 ];
 const WALL_CARDS = ['singers', 'drummer-blue', 'creator-filmmaker', 'creator-filmcrew', 'creator-painter', 'creator-studio', 'hands-braid', 'elder', 'coral-beads', 'dancers', 'creator-joy', 'creator-beach', 'gele', 'young-man'];
 const WALL_TOPICS = [
-  { word: 'music', label: 'Music', card: 0, color: '#7C5CFF', line: 'Songs, voice notes and live sessions, transcribed by Lens AI and credited to the artist who made them.' },
-  { word: 'films', label: 'Film', card: 2, color: '#E0563B', line: 'Short films and behind-the-scenes footage, kept in one place with the story behind every shot.' },
-  { word: 'art', label: 'Art & craft', card: 4, color: '#2F8F6B', line: 'Paintings, craft and design work, documented with the context that makes them yours.' },
-  { word: 'family', label: 'Family recordings', card: 6, color: '#C8842B', line: 'Grandma’s voice, recorded once and translated by Lens AI for every generation after her.' },
-  { word: 'community', label: 'Community archives', card: 8, color: '#2B6FD6', line: 'Festivals, songs and ceremonies, kept by the communities that carry them, with their permission.' },
-  { word: 'moments', label: 'Everyday moments', card: 10, color: '#D94C8A', line: 'The photos and moments in between, kept safe and private in your Vault.' },
+  { word: 'music', label: 'Music', card: 0, line: 'Songs, voice notes and live sessions, transcribed by Lens AI and credited to the artist who made them.' },
+  { word: 'films', label: 'Film', card: 2, line: 'Short films and behind-the-scenes footage, kept in one place with the story behind every shot.' },
+  { word: 'art', label: 'Art & craft', card: 4, line: 'Paintings, craft and design work, documented with the context that makes them yours.' },
+  { word: 'family', label: 'Family recordings', card: 6, line: 'Grandma’s voice, recorded once and translated by Lens AI for every generation after her.' },
+  { word: 'community', label: 'Community archives', card: 8, line: 'Festivals, songs and ceremonies, kept by the communities that carry them, with their permission.' },
+  { word: 'moments', label: 'Everyday moments', card: 10, line: 'The photos and moments in between, kept safe and private in your Vault.' },
 ];
 const audiences = [
   { id: 'families', name: 'Families' }, { id: 'creators', name: 'Creators' }, { id: 'communities', name: 'Communities' },
@@ -280,7 +280,7 @@ const audiences = [
     <p class="reveal relative z-10 mx-auto px-6 font-serif text-[40px] md:text-[64px] leading-[1.02] text-carbon" aria-hidden="true">
       <span class="block">One home for</span>
       <span class="wall-words">
-        {WALL_TOPICS.map((t, k) => <span class={`wall-word${k === 0 ? ' is-on' : ''}`} style={`--c:${t.color}`}>your {t.word}.</span>)}
+        {WALL_TOPICS.map((t, k) => <span class={`wall-word${k === 0 ? ' is-on' : ''}`}>your {t.word}.</span>)}
       </span>
     </p>
     <div class="wall" aria-hidden="true">
@@ -288,30 +288,28 @@ const audiences = [
         {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-480.webp`} alt="" class="wall__card" data-i={i} loading="lazy" />)}
       </div>
       <div class="wall__chips">
-        {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`} style={`--c:${t.color}`}><span class="wall__dot"></span>{t.label}</span>)}
+        {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`}><span class="wall__dot"></span>{t.label}</span>)}
       </div>
     </div>
     <div class="wall-copy relative z-10 mx-auto max-w-[34rem] px-6" aria-hidden="true">
       {WALL_TOPICS.map((t, k) => <p class={`wall-line${k === 0 ? ' is-on' : ''}`}>{t.line}</p>)}
     </div>
-    <div class="wall-progress relative z-10" aria-hidden="true">{WALL_TOPICS.map((t, k) => <button type="button" tabindex="-1" class={`wall-pip${k === 0 ? ' is-on' : ''}`} data-k={k} style={`--c:${t.color}`}></button>)}</div>
+    <div class="wall-progress relative z-10" aria-hidden="true">{WALL_TOPICS.map((t, k) => <span class={`wall-pip${k === 0 ? ' is-on' : ''}`}></span>)}</div>
     <p class="sr-only">Music, film, art, family recordings and community archives. Upload it once, let Lens AI transcribe and organise it, and keep it credited to you.</p>
     <a href={EXPLORE_HREF} class="poster-cta poster-cta--dark mt-8 relative z-10">Explore Auvra<span class="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
   </section>
 
   <script>
-    // Curved wall: cards travel along a concave curve and pause on each topic's photo.
+    // Curved wall: cards drift continuously along a concave curve; the copy follows the topic photo passing the centre.
     const sec = document.querySelector('[data-wall]');
     if (sec) {
       const cards = [...sec.querySelectorAll('.wall__card')];
       const N = cards.length;
       const stops = JSON.parse(sec.dataset.stops || '[]');
-      const words = sec.querySelectorAll('.wall-word');
-      const lines = sec.querySelectorAll('.wall-line');
-      const chips = sec.querySelectorAll('.wall__chip');
-      const pips = sec.querySelectorAll('.wall-pip');
+      const groups = [sec.querySelectorAll('.wall-word'), sec.querySelectorAll('.wall-line'), sec.querySelectorAll('.wall__chip'), sec.querySelectorAll('.wall-pip')];
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let pos = 0, topic = 0, anim = null, timer = null, visible = false;
+      const SPEED = 0.32; // cards per second
+      let pos = 0, last = 0, topic = -1, visible = false, raf = 0;
 
       const layout = () => {
         const w = cards[0].offsetWidth || 80;
@@ -322,38 +320,28 @@ const audiences = [
           const a = Math.abs(o);
           const x = Math.sign(o) * (a * sp + a * a * sp * (mob ? 0.09 : 0.06));
           const s = 1 + a * a * (mob ? 0.045 : 0.035) + a * (mob ? 0.06 : 0.05);
-          const rot = o * (mob ? -14 : -11);
-          c.style.transform = `translate(-50%, -50%) translateX(${x}px) rotateY(${rot}deg) scale(${s})`;
+          c.style.transform = `translate(-50%, -50%) translateX(${x}px) rotateY(${o * (mob ? -14 : -11)}deg) scale(${s})`;
           c.style.zIndex = String(100 - Math.round(a * 10));
           c.style.opacity = a > N / 2 - 1.2 ? '0' : '1';
-          c.classList.toggle('is-front', a < 0.35);
         });
+        // Topic = the most recent topic photo to reach the centre.
+        const front = ((Math.round(pos) % N) + N) % N;
+        let k = -1;
+        for (let j = 0; j < stops.length; j++) if (stops[j] <= front) k = j;
+        if (k === -1) k = stops.length - 1;
+        if (k !== topic) { topic = k; groups.forEach((list) => list.forEach((el, j) => el.classList.toggle('is-on', j === k))); }
       };
-      const show = (k) => {
-        [words, lines, chips, pips].forEach((list) => list.forEach((el, j) => el.classList.toggle('is-on', j === k)));
+      const tick = (t) => {
+        const dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+        pos = (pos + dt * SPEED) % N; layout();
+        raf = visible ? requestAnimationFrame(tick) : 0;
       };
-      const go = (k) => {
-        topic = (k + stops.length) % stops.length;
-        let target = stops[topic];
-        let d = ((target - pos) % N + N) % N; if (d > N / 2) d -= N;
-        const from = pos, to = pos + d, t0 = performance.now(), dur = reduce ? 0 : 1300;
-        cancelAnimationFrame(anim);
-        sec.classList.add('is-moving');
-        const step = (t) => {
-          const p = dur ? Math.min(1, (t - t0) / dur) : 1;
-          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-          pos = from + (to - from) * e; layout();
-          if (p < 1) anim = requestAnimationFrame(step);
-          else { pos = ((to % N) + N) % N; sec.classList.remove('is-moving'); }
-        };
-        anim = requestAnimationFrame(step);
-        setTimeout(() => show(topic), dur * 0.45);
-      };
-      const loop = () => { clearTimeout(timer); timer = setTimeout(() => { if (visible) go(topic + 1); loop(); }, reduce ? 6000 : 3800); };
-      pips.forEach((p) => p.addEventListener('click', () => { go(+p.dataset.k); loop(); }));
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.2 }).observe(sec);
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible && !reduce && !raf) { last = 0; raf = requestAnimationFrame(tick); }
+      }, { threshold: 0.05 }).observe(sec);
       addEventListener('resize', layout);
-      pos = stops[0] || 0; layout(); show(0); loop();
+      pos = (stops[0] || 0) - 0.3; layout();
     }
   </script>
 

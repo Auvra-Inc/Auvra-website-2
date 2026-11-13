@@ -790,3 +790,11 @@ html { overflow-x: clip; }
   .nav { transition: transform .6s cubic-bezier(.22,.8,.24,1), opacity .5s ease; }
   .nav[data-hidden] { transition: transform .7s cubic-bezier(.55,0,.35,1) .08s, opacity .6s ease .15s; }
 }
+@layer components {
+  /* Neutral colours, no highlighted card: the wall just keeps moving. */
+  .wall-word { color: var(--carbon, #191717); }
+  .wall__dot { background: #191717; box-shadow: 0 0 0 4px rgba(25,23,23,.12); animation: none; }
+  .wall-pip.is-on { background: #191717; }
+  .wall__card, .wall__card.is-front { filter: none; box-shadow: 0 18px 30px -18px rgba(0,0,0,.45); transition: opacity .4s; }
+  .wall-pip { display: inline-block; cursor: default; }
+}
