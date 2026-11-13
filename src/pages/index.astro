@@ -52,13 +52,16 @@ const WALL_TOPICS = [
   { word: 'moments', label: 'Everyday moments', card: 10, line: 'The photos and moments in between, kept safe and private in your Vault.' },
 ];
 const audiences = [
-  { id: 'families', name: 'Families' }, { id: 'creators', name: 'Creators' }, { id: 'communities', name: 'Communities' },
-  { id: 'diaspora', name: 'Diaspora' }, { id: 'institutions', name: 'Museums & Institutions' },
+  { id: 'families', name: 'Families', photo: 'hands-braid', alt: 'An older hand braiding a child’s hair' },
+  { id: 'creators', name: 'Creators', photo: 'creator-painter', alt: 'An artist standing in front of a large geometric painting' },
+  { id: 'communities', name: 'Communities', photo: 'coral-beads', alt: 'Dancers in red caps and coral beads at a festival' },
+  { id: 'diaspora', name: 'Diaspora', photo: 'creator-joy', alt: 'A young woman with curly hair laughing under a blue sky' },
+  { id: 'institutions', name: 'Museums & Institutions', photo: 'museum', alt: 'The columns of a museum building' },
 ];
 ---
 <Base
   title="Auvra · Your story. Your culture. Your legacy."
-  description="Auvra is a cultural technology company building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
+  description="Auvra is an AI-powered cultural preservation platform building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
   jsonld={[faqLd]}
 >
   <!-- 1 · Hero -->
@@ -409,12 +412,20 @@ const audiences = [
       <div class="reveal flex flex-col items-center">
         <h2 class="ws-h mb-8 md:mb-16 max-w-2xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">More than a platform<br /> a movement</h2>
         <p class="mb-8 max-w-xs md:max-w-[698px] text-center text-sm md:text-lg leading-7 text-[#888]">Auvra is building a community of families, storytellers, creators and cultural keepers who believe culture deserves a permanent home. Join early and help shape it.</p>
-        <ul class="mb-6 flex max-w-xs md:max-w-none flex-wrap justify-center gap-2" aria-label="Who we serve">
-          {audiences.map((a) => <li id={a.id} class="scroll-mt-28"><span class="inline-flex min-h-11 items-center rounded-full border border-[#3A3632] px-4 text-sm text-[#FBF8F1]">{a.name}</span></li>)}
+      </div>
+      <div class="aud-marquee" aria-label="Who we serve">
+        <ul class="aud-track">
+          {[0, 1].map((copy) => audiences.map((a) => (
+            <li id={copy ? undefined : a.id} aria-hidden={copy ? 'true' : undefined} class="aud-card scroll-mt-28">
+              <img src={`/images/photos/${a.photo}-960.webp`} alt={copy ? '' : a.alt} loading="lazy" />
+              <span class="aud-card__name">{a.name}</span>
+            </li>
+          )))}
         </ul>
       </div>
     </div>
   </section>
+
   <!-- App showcase: Scan an object, then read and listen to the stories behind it -->
   <section class="app-show relative overflow-hidden pt-20 md:pt-28 pb-16 md:pb-24" aria-labelledby="show-title">
     <div class="reveal mx-auto max-w-[760px] px-6 text-center">
