@@ -2,13 +2,12 @@
 // Wysemarket-style closing block on every page: gradient band, cream card with a big call to action,
 // and the four footer groups in the right half.
 import Sunburst from './Sunburst.astro';
-import Icon3D from './Icon3D.jsx';
 import { FOOTER, CONTACT_EMAIL, SOCIAL, EXPLORE_HREF } from '../data/site.js';
 const { title = 'What we keep today, tomorrow remembers.', text = 'Help build the permanent home for human culture. Start preserving your family’s story today.' } = Astro.props;
 ---
 <footer class="footer-cta overflow-hidden" aria-labelledby="footer-cta-title">
-  <Icon3D name="gift" size={150} className="footer-cta__deco hidden md:block left-[-20px] top-[18%] -rotate-12" />
-  <Icon3D name="vault" size={150} className="footer-cta__deco hidden md:block right-[-10px] top-[6%] rotate-12" />
+  <img src="/images/artifacts/clay-3.webp" alt="" aria-hidden="true" class="footer-cta__deco artifact left-[-30px] md:left-[-10px] top-[2%] md:top-[14%] w-[110px] md:w-[210px] -rotate-12" loading="lazy" />
+  <img src="/images/artifacts/clay-2.webp" alt="" aria-hidden="true" class="footer-cta__deco artifact right-[-30px] md:right-[-10px] top-[1%] md:top-[4%] w-[120px] md:w-[220px] rotate-12" loading="lazy" />
   <div class="footer-cta__card overflow-hidden">
     <Sunburst class="!top-[17%] !w-[min(820px,150vw)]" />
     <div class="relative z-10 mx-auto flex max-w-[880px] flex-col items-center gap-6 pt-28 md:pt-[11rem] pb-28 md:pb-40 text-center">

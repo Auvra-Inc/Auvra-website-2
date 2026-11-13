@@ -174,10 +174,18 @@ const audiences = [
   </section>
 
   <!-- 4 · Poster statement -->
-  <section class="relative flex flex-col items-center justify-center px-6 pt-[4.9rem] pb-28 md:py-[13.5rem] text-center" style="background: radial-gradient(ellipse at 50% 45%, #FF7A59 0%, #FFB08F 22%, #FFE2CF 42%, #FFFFFF 66%)" aria-labelledby="poster-title">
+  <section class="relative isolate flex flex-col items-center justify-center overflow-hidden px-6 pt-[13rem] pb-[13rem] md:py-[15rem] text-center" style="background: linear-gradient(170deg, #9E6B8C 0%, #D58A86 42%, #F4A07E 100%)" aria-labelledby="poster-title">
+    {[
+      ['stone-2', 'left-[-6%] top-[3%] w-[44vw] md:left-[6%] md:top-[8%] md:w-[230px]', '-8'],
+      ['stone-3', 'right-[-4%] top-[4%] w-[30vw] md:right-[9%] md:top-[10%] md:w-[150px]', '-14'],
+      ['stone-9', 'right-[-6%] bottom-[2%] w-[40vw] md:right-[5%] md:bottom-[10%] md:w-[230px]', '-6'],
+      ['stone-6', 'left-[-2%] bottom-[4%] w-[26vw] md:left-[10%] md:bottom-[12%] md:w-[130px]', '-12'],
+      ['stone-10', 'hidden md:block left-[30%] bottom-[5%] w-[120px]', '-10'],
+      ['stone-7', 'hidden md:block right-[30%] top-[6%] w-[70px] rotate-12', '-16'],
+    ].map(([n, pos, px]) => <img src={`/images/artifacts/${n}.webp`} alt="" aria-hidden="true" class={`artifact absolute -z-10 ${pos}`} data-parallax={px} loading="lazy" />)}
     <div class="reveal flex flex-col items-center">
-      <h2 id="poster-title" class="ws-h mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
-      <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#272727]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
+      <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
+      <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#FFF4EE]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
     </div>
     <a href={EXPLORE_HREF} class="btn btn--dark shimmer !min-h-[64px] !px-12">Explore Auvra</a>
   </section>
@@ -205,7 +213,7 @@ const audiences = [
   <!-- 6 · Dark FAQ + movement -->
   <section id="faqs" class="flex flex-col gap-y-[11rem] md:gap-y-[14rem] lg:gap-y-[19rem] bg-[#191717] py-[3.75rem] md:pt-[6.5rem] md:pb-[10.5rem]" aria-labelledby="faq-title">
     <div class="flex flex-col items-center">
-      <div class="mb-8 flex items-end" aria-hidden="true"><Icon3D name="speech" size={120} /><Icon3D name="sparkle" size={90} className="-ml-6" /></div>
+      <div class="mb-10 flex items-center" aria-hidden="true"><img src="/images/artifacts/ceramic-3.webp" alt="" class="artifact w-[110px] md:w-[150px] -rotate-6" loading="lazy" /><img src="/images/artifacts/ceramic-2.webp" alt="" class="artifact -ml-4 w-[130px] md:w-[180px] -translate-y-6" loading="lazy" /><img src="/images/artifacts/ceramic-4.webp" alt="" class="artifact -ml-4 w-[90px] md:w-[130px] rotate-6 translate-y-4" loading="lazy" /></div>
       <h2 id="faq-title" class="reveal ws-h mb-[6.5rem] max-w-xs md:max-w-xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">Got questions? Here are some answers</h2>
       <div class="ws-faq w-full max-w-[946px] px-8 md:px-4">
         <Faq client:visible items={homeFaqs} firstOpen={false} />
