@@ -941,3 +941,15 @@ html { overflow-x: clip; }
   .footer-grid > :first-child { grid-column: 1 / -1; padding-right: 0; margin-bottom: 8px; }
   @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.6fr repeat(4, 1fr) !important; column-gap: 32px !important; } .footer-grid > :first-child { grid-column: auto; margin-bottom: 0; } }
 }
+@layer components {
+  .partners__track-wrap { margin-top: 26px; }
+  .partners__track { gap: 52px; padding: 8px 0; }
+  .partners__track li { width: auto; height: 44px; }
+  .partners__track img { max-height: none; max-width: none; width: auto; opacity: .7; }
+  @media (max-width: 767px) { .partners__track img { transform: scale(.82); } .partners__track { gap: 34px; } }
+  @media (min-width: 768px) { .partners__track { gap: 76px; } .partners__track li { width: auto; height: 52px; } }
+}
+@layer components {
+  .partners__track img { filter: grayscale(1) brightness(0); opacity: .5; }
+  .partners__track img:hover { filter: none; opacity: 1; }
+}

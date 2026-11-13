@@ -30,17 +30,17 @@ const ICONS = {
       </div>
     </div>
   </div>
-  <section class="partners mx-auto max-w-[1240px] pt-14 md:pt-20" aria-labelledby="partners-title">
-    <h2 id="partners-title" class="px-6 text-center text-xs uppercase tracking-[0.14em] text-[#626262]">Our partners</h2>
+  <section class="partners mx-auto max-w-[1240px] pt-12 md:pt-16" aria-labelledby="partners-title">
+    <h2 id="partners-title" class="px-6 text-center text-[14px] md:text-[16px] font-medium uppercase tracking-[0.16em] text-[#4A4540]">Our partners</h2>
     <div class="partners__track-wrap">
       <ul class="partners__track">
         {[0, 1].map((copy) => PARTNERS.map((p) => (
-          <li aria-hidden={copy ? 'true' : undefined}><img src={p.src} alt={copy ? '' : p.name} loading="lazy" /></li>
+          <li aria-hidden={copy ? 'true' : undefined}><img src={p.src} alt={copy ? '' : p.name} loading="lazy" style={`height:${p.h}px`} /></li>
         )))}
       </ul>
     </div>
   </section>
-  <div class="footer-main mx-auto max-w-[1240px] px-6 md:px-10 pt-14 md:pt-20">
+  <div class="footer-main mx-auto max-w-[1240px] px-6 md:px-10 pt-10 md:pt-14">
     <div class="footer-grid">
       <div class="flex flex-col gap-3">
         <a href="/" aria-label="Auvra home" class="self-start"><img src="/brand/auvra-lockup-carbon.svg" alt="Auvra" width="128" height="25" loading="lazy" class="footer-logo" /></a>

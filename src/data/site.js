@@ -158,13 +158,13 @@ export const DRIFT = ['dancers', 'procession', 'singers', 'face-paint', 'drummer
 
 // Partners shown in the footer strip (logos copied from the previous goauvra.com).
 export const PARTNERS = [
-  { name: 'ElevenLabs', src: '/partners/elevenlabs.svg' },
-  { name: 'OpenAI', src: '/partners/openai.svg' },
-  { name: 'NVIDIA', src: '/partners/nvidia.webp' },
-  { name: 'Paystack', src: '/partners/paystack.webp' },
-  { name: 'Dojah', src: '/partners/dojah.svg' },
-  { name: 'Polygon', src: '/partners/polygon.svg' },
-  { name: 'Fonbnk', src: '/partners/fonbnk.svg' },
-  { name: 'Crossmint', src: '/partners/crossmint.svg' },
-  { name: 'Breet', src: '/partners/breet.svg' },
+  { name: 'ElevenLabs', src: '/partners/elevenlabs.svg', h: 21.0 },
+  { name: 'OpenAI', src: '/partners/openai.svg', h: 30.4 },
+  { name: 'NVIDIA', src: '/partners/nvidia.webp', h: 30.0 },
+  { name: 'Paystack', src: '/partners/paystack.webp', h: 24.5 },
+  { name: 'Dojah', src: '/partners/dojah.svg', h: 38.0 },
+  { name: 'Polygon', src: '/partners/polygon.svg', h: 25.9 },
+  { name: 'Fonbnk', src: '/partners/fonbnk.svg', h: 28.0 },
+  { name: 'Crossmint', src: '/partners/crossmint.svg', h: 25.2 },
+  { name: 'Breet', src: '/partners/breet.svg', h: 33.6 },
 ];
