@@ -217,7 +217,7 @@ export default function AChronos() {
           <a href="/lens-ai" className="reveal flex flex-col gap-4 rounded-[32px] bg-blue p-8 md:p-12 text-white no-underline min-h-[320px] max-md:items-center max-md:text-center">
             <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="speech" size={64} /><Status kind="developing" /></div>
             <h3 className="mt-auto text-4xl font-semibold tracking-tight">Lens AI</h3>
-            <p className="text-lg text-[#DCD5FF]">Transcription, translation and tagging inside the app, reviewed by people. Built for use.</p>
+            <p className="text-lg text-[#BFE0E1]">Transcription, translation and tagging inside the app, reviewed by people. Built for use.</p>
             <span className="font-semibold underline underline-offset-4">Explore Lens AI</span>
           </a>
           <div className="reveal flex flex-col gap-4 rounded-[32px] bg-teal p-8 md:p-12 text-white min-h-[320px] max-md:items-center max-md:text-center">

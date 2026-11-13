@@ -100,7 +100,7 @@ export const faqJsonLd = (items) => ({
 // "Explore Auvra" card, so this is a solid colour band in the page's own identity colour.
 const CTA_TONES = {
   carbon: { bg: '#191717', text: '#FBF8F1', sub: '#A8A29A', btn: 'btn--light', ghost: '!border-[#FBF8F1] !text-[#FBF8F1]' },
-  blue: { bg: '#3310BE', text: '#FFFFFF', sub: '#DCD5FF', btn: 'btn--light', ghost: '!border-white !text-white' },
+  blue: { bg: '#0B6A70', text: '#FFFFFF', sub: '#BFE0E1', btn: 'btn--light', ghost: '!border-white !text-white' },
   teal: { bg: '#024B50', text: '#FFFFFF', sub: '#BFE0E1', btn: 'btn--light', ghost: '!border-white !text-white' },
   espresso: { bg: '#4A281C', text: '#FFFFFF', sub: '#E9D9CF', btn: 'btn--light', ghost: '!border-white !text-white' },
   linen: { bg: '#F4F0E8', text: '#1C1A18', sub: '#5F5B55', btn: 'btn--dark', ghost: '' },

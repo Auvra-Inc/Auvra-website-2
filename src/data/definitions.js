@@ -2,7 +2,7 @@
 // `short` is for cards; `long` is the direct-answer paragraph that opens a product or technology page.
 export const COMPANY = {
   short: 'Auvra is building the permanent home for human culture.',
-  long: 'Auvra is an AI-powered cultural preservation platform building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
+  long: 'Auvra is building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
 };
 
 export const DEFINITIONS = {

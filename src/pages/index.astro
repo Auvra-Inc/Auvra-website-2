@@ -34,13 +34,13 @@ const features = [
   { art: 'key', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
   { art: 'paper-plane', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
   { art: 'magnifier', name: 'Lens AI', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable. You can always review and edit what it writes.', href: '/lens-ai' },
-  { art: 'camera', name: 'Scan', text: DEFINITIONS.scan.short, href: '/lens-ai#scan', isNew: true },
-  { art: 'hourglass', name: 'A-Chronos', text: DEFINITIONS.aChronos.short, href: '/a-chronos' },
+  { art: 'camera', name: 'Scan', text: DEFINITIONS.scan.short, href: '/lens-ai#scan' },
+  { art: 'globe', name: 'A-Chronos', text: DEFINITIONS.aChronos.short, href: '/a-chronos' },
 ];
 const steps = [
   { n: 1, title: 'Download Auvra', text: 'Create your free Auvra account in seconds on iPhone or Android.', bg: '#024B50', chip: '#0B6A70', accent: '#BCE784' },
   { n: 2, title: 'Choose your path', text: 'Pick the one that fits how you preserve, then invite the people who matter.', options: ['Creator', 'Collector', 'Community', 'Vault'], bg: '#4A281C', chip: '#6D4435', accent: '#FF8F77' },
-  { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#3310BE', chip: '#5A3BE0', accent: '#DCD5FF' },
+  { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#0B6A70', chip: '#158890', accent: '#BFE0E1' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
 const WALL_CARDS = ['singers', 'drum-flag', 'creator-filmcrew', 'drum-street', 'beadwork', 'red-cap', 'elder', 'white-agbada', 'dancers', 'procession', 'village', 'shrine', 'durbar', 'drummers-row'];
@@ -62,7 +62,7 @@ const audiences = [
 ---
 <Base
   title="Auvra · Your story. Your culture. Your legacy."
-  description="Auvra is an AI-powered cultural preservation platform building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
+  description="Auvra is building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
   jsonld={[faqLd]}
 >
   <!-- 1 · Hero -->
@@ -207,8 +207,8 @@ const audiences = [
           <div class="flex h-full flex-col gap-3 bg-white px-4 pt-[18%] text-carbon">
             <p class="flex items-center gap-2 text-[15px] font-semibold"><span class="grid h-7 w-7 place-items-center rounded-lg bg-blue text-white">✦</span>Lens AI</p>
             <p class="self-end rounded-2xl rounded-br-md bg-carbon px-3 py-2 text-[12px] text-white">Transcribe Grandpa's recording and translate it to English.</p>
-            <p class="rounded-2xl rounded-bl-md bg-[#F2EFFF] px-3 py-2 text-[12px]">Done. Here is the transcript and the English translation. I tagged it <b class="text-blue">Family history</b> and <b class="text-blue">Kumasi</b>.</p>
-            <div class="flex flex-wrap gap-1.5">{['View transcript', 'Translate to French'].map((c) => <span class="rounded-full border border-[#DCD5FF] px-2.5 py-1 text-[10px] font-medium text-blue">{c}</span>)}</div>
+            <p class="rounded-2xl rounded-bl-md bg-[#E6F2F2] px-3 py-2 text-[12px]">Done. Here is the transcript and the English translation. I tagged it <b class="text-blue">Family history</b> and <b class="text-blue">Kumasi</b>.</p>
+            <div class="flex flex-wrap gap-1.5">{['View transcript', 'Translate to French'].map((c) => <span class="rounded-full border border-[#BFE0E1] px-2.5 py-1 text-[10px] font-medium text-blue">{c}</span>)}</div>
           </div>
         </PhoneFrame>
       </div>
@@ -480,7 +480,7 @@ const audiences = [
               <Icon3D name="mic" size={120} />
             </div>
             <div class="flex items-center justify-between rounded-full bg-white px-3 py-2 text-[9.5px] text-[#9AA7B3]">
-              <span>Listen</span><span class="text-[#D0D8DF]">|</span><span class="font-semibold text-[#2F5F84]">Read</span><span class="text-[#D0D8DF]">|</span><span>Translate</span><span class="text-[#D0D8DF]">|</span><span>Quiz</span>
+              <span>Listen</span><span class="text-[#D0D8DF]">|</span><span class="font-semibold text-[#0B6A70]">Read</span><span class="text-[#D0D8DF]">|</span><span>Translate</span><span class="text-[#D0D8DF]">|</span><span>Quiz</span>
             </div>
             <div class="app-story flex-1 overflow-hidden rounded-[18px] bg-white px-4 pt-4">
               <p class="text-[17px] font-medium leading-tight text-carbon">How the talking drum speaks</p>

@@ -64,7 +64,7 @@ export default function Nav({ pathname = '/' }) {
     <header className="nav" ref={navRef} data-open={open ? '' : undefined} data-scrolled={scrolled || open ? '' : undefined} data-hidden={hidden && !open ? '' : undefined}>
       <div className="nav__pill">
         <a href="/" className="nav__logo" aria-label="Auvra home">
-          <img src="/brand/auvra-lockup-carbon.svg" alt="Auvra" width="87" height="20" />
+          <img src="/brand/auvra-lockup-carbon.svg" alt="Auvra" width="98" height="22" />
         </a>
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta shimmer">Explore Auvra</a>

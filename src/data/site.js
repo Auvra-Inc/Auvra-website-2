@@ -9,8 +9,9 @@ export const STORE = {
   live: false,
 };
 
-export const CONTACT_EMAIL = 'hello@goauvra.com';
-export const PARTNERSHIPS_EMAIL = 'partnerships@goauvra.com';
+export const CONTACT_EMAIL = 'info@goauvra.com';
+export const SUPPORT_EMAIL = 'support@goauvra.com';
+export const PARTNERSHIPS_EMAIL = 'info@goauvra.com';
 
 export const SOCIAL = [
   { label: 'Instagram', href: 'https://www.instagram.com/goauvra' },
@@ -61,7 +62,6 @@ export const FOOTER = [
       { label: 'Terms of Service', href: '/terms' },
       { label: 'Privacy Policy', href: '/privacy' },
       { label: 'AML / CFT Policy', href: '/aml' },
-      { label: 'Collaboration Terms', href: '/collab' },
     ],
   },
   {
@@ -83,7 +83,7 @@ export const FOOTER = [
 export const HOME_FAQS = [
   {
     q: 'What is Auvra?',
-    a: 'Auvra is an AI-powered cultural preservation platform where families, creators and communities preserve stories, languages and traditions as permanent, credited records, and pass them down.',
+    a: 'Auvra is the permanent home for human culture, where families, creators and communities preserve stories, languages and traditions as permanent, credited records, and pass them down.',
   },
   {
     q: 'What does Lens AI do?',
@@ -98,7 +98,7 @@ export const HOME_FAQS = [
     q: "Is my family's content private?",
     a: 'Yes. Your Vault is private by default, and only the people you invite can see it.',
   },
-  { q: 'How do I contact you?', a: 'Email hello@goauvra.com or use the form on our Contact page.' },
+  { q: 'How do I contact you?', a: 'Email info@goauvra.com for general enquiries or support@goauvra.com for help with your account, or use the form on our Contact page.' },
 ];
 
 export const MORE_FAQS = [

@@ -5,7 +5,7 @@ export const FAQ_GROUPS = [
   {
     title: 'About Auvra',
     items: [
-      { q: 'What is Auvra?', a: 'Auvra is an AI-powered cultural preservation platform building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
+      { q: 'What is Auvra?', a: 'Auvra is building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
       { q: 'What problem is Auvra solving?', a: 'Much of the world\'s cultural knowledge lives in memories, conversations, family recordings, photographs and community practices, scattered across personal devices and informal channels. When the people holding it are no longer present, stories, languages and traditions can become difficult to recover. Auvra provides systems built for continuity, not temporary storage.' },
       { q: 'Who is Auvra building for?', a: 'Families, creators, communities, diaspora audiences, and museums and institutions. Each plays a different role in keeping culture alive, and Auvra is designed to support all of them.' },
       { q: 'Is Auvra only focused on African culture?', a: 'No. Auvra is building for human culture everywhere. Our work began in Africa, where many languages and oral traditions are underrepresented in existing technology, but the platform is open to every culture and community.' },

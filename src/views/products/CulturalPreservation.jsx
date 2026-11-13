@@ -95,9 +95,9 @@ export default function CulturalPreservation() {
         <div className="reveal mt-14 flex flex-col gap-6 rounded-[32px] bg-blue p-8 md:flex-row md:items-center md:p-12 text-white max-md:items-center max-md:text-center">
           <Icon3D name="sparkle" size={80} />
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#DCD5FF]">Lens AI</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#BFE0E1]">Lens AI</p>
             <h3 className="mt-2 text-[24px] md:text-[30px] font-semibold leading-tight">Lens AI transcribes and translates oral histories, tags cultural items and makes archives searchable.</h3>
-            <p className="mt-3 text-[17px] text-[#DCD5FF]">You stay in control: what <a href="/lens-ai" className="underline underline-offset-4">Lens AI</a> produces can be reviewed and corrected by the person who shared the memory.</p>
+            <p className="mt-3 text-[17px] text-[#BFE0E1]">You stay in control: what <a href="/lens-ai" className="underline underline-offset-4">Lens AI</a> produces can be reviewed and corrected by the person who shared the memory.</p>
           </div>
         </div>
       </section>

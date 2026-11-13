@@ -73,7 +73,7 @@ export default function LensAI({ demo }) {
             <Kicker light>Introduction</Kicker>
             <h2 id="what-title" className={`reveal ${H2} max-w-[14ch] max-md:mx-auto`}>What is Lens AI?</h2>
             <p className={`reveal ${LEAD} mt-7 max-w-[600px] text-white max-md:mx-auto`}>{DEFINITIONS.lensAI.long}</p>
-            <p className={`reveal ${LEAD} mt-5 max-w-[600px] text-[#DCD5FF] max-md:mx-auto`}>It works inside the Auvra app, alongside <a className="underline" href="/cultural-preservation">Cultural Preservation</a> and <a className="underline" href="/my-vault">My Vault</a>. Its job is simple: make what people preserve easier to read, understand and find, without taking the record away from the person who shared it.</p>
+            <p className={`reveal ${LEAD} mt-5 max-w-[600px] text-[#BFE0E1] max-md:mx-auto`}>It works inside the Auvra app, alongside <a className="underline" href="/cultural-preservation">Cultural Preservation</a> and <a className="underline" href="/my-vault">My Vault</a>. Its job is simple: make what people preserve easier to read, understand and find, without taking the record away from the person who shared it.</p>
             <p className="reveal mt-6 text-[15px] text-[#BFB3FF]">Shown here: an illustrative example of a Lens AI conversation in the app.</p>
           </div>
           <div className="reveal">{demo}</div>
@@ -141,7 +141,7 @@ export default function LensAI({ demo }) {
             <p className="mt-5 text-[11px] font-semibold uppercase tracking-wider text-blue">Suggested tags · review before saving</p>
             <ul className="mt-3 flex flex-wrap gap-2">
               {['Festival', 'Dance', 'Coral beads', 'Red caps', 'South-East Nigeria', 'Ceremony'].map((t) => (
-                <li key={t} className="rounded-full border border-[#CFC6FF] bg-white px-3 py-1.5 text-[14px] font-medium text-blue">{t} <span className="text-grey">✕</span></li>
+                <li key={t} className="rounded-full border border-[#A9D3D5] bg-white px-3 py-1.5 text-[14px] font-medium text-blue">{t} <span className="text-grey">✕</span></li>
               ))}
             </ul>
             <p className="mt-5 text-[13px] text-grey">Illustrative example. Tags are suggestions until a person accepts them.</p>
@@ -183,7 +183,7 @@ export default function LensAI({ demo }) {
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Scan · Recognised</p>
                 <p className="mt-1 text-[17px] font-semibold leading-tight">Carved wooden mask</p>
                 <p className="mt-1 text-[13px] text-grey">West Africa · worn at festivals and ceremonies to honour ancestors.</p>
-                <div className="mt-3 flex gap-2 text-[12px] font-medium"><span className="rounded-full bg-[#F2EFFF] px-2.5 py-1 text-blue">See its story</span><span className="rounded-full bg-[#F4F0E8] px-2.5 py-1">Save to Vault</span></div>
+                <div className="mt-3 flex gap-2 text-[12px] font-medium"><span className="rounded-full bg-[#E6F2F2] px-2.5 py-1 text-blue">See its story</span><span className="rounded-full bg-[#F4F0E8] px-2.5 py-1">Save to Vault</span></div>
               </div>
             </div>
             <p className="mt-3 text-center text-[13px] text-[#8A8580]">Illustrative example. Scan is planned.</p>

@@ -145,7 +145,7 @@ export default function CreatorBadges({ embedded = false }) {
             <article className="reveal flex flex-col gap-4 rounded-[32px] bg-blue p-8 md:p-12 text-white max-md:text-center max-md:items-center">
               <Icon3D name="phone" size={72} />
               <h3 className="text-[30px] md:text-[38px] font-semibold uppercase tracking-[-0.03em] leading-[0.95]">Digital</h3>
-              <p className="text-[17px] text-[#DCD5FF]">Music, recorded stories, cultural photography, artwork and documented performances, kept with their story in the Auvra app.</p>
+              <p className="text-[17px] text-[#BFE0E1]">Music, recorded stories, cultural photography, artwork and documented performances, kept with their story in the Auvra app.</p>
             </article>
             <article className="reveal flex flex-col gap-4 rounded-[32px] bg-teal p-8 md:p-12 text-white max-md:text-center max-md:items-center">
               <Icon3D name="gift" size={72} />

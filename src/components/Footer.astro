@@ -8,7 +8,7 @@ const YEAR = new Date().getFullYear();
 // Laid out like the onboard.xyz footer: logo with link columns, a © row, then a short legal note.
 const FOOTER_COLS = [
   { title: 'Trust & Safety', links: [{ label: 'Community Guidelines', href: '/community' }, { label: 'Content Governance', href: '/governance' }, { label: 'Copyright Policy', href: '/copyright' }, { label: 'AI Policy', href: '/ai-policy' }] },
-  { title: 'Legal', links: [{ label: 'Terms of Service', href: '/terms' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'AML / CFT Policy', href: '/aml' }, { label: 'Collaboration Terms', href: '/collab' }] },
+  { title: 'Legal', links: [{ label: 'Terms of Service', href: '/terms' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'AML / CFT Policy', href: '/aml' }] },
   { title: 'Company', links: [{ label: 'About', href: '/about' }, { label: 'Blog', href: '/blog' }] },
   { title: 'Contact', links: [{ label: 'Contact us', href: '/contact' }, { label: 'FAQs', href: '/faqs' }] },
 ];
@@ -35,7 +35,7 @@ const ICONS = {
     <div class="partners__track-wrap">
       <ul class="partners__track">
         {[0, 1].map((copy) => PARTNERS.map((p) => (
-          <li aria-hidden={copy ? 'true' : undefined}><img src={p.src} alt={copy ? '' : p.name} loading="lazy" style={`height:${p.h}px`} /></li>
+          copy ? <li aria-hidden="true"><img src={p.src} alt="" loading="lazy" decoding="async" style={`height:${p.h}px`} /></li> : <li><img src={p.src} alt={p.name} loading="lazy" decoding="async" style={`height:${p.h}px`} /></li>
         )))}
       </ul>
     </div>
@@ -43,7 +43,7 @@ const ICONS = {
   <div class="footer-main mx-auto max-w-[1240px] px-6 md:px-10 pt-10 md:pt-14">
     <div class="footer-grid">
       <div class="flex flex-col gap-3">
-        <a href="/" aria-label="Auvra home" class="self-start"><img src="/brand/auvra-lockup-carbon.svg" alt="Auvra" width="109" height="25" loading="lazy" class="footer-logo" /></a>
+        <a href="/" aria-label="Auvra home" class="self-start"><img src="/brand/auvra-lockup-carbon.svg" alt="Auvra" width="111" height="25" loading="lazy" class="footer-logo" /></a>
         <p class="text-[14px] md:text-[15px] text-[#6B6560]">The Permanent Home for Human Culture.</p>
         <ul class="mt-1 flex -ml-2.5 gap-0.5" aria-label="Auvra on social media">
           {SOCIAL.map((s) => (
@@ -62,7 +62,7 @@ const ICONS = {
       <span>© {YEAR} Auvra Tech Ltd. All rights reserved.</span>
     </div>
     <div class="max-w-[860px] space-y-4 py-8 md:py-10 text-[12.5px] md:text-[14px] leading-relaxed text-[#8A8580]">
-      <p>Auvra is an AI-powered cultural preservation platform operated by Auvra Tech Ltd. Stories, recordings and other cultural records stay credited to the people and communities who share them.</p>
+      <p>Auvra is operated by Auvra Tech Ltd and is building the permanent home for human culture. Stories, recordings and other cultural records stay credited to the people and communities who share them.</p>
       <p>Lens AI suggestions, including transcripts, translations, tags and Scan results, are drafts that people can review and edit. Features marked as planned or in development are not yet available.</p>
       <p>All trademarks, service marks and partner logos belong to their respective owners.</p>
     </div>

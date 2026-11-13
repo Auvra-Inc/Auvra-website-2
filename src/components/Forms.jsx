@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CONTACT_EMAIL } from '../data/site.js';
 
 // Set VITE_FORM_ENDPOINT (e.g. a Formspree or serverless URL) at build time to post forms as JSON.
-// Without it, forms open the visitor's email app addressed to hello@goauvra.com, so they always work.
+// Without it, forms open the visitor's email app addressed to info@goauvra.com, so they always work.
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || '';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

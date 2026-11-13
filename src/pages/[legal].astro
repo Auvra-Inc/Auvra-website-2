@@ -7,7 +7,6 @@ const PAGES = {
   terms: { group: 'Legal', label: 'Terms of Service', description: 'The terms that govern your access to and use of Auvra’s website, apps and services.' },
   privacy: { group: 'Legal', label: 'Privacy Policy', description: 'How Auvra collects, uses, stores and protects your personal information, and your choices.' },
   aml: { group: 'Legal', label: 'AML / CFT Policy', description: 'Auvra’s Anti-Money Laundering and Counter Financing of Terrorism policy.' },
-  collab: { group: 'Legal', label: 'Collaboration Terms', description: 'The terms that apply when people create together on Auvra.' },
   community: { group: 'Trust & Safety', label: 'Community Guidelines', description: 'How to take part respectfully on Auvra: cultural sensitivity, boundaries, contributions and reporting concerns.' },
   governance: { group: 'Trust & Safety', label: 'Content Governance', description: 'How Auvra manages cultural content, attribution, verification, moderation, corrections and disputes.' },
   copyright: { group: 'Trust & Safety', label: 'Copyright Policy', description: 'Copyright ownership, creator rights, permissions and how to report infringement on Auvra.' },
@@ -16,7 +15,7 @@ const PAGES = {
 const docs = import.meta.glob('../content/legal/*.html', { query: '?raw', import: 'default', eager: true });
 
 export function getStaticPaths() {
-  return ['terms', 'privacy', 'aml', 'collab', 'community', 'governance', 'copyright', 'ai-policy'].map((legal) => ({ params: { legal } }));
+  return ['terms', 'privacy', 'aml', 'community', 'governance', 'copyright', 'ai-policy'].map((legal) => ({ params: { legal } }));
 }
 const { legal } = Astro.params;
 const page = PAGES[legal];
@@ -45,7 +44,7 @@ const others = Object.entries(PAGES).filter(([k, v]) => k !== legal && v.group =
     <aside class="legal__more" aria-label={`More ${page.group} pages`}>
       <p>More {page.group}</p>
       <ul>{others.map(([k, v]) => <li><a href={`/${k}`}>{v.label}</a></li>)}</ul>
-      <p class="legal__contact">Questions about this policy? Email <a href="mailto:hello@goauvra.com">hello@goauvra.com</a>.</p>
+      <p class="legal__contact">Questions about this policy? Email <a href="mailto:support@goauvra.com">support@goauvra.com</a>.</p>
     </aside>
   </article>
 </Base>

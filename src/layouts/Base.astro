@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.astro';
 import IconSprite from '../components/IconSprite.jsx';
-import { SITE, SOCIAL, CONTACT_EMAIL, STORE } from '../data/site.js';
+import { SITE, SOCIAL, CONTACT_EMAIL, SUPPORT_EMAIL, STORE } from '../data/site.js';
 
 /**
  * Every page: unique title + description, canonical URL, Open Graph / X cards,
@@ -16,16 +16,25 @@ const canonical = SITE + (path === '/' ? '/' : path);
 const ogImage = image.startsWith('http') ? image : SITE + image;
 const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE}/#organization`,
-  name: 'Auvra', legalName: 'Auvra Tech Ltd', url: SITE, logo: `${SITE}/brand/auvra-logo-carbon.svg`, email: CONTACT_EMAIL,
-  description: 'Auvra is an AI-powered cultural preservation platform building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
+  name: 'Auvra', legalName: 'Auvra Tech Ltd', url: SITE, email: CONTACT_EMAIL,
+  logo: { '@type': 'ImageObject', url: `${SITE}/brand/auvra-lockup-carbon.svg` },
+  contactPoint: [
+    { '@type': 'ContactPoint', contactType: 'customer support', email: SUPPORT_EMAIL, availableLanguage: ['en'] },
+    { '@type': 'ContactPoint', contactType: 'general enquiries', email: CONTACT_EMAIL, availableLanguage: ['en'] },
+  ],
+  knowsAbout: ['Cultural preservation', 'Oral history', 'African languages', 'Transcription', 'Translation', 'Digital heritage', 'Family history'],
+  description: 'Auvra is building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
   sameAs: SOCIAL.map((s) => s.href), address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
 };
-const site = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'Auvra', url: SITE, publisher: { '@id': `${SITE}/#organization` } };
+const site = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'Auvra', url: SITE, inLanguage: 'en', publisher: { '@id': `${SITE}/#organization` } };
+const webpage = { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description, inLanguage: 'en', isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${SITE}/#organization` }, primaryImageOfPage: ogImage };
+const BING = import.meta.env.PUBLIC_BING_VERIFICATION;
+const SENTRY_DSN = import.meta.env.PUBLIC_SENTRY_DSN;
 const breadcrumb = crumbs && {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [{ label: 'Home', href: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: SITE + (c.href || path) })),
 };
-const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
+const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
 ---
 <!doctype html>
 <html lang="en">
@@ -35,7 +44,15 @@ const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="Auvra, AI cultural preservation, cultural preservation platform, Lens AI, oral history transcription, translation, African languages, heritage, family history, diaspora" />
-    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" type="text/plain" title="Auvra for AI assistants" href="/llms.txt" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <meta name="author" content="Auvra Tech Ltd" />
+    <meta name="format-detection" content="telephone=no" />
+    {BING && <meta name="msvalidate.01" content={BING} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#FFFFFF" />
     <meta name="google-site-verification" content="uOCh-LWh0XBkm1lh4x4veDm4ZzqKMAjUVBEFtEmTMHQ" />
@@ -45,16 +62,24 @@ const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@goauvra" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" />
     <script is:inline>document.documentElement.classList.add('js')</script>
     <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+    <!-- Vercel Web Analytics + Speed Insights (Core Web Vitals). Served by Vercel once enabled on the project. -->
+    <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
+    <script is:inline defer src="/_vercel/insights/script.js"></script>
+    <script is:inline defer src="/_vercel/speed-insights/script.js"></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -62,6 +87,12 @@ const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
     <Nav client:load pathname={path} />
     <main id="main"><slot /></main>
     <Footer />
+    {SENTRY_DSN && (
+      <script is:inline define:vars={{ dsn: SENTRY_DSN }}>
+        // Error tracking (Sentry), only when PUBLIC_SENTRY_DSN is set.
+        (function () { var s = document.createElement('script'); s.src = 'https://browser.sentry-cdn.com/8.47.0/bundle.min.js'; s.crossOrigin = 'anonymous'; s.onload = function () { window.Sentry && window.Sentry.init({ dsn: dsn, tracesSampleRate: 0.1 }); }; document.head.appendChild(s); })();
+      </script>
+    )}
     <script is:inline define:vars={{ store: STORE }}>
       // Explore Auvra: straight to the right app store on phones, else scroll to the download buttons.
       document.addEventListener('click', (e) => {

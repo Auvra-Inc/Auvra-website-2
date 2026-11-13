@@ -38,7 +38,7 @@ const LINKS = [
     photo: 'elder', alt: 'An elder in a wide-brimmed hat and robes, the kind of knowledge holder whose memories contributions preserve',
   },
   {
-    id: 'creator', href: '/badges#creator', icon: 'gift', label: 'Creator Badges', bg: 'bg-blue', sub: 'text-[#DCD5FF]', accent: 'text-[#DCD5FF]',
+    id: 'creator', href: '/badges#creator', icon: 'gift', label: 'Creator Badges', bg: 'bg-blue', sub: 'text-[#BFE0E1]', accent: 'text-[#BFE0E1]',
     q: 'How does Auvra Passport relate to Creator Badges?',
     a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Creator Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
     points: ['Creators linked to the work they share', 'Claimed badges kept with their story', 'Credit that travels with every badge'],

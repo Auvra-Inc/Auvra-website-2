@@ -150,7 +150,7 @@ export default function Research({ listing }) {
           <a href="/lens-ai" className="flex flex-col gap-4 rounded-[28px] bg-blue p-8 md:p-10 text-white no-underline max-md:items-center max-md:text-center">
             <Icon3D name="speech" size={56} />
             <h3 className="text-3xl md:text-4xl font-semibold tracking-tight">Lens AI</h3>
-            <p className="text-[17px] text-[#DCD5FF]">Transcription, translation and tagging for cultural documentation, always reviewed by people.</p>
+            <p className="text-[17px] text-[#BFE0E1]">Transcription, translation and tagging for cultural documentation, always reviewed by people.</p>
             <span className="font-semibold underline underline-offset-4">Explore Lens AI</span>
           </a>
           <a href="/a-chronos" className="flex flex-col gap-4 rounded-[28px] bg-teal p-8 md:p-10 text-white no-underline max-md:items-center max-md:text-center">

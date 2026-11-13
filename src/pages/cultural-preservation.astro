@@ -3,6 +3,6 @@ import Base from '../layouts/Base.astro';
 import View, { FAQS } from '../views/products/CulturalPreservation.jsx';
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
-<Base title="Cultural Preservation · Preserve the knowledge that makes us who we are · Auvra" description="Auvra provides an environment for documenting and preserving the stories, languages, memories, traditions and cultural knowledge that connect people to their heritage." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'Cultural Preservation' }]} jsonld={[faqLd]}>
+<Base title="Cultural Preservation · Preserve the knowledge that makes us who we are · Auvra" description="Document and preserve the stories, languages, memories and traditions that connect people to their heritage, with origin and context kept intact." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'Cultural Preservation' }]} jsonld={[faqLd]}>
   <View />
 </Base>

@@ -232,17 +232,17 @@ export default function MyVault() {
         <div className="reveal grid items-center gap-10 rounded-[36px] bg-blue p-8 md:p-14 text-white lg:grid-cols-[1.3fr_1fr]">
           <div className="max-md:text-center">
             <div className="flex items-center gap-3 max-md:justify-center">
-              <p className="kicker !mb-0 !text-[#DCD5FF]">Personal AI OS</p>
+              <p className="kicker !mb-0 !text-[#BFE0E1]">Personal AI OS</p>
               {/* TODO(Emmanuel): confirm status */}
               <span className="status status--planned !bg-white">Planned</span>
             </div>
             <h2 id="ai-title" className="mt-5 font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">What is the planned Personal AI OS?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#DCD5FF]">Personal AI OS is a planned capability, not yet released. It is intended to help you understand and interact with information in your Vault, using only the information you have authorised it to access.</p>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BFE0E1]">Personal AI OS is a planned capability, not yet released. It is intended to help you understand and interact with information in your Vault, using only the information you have authorised it to access.</p>
           </div>
           <div className="mx-auto w-full max-w-[380px] rounded-[26px] bg-white/10 p-2" aria-hidden="true">
             <div className="flex flex-col gap-3 rounded-[20px] bg-white p-5 text-carbon">
               <p className="self-end rounded-[18px] rounded-br-md bg-carbon px-4 py-3 text-[15px] text-white">Which songs did Grandma record?</p>
-              <p className="rounded-[18px] rounded-bl-md bg-[#F2EFFF] px-4 py-3 text-[15px]">From the items you have allowed me to read: two wedding songs and a lullaby in Wolof.</p>
+              <p className="rounded-[18px] rounded-bl-md bg-[#E6F2F2] px-4 py-3 text-[15px]">From the items you have allowed me to read: two wedding songs and a lullaby in Wolof.</p>
               <p className="text-center text-[12px] text-grey">Concept illustration · not released</p>
             </div>
           </div>

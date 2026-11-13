@@ -3,6 +3,6 @@ import Base from '../layouts/Base.astro';
 import View, { FAQS } from '../views/products/AuvraPassport.jsx';
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
-<Base title="Auvra Passport · A connected record of your cultural participation · Auvra" description="Auvra Passport is designed to connect you to the cultural records you preserve, contribute to and create across Auvra, so your participation stays attributed to you." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'Auvra Passport' }]} jsonld={[faqLd]}>
+<Base title="Auvra Passport · A connected record of your cultural participation · Auvra" description="Auvra Passport connects you to the cultural records you preserve, contribute to and create on Auvra, so your participation stays attributed to you." crumbs={[{ label: 'Products', href: '/#ecosystem' }, { label: 'Auvra Passport' }]} jsonld={[faqLd]}>
   <View />
 </Base>

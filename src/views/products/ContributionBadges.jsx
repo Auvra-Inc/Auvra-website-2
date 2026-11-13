@@ -27,7 +27,7 @@ const PATHS = [
     why: 'Much cultural knowledge has never been written down. A recorded memory keeps the voice, the language and the detail.',
   },
   {
-    icon: 'vault', name: 'Physical & Digital Stewardship', bg: 'bg-blue', text: 'text-white', accent: 'text-[#DCD5FF]', sub: 'text-[#DCD5FF]',
+    icon: 'vault', name: 'Physical & Digital Stewardship', bg: 'bg-blue', text: 'text-white', accent: 'text-[#BFE0E1]', sub: 'text-[#BFE0E1]',
     represents: 'The care, preservation or stewardship of cultural materials and records.',
     how: 'Photograph fading letters, digitise old cassette recordings, or document the objects you look after and how they have been kept.',
     why: 'Materials wear out, scatter between relatives or disappear with a lost phone. Stewardship is the work that keeps them available.',

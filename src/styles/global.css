@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-carbon: #1C1A18; --color-linen: #F4F0E8; --color-cream: #FBF8F1; --color-blue: #3310BE; --color-lemon: #F6DF15;
+  --color-carbon: #1C1A18; --color-linen: #F4F0E8; --color-cream: #FBF8F1; --color-blue: #0B6A70; --color-lemon: #F6DF15;
   --color-gold: #FEEF9C; --color-lime: #BCE784; --color-salmon: #FF8F77; --color-pumpkin: #FF7401; --color-teal: #024B50;
   --color-espresso: #4A281C; --color-olive: #75704E; --color-grey: #5F5B55; --color-line: #E7E2D8;
   --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif; --font-serif: "Young Serif", Georgia, serif;
@@ -12,7 +12,7 @@
 
 @layer components {
 :root {
-  --carbon: #1C1A18; --linen: #F4F0E8; --white: #FFFFFF; --blue: #3310BE; --lemon: #F6DF15;
+  --carbon: #1C1A18; --linen: #F4F0E8; --white: #FFFFFF; --blue: #0B6A70; --lemon: #F6DF15;
   --gold: #FEEF9C; --lime: #BCE784; --salmon: #FF8F77; --pumpkin: #FF7401; --teal: #024B50;
   --espresso: #4A281C; --olive: #75704E; --grey: #5F5B55; --line: #E7E2D8;
   --display: 'Clash Display', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -220,7 +220,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .tile__big { font-family: var(--serif); font-size: clamp(28px, 2.6vw, 38px) !important; color: var(--gold); margin-top: 8px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .chips li, .chips span { padding: 8px 14px; border-radius: 30px; font-size: 14px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2); }
-.chips--light span { background: #fff; border-color: #DCD5FF; color: var(--blue); font-weight: 500; }
+.chips--light span { background: #fff; border-color: #BFE0E1; color: var(--blue); font-weight: 500; }
 @media (max-width: 1100px) { .bento { grid-template-columns: repeat(2, 1fr); } .tile, .t-lens { grid-column: span 1; } .t-vault { grid-column: span 2; } }
 @media (max-width: 760px) { .bento { grid-template-columns: 1fr; } .tile, .t-vault, .t-lens { grid-column: auto; min-height: 300px; padding: 26px; } .tile__icon { width: 64px; height: 64px; } }
 
@@ -267,7 +267,7 @@ html { -webkit-tap-highlight-color: transparent; }
 .screen__head small, .vault__list small, .record small { font-weight: 400; font-size: 13px; color: var(--grey); }
 .bubble { padding: 12px 16px; border-radius: 18px; line-height: 1.4; max-width: 90%; }
 .bubble--me { align-self: flex-end; background: var(--carbon); color: #fff; border-bottom-right-radius: 6px; }
-.bubble--ai { background: #F2EFFF; border-bottom-left-radius: 6px; }
+.bubble--ai { background: #E6F2F2; border-bottom-left-radius: 6px; }
 .bubble--ai b { color: var(--blue); }
 .invite { background: var(--carbon); color: #fff; font-size: 13px; padding: 8px 14px; border-radius: 20px; font-weight: 500; }
 .vault__list { display: flex; flex-direction: column; gap: 10px; }
@@ -366,7 +366,7 @@ html { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 420px) { .footer__top { grid-template-columns: 1fr 1fr; gap: 30px 20px; } }
 
 /* ============ Inner pages ============ */
-.page-hero { padding: 90px 0 50px; }
+.page-hero { padding-block: 90px 50px; }
 .page-hero .h2 { max-width: 20ch; }
 .prose { max-width: 760px; font-size: 17px; color: #34302B; }
 .prose h2 { font-size: 28px; font-weight: 600; letter-spacing: -.02em; margin: 44px 0 14px; color: var(--carbon); }
@@ -408,7 +408,7 @@ html { -webkit-tap-highlight-color: transparent; }
 /* ============ React build additions ============ */
 .nav__cta { min-height: 48px; padding: 0 22px; font-size: 15px; }
 .nav__panel-cta { margin: 12px 16px 4px; }
-.nav__expand.is-active { color: var(--blue); }
+.nav__expand.is-active { color: inherit; }
 .nav__sub a[aria-current='page'] { color: var(--carbon); font-weight: 600; }
 @media (max-width: 760px) { .nav__cta { display: none; } .nav__pill { padding-left: 18px; } .nav__btn { width: 50px; height: 50px; border-radius: 14px; } }
 @media (max-width: 360px) { .nav__store { display: none; } }
@@ -958,4 +958,36 @@ html { overflow-x: clip; }
   .value-card:hover { transform: translateY(-4px); background: #F1ECE4; }
   .value-card__letter { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: #191717; color: #FBF8F1; font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1; }
   @media (max-width: 767px) { .value-card { text-align: left; } }
+}
+@layer components {
+  /* Glass label, matched to the "Elegant" reference: slim frosted pill, thin light border, regular weight */
+  .mood__pill { width: auto !important; height: auto !important; min-width: 0; padding: 14px 34px !important; border-radius: 999px;
+    background: rgba(255,255,255,.16) !important; border: 1px solid rgba(255,255,255,.55) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 24px -12px rgba(0,0,0,.25) !important;
+    backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    color: #fff !important; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+    font-weight: 400 !important; font-size: clamp(17px, 2vw, 26px) !important; letter-spacing: 0 !important; text-transform: none !important; text-shadow: 0 1px 6px rgba(0,0,0,.18); }
+  @media (min-width: 768px) { .mood__pill { padding: 18px 46px !important; } }
+
+  /* Menu panel: softer corners, no coloured state */
+  .nav__panel { border-radius: 20px !important; }
+  .nav__inst { border-radius: 10px !important; }
+  .nav__sub { border-radius: 10px; }
+
+  /* Partners sit closer to the footer */
+  .partners { padding-top: 36px !important; }
+  .footer-main { padding-top: 28px !important; }
+  @media (min-width: 768px) { .partners { padding-top: 48px !important; } .footer-main { padding-top: 40px !important; } }
+}
+@layer components {
+  .nav__logo img { height: 22px !important; }
+  @media (min-width: 768px) { .nav__logo img { height: 26px !important; } }
+}
+@layer components {
+  @media (hover: none) { .nav__list > li > a:hover, .nav__expand:hover { color: inherit !important; } }
+}
+@layer components {
+  .partners__track-wrap { margin-bottom: 0; }
+  .footer-main { padding-top: 12px !important; }
+  @media (min-width: 768px) { .footer-main { padding-top: 24px !important; } }
 }
