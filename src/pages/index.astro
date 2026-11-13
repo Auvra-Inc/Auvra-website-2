@@ -155,6 +155,30 @@ const audiences = [
   </section>
 
 
+  <!-- Evolution collage: objects across generations -->
+  <section class="bg-[#FBF8F1] px-6 py-24 md:py-36" aria-labelledby="evo-title">
+    <ul class="mx-auto flex max-w-[980px] items-end justify-center gap-3 md:gap-8" aria-hidden="true">
+      {[
+        ['pocket-watch', 'bg-[#D9EEDC]', '-rotate-2'],
+        ['coin', '', ''],
+        ['key', 'bg-[#FFD3BE]', 'rotate-2'],
+        ['chess-knight', '', ''],
+        ['paper-plane', 'bg-[#D6D3FF]', '-rotate-3'],
+      ].map(([n, patch, rot], i) => (
+        <li class={`relative flex flex-1 items-end justify-center ${i % 2 ? 'pb-2' : 'pb-8 md:pb-14'}`}>
+          {patch && <span class={`absolute inset-x-[4%] bottom-[8%] top-[18%] ${patch} ${rot}`} style="clip-path: polygon(2% 0, 100% 3%, 97% 100%, 0 96%)"></span>}
+          <img src={`/images/collage/${n}.webp`} alt="" class="reveal relative w-full max-w-[150px] object-contain" loading="lazy" />
+        </li>
+      ))}
+    </ul>
+    <h2 id="evo-title" class="reveal mx-auto mt-14 md:mt-20 max-w-[22ch] text-center font-serif text-[32px] md:text-[44px] leading-[1.12] text-carbon">Connecting generations through what they make and remember.</h2>
+    <div class="mx-auto mt-10 grid max-w-[900px] gap-8 md:grid-cols-3 text-[16px] leading-relaxed text-[#6B6660] max-md:text-center">
+      <p class="reveal">Keep voice notes, photos, songs, films and documents in one private place, organised and easy to find.</p>
+      <p class="reveal">Every piece stays credited to the person who made or shared it, wherever it travels.</p>
+      <p class="reveal">Pass it on to family, collaborators and the next generation, so nothing important is lost.</p>
+    </div>
+  </section>
+
   <!-- Statement: words and photos interleaved -->
   <section class="bg-white px-6 py-20 md:py-32" aria-labelledby="statement-title">
     <h2 id="statement-title" class="sr-only">Your story isn't lost. It's preserved.</h2>
@@ -186,6 +210,19 @@ const audiences = [
       <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#FFF4EE]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
     </div>
     <a href={EXPLORE_HREF} class="btn btn--dark shimmer !min-h-[64px] !px-12">Explore Auvra</a>
+  </section>
+
+  <!-- Curved gallery: everything people create -->
+  <section class="relative overflow-hidden bg-[#E9E9E9] pt-24 md:pt-28 pb-20 md:pb-28 text-center" aria-labelledby="gallery-title">
+    <h2 id="gallery-title" class="reveal relative z-10 mx-auto max-w-[16ch] px-6 font-serif text-[40px] md:text-[64px] leading-[1.02] text-carbon">One home. Everything you create.</h2>
+    <div class="curved curved--big w-full" aria-hidden="true">
+      {GALLERY_WALL.map((n, i, arr) => {
+        const o = i - (arr.length - 1) / 2;
+        return <img src={`/images/photos/${n}-480.webp`} alt="" class="curved__card" style={`--o:${o};--a:${Math.abs(o)}`} loading="lazy" />;
+      })}
+    </div>
+    <p class="reveal relative z-10 mx-auto max-w-[36rem] px-6 text-[16px] md:text-[18px] leading-relaxed text-[#3A3631]">Music, film, art, family recordings and community archives. Upload it once, let Lens AI transcribe and organise it, and keep it credited to you.</p>
+    <a href={EXPLORE_HREF} class="btn btn--dark shimmer mt-8 !min-h-[56px] !px-10 relative z-10">Explore Auvra</a>
   </section>
 
   <!-- 5 · How it works -->
@@ -222,15 +259,9 @@ const audiences = [
       <div class="reveal flex flex-col items-center">
         <h2 class="ws-h mb-8 md:mb-16 max-w-2xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">More than a platform<br /> a movement</h2>
         <p class="mb-8 max-w-xs md:max-w-[698px] text-center text-sm md:text-lg leading-7 text-[#888]">Auvra is building a community of families, storytellers, creators and cultural keepers who believe culture deserves a permanent home. Join early and help shape it.</p>
-        <ul class="mb-12 md:mb-24 flex max-w-xs md:max-w-none flex-wrap justify-center gap-2" aria-label="Who we serve">
+        <ul class="mb-6 flex max-w-xs md:max-w-none flex-wrap justify-center gap-2" aria-label="Who we serve">
           {audiences.map((a) => <li id={a.id} class="scroll-mt-28"><span class="inline-flex min-h-11 items-center rounded-full border border-[#3A3632] px-4 text-sm text-[#FBF8F1]">{a.name}</span></li>)}
         </ul>
-      </div>
-      <div class="curved w-full" aria-hidden="true">
-        {GALLERY_WALL.map((n, i, arr) => {
-          const o = i - (arr.length - 1) / 2;
-          return <img src={`/images/photos/${n}-480.webp`} alt="" class="curved__card" style={`--o:${o};--a:${Math.abs(o)}`} loading="lazy" />;
-        })}
       </div>
     </div>
   </section>
