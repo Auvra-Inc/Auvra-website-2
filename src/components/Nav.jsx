@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Compass, Menu, X } from 'lucide-react';
 import { NAV, EXPLORE_HREF } from '../data/site.js';
 
 // Floating pill navigation (as on the current goauvra.com) holding the PRD menu groups.
@@ -56,6 +56,7 @@ export default function Nav({ pathname = '/' }) {
         </a>
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</a>
+          <a href={EXPLORE_HREF} className="nav__btn nav__cta-icon" aria-label="Explore Auvra" title="Explore Auvra"><Compass size={20} aria-hidden="true" /></a>
           <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
             {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
