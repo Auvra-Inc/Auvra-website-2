@@ -13,14 +13,22 @@ export default function Nav({ pathname = '/' }) {
   const panelRef = useRef(null);
   const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   // Like the previous goauvra.com: the pill stays fixed and turns frosted once you scroll.
   useEffect(() => {
+    // Hides while scrolling down so it never covers the content; any scroll up brings it back.
     let ticking = false;
+    let lastY = window.scrollY;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(() => { setScrolled(window.scrollY > 50); ticking = false; });
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 50);
+        if (Math.abs(y - lastY) > 6) { setHidden(y > lastY && y > 80); lastY = y; }
+        ticking = false;
+      });
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -43,7 +51,7 @@ export default function Nav({ pathname = '/' }) {
   const ext = STORE.live ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
-    <header className="nav" ref={navRef} data-open={open ? '' : undefined} data-scrolled={scrolled || open ? '' : undefined}>
+    <header className="nav" ref={navRef} data-open={open ? '' : undefined} data-scrolled={scrolled || open ? '' : undefined} data-hidden={hidden && !open ? '' : undefined}>
       <div className="nav__pill">
         <a href="/" className="nav__logo" aria-label="Auvra home">
           <img src="/brand/auvra-horizontal-carbon.svg" alt="Auvra" width="120" height="30" />

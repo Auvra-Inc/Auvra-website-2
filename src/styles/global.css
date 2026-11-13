@@ -697,3 +697,9 @@ html { overflow-x: clip; }
   .hero-stores .store svg, .footer-stores .store svg { width: 20px; height: 20px; flex: none; }
   .footer-stores .store { height: 48px; border-radius: 12px; }
 }
+@layer components {
+  .nav { transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s; }
+  .nav[data-hidden] { transform: translateY(calc(-100% - 32px)); opacity: 0; pointer-events: none; }
+  .nav:focus-within { transform: none; opacity: 1; pointer-events: auto; }
+  @media (prefers-reduced-motion: reduce) { .nav { transition: none; } }
+}
