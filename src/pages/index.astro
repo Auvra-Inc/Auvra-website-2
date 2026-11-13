@@ -46,13 +46,15 @@ const audiences = [
 >
   <!-- 1 · Hero -->
   <section class="relative isolate overflow-hidden bg-cream -mt-[88px] pt-[150px] md:pt-[170px]" aria-labelledby="hero-title">
-    <div class="relative px-5 pb-16 md:pb-24 text-center">
-      <Sunburst class="!top-[46%]" />
+    <div class="relative px-3 md:px-5 pb-16 md:pb-24 text-center">
+      <Sunburst class="!top-[44%] !w-[min(1000px,170vw)]" />
       <div class="relative z-10 mx-auto max-w-[1240px]">
-        <h1 id="hero-title" class="font-semibold uppercase text-carbon tracking-[-0.045em] leading-[0.86] text-[clamp(38px,11.4vw,128px)]">
-          <span class="hero-word block whitespace-nowrap">Your story.</span> <span class="hero-word block whitespace-nowrap">Your culture.</span> <span class="hero-word block whitespace-nowrap">Your legacy.</span>
+        <h1 id="hero-title" class="font-bold uppercase text-carbon tracking-[-0.05em] leading-[0.84] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:leading-[0.88]">
+          {['Your story.', 'Your culture.', 'Your legacy.'].map((line) => (
+            <span class="block md:whitespace-nowrap">{line.split(' ').map((w, i) => <>{i > 0 && ' '}<span class="hero-word block md:inline">{w}</span></>)}</span>
+          ))}
         </h1>
-        <p class="mx-auto mt-8 max-w-[34rem] text-[17px] md:text-xl leading-relaxed text-[#3A3631]">Auvra is building the digital infrastructure for preserving, owning and passing down cultural heritage and traditions across generations.</p>
+        <p class="mx-auto mt-10 md:mt-8 max-w-[34rem] text-[17px] md:text-xl leading-relaxed text-[#3A3631]">Auvra is building the digital infrastructure for preserving, owning and passing down cultural heritage and traditions across generations.</p>
         <div class="mt-8 flex flex-wrap justify-center gap-3">
           <a href={EXPLORE_HREF} class="btn btn--dark">Explore Auvra</a>
           <a href="/about#mission" class="btn btn--ghost">Discover Our Mission</a>

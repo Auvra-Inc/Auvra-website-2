@@ -5,13 +5,13 @@ const { class: cls = '' } = Astro.props;
 <svg class:list={['sunburst', cls]} viewBox="0 0 800 800" aria-hidden="true" focusable="false">
   <defs>
     <radialGradient id="sb-g" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#FFC9A8" stop-opacity="1" />
-      <stop offset=".45" stop-color="#FEEF9C" stop-opacity=".9" />
+      <stop offset="0" stop-color="#FFB38F" stop-opacity="1" />
+      <stop offset=".5" stop-color="#FEE38A" stop-opacity="1" />
       <stop offset="1" stop-color="#FEEF9C" stop-opacity="0" />
     </radialGradient>
     <filter id="sb-grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
-      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.35" result="m" />
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="m" />
       <feComposite in="SourceGraphic" in2="m" operator="in" />
     </filter>
   </defs>
