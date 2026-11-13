@@ -3,7 +3,6 @@
 // poster statement → how it works carousel → dark FAQ + movement strip → gradient CTA footer.
 import Base from '../layouts/Base.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
-import Sunburst from '../components/Sunburst.astro';
 import Icon3D from '../components/Icon3D.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Faq from '../components/Faq.jsx';
@@ -51,9 +50,10 @@ const audiences = [
   jsonld={[faqLd]}
 >
   <!-- 1 · Hero -->
-  <section id="home" class="flex flex-col bg-cream" aria-labelledby="hero-title">
+  <section id="home" class="flex flex-col bg-[#E1E1E9]" aria-labelledby="hero-title">
     <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-40 pb-20 md:pb-[5.4rem] md:min-h-[756px]">
-      <Sunburst class="!top-[52%] md:!top-[45%] !w-[min(1000px,175vw)]" />
+      <img src="/images/hero-temple-900.webp" alt="" aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[112%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none [mask-image:radial-gradient(closest-side,black_72%,transparent_100%)]" fetchpriority="high" />
+      <div class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,rgba(225,225,233,0.55)_0%,rgba(225,225,233,0.15)_55%,rgba(225,225,233,0)_75%)]" aria-hidden="true"></div>
       <div class="relative z-10 mx-auto mt-auto flex max-w-[1240px] flex-col items-center gap-12 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon !leading-[0.84] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.88]">
           {['Your story.', 'Your culture.', 'Your legacy.'].map((line) => (
