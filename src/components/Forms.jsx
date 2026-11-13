@@ -36,7 +36,7 @@ export function SubscribeForm({ light = false, id = 'sub-email' }) {
   return (
     <form className={`subscribe${light ? ' subscribe--light' : ''}`} onSubmit={onSubmit} noValidate>
       <label htmlFor={id} className="sr-only">Your email for updates</label>
-      <input id={id} name="email" type="email" autoComplete="email" placeholder="Your email for updates" required aria-invalid={invalid || undefined} />
+      <input id={id} name="email" type="email" autoComplete="email" placeholder="Your email" required aria-invalid={invalid || undefined} />
       <button type="submit" className={`btn ${light ? 'btn--dark' : 'btn--lemon'}`} disabled={state.s === 'sending'}>{state.s === 'sending' ? 'Sending…' : 'Get updates'}</button>
       <p className="subscribe__msg" role="status" aria-live="polite" data-state={state.s}>{state.msg}</p>
     </form>

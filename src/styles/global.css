@@ -928,3 +928,10 @@ html { overflow-x: clip; }
   @media (min-width: 768px) { .aud-card { width: 320px; border-radius: 28px; } .aud-track { gap: 20px; } .aud-card__name { left: 18px; bottom: 18px; font-size: 16px; min-height: 42px; padding: 0 18px; } @keyframes audMove { to { transform: translateX(calc(-50% - 10px)); } } }
   @media (prefers-reduced-motion: reduce) { .aud-track { animation: none; } .aud-marquee { overflow-x: auto; } }
 }
+@layer components {
+  /* Compact footer subscribe pill */
+  .footer-sub .subscribe { padding: 4px; }
+  .footer-sub .subscribe input { min-height: 40px; height: 40px; padding: 0 16px; font-size: 14px; }
+  .footer-sub .subscribe .btn { min-height: 40px; height: 40px; padding: 0 16px; font-size: 14px; }
+  .footer-sub .subscribe__msg { font-size: 13px; margin-top: 8px; }
+}
