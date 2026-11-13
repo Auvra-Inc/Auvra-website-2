@@ -84,16 +84,18 @@ export default function About() {
             <a href="#values" className="btn btn--ghost">What guides us</a>
           </div>
         </div>
-        <div className="px-2 md:px-3">
+        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-2 md:gap-3 px-2 md:px-3">
           <img
             src="/images/photos/auvra-ceramics-v2-1200.webp"
             srcSet="/images/photos/auvra-ceramics-v2-800.webp 800w, /images/photos/auvra-ceramics-v2-1200.webp 1200w"
-            sizes="(max-width: 760px) 100vw, 720px"
+            sizes="(max-width: 760px) 100vw, 40vw"
             width="1200" height="1500"
             alt="Handmade ceramic cups, bowls and vases floating on black around the word auvra"
-            className="mx-auto block w-full max-w-[720px] rounded-[24px] md:rounded-[32px]"
+            className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] bg-[#0c0c0c] object-cover object-center"
             fetchPriority="high" decoding="async"
           />
+          <Photo name="warrior-dance" eager alt="A line of dancers in red and white performing a traditional dance" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
+          <Photo name="emir" eager alt="A man in white royal robes and turban, holding a staff" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
         </div>
       </section>
 
