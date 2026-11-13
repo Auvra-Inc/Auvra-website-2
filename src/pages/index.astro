@@ -81,7 +81,7 @@ const audiences = [
     <!-- Phone: sliding photos, each with its own app card -->
     <div class="hero-slides md:hidden" aria-label="Examples of what people keep on Auvra">
       <div class="hero-slide" style="--i:0">
-        <img src="/images/photos/creator-painter-960.webp" srcset={photoSrcset('creator-painter')} sizes="100vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="object-[50%_30%]" fetchpriority="high" />
+        <img src="/images/photos/creator-painter-960.webp" srcset={photoSrcset('creator-painter')} sizes="100vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="object-[50%_30%]" fetchpriority="high" decoding="async" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3">
             <img src="/images/photos/elder-hands-480.webp" alt="" class="h-12 w-12 rounded-xl object-cover" />
@@ -92,7 +92,7 @@ const audiences = [
         </div>
       </div>
       <div class="hero-slide" style="--i:1">
-        <img src="/images/photos/dancer-sky-960.webp" alt="A dancer in a feathered bustle leaping against a blue sky" class="object-[35%_30%]" loading="lazy" />
+        <img src="/images/photos/dancer-sky-960.webp" alt="A dancer in a feathered bustle leaping against a blue sky" class="object-[35%_30%]" loading="eager" fetchpriority="low" decoding="async" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[#ECE8FF]"><Icon3D name="sparkle" size={34} /></span><p class="text-[16px] font-semibold text-blue">Lens AI · Translation</p></div>
           <p class="mt-4 text-[11px] font-semibold uppercase tracking-wider text-grey">Swahili</p>
@@ -102,7 +102,7 @@ const audiences = [
         </div>
       </div>
       <div class="hero-slide" style="--i:2">
-        <img src="/images/photos/gele-960.webp" srcset={photoSrcset('gele')} sizes="100vw" alt="Women in orange gele and coral beads at a family celebration" class="object-[50%_25%]" loading="lazy" />
+        <img src="/images/photos/gele-960.webp" srcset={photoSrcset('gele')} sizes="100vw" alt="Women in orange gele and coral beads at a family celebration" class="object-[50%_25%]" loading="eager" fetchpriority="low" decoding="async" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[#E8F1E4]"><Icon3D name="vault" size={34} /></span><div class="text-left"><p class="text-[16px] font-semibold leading-tight">Mensah Family Vault</p><p class="text-[13px] text-grey">Private · shared by invitation</p></div></div>
           <ul class="mt-4 space-y-2.5 text-[14px]">
@@ -112,14 +112,14 @@ const audiences = [
         </div>
       </div>
       <div class="hero-slide" style="--i:3">
-        <img src="/images/photos/creator-filmmaker-960.webp" srcset={photoSrcset('creator-filmmaker')} sizes="100vw" alt="A filmmaker operating a video camera rig" class="object-[60%_35%]" loading="lazy" />
+        <img src="/images/photos/creator-filmmaker-960.webp" srcset={photoSrcset('creator-filmmaker')} sizes="100vw" alt="A filmmaker operating a video camera rig" class="object-[60%_35%]" loading="eager" fetchpriority="low" decoding="async" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-[#FFE9E3]"><Icon3D name="shield" size={34} /></span><div class="text-left"><p class="text-[16px] font-semibold leading-tight">Short film · Lagos nights</p><p class="text-[13px] text-grey">Uploaded by the director · 12:40</p></div></div>
           <div class="mt-4 flex items-center justify-between rounded-xl bg-linen px-3 py-2.5 text-[14px]"><span class="font-semibold text-[#2F6B12]">✓ Preserved</span><span class="text-grey">Credited to you</span></div>
         </div>
       </div>
       <div class="hero-slide" style="--i:4">
-        <img src="/images/photos/creator-braids-960.webp" srcset="/images/photos/creator-braids-960.webp 960w, /images/photos/creator-braids-1200.webp 1200w" sizes="100vw" alt="A smiling young woman with long braids and painted nails, face turned to the sun" class="object-[55%_30%]" loading="lazy" />
+        <img src="/images/photos/creator-braids-960.webp" srcset="/images/photos/creator-braids-960.webp 960w, /images/photos/creator-braids-1200.webp 1200w" sizes="100vw" alt="A smiling young woman with long braids and painted nails, face turned to the sun" class="object-[55%_30%]" loading="eager" fetchpriority="low" decoding="async" />
         <div class="hero-notif">
           <div class="hero-notif__head"><span>Notification Center</span><span class="hero-notif__x" aria-hidden="true">×</span></div>
           <div class="hero-notif__stack">
@@ -314,7 +314,7 @@ const audiences = [
     </p>
     <div class="wall" aria-hidden="true">
       <div class="wall__stage">
-        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-960.webp`} alt="" class="wall__card" data-i={i} loading="lazy" />)}
+        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-640.webp`} alt="" class="wall__card" data-i={i} loading="lazy" decoding="async" width="640" height="853" />)}
       </div>
       <div class="wall__chips">
         {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`}><span class="wall__dot"></span>{t.label}</span>)}
@@ -418,7 +418,7 @@ const audiences = [
         <ul class="aud-track">
           {[0, 1].map((copy) => audiences.map((a) => (
             <li id={copy ? undefined : a.id} aria-hidden={copy ? 'true' : undefined} class="aud-card scroll-mt-28">
-              <img src={`/images/photos/${a.photo}-960.webp`} alt={copy ? '' : a.alt} loading="lazy" />
+              <img src={`/images/photos/${a.photo}-640.webp`} alt={copy ? '' : a.alt} loading="lazy" decoding="async" width="640" height="914" />
               <span class="aud-card__name">{a.name}</span>
             </li>
           )))}

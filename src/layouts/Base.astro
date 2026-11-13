@@ -74,7 +74,20 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" />
-    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script is:inline>document.documentElement.classList.add('js');
+      // Reveal content as soon as it nears the viewport, without waiting for the animation bundle.
+      (function () {
+        var show = function (el) { el.classList.add('is-in'); };
+        var run = function () {
+          var els = document.querySelectorAll('.reveal:not(.is-in), .slide-in:not(.is-in)');
+          if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+          var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px 20% 0px' });
+          els.forEach(function (el) { io.observe(el); });
+        };
+        document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', run) : run();
+        setTimeout(function () { document.querySelectorAll('.reveal, .slide-in').forEach(function (el) { if (el.getBoundingClientRect().top < innerHeight * 1.2) show(el); }); }, 1500);
+      })();
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
     <!-- Vercel Web Analytics + Speed Insights (Core Web Vitals). Served by Vercel once enabled on the project. -->
     <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>

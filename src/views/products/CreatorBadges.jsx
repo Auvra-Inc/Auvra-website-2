@@ -36,7 +36,7 @@ function Phone({ label, children, className = '' }) {
   return (
     <div className={`phone-frame ${className}`} role="img" aria-label={label}>
       <div className="phone-frame__screen">{children}</div>
-      <img className="phone-frame__img" src="/images/phone-frame.png" alt="" width="604" height="1227" loading="lazy" />
+      <img className="phone-frame__img" src="/images/phone-frame.webp" alt="" width="604" height="1227" loading="lazy" />
     </div>
   );
 }
