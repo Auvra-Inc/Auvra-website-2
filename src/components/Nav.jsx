@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ChevronDown, ChevronRight, Compass, Menu, X } from 'lucide-react';
 import { NAV, EXPLORE_HREF } from '../data/site.js';
 
@@ -11,7 +10,6 @@ export default function Nav({ pathname = '/' }) {
   const toggleRef = useRef(null);
   const openedByKey = useRef(false);
   const panelRef = useRef(null);
-  const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -75,15 +73,8 @@ export default function Nav({ pathname = '/' }) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="nav__panel" id="nav-panel" ref={panelRef}
-            initial={reduce ? false : { opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-          >
+      {open && (
+          <div className="nav__panel nav__panel--in" id="nav-panel" ref={panelRef}>
             <nav aria-label="Main">
               <ul className="nav__list">
                 {NAV.map((g) => {
@@ -99,17 +90,15 @@ export default function Nav({ pathname = '/' }) {
                     <li key={g.title}>
                       <button type="button" className={`nav__expand${active ? ' is-active' : ''}`} aria-expanded={isOpen} aria-controls={id} onClick={() => setExpanded(isOpen ? null : g.title)}>
                         {g.title}
-                        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} style={{ display: 'grid' }}><ChevronDown size={20} aria-hidden="true" /></motion.span>
+                        <span className="nav__chev" style={{ display: 'grid', transform: isOpen ? 'rotate(180deg)' : 'none' }}><ChevronDown size={20} aria-hidden="true" /></span>
                       </button>
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.ul className="nav__sub" id={id} initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} style={{ overflow: 'hidden' }}>
+                      {isOpen && (
+                          <ul className="nav__sub nav__sub--in" id={id} style={{ overflow: 'hidden' }}>
                             {g.links.map((l) => (
                               <li key={l.href}><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} onClick={() => close()}><span className="nav__sub-label">{l.label}</span>{l.note && <small className="nav__sub-note">{l.note}</small>}</a></li>
                             ))}
-                          </motion.ul>
+                          </ul>
                         )}
-                      </AnimatePresence>
                     </li>
                   );
                 })}
@@ -120,9 +109,8 @@ export default function Nav({ pathname = '/' }) {
               <span className="nav__inst-text"><b>Apply for Institutional Access</b><small>For Institutions &amp; Government Bodies</small></span>
               <span className="nav__inst-arrow" aria-hidden="true"><ChevronRight size={18} /></span>
             </a>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </header>
   );
 }

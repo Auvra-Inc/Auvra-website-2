@@ -1,37 +1,20 @@
-// Site-wide motion: Lenis smooth scrolling, GSAP scroll-triggered reveals, and pausing loops off-screen.
-// Everything is skipped when the visitor prefers reduced motion; content is always visible without JS.
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+// Site-wide motion, kept tiny so it never delays the page: smooth in-page scrolling, the hero
+// headline entrance (CSS), and pausing looping animations while they are off-screen.
+// Reveal-on-scroll is handled by the inline script in Base.astro.
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const reveals = document.querySelectorAll('.reveal, .slide-in');
 
-if (reduce) {
-  reveals.forEach((el) => el.classList.add('is-in'));
-} else {
-  gsap.registerPlugin(ScrollTrigger);
-  const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-  window.__lenis = lenis;
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-  // In-page anchor links scroll smoothly through Lenis.
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href*="#"]');
-    if (!a) return;
-    const url = new URL(a.href, location.href);
-    if (url.pathname !== location.pathname || !url.hash || url.hash === "#get-app") return;
-    const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
-    if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -100 }); history.pushState(null, '', url.hash); }
-  });
-  reveals.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () => el.classList.add('is-in') }));
-  // Cinematic pieces on the homepage: staggered hero lines and parallax photos.
-  gsap.from('.hero-word', { yPercent: 40, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08 });
-  document.querySelectorAll('[data-parallax]').forEach((el) => {
-    gsap.to(el, { yPercent: Number(el.dataset.parallax) || -10, ease: 'none', scrollTrigger: { trigger: el.parentElement, scrub: true } });
-  });
-}
+document.addEventListener('click', (e) => {
+  const a = e.target.closest && e.target.closest('a[href*="#"]');
+  if (!a) return;
+  const url = new URL(a.href, location.href);
+  if (url.pathname !== location.pathname || !url.hash || url.hash === '#get-app') return;
+  const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+  if (!target) return;
+  e.preventDefault();
+  const y = target.getBoundingClientRect().top + window.scrollY - 100;
+  window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+  history.pushState(null, '', url.hash);
+});
 
 if ('IntersectionObserver' in window) {
   const po = new IntersectionObserver((entries) => entries.forEach((en) => en.target.classList.toggle('is-paused', !en.isIntersecting)));

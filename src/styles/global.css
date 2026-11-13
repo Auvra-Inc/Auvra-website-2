@@ -991,3 +991,19 @@ html { overflow-x: clip; }
   .footer-main { padding-top: 12px !important; }
   @media (min-width: 768px) { .footer-main { padding-top: 24px !important; } }
 }
+@layer components {
+  /* Lightweight CSS replacements for the old JS animation libraries */
+  .nav__panel--in { animation: navIn .22s cubic-bezier(.2,.8,.2,1) both; transform-origin: top center; }
+  @keyframes navIn { from { opacity: 0; transform: translateY(-10px) scale(.98); } }
+  .nav__sub--in { animation: subIn .2s ease both; }
+  @keyframes subIn { from { opacity: 0; transform: translateY(-4px); } }
+  .nav__chev { transition: transform .2s ease; }
+  .hero-word { display: inline-block; animation: heroWord .8s cubic-bezier(.2,.8,.2,1) both; }
+  .hero-line:nth-child(1) .hero-word:nth-child(1) { animation-delay: 0s; } .hero-line:nth-child(1) .hero-word:nth-child(2) { animation-delay: .08s; }
+  .hero-line:nth-child(2) .hero-word:nth-child(1) { animation-delay: .16s; } .hero-line:nth-child(2) .hero-word:nth-child(2) { animation-delay: .24s; }
+  .hero-line:nth-child(3) .hero-word:nth-child(1) { animation-delay: .32s; } .hero-line:nth-child(3) .hero-word:nth-child(2) { animation-delay: .4s; }
+  @keyframes heroWord { from { opacity: 0; transform: translateY(40%); } }
+  @media (max-width: 767px) { .hero-word { display: block; } }
+  @media (prefers-reduced-motion: reduce) { .nav__panel--in, .nav__sub--in, .hero-word { animation: none; } }
+  html { scroll-behavior: auto; }
+}
