@@ -51,17 +51,17 @@ const audiences = [
   jsonld={[faqLd]}
 >
   <!-- 1 · Hero -->
-  <section id="home" class="flex flex-col bg-[#FBF8F1]" aria-labelledby="hero-title">
+  <section id="home" class="flex flex-col bg-[#E9E5DA]" aria-labelledby="hero-title">
     <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-36 md:pt-40 pb-20 md:pb-[5.4rem] md:min-h-[756px]">
-      <img src="/images/hero-temple-900.webp" alt="" aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[112%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none [mask-image:radial-gradient(closest-side,black_72%,transparent_100%)]" fetchpriority="high" />
-      <div class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,rgba(251,248,241,0.25)_0%,rgba(251,248,241,0)_70%)]" aria-hidden="true"></div>
+      <img src="/images/hero-grass-1600.webp" srcset="/images/hero-grass-900.webp 900w, /images/hero-grass-1600.webp 1600w" sizes="100vw" alt="" aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-0 h-[128%] md:h-full w-full object-cover object-[40%_0%] md:object-[40%_20%] select-none" fetchpriority="high" />
+      <div class="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(236,233,224,0.55)_0%,rgba(236,233,224,0.35)_45%,rgba(236,233,224,0)_75%)]" aria-hidden="true"></div>
       <div class="relative z-10 mx-auto mt-auto flex max-w-[1240px] flex-col items-center gap-12 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon !leading-[0.84] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.88]">
           {['Your story.', 'Your culture.', 'Your legacy.'].map((line) => (
             <span class="block md:whitespace-nowrap">{line.split(' ').map((w, i) => <>{i > 0 && ' '}<span class="hero-word block md:inline">{w}</span></>)}</span>
           ))}
         </h1>
-        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#272727]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
+        <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#FBF8F1] [text-shadow:0_1px_12px_rgba(0,0,0,.35)]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
       </div>
     </div>
     <div class="relative isolate grid h-[640px] md:h-[732px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-clip">
