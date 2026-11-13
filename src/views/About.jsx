@@ -49,6 +49,16 @@ const PRODUCTS = [
   { n: '05', name: 'Auvra Passport', href: '/auvra-passport', chip: '#C2563F', text: DEFINITIONS.auvraPassport.short },
 ];
 
+const VALUES = [
+  ['Cultural Integrity', 'We treat cultural heritage with the utmost respect and reverence. We prioritise authentic storytelling, verifiable provenance and ethical representation in everything we do.'],
+  ['Universal Access', 'We believe the tools to preserve and celebrate culture should be available to all. We break down technological and financial barriers through seamless design, affordable plans and local payment options.'],
+  ['Lasting Stewardship', 'We are builders for the long term. We create sustainable models for creators and design digital records meant to be cherished and preserved for generations to come.'],
+  ['Trust Through Transparency', 'We operate with honesty and clarity. From onboarding to how records are kept and credited, we build trust by being open about our processes and holding ourselves to the highest ethical standards.'],
+  ['User Empowerment', 'We design with deep empathy for our users. We empower creators to own their narrative and earn from their work, and we help audiences discover, connect and offer meaningful support.'],
+  ['Respectful Collaboration', 'We believe in the power of community. We foster meaningful connections between creators, families and communities, and work together to build an ecosystem that benefits everyone.'],
+  ['Excellence in Craft', 'We honour culture through excellence. We pursue beautiful, immersive and museum-quality design in every detail of our product, from the narrative to the interface.'],
+];
+
 const PRINCIPLES = [
   ['Permanence', 'Cultural knowledge should endure.', 'We design for decades, not product cycles, so what is preserved today is still there for the people who need it later.'],
   ['Ownership', 'Contributions should maintain attribution and meaningful ownership.', 'The people who share a story, a song or a piece of knowledge stay credited to it, wherever it goes.'],
@@ -71,13 +81,13 @@ export default function About() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a href="#mission" className="btn btn--dark">Our mission</a>
-            <a href="#building" className="btn btn--ghost">What we are building</a>
+            <a href="#values" className="btn btn--ghost">What guides us</a>
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-2 md:gap-3 px-2 md:px-3">
-          <Photo name="hands-braid" eager alt="An older hand braiding a child’s hair, a skill passed from one generation to the next" className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 100vw, 45vw" />
-          <Photo name="elder-drummer" eager alt="An elder in white robes holding a drumstick at a festival" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
-          <Photo name="singers" eager alt="Women in patterned cloth singing together" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
+          <Photo name="family-path" eager alt="A family walking together along a grassy path, children leading the way" className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 100vw, 45vw" />
+          <Photo name="warrior-dance" eager alt="A line of dancers in red and white performing a traditional dance" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
+          <Photo name="emir" eager alt="A man in white royal robes and turban, holding a staff" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
         </div>
       </section>
 
@@ -104,33 +114,15 @@ export default function About() {
             </div>
             <figure className={`reveal ${i % 2 ? 'lg:order-1' : ''}`}>
               {i === 0
-                ? <Photo name="hands-archive" alt="Hands turning the pages of an archive of old documents" className="h-[420px] md:h-[600px] w-full rounded-[28px] object-cover" />
-                : <Photo name="elder" alt="An elder in a feathered cap at a ceremony" className="h-[420px] md:h-[600px] w-full rounded-[28px] object-cover" />}
+                ? <Photo name="photo-archive" alt="A pile of old family photographs, postcards and letters" className="h-[420px] md:h-[600px] w-full rounded-[28px] object-cover" />
+                : <Photo name="africa-book" alt="Hands holding an open book titled Black Africa" className="h-[420px] md:h-[600px] w-full rounded-[28px] object-cover" />}
             </figure>
           </article>
         ))}
       </section>
 
-      <section className="wrap py-20 md:py-32" aria-labelledby="serve-title">
-        <QA
-          id="serve-title"
-          kicker="Who we serve"
-          q="Who does Auvra serve?"
-          answer="Auvra serves everyone who keeps culture alive: individuals and families, diaspora families, creators, communities, and the museums and institutions that care for shared heritage."
-          center
-        />
-        <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {SERVES.map(([name, text, href]) => (
-            <li key={name} className="reveal">
-              <a href={href} className="flex h-full flex-col gap-3 rounded-[24px] bg-linen p-7 no-underline transition-transform hover:-translate-y-1 max-md:items-center max-md:text-center">
-                <h3 className="text-[22px] font-semibold leading-tight">{name}</h3>
-                <p className="text-[16px] text-grey">{text}</p>
-                <span className="mt-auto pt-2 font-semibold text-blue">Learn more <span aria-hidden="true">→</span></span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="reveal mt-20 grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <section className="wrap py-20 md:py-32" aria-labelledby="role-title">
+        <div className="reveal grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="max-md:text-center">
             <h2 id="role-title" className={`${H2_SM} max-w-[16ch] max-md:mx-auto`}>What is Auvra’s long-term role?</h2>
           </div>
@@ -168,82 +160,28 @@ export default function About() {
               A future where every generation can access, understand and continue the cultural knowledge inherited from those before them.
             </p>
           </div>
-          <Photo name="young-man" alt="A young man in a traditional wrapper and coral beads" className="reveal h-[440px] md:h-[600px] w-full rounded-[28px] object-cover" />
+          <Photo name="kids-running" alt="Children running and laughing together outdoors" className="reveal h-[440px] md:h-[600px] w-full rounded-[28px] object-cover" />
         </div>
       </section>
 
-      {/* 5 · What We Are Building */}
-      <section id="building" className="scroll-mt-24 bg-linen py-20 md:py-32" aria-labelledby="building-title">
-        <div className="wrap">
-          <QA
-            id="building-title"
-            kicker="What we are building"
-            q="What is Auvra building?"
-            answer="One connected ecosystem: five products for preserving, attributing, sharing and keeping cultural knowledge, supported by two technology initiatives that help it be understood."
-          />
-          <ul className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {PRODUCTS.map((p) => (
-              <li key={p.href} className="reveal">
-                <a href={p.href} className="group flex h-full flex-col gap-4 rounded-[24px] bg-white p-7 md:p-8 no-underline transition-transform hover:-translate-y-1 max-md:items-center max-md:text-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl text-lg font-bold text-white" style={{ background: p.chip }}>{p.n}</span>
-                  <h3 className="text-[24px] font-semibold leading-tight">{p.name}</h3>
-                  <p className="text-[16px] text-grey">{p.text}</p>
-                  <span className="mt-auto pt-2 font-semibold text-carbon underline underline-offset-4">Explore {p.name}</span>
-                </a>
-              </li>
-            ))}
-            <li className="reveal md:col-span-2 lg:col-span-1">
-              <a href={EXPLORE_HREF} className="flex h-full flex-col justify-between gap-6 rounded-[24px] bg-carbon p-7 md:p-8 text-white no-underline max-md:items-center max-md:text-center">
-                <Icon3D name="phone" size={64} />
-                <p className="text-[24px] font-semibold leading-tight">All of it comes together in the Auvra app.</p>
-                <span className="btn btn--light self-start max-md:self-center">Explore Auvra</span>
-              </a>
-            </li>
-          </ul>
-
-          <h3 className="reveal mt-20 text-center text-sm font-semibold uppercase tracking-[0.1em] text-olive">Technology</h3>
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
-            <a href="/lens-ai" className="reveal flex flex-col gap-5 rounded-[32px] bg-blue p-8 md:p-12 text-white no-underline min-h-[360px] max-md:items-center max-md:text-center">
-              <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="speech" size={64} /><Status kind="developing" /></div>
-              <h4 className="mt-auto text-4xl md:text-5xl font-semibold tracking-tight">Lens AI</h4>
-              <p className="text-lg text-[#DCD5FF]">{DEFINITIONS.lensAI.short}</p>
-              <span className="font-semibold underline underline-offset-4">Explore Lens AI</span>
-            </a>
-            <a href="/a-chronos" className="reveal flex flex-col gap-5 rounded-[32px] bg-teal p-8 md:p-12 text-white no-underline min-h-[360px] max-md:items-center max-md:text-center">
-              <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="globe" size={64} /><Status kind="research" /></div>
-              <h4 className="mt-auto text-4xl md:text-5xl font-semibold tracking-tight">A-Chronos</h4>
-              <p className="text-lg text-[#BFE0E1]">{DEFINITIONS.aChronos.short}</p>
-              <span className="font-semibold underline underline-offset-4">Explore A-Chronos</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 6 · Our Principles */}
-      <section className="wrap py-20 md:py-32" aria-labelledby="principles-title">
+      {/* 6 · What Guides Us: C.U.L.T.U.R.E. values */}
+      <section id="values" className="wrap scroll-mt-24 py-20 md:py-32" aria-labelledby="values-title">
         <div className="max-md:text-center">
-          <Kicker>Our principles</Kicker>
-          <h2 id="principles-title" className={`reveal ${H2} max-w-[16ch] max-md:mx-auto`}>What principles guide Auvra?</h2>
-          <p className={`reveal ${LEAD} mt-7 max-w-[620px] text-[#3A3631] max-md:mx-auto`}>Five principles shape every product decision we make: permanence, ownership, integrity, participation and continuity.</p>
+          <Kicker>Our values</Kicker>
+          <h2 id="values-title" className={`reveal ${H2} max-w-[16ch] max-md:mx-auto`}>What Guides Us</h2>
+          <p className={`reveal ${LEAD} mt-7 max-w-[640px] text-[#3A3631] max-md:mx-auto`}>At Auvra, our mission is powered by our C.U.L.T.U.R.E. values. These principles are the foundation of our product, our community, and our vision for a digitally-preserved heritage.</p>
         </div>
-        <ol className="mt-14 border-t border-line">
-          {PRINCIPLES.map(([name, line, detail], i) => (
-            <li key={name} className="reveal grid gap-3 border-b border-line py-9 md:grid-cols-[90px_1fr_1fr] md:gap-10 md:py-12 max-md:text-center">
-              <span className="text-sm font-semibold text-olive md:pt-3">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(34px,4.6vw,60px)]">{name}</h3>
-              <div className="md:pt-2">
-                <p className="text-[20px] md:text-[22px] font-medium leading-snug text-carbon">{line}</p>
-                <p className="mt-3 text-[17px] text-grey">{detail}</p>
-              </div>
+        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {VALUES.map(([title, text], i) => (
+            <li key={title} className={`reveal value-card ${i === VALUES.length - 1 ? 'lg:col-start-2' : ''}`}>
+              <span className="value-card__letter" aria-hidden="true">{title[0]}</span>
+              <h3 className="mt-5 text-[21px] md:text-[23px] font-semibold leading-tight text-carbon">{title}</h3>
+              <p className="mt-3 text-[16px] leading-relaxed text-grey">{text}</p>
             </li>
           ))}
-        </ol>
-        <p className="reveal mt-10 text-center text-[17px] text-grey">
-          Read how these principles apply to AI in our <a className="text-blue underline" href="/ai-policy">AI Policy</a>, and to shared records in our <a className="text-blue underline" href="/governance">Content Governance</a> policy.
-        </p>
+        </ul>
       </section>
 
-      <FaqList items={ABOUT_FAQS} title="About Auvra, answered" />
 
       {/* 7 · Closing CTA */}
       <FinalCta

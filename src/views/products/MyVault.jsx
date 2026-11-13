@@ -57,7 +57,7 @@ function VaultScreen() {
       ].map(([i, t, s, bg]) => (
         <div key={t} className="flex items-center gap-3 rounded-2xl bg-white p-2.5 shadow-sm">
           {i === 'img'
-            ? <img src="/images/photos/gele-480.webp" alt="" className="h-10 w-10 rounded-xl object-cover" loading="lazy" />
+            ? <img src="/images/photos/red-cap-480.webp" alt="" className="h-10 w-10 rounded-xl object-cover" loading="lazy" />
             : <span className={`grid h-10 w-10 place-items-center rounded-xl ${bg}`}>{i}</span>}
           <span><b className="block text-[13px] font-semibold">{t}</b><small className="text-[11px] text-grey">{s}</small></span>
         </div>

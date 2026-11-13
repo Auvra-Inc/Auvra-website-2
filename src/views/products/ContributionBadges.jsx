@@ -83,7 +83,7 @@ export default function ContributionBadges({ embedded = false }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr]">
           <Photo name="singers" alt="Women in patterned cloth singing together at a community gathering" eager sizes="(max-width: 760px) 100vw, 60vw" className="h-[420px] md:h-[600px] w-full object-cover" />
-          <Photo name="hands-archive" alt="Hands searching through an archive of stored records" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
+          <Photo name="beaded-hair" alt="A woman wearing a beaded headpiece and pearl necklaces" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
         </div>
       </section>
 

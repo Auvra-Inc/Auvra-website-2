@@ -953,3 +953,9 @@ html { overflow-x: clip; }
   .partners__track img { filter: grayscale(1) brightness(0); opacity: .5; }
   .partners__track img:hover { filter: none; opacity: 1; }
 }
+@layer components {
+  .value-card { position: relative; border-radius: 26px; background: #F6F3EE; padding: 28px 26px 30px; transition: transform .3s cubic-bezier(.2,.8,.2,1), background .3s; }
+  .value-card:hover { transform: translateY(-4px); background: #F1ECE4; }
+  .value-card__letter { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: #191717; color: #FBF8F1; font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1; }
+  @media (max-width: 767px) { .value-card { text-align: left; } }
+}
