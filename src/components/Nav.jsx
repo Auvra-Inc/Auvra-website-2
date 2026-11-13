@@ -17,11 +17,12 @@ export default function Nav({ pathname = '/' }) {
   // Like the previous goauvra.com: the pill stays fixed and turns frosted once you scroll.
   useEffect(() => {
     // Hides while scrolling down so it never covers the content; any scroll up brings it back.
-    // It only hides after a deliberate scroll down (160px past the hero top), and shows again on a small scroll up.
+    // The nav stays while you scroll; it slips away only after you have been scrolling down for a while
+    // (2.5s, past the hero). Any scroll up, or returning near the top, brings it straight back.
     let ticking = false;
     let lastY = window.scrollY;
-    let downRun = 0;
-    let upRun = 0;
+    let hideTimer = null;
+    const clear = () => { clearTimeout(hideTimer); hideTimer = null; };
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
@@ -30,15 +31,17 @@ export default function Nav({ pathname = '/' }) {
         const d = y - lastY;
         lastY = y;
         setScrolled(y > 50);
-        if (y < 320) { setHidden(false); downRun = 0; upRun = 0; }
-        else if (d > 0) { downRun += d; upRun = 0; if (downRun > 160) setHidden(true); }
-        else if (d < 0) { upRun -= d; downRun = 0; if (upRun > 12) setHidden(false); }
+        if (y < 400) { clear(); setHidden(false); }
+        else if (d < -4) { clear(); setHidden(false); }
+        else if (d > 0 && !hideTimer) {
+          hideTimer = setTimeout(() => { hideTimer = null; if (window.scrollY >= 400) setHidden(true); }, 2500);
+        }
         ticking = false;
       });
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); clear(); };
   }, []);
 
   const close = (returnFocus = false) => { setOpen(false); if (returnFocus) toggleRef.current?.focus(); };
