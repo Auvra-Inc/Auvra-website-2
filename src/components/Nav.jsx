@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
-import { STORE, NAV, EXPLORE_HREF } from '../data/site.js';
-import { AppleGlyph, PlayGlyph } from './Glyphs.jsx';
+import { NAV, EXPLORE_HREF } from '../data/site.js';
 
 // Floating pill navigation (as on the current goauvra.com) holding the PRD menu groups.
 export default function Nav({ pathname = '/' }) {
@@ -48,7 +47,6 @@ export default function Nav({ pathname = '/' }) {
   }, [open]);
 
   const isActive = (href) => href !== '/' && !href.includes('#') && pathname.startsWith(href);
-  const ext = STORE.live ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
     <header className="nav" ref={navRef} data-open={open ? '' : undefined} data-scrolled={scrolled || open ? '' : undefined} data-hidden={hidden && !open ? '' : undefined}>
@@ -59,7 +57,7 @@ export default function Nav({ pathname = '/' }) {
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</a>
           <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
-            {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+            {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -98,16 +96,11 @@ export default function Nav({ pathname = '/' }) {
                   );
                 })}
               </ul>
-              <div className="nav__panel-row">
-                <a href={EXPLORE_HREF} className="btn btn--dark nav__panel-cta" onClick={() => close()}>Explore Auvra</a>
-                <a className="nav__btn" href={STORE.appStore} {...ext} aria-label="Download on the App Store"><AppleGlyph /></a>
-                <a className="nav__btn" href={STORE.googlePlay} {...ext} aria-label="Get it on Google Play"><PlayGlyph /></a>
-              </div>
             </nav>
             <a className="nav__inst" href="/institutional-access" onClick={() => close()}>
               <img src="/images/photos/museum-480.webp" alt="" width="480" height="360" loading="lazy" />
               <span className="nav__inst-text"><b>Apply for Institutional Access</b><small>For Institutions &amp; Government Bodies</small></span>
-              <span className="nav__inst-arrow" aria-hidden="true"><ChevronRight size={20} /></span>
+              <span className="nav__inst-arrow" aria-hidden="true"><ChevronRight size={18} /></span>
             </a>
           </motion.div>
         )}
