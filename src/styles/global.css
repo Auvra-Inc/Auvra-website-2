@@ -577,3 +577,9 @@ ul, ol { padding: 0; list-style: none; }
     transform: rotateY(calc(var(--o) * -10deg)) scale(calc(1 + var(--a) * 0.11)); box-shadow: 0 24px 40px -22px rgba(0,0,0,.7); }
   @media (max-width: 767px) { .curved { perspective: 420px; gap: 4px; padding: 40px 0 50px; } .curved__card { width: 52px; transform: rotateY(calc(var(--o) * -12deg)) scale(calc(1 + var(--a) * 0.14)); } }
 }
+@layer components {
+  .legal-doc table { display: block; max-width: 100%; overflow-x: auto; }
+  .legal-doc { overflow-wrap: anywhere; }
+}
+
+html { overflow-x: clip; }

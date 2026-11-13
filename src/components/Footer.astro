@@ -6,10 +6,10 @@ import Icon3D from './Icon3D.jsx';
 import { FOOTER, CONTACT_EMAIL, SOCIAL, EXPLORE_HREF } from '../data/site.js';
 const { title = 'What we keep today, tomorrow remembers.', text = 'Help build the permanent home for human culture. Start preserving your family’s story today.' } = Astro.props;
 ---
-<footer class="footer-cta" aria-labelledby="footer-cta-title">
+<footer class="footer-cta overflow-hidden" aria-labelledby="footer-cta-title">
   <Icon3D name="gift" size={150} className="footer-cta__deco hidden md:block left-[-20px] top-[18%] -rotate-12" />
   <Icon3D name="vault" size={150} className="footer-cta__deco hidden md:block right-[-10px] top-[6%] rotate-12" />
-  <div class="footer-cta__card">
+  <div class="footer-cta__card overflow-hidden">
     <Sunburst class="!top-[17%] !w-[min(820px,150vw)]" />
     <div class="relative z-10 mx-auto flex max-w-[880px] flex-col items-center gap-6 pt-28 md:pt-[11rem] pb-28 md:pb-40 text-center">
       <h2 id="footer-cta-title" class="ws-h text-[clamp(42px,8vw,88px)]">{title}</h2>

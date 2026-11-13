@@ -1,6 +1,15 @@
-import { PageHero, CtaBlock } from '../../components/Page.jsx';
+import { CtaBlock } from '../../components/Page.jsx';
 import Icon3D from '../../components/Icon3D.jsx';
-import { Photo, SectionHead, RelatedProducts, PRODUCTS_CRUMB } from './shared.jsx';
+import { DEFINITIONS } from '../../data/definitions.js';
+import { FAQ_GROUPS } from '../../data/faqs.js';
+import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
+
+const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
+const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
+
+// FAQ answers reused verbatim from src/data/faqs.js. Also used for the FAQPage JSON-LD in the route.
+export const FAQS = FAQ_GROUPS.find((g) => g.title === 'Cultural Preservation').items.slice(0, 4);
 
 const FRAGMENTS = [
   ['In the memory of elders', 'Much of what a family or community knows has never been written down. It lives in the people who were there.'],
@@ -28,153 +37,216 @@ const GENERATIONS = [
   ['The next generation continues it', 'Years later, a grandchild adds their own memory of the festival, alongside the original, not in place of it.'],
 ];
 
+const SCALES = [
+  {
+    id: 'family', icon: 'house', label: 'Individual and family preservation', title: 'Start with the people closest to you.',
+    text: 'Record a parent describing the house they grew up in. Photograph a grandmother’s recipes before the paper wears through. Add the names of everyone in an old wedding photo while someone still remembers them.',
+    ticks: [<>Keep recordings, photos and documents together in <a href="/my-vault" className="text-blue underline underline-offset-4">My Vault</a></>, 'Note who is speaking, where and when, so the context stays with the memory', 'Invite relatives to add what they know'],
+    photo: 'beadwork', alt: 'A smiling woman wearing a red gele and coral beadwork', bg: 'bg-[#FFE9E3]',
+  },
+  {
+    id: 'community', icon: 'group', label: 'Community cultural documentation', title: 'Document what a community knows together.',
+    text: 'Hometown unions, cultural associations and groups can gather the accounts of many people into one shared record of their history, festivals, language and craft.',
+    ticks: ['Many voices contribute to one shared history', 'Each contribution stays credited to the person who gave it', 'Communities decide who can see sensitive or sacred knowledge'],
+    photo: 'procession', alt: 'Men in traditional robes, caps and coral beads walking together in a procession', bg: 'bg-[#E8F1E4]',
+  },
+];
+
+const TINTS = { gold: 'bg-[#FFF4D6]', lime: 'bg-[#E8F1E4]', salmon: 'bg-[#FFE9E3]', blue: 'bg-[#ECE8FF]', carbon: 'bg-linen' };
+
 export default function CulturalPreservation() {
   return (
-    <div className="pd">
-      <PageHero
-        kicker="Cultural Preservation"
-        title="Preserve the knowledge that makes us who we are."
-        lead="Auvra provides an environment for documenting and preserving the stories, languages, memories, traditions and cultural knowledge that connect people to their heritage."
-        crumbs={[PRODUCTS_CRUMB, { label: 'Cultural Preservation' }]}
-      >
-        <div className="btn-row">
-          <a className="btn btn--dark" href="#materials">What you can preserve</a>
-          <a className="btn btn--ghost" href="#connections">How it connects</a>
+    <div className="overflow-x-clip">
+      {/* Hero */}
+      <section className="bg-cream" aria-labelledby="page-title">
+        <div className="wrap pt-[108px] md:pt-[130px] pb-12 md:pb-20 max-md:text-center">
+          <nav className="crumbs max-md:[&_ol]:justify-center" aria-label="Breadcrumb">
+            <ol><li><a href="/">Home</a></li><li><a href={PRODUCTS_CRUMB.href}>{PRODUCTS_CRUMB.label}</a></li><li><span aria-current="page">Cultural Preservation</span></li></ol>
+          </nav>
+          <p className="kicker">Cultural Preservation</p>
+          <h1 id="page-title" className={`${H1} max-w-[15ch] max-md:mx-auto`}>Preserve the knowledge that makes us who we are.</h1>
+          <p className="mt-8 max-w-[46rem] text-[18px] md:text-xl leading-relaxed text-[#3A3631] max-md:mx-auto">{DEFINITIONS.culturalPreservation.long}</p>
+          <div className="mt-8 flex flex-wrap gap-3 max-md:justify-center">
+            <a className="btn btn--dark" href="#materials">What you can preserve</a>
+            <a className="btn btn--ghost" href="#connections">How it connects</a>
+          </div>
         </div>
-        <div className="pd-hero-media">
-          <Photo name="hands-braid" alt="An older hand braiding a child's hair, a skill passed from one generation to the next" eager sizes="(max-width: 760px) 100vw, 45vw" />
-          <Photo name="elder-drummer" alt="An elder in white robes holding a drumstick at a festival" eager sizes="(max-width: 760px) 50vw, 25vw" />
-          <Photo name="singers" alt="Women in patterned cloth singing together" eager sizes="(max-width: 760px) 50vw, 25vw" />
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr]">
+          <Photo name="hands-braid" alt="An older hand braiding a child's hair, a skill passed from one generation to the next" eager sizes="(max-width: 760px) 100vw, 45vw" className="h-[420px] md:h-[600px] w-full object-cover" />
+          <Photo name="elder-drummer" alt="An elder in white robes holding a drumstick at a festival" eager sizes="28vw" className="hidden md:block h-[600px] w-full object-cover" />
+          <Photo name="singers" alt="Women in patterned cloth singing together" eager sizes="28vw" className="hidden md:block h-[600px] w-full object-cover" />
         </div>
-      </PageHero>
+      </section>
 
       {/* 1 · Introduction */}
-      <section className="wrap section" aria-labelledby="intro-title">
-        <div className="pd-split">
-          <div className="pd-split__text reveal">
+      <section className="wrap py-20 md:py-32" aria-labelledby="intro-title">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="reveal max-md:text-center">
             <p className="kicker">Introduction</p>
-            <h2 id="intro-title" className="h2">Culture is carried by people</h2>
-            <p className="lead">Every family and community holds knowledge that cannot be found anywhere else: the way a story is told, the meaning of a pattern, the words for things that have no translation.</p>
-            <p>Cultural preservation on Auvra means giving that knowledge a lasting, organised home. You record or upload it, describe where it comes from and who it belongs to, and keep it in a form the people who come after you can find, understand and continue.</p>
-            <p>It is not about putting culture behind glass. It is about keeping it close to the people who live it, with their names attached.</p>
+            <h2 id="intro-title" className={H2}>What does cultural preservation mean on Auvra?</h2>
+            <p className={ANSWER}>It means giving the knowledge your family or community holds a lasting, organised home. You record or upload it, describe where it comes from and who it belongs to, and keep it in a form the people who come after you can find, understand and continue.</p>
+            <p className="mt-4 text-[17px] md:text-lg leading-relaxed text-grey">Every family and community holds knowledge that cannot be found anywhere else: the way a story is told, the meaning of a pattern, the words for things that have no translation. Preservation is not about putting culture behind glass. It is about keeping it close to the people who live it, with their names attached.</p>
           </div>
-          <figure className="pd-figure slide-in">
-            <Photo name="sculpture" alt="A man shaping a carved wooden sculpture beside a lake" />
-            <figcaption>A sculptor at work. Craft knowledge like this is often learned by watching, and rarely written down.</figcaption>
+          <figure className="reveal">
+            <Photo name="sculpture" alt="A man shaping a carved wooden sculpture beside a lake" sizes="(max-width: 1024px) 100vw, 50vw" className="aspect-[4/5] w-full rounded-[32px] object-cover" />
+            <figcaption className="mt-3 text-[14px] text-grey max-md:text-center">A sculptor at work. Craft knowledge like this is often learned by watching, and rarely written down.</figcaption>
           </figure>
         </div>
-        <div className="pd-callout reveal">
-          <Icon3D name="sparkle" size={72} />
+        <div className="reveal mt-14 flex flex-col gap-6 rounded-[32px] bg-blue p-8 md:flex-row md:items-center md:p-12 text-white max-md:items-center max-md:text-center">
+          <Icon3D name="sparkle" size={80} />
           <div>
-            <p className="tile__label">Lens AI</p>
-            <p className="pd-callout__text">Lens AI transcribes and translates oral histories, tags cultural items and makes archives searchable.</p>
-            <p className="pd-callout__sub">You stay in control: what Lens AI produces can be reviewed and corrected by the person who shared the memory.</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#DCD5FF]">Lens AI</p>
+            <h3 className="mt-2 text-[24px] md:text-[30px] font-semibold leading-tight">Lens AI transcribes and translates oral histories, tags cultural items and makes archives searchable.</h3>
+            <p className="mt-3 text-[17px] text-[#DCD5FF]">You stay in control: what <a href="/lens-ai" className="underline underline-offset-4">Lens AI</a> produces can be reviewed and corrected by the person who shared the memory.</p>
           </div>
         </div>
       </section>
 
       {/* 2 · The challenge */}
-      <section className="pd-band pattern-bg" aria-labelledby="challenge-title">
+      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby="challenge-title">
         <div className="wrap">
-          <p className="kicker reveal">The challenge</p>
-          <h2 id="challenge-title" className="serif-xl reveal">Cultural knowledge is everywhere, and <span className="muted">almost nowhere it can last.</span></h2>
-          <p className="pd-band__lead reveal">It is spread across people, devices, places and generations. Each piece on its own is fragile. When an elder passes or a phone is lost, what was known can disappear with them.</p>
-          <ul className="pd-frags">
+          <div className="reveal mx-auto max-w-[900px] text-center">
+            <p className="kicker !text-[#BDB6AA]">The challenge</p>
+            <h2 id="challenge-title" className={`${H2} mx-auto max-w-[18ch]`}>Why is cultural knowledge so easy to lose?</h2>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">Because it is spread across people, devices, places and generations. Each piece on its own is fragile. When an elder passes or a phone is lost, what was known can disappear with them.</p>
+          </div>
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {FRAGMENTS.map(([t, d]) => (
-              <li key={t} className="reveal"><h3>{t}</h3><p>{d}</p></li>
+              <li key={t} className="reveal rounded-[28px] bg-[#2A2724] p-7 md:p-8 max-md:text-center">
+                <h3 className="text-[22px] font-semibold leading-tight">{t}</h3>
+                <p className="mt-3 text-[16px] text-[#BDB6AA]">{d}</p>
+              </li>
             ))}
           </ul>
         </div>
       </section>
 
       {/* 3 · Types of materials */}
-      <section className="wrap section" id="materials" aria-labelledby="materials-title">
-        <SectionHead id="materials-title" kicker="What can be preserved" title="Nine kinds of cultural knowledge" lead="Auvra is designed for the many forms culture takes, from a single voice note to a lifetime of craft." />
-        <ol className="pd-mat">
+      <section id="materials" className="wrap py-20 md:py-32 scroll-mt-24" aria-labelledby="materials-title">
+        <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
+          <p className="kicker">What can be preserved</p>
+          <h2 id="materials-title" className={H2}>What can be preserved on Auvra?</h2>
+          <p className={ANSWER}>Nine kinds of cultural knowledge, from a single voice note to a lifetime of craft. Auvra is designed for the many forms culture takes.</p>
+        </div>
+        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {MATERIALS.map(([t, d], i) => (
-            <li key={t} className="reveal">
-              <span className="pd-num">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{t}</h3>
-              <p>{d}</p>
+            <li key={t} className="reveal flex flex-col gap-3 rounded-[28px] bg-linen p-7 md:p-8 max-md:items-center max-md:text-center">
+              <span className="text-[15px] font-semibold text-teal">{String(i + 1).padStart(2, '0')}</span>
+              <h3 className="text-[22px] font-semibold leading-tight">{t}</h3>
+              <p className="text-[16px] text-grey">{d}</p>
             </li>
           ))}
         </ol>
       </section>
 
       {/* 4–5 · Individual, family and community */}
-      <section className="wrap section rows" aria-labelledby="scales-title">
-        <SectionHead id="scales-title" kicker="Who preserves" title="From one person to a whole community" />
-
-        <article className="row" aria-labelledby="family-title">
-          <div className="row__text reveal">
-            <Icon3D name="house" size={64} />
-            <p className="tile__label">Individual and family preservation</p>
-            <h3 id="family-title">Start with the people closest to you.</h3>
-            <p>Record a parent describing the house they grew up in. Photograph a grandmother's recipes before the paper wears through. Add the names of everyone in an old wedding photo while someone still remembers them.</p>
-            <ul className="ticks">
-              <li>Keep recordings, photos and documents together in <a href="/my-vault">My Vault</a></li>
-              <li>Note who is speaking, where and when, so the context stays with the memory</li>
-              <li>Invite relatives to add what they know</li>
-            </ul>
-          </div>
-          <div className="row__panel pd-photo-panel slide-in">
-            <Photo name="beadwork" alt="A smiling woman wearing a red gele and coral beadwork" />
-          </div>
-        </article>
-
-        <article className="row row--flip" aria-labelledby="community-title">
-          <div className="row__text reveal">
-            <Icon3D name="group" size={64} />
-            <p className="tile__label">Community cultural documentation</p>
-            <h3 id="community-title">Document what a community knows together.</h3>
-            <p>Hometown unions, cultural associations and groups can gather the accounts of many people into one shared record of their history, festivals, language and craft.</p>
-            <ul className="ticks">
-              <li>Many voices contribute to one shared history</li>
-              <li>Each contribution stays credited to the person who gave it</li>
-              <li>Communities decide who can see sensitive or sacred knowledge</li>
-            </ul>
-          </div>
-          <div className="row__panel pd-photo-panel slide-in">
-            <Photo name="procession" alt="Men in traditional robes, caps and coral beads walking together in a procession" />
-          </div>
-        </article>
+      <section className="wrap pb-20 md:pb-32" aria-labelledby="scales-title">
+        <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
+          <p className="kicker">Who preserves</p>
+          <h2 id="scales-title" className={H2}>Who can preserve culture on Auvra?</h2>
+          <p className={ANSWER}>Anyone, from one person to a whole community. Individuals and families can preserve their own histories, and communities can document what they know together.</p>
+        </div>
+        {SCALES.map((s, i) => (
+          <article key={s.id} className="mt-16 md:mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-20" aria-labelledby={`${s.id}-title`}>
+            <div className={`reveal flex flex-col gap-4 max-md:items-center max-md:text-center ${i % 2 ? 'lg:order-2' : ''}`}>
+              <Icon3D name={s.icon} size={64} />
+              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-blue">{s.label}</p>
+              <h3 id={`${s.id}-title`} className="text-[30px] md:text-[40px] font-semibold leading-[1.05] tracking-[-0.03em]">{s.title}</h3>
+              <p className="text-[17px] text-grey">{s.text}</p>
+              <ul className="ticks mt-2 text-left max-md:inline-flex">
+                {s.ticks.map((t, k) => <li key={k}>{t}</li>)}
+              </ul>
+            </div>
+            <div className={`reveal rounded-[36px] ${s.bg} p-4 md:p-6 ${i % 2 ? 'lg:order-1' : ''}`}>
+              <Photo name={s.photo} alt={s.alt} sizes="(max-width: 1024px) 100vw, 50vw" className="aspect-[4/5] md:aspect-[4/4.2] w-full rounded-[26px] object-cover" />
+            </div>
+          </article>
+        ))}
       </section>
 
       {/* 6 · Intergenerational continuity */}
-      <section className="pd-tint section" aria-labelledby="gens-title">
+      <section className="bg-teal text-white py-20 md:py-32" aria-labelledby="gens-title">
         <div className="wrap">
-          <SectionHead id="gens-title" kicker="Intergenerational continuity" title="Knowledge that keeps moving forward" lead="Preservation matters most when it reaches the next generation, and when they can add to it. Here is how one memory might travel." />
-          <ol className="pd-gens">
+          <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
+            <p className="kicker !text-[#BFE0E1]">Intergenerational continuity</p>
+            <h2 id="gens-title" className={H2}>How does knowledge reach the next generation?</h2>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BFE0E1]">Preservation matters most when it reaches the next generation, and when they can add to it. Here is how one memory might travel.</p>
+          </div>
+          <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {GENERATIONS.map(([t, d], i) => (
-              <li key={t} className="reveal">
-                <span className="pd-gens__n" aria-hidden="true">{i + 1}</span>
-                <h3>{t}</h3>
-                <p>{d}</p>
+              <li key={t} className="reveal flex flex-col gap-3 rounded-[28px] bg-[#0B5E63] p-7 md:p-8 max-md:items-center max-md:text-center">
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-lime text-[17px] font-semibold text-carbon" aria-hidden="true">{i + 1}</span>
+                <h3 className="mt-2 text-[22px] font-semibold leading-tight">{t}</h3>
+                <p className="text-[16px] text-[#BFE0E1]">{d}</p>
               </li>
             ))}
           </ol>
-          <p className="pd-note reveal">An illustrative example of how a record can pass between generations.</p>
+          <p className="reveal mt-10 text-[14px] text-[#BFE0E1] max-md:text-center">An illustrative example of how a record can pass between generations.</p>
         </div>
       </section>
 
       {/* 7 · Connections */}
-      <div id="connections">
-        <RelatedProducts
-          current="/cultural-preservation"
-          kicker="How it connects"
-          title="Preservation sits at the heart of Auvra"
-          lead="Everything else on Auvra builds on preserved knowledge: keeping it, adding to it, sharing it and being credited for it."
-          notes={{
-            '/contribution-badges': 'When someone adds context, a memory or care to a preserved record, a Contribution Badge is designed to record that contribution.',
-            '/collectible-badges': 'Creators can document and share cultural expressions as collectibles, with their context and attribution kept intact.',
-            '/my-vault': 'The private place where individuals and families keep the materials they are preserving.',
-            '/auvra-passport': 'Connects you to the records you have preserved and the contributions you have made.',
-          }}
-        />
+      <div id="connections" className="pt-20 md:pt-32 scroll-mt-24">
+        <Related current="/cultural-preservation" notes={{
+          '/contribution-badges': 'When someone adds context, a memory or care to a preserved record, a Contribution Badge is designed to record that contribution.',
+          '/collectible-badges': 'Creators can document and share cultural expressions as collectibles, with their context and attribution kept intact.',
+          '/my-vault': 'The private place where individuals and families keep the materials they are preserving.',
+          '/auvra-passport': 'Connects you to the records you have preserved and the contributions you have made.',
+        }} />
       </div>
+
+      <FaqBlock items={FAQS} title="Cultural Preservation questions" />
 
       {/* 8 · CTA */}
       <CtaBlock title="Start with one story" text="A single recording of someone you love can be the beginning of a record your family keeps for generations." />
     </div>
+  );
+}
+
+function Related({ current, notes }) {
+  const items = PRODUCT_INFO.filter((p) => p.href !== current);
+  return (
+    <section className="wrap pb-20 md:pb-32" aria-labelledby="related-title">
+      <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
+        <p className="kicker">How it connects</p>
+        <h2 id="related-title" className={H2}>How does preservation connect to the rest of Auvra?</h2>
+        <p className={ANSWER}>Everything else on Auvra builds on preserved knowledge: keeping it, adding to it, sharing it and being credited for it.</p>
+      </div>
+      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((p) => (
+          <li key={p.href} className="reveal">
+            <a href={p.href} className={`flex h-full flex-col gap-3 rounded-[28px] ${TINTS[p.tint]} p-7 no-underline transition-transform hover:-translate-y-1 max-md:items-center max-md:text-center`}>
+              <Icon3D name={p.icon} size={60} />
+              <span className="mt-2 text-[22px] font-semibold leading-tight">{p.label}</span>
+              <span className="text-[16px] text-grey">{notes[p.href] || p.text}</span>
+              <span className="mt-auto pt-2 font-semibold text-blue">Explore {p.label} <span aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function FaqBlock({ items, title }) {
+  return (
+    <section className="wrap pb-20 md:pb-32 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16" aria-labelledby="faq-title">
+      <div className="max-md:text-center">
+        <p className="kicker">Questions</p>
+        <h2 id="faq-title" className={`${H2} max-w-[12ch] max-md:mx-auto`}>{title}</h2>
+        <a className="btn btn--dark mt-8" href="/faqs">See all FAQs →</a>
+      </div>
+      <div className="border-t border-line">
+        {items.map((f, i) => (
+          <details key={f.q} className="group border-b border-line" open={i === 0}>
+            <summary className="flex min-h-[76px] cursor-pointer list-none items-center justify-between gap-5 py-5 [&::-webkit-details-marker]:hidden">
+              <h3 className="text-[19px] md:text-[22px] font-medium leading-snug">{f.q}</h3>
+              <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-linen text-xl transition-transform group-open:rotate-45 group-open:bg-carbon group-open:text-white" aria-hidden="true">+</span>
+            </summary>
+            <p className="pb-6 md:pr-14 text-[17px] text-grey">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
   );
 }

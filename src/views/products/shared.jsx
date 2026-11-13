@@ -1,5 +1,3 @@
-import Icon3D from '../../components/Icon3D.jsx';
-
 // Shared pieces for the five product pages.
 
 export const PRODUCTS_CRUMB = { label: 'Products', href: '/#ecosystem' };
@@ -38,38 +36,5 @@ export function Photo({ name, alt, className = '', eager = false, sizes = '(max-
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
     />
-  );
-}
-
-export function SectionHead({ id, kicker, title, lead, center = false, children }) {
-  return (
-    <div className={`pd-head reveal${center ? ' pd-head--center' : ''}`}>
-      {kicker && <p className="kicker">{kicker}</p>}
-      <h2 id={id} className="h2">{title}</h2>
-      {lead && <p className="lead">{lead}</p>}
-      {children}
-    </div>
-  );
-}
-
-// Cards linking to the other product pages.
-export function RelatedProducts({ current, kicker = 'Across Auvra', title, lead, notes = {} }) {
-  const items = PRODUCT_INFO.filter((p) => p.href !== current);
-  return (
-    <section className="wrap section" aria-labelledby="related-title">
-      <SectionHead id="related-title" kicker={kicker} title={title} lead={lead} />
-      <ul className="pd-links">
-        {items.map((p) => (
-          <li key={p.href} className="reveal">
-            <a className={`pd-link pd-link--${p.tint}`} href={p.href}>
-              <Icon3D name={p.icon} size={64} />
-              <span className="pd-link__label">{p.label}</span>
-              <span className="pd-link__text">{notes[p.href] || p.text}</span>
-              <span className="pd-link__more">Explore {p.label} <span aria-hidden="true">→</span></span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
   );
 }
