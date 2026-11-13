@@ -86,8 +86,8 @@ export default function About() {
         </div>
         <div className="px-2 md:px-3">
           <img
-            src="/images/photos/auvra-ceramics-1200.webp"
-            srcSet="/images/photos/auvra-ceramics-800.webp 800w, /images/photos/auvra-ceramics-1200.webp 1200w"
+            src="/images/photos/auvra-ceramics-v2-1200.webp"
+            srcSet="/images/photos/auvra-ceramics-v2-800.webp 800w, /images/photos/auvra-ceramics-v2-1200.webp 1200w"
             sizes="(max-width: 760px) 100vw, 720px"
             width="1200" height="1500"
             alt="Handmade ceramic cups, bowls and vases floating on black around the word auvra"
