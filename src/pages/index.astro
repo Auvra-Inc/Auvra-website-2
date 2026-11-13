@@ -57,7 +57,7 @@ const audiences = [
       <div class="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center gap-10 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon !leading-[0.86] text-[19.5vw] md:text-[clamp(64px,8.8vw,128px)] md:!leading-[0.9]">
           {[['Your', 'story.'], ['Your', 'culture.'], ['Your', 'legacy.']].map(([a, b]) => (
-            <span class="block md:whitespace-nowrap"><span class="hero-word block md:inline">{a}</span> <span class={`hero-word block md:inline${b === 'culture.' ? ' serif-accent' : ''}`}>{b}</span></span>
+            <span class={`block md:whitespace-nowrap${b === 'culture.' ? ' serif-accent' : ''}`}><span class="hero-word block md:inline">{a}</span> <span class="hero-word block md:inline">{b}</span></span>
           ))}
         </h1>
         <p class="max-w-sm md:max-w-md text-[15px] md:text-xl font-medium leading-relaxed text-[#3A3631]">Record the stories, languages and traditions that make you who you are. Lens AI transcribes and translates them, and your family keeps them for generations.</p>
