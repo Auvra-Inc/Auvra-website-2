@@ -1027,3 +1027,9 @@ html { overflow-x: clip; }
   /* All standard buttons: compact, like the rest of the site */
   .btn { min-height: 44px; padding: 0 20px; font-size: 15px; }
 }
+@layer components {
+  /* Mood slideshow: the original frames shown exactly as supplied, no crop, no overlay, no drift */
+  .moods { aspect-ratio: 1000 / 667 !important; max-height: none !important; background: #0c0c0c; }
+  @media (max-width: 767px) { .moods { aspect-ratio: 1000 / 667 !important; } }
+  .mood img { object-fit: contain !important; animation: none !important; transform: none !important; }
+}

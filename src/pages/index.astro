@@ -262,10 +262,9 @@ const audiences = [
   <section class="bg-white px-3 md:px-10 py-20 md:py-28" aria-labelledby="moods-title">
     <h2 id="moods-title" class="reveal ws-h mx-auto mb-10 md:mb-14 max-w-[16ch] text-center text-[clamp(38px,6vw,72px)]">Whatever you make, Auvra keeps it.</h2>
     <div class="moods mx-auto max-w-[1240px]" aria-hidden="true">
-      {['Stories', 'Music', 'Languages', 'Film', 'Family', 'Art', 'Recipes', 'Voices', 'Memories'].map((label, i) => (
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
         <div class="mood" style={`--i:${i}`}>
-          <img src={`/images/moods/mood-${i}.webp`} alt="" loading="lazy" />
-          <span class="mood__pill">{label}</span>
+          <img src={`/images/moods/frame-${i}.webp`} alt="" width="1000" height="667" loading="lazy" decoding="async" />
         </div>
       ))}
     </div>
