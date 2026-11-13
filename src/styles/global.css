@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@font-face { font-family: 'Damion'; src: url('/fonts/damion.ttf') format('truetype'); font-display: swap; }
+@layer components {
+  /* About hero: floating ceramics around "Auvra" */
+  .ceramics { position: relative; overflow: hidden; background: #080808; }
+  .ceramics__stage { position: absolute; left: 0; top: 50%; width: 100%; aspect-ratio: 4 / 5; transform: translateY(-50%); container-type: inline-size; }
+  .ceramics__piece { position: absolute; height: auto; will-change: transform; animation: ceramicFloat var(--d, 6s) ease-in-out infinite alternate; }
+  @keyframes ceramicFloat { from { transform: translate3d(0, -2.2%, 0) rotate(calc(var(--r) * -0.5)); } to { transform: translate3d(0, 2.2%, 0) rotate(calc(var(--r) * 0.5)); } }
+  .ceramics__word { position: absolute; left: 50%; top: 49.9%; transform: translate(-50%, -50%); font-family: 'Damion', cursive; font-size: 21.5cqw; line-height: 1; color: #F6EFDE; white-space: nowrap; pointer-events: none; text-shadow: 0 2px 18px rgba(0,0,0,.25); }
+  @media (prefers-reduced-motion: reduce) { .ceramics__piece { animation: none; } }
+}
+
 @theme {
   --color-carbon: #1C1A18; --color-linen: #F4F0E8; --color-cream: #FBF8F1; --color-blue: #0B6A70; --color-lemon: #F6DF15;
   --color-gold: #FEEF9C; --color-lime: #BCE784; --color-salmon: #FF8F77; --color-pumpkin: #FF7401; --color-teal: #024B50;

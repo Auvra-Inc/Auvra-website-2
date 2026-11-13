@@ -165,5 +165,5 @@ export const PARTNERS = [
   { name: 'Polygon', src: '/partners/polygon.svg', h: 25.9 },
   { name: 'Fonbnk', src: '/partners/fonbnk.svg', h: 28.0 },
   { name: 'Crossmint', src: '/partners/crossmint.svg', h: 25.2 },
-  { name: 'Breet', src: '/partners/breet.svg', h: 33.6 },
+  { name: 'Breet', src: '/partners/breet-v2.svg', h: 30.0 },
 ];

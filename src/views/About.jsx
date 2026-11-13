@@ -49,6 +49,20 @@ const PRODUCTS = [
   { n: '05', name: 'Auvra Passport', href: '/auvra-passport', chip: '#C2563F', text: DEFINITIONS.auvraPassport.short },
 ];
 
+// Floating ceramics in the About hero (positions as % of a 4:5 stage).
+const CERAMICS = [
+  { n: 'c1', l: 44.92, t: 0.0, w: 19.67, d: 5.5, r: -6, s: -0.0 },
+  { n: 'c2', l: 15.75, t: 10.33, w: 33.33, d: 7.2, r: 5, s: -0.9 },
+  { n: 'c3', l: 55.08, t: 15.27, w: 29.92, d: 8.9, r: -4, s: -1.8 },
+  { n: 'c4', l: 37.83, t: 31.67, w: 25.17, d: 6.6, r: 7, s: -2.7 },
+  { n: 'c5', l: 8.83, t: 36.53, w: 22.83, d: 8.3, r: -5, s: -3.6 },
+  { n: 'c6', l: 65.0, t: 37.27, w: 27.25, d: 6.0, r: 4, s: -4.5 },
+  { n: 'c7', l: 41.08, t: 53.2, w: 22.75, d: 7.7, r: -7, s: -0.4 },
+  { n: 'c8', l: 13.33, t: 58.2, w: 25.75, d: 9.4, r: 6, s: -1.3 },
+  { n: 'c9', l: 65.25, t: 64.2, w: 21.75, d: 7.1, r: -3, s: -2.2 },
+  { n: 'c10', l: 43.58, t: 76.47, w: 19.67, d: 8.8, r: 5, s: -3.1 },
+];
+
 const VALUES = [
   ['Cultural Integrity', 'We treat cultural heritage with the utmost respect and reverence. We prioritise authentic storytelling, verifiable provenance and ethical representation in everything we do.'],
   ['Universal Access', 'We believe the tools to preserve and celebrate culture should be available to all. We break down technological and financial barriers through seamless design, affordable plans and local payment options.'],
@@ -85,15 +99,15 @@ export default function About() {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-2 md:gap-3 px-2 md:px-3">
-          <img
-            src="/images/photos/auvra-ceramics-v3-1200.webp"
-            srcSet="/images/photos/auvra-ceramics-v3-800.webp 800w, /images/photos/auvra-ceramics-v3-1200.webp 1200w"
-            sizes="(max-width: 760px) 100vw, 40vw"
-            width="1200" height="1500"
-            alt="Handmade ceramic cups, bowls and vases floating on black around the word Auvra"
-            className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] bg-[#0c0c0c] object-cover object-center"
-            fetchPriority="high" decoding="async"
-          />
+          <div className="ceramics col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px]" role="img" aria-label="Handmade ceramic cups, bowls and vases floating on black around the word Auvra">
+            <div className="ceramics__stage">
+              {CERAMICS.map((c) => (
+                <img key={c.n} src={"/images/ceramics/" + c.n + ".webp"} alt="" className="ceramics__piece" loading="eager" decoding="async"
+                  style={{ left: c.l + "%", top: c.t + "%", width: c.w + "%", "--d": c.d + "s", "--r": c.r + "deg", animationDelay: c.s + "s" }} />
+              ))}
+              <span className="ceramics__word" aria-hidden="true">Auvra</span>
+            </div>
+          </div>
           <Photo name="warrior-dance" eager alt="A line of dancers in red and white performing a traditional dance" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
           <Photo name="emir" eager alt="A man in white royal robes and turban, holding a staff" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
         </div>
