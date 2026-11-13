@@ -25,16 +25,6 @@ export const EXPLORE_HREF = '/download';
 export const NAV = [
   { title: 'Company', links: [{ label: 'About Auvra', href: '/about' }] },
   { title: 'Technology', links: [{ label: 'Lens AI', href: '/lens-ai' }, { label: 'A-Chronos', href: '/a-chronos' }] },
-  {
-    title: 'Who We Serve',
-    links: [
-      { label: 'Families', href: '/#families' },
-      { label: 'Creators', href: '/#creators' },
-      { label: 'Communities', href: '/#communities' },
-      { label: 'Diaspora', href: '/#diaspora' },
-      { label: 'Museums & Institutions', href: '/#institutions' },
-    ],
-  },
   { title: 'Insights', links: [{ label: 'Blog', href: '/blog' }, { label: 'Cultural Stories', href: '/cultural-stories' }, { label: 'Research', href: '/research' }] },
 ];
 
