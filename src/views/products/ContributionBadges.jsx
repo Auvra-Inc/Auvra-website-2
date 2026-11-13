@@ -255,7 +255,7 @@ export default function ContributionBadges() {
         <div className="reveal grid gap-10 rounded-[36px] bg-[#FFE9E3] p-8 md:p-14 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div className="max-md:text-center">
             <p className="kicker">Current product status</p>
-            <h2 id="status-title" className="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">Can I earn a Contribution Badge today?</h2>
+            <h2 id="status-title" className="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">Can I receive a Contribution Badge today?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#5A4A44]">Not yet. Contribution Badges are being built. Submitting contributions is in development; assessment and badge issuance are planned and are not live. We will publish how assessment works before any badge is issued, and update this page when that changes.</p>
           </div>
           <ul className="flex flex-col gap-3">
