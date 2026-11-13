@@ -643,3 +643,20 @@ html { overflow-x: clip; }
   .hero-stores .store b { font-size: clamp(16px, 4.6vw, 22px); font-weight: 700; letter-spacing: -0.01em; }
   .hero-stores .store svg { flex: none; width: clamp(20px, 5.4vw, 26px); height: auto; }
 }
+@layer components {
+  /* Floating pill nav, fixed while scrolling (as on the previous goauvra.com). */
+  .nav { position: fixed; top: 20px; left: 0; right: 0; margin: 0 auto; width: calc(100% - 2rem); max-width: 64rem; padding: 0; z-index: 60; }
+  @media (min-width: 768px) { .nav { top: 24px; width: calc(100% - 4rem); } }
+  .nav__pill { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 18px; border-radius: 2rem;
+    background: rgba(255, 255, 255, .9); border: 1px solid #F3F4F6; box-shadow: 0 8px 24px -16px rgba(28, 26, 24, .25);
+    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
+  .nav[data-scrolled] .nav__pill { background: rgba(255, 255, 255, .8); border-color: rgba(255, 255, 255, .3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 12px 30px -16px rgba(28, 26, 24, .35); }
+  .nav__logo img { height: 30px !important; width: auto; display: block; }
+  .nav__actions { display: flex; align-items: center; gap: 8px; }
+  .nav__btn { width: 44px !important; height: 44px !important; border-radius: 12px !important; background: #E5E7EB !important; color: #111 !important; display: grid; place-items: center; border: 0; transition: background .15s, transform .1s; }
+  .nav__btn:hover { background: #F3F4F6 !important; }
+  .nav__btn:active { transform: scale(.95); }
+  .nav__cta { min-height: 44px !important; padding: 0 18px !important; font-size: 15px !important; border-radius: 12px !important; background: #191717; }
+  @media (max-width: 767px) { .nav__cta { display: none !important; } }
+  .nav__panel { left: 0 !important; right: 0 !important; width: auto !important; top: calc(100% + 10px) !important; }
+}
