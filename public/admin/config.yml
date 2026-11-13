@@ -1,0 +1,26 @@
+# Blog editor (Sveltia CMS) at /admin. Posts are saved as Markdown in src/content/blog,
+# and the site rebuilds on each commit.
+backend:
+  name: github
+  repo: Auvra-Inc/Auvra-website-2
+  branch: main
+
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug (URL)", name: "slug", widget: "string", hint: "Lower case words joined by hyphens, e.g. my-new-post" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Summary", name: "description", widget: "text" }
+      - { label: "Category", name: "category", widget: "select", options: ["Company news", "Announcements", "Product", "Perspectives"] }
+      - { label: "Author", name: "author", widget: "string", default: "The Auvra Team" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Image description (alt text)", name: "imageAlt", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

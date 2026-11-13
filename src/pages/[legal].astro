@@ -1,0 +1,72 @@
+---
+// Trust & Safety and Legal pages. The policy wording is Auvra's own (src/content/legal/*.html), shown unchanged.
+import Base from '../layouts/Base.astro';
+import meta from '../content/legal/meta.json';
+
+const PAGES = {
+  terms: { group: 'Legal', label: 'Terms of Service', description: 'The terms that govern your access to and use of Auvra’s website, apps and services.' },
+  privacy: { group: 'Legal', label: 'Privacy Policy', description: 'How Auvra collects, uses, stores and protects your personal information, and your choices.' },
+  aml: { group: 'Legal', label: 'AML / CFT Policy', description: 'Auvra’s Anti-Money Laundering and Counter Financing of Terrorism policy.' },
+  collab: { group: 'Legal', label: 'Collaboration Terms', description: 'The terms that apply when people create together on Auvra.' },
+  community: { group: 'Trust & Safety', label: 'Community Guidelines', description: 'How to take part respectfully on Auvra: cultural sensitivity, boundaries, contributions and reporting concerns.' },
+  governance: { group: 'Trust & Safety', label: 'Content Governance', description: 'How Auvra manages cultural content, attribution, verification, moderation, corrections and disputes.' },
+  copyright: { group: 'Trust & Safety', label: 'Copyright Policy', description: 'Copyright ownership, creator rights, permissions and how to report infringement on Auvra.' },
+  'ai-policy': { group: 'Trust & Safety', label: 'AI Policy', description: 'How Auvra uses AI, including Lens AI, human oversight, consent, privacy and attribution.' },
+};
+const docs = import.meta.glob('../content/legal/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  return ['terms', 'privacy', 'aml', 'collab', 'community', 'governance', 'copyright', 'ai-policy'].map((legal) => ({ params: { legal } }));
+}
+const { legal } = Astro.params;
+const page = PAGES[legal];
+const m = meta[legal];
+const html = docs[`../content/legal/${legal}.html`];
+const updated = m.intro.find((t) => /updated|effective/i.test(t));
+const intro = m.intro.find((t) => t !== updated);
+const toc = [...html.matchAll(/<section id="([^"]+)"><h2>(.*?)<\/h2>/g)].map(([, id, label]) => ({ id, label: label.replace(/<[^>]+>/g, '') }));
+const others = Object.entries(PAGES).filter(([k, v]) => k !== legal && v.group === page.group);
+---
+<Base title={`${m.title} · Auvra`} description={page.description} crumbs={[{ label: page.group }, { label: page.label }]}>
+  <article class="legal wrap">
+    <header class="legal__head">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span>{page.group}</span></li><li><span aria-current="page">{page.label}</span></li></ol></nav>
+      <h1 class="legal__title">{m.title}</h1>
+      {updated && <p class="legal__updated">{updated.replace(/^Last Updated:/i, 'Last updated:')}</p>}
+      {intro && <p class="legal__intro">{intro}</p>}
+    </header>
+    {toc.length > 3 && (
+      <details class="legal__toc">
+        <summary>On this page</summary>
+        <ol>{toc.map((t) => <li><a href={`#${t.id}`}>{t.label}</a></li>)}</ol>
+      </details>
+    )}
+    <div class="legal-doc" set:html={html} />
+    <aside class="legal__more" aria-label={`More ${page.group} pages`}>
+      <p>More {page.group}</p>
+      <ul>{others.map(([k, v]) => <li><a href={`/${k}`}>{v.label}</a></li>)}</ul>
+      <p class="legal__contact">Questions about this policy? Email <a href="mailto:hello@goauvra.com">hello@goauvra.com</a>.</p>
+    </aside>
+  </article>
+</Base>
+<style>
+  .legal { max-width: 900px; padding-bottom: var(--sec); }
+  .legal__head { text-align: center; padding: 80px 0 40px; }
+  .legal__head .crumbs ol { justify-content: center; }
+  .legal__title { font-weight: 700; text-transform: uppercase; letter-spacing: -0.045em; line-height: .9; font-size: clamp(48px, 11vw, 112px); text-wrap: balance; }
+  .legal__updated { margin-top: 36px; font-size: clamp(17px, 1.6vw, 20px); font-weight: 500; color: var(--carbon); }
+  .legal__intro { margin: 14px auto 0; max-width: 40ch; color: #6B6660; font-size: 17px; }
+  .legal__toc { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 30px 0 10px; }
+  .legal__toc summary { cursor: pointer; min-height: 56px; display: flex; align-items: center; font-weight: 600; font-size: 17px; }
+  .legal__toc ol { list-style: none; padding: 0 0 20px; columns: 2 260px; column-gap: 32px; }
+  .legal__toc li { break-inside: avoid; }
+  .legal__toc a { display: inline-flex; min-height: 40px; align-items: center; color: var(--grey); text-decoration: none; font-size: 15px; }
+  .legal__toc a:hover { color: var(--carbon); text-decoration: underline; }
+  .legal__more { margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--line); }
+  .legal__more > p:first-child { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; font-weight: 600; color: var(--olive); }
+  .legal__more ul { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .legal__more ul a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 18px; border-radius: 30px; border: 1.5px solid #D9D3C8; text-decoration: none; }
+  .legal__more ul a:hover { border-color: var(--carbon); }
+  .legal__contact { margin-top: 24px; color: var(--grey); }
+  .legal__contact a { color: var(--blue); }
+</style>

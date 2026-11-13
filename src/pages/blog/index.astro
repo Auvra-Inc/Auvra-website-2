@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import Blog from '../../views/blog/Blog.jsx';
+---
+<Base title="Blog · News and perspectives from Auvra" description="Company updates, product developments, announcements and perspectives on preserving human culture from Auvra." crumbs={[{ label: 'Insights' }, { label: 'Blog' }]}>
+  <Blog client:visible />
+</Base>

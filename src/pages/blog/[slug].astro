@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogPost from '../../views/blog/BlogPost.jsx';
+import { POSTS } from '../../data/posts.js';
+import { SITE } from '../../data/site.js';
+export function getStaticPaths() { return POSTS.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+const ld = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.description, datePublished: p.date, image: SITE + p.image, mainEntityOfPage: `${SITE}/blog/${p.slug}`, author: { '@type': 'Organization', name: p.author, url: SITE }, publisher: { '@id': `${SITE}/#organization` } };
+---
+<Base title={`${p.title} · Auvra`} description={p.description} image={p.image} ogType="article" crumbs={[{ label: 'Blog', href: '/blog' }, { label: p.title }]} jsonld={[ld]}>
+  <BlogPost client:idle slug={p.slug} />
+</Base>

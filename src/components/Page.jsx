@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 
 // Shared building blocks for inner pages.
 export function PageHero({ kicker, title, lead, crumbs, children }) {
@@ -7,8 +6,8 @@ export function PageHero({ kicker, title, lead, crumbs, children }) {
       {crumbs && (
         <nav className="crumbs" aria-label="Breadcrumb">
           <ol>
-            <li><Link to="/">Home</Link></li>
-            {crumbs.map((c, i) => <li key={i}>{c.href ? <Link to={c.href}>{c.label}</Link> : <span aria-current="page">{c.label}</span>}</li>)}
+            <li><a href="/">Home</a></li>
+            {crumbs.map((c, i) => <li key={i}>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
           </ol>
         </nav>
       )}
@@ -26,7 +25,7 @@ export function CtaBlock({ title, text, href = '/download', label = 'Explore Auv
       <div className="cta-block pattern-bg">
         <h2 className="h2">{title}</h2>
         {text && <p>{text}</p>}
-        <Link className="btn btn--lemon" to={href}>{label}</Link>
+        <a className="btn btn--lemon" href={href}>{label}</a>
       </div>
     </section>
   );

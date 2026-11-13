@@ -1,24 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { STORE, NAV, EXPLORE_HREF } from '../data/site.js';
-import SmartLink from './SmartLink.jsx';
-import { AppleGlyph, PlayGlyph, Chevron } from './Glyphs.jsx';
+import { AppleGlyph, PlayGlyph } from './Glyphs.jsx';
 
 // Floating pill navigation (as on the current goauvra.com) holding the PRD menu groups.
-export default function Nav() {
+export default function Nav({ pathname = '/' }) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
   const navRef = useRef(null);
   const toggleRef = useRef(null);
   const panelRef = useRef(null);
-  const { pathname, hash } = useLocation();
+  const reduce = useReducedMotion();
 
-  const close = (returnFocus = false) => {
-    setOpen(false);
-    if (returnFocus) toggleRef.current?.focus();
-  };
-
-  useEffect(() => { setOpen(false); }, [pathname, hash]);
+  const close = (returnFocus = false) => { setOpen(false); if (returnFocus) toggleRef.current?.focus(); };
 
   useEffect(() => {
     if (!open) return;
@@ -31,52 +26,68 @@ export default function Nav() {
   }, [open]);
 
   const isActive = (href) => href !== '/' && !href.includes('#') && pathname.startsWith(href);
-  const groupActive = (g) => g.links.some((l) => isActive(l.href));
+  const ext = STORE.live ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
     <header className="nav" ref={navRef} data-open={open ? '' : undefined}>
       <div className="nav__pill">
-        <Link to="/" className="nav__logo" aria-label="Auvra home">
+        <a href="/" className="nav__logo" aria-label="Auvra home">
           <img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="112" height="32" />
-        </Link>
+        </a>
         <div className="nav__actions">
-          <Link to={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</Link>
-          <SmartLink className="nav__btn nav__store" href={STORE.appStore} aria-label="Download on the App Store"><AppleGlyph /></SmartLink>
-          <SmartLink className="nav__btn nav__store" href={STORE.googlePlay} aria-label="Get it on Google Play"><PlayGlyph /></SmartLink>
+          <a href={EXPLORE_HREF} className="btn btn--dark nav__cta">Explore Auvra</a>
+          <a className="nav__btn nav__store" href={STORE.appStore} {...ext} aria-label="Download on the App Store"><AppleGlyph /></a>
+          <a className="nav__btn nav__store" href={STORE.googlePlay} {...ext} aria-label="Get it on Google Play"><PlayGlyph /></a>
           <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
-            <span className="burger" aria-hidden="true"><i></i><i></i></span>
+            {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      <div className="nav__panel" id="nav-panel" hidden={!open} ref={panelRef}>
-        <nav aria-label="Main">
-          <ul className="nav__list">
-            {NAV.map((g) => {
-              const isOpen = expanded === g.title;
-              const id = `nav-${g.title.toLowerCase().replace(/\W+/g, '-')}`;
-              return (
-                <li key={g.title}>
-                  <button type="button" className={`nav__expand${groupActive(g) ? ' is-active' : ''}`} aria-expanded={isOpen} aria-controls={id} onClick={() => setExpanded(isOpen ? null : g.title)}>
-                    {g.title}<Chevron />
-                  </button>
-                  <ul className="nav__sub" id={id} hidden={!isOpen}>
-                    {g.links.map((l) => (
-                      <li key={l.href}><Link to={l.href} aria-current={isActive(l.href) ? 'page' : undefined} onClick={() => close()}>{l.label}</Link></li>
-                    ))}
-                  </ul>
-                </li>
-              );
-            })}
-          </ul>
-          <Link to={EXPLORE_HREF} className="btn btn--dark nav__panel-cta" onClick={() => close()}>Explore Auvra</Link>
-        </nav>
-        <Link className="nav__inst" to="/institutional-access" onClick={() => close()}>
-          <img src="/images/photos/museum-480.webp" alt="" width="480" height="360" loading="lazy" />
-          <span className="nav__inst-text"><b>Apply for Institutional Access</b><small>For Institutions &amp; Government Bodies</small></span>
-          <span className="nav__inst-arrow" aria-hidden="true"><Chevron dir="right" /></span>
-        </Link>
-      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="nav__panel" id="nav-panel" ref={panelRef}
+            initial={reduce ? false : { opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+          >
+            <nav aria-label="Main">
+              <ul className="nav__list">
+                {NAV.map((g) => {
+                  const isOpen = expanded === g.title;
+                  const id = `nav-${g.title.toLowerCase().replace(/\W+/g, '-')}`;
+                  const active = g.links.some((l) => isActive(l.href));
+                  return (
+                    <li key={g.title}>
+                      <button type="button" className={`nav__expand${active ? ' is-active' : ''}`} aria-expanded={isOpen} aria-controls={id} onClick={() => setExpanded(isOpen ? null : g.title)}>
+                        {g.title}
+                        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} style={{ display: 'grid' }}><ChevronDown size={20} aria-hidden="true" /></motion.span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.ul className="nav__sub" id={id} initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} style={{ overflow: 'hidden' }}>
+                            {g.links.map((l) => (
+                              <li key={l.href}><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} onClick={() => close()}>{l.label}</a></li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                })}
+              </ul>
+              <a href={EXPLORE_HREF} className="btn btn--dark nav__panel-cta" onClick={() => close()}>Explore Auvra</a>
+            </nav>
+            <a className="nav__inst" href="/institutional-access" onClick={() => close()}>
+              <img src="/images/photos/museum-480.webp" alt="" width="480" height="360" loading="lazy" />
+              <span className="nav__inst-text"><b>Apply for Institutional Access</b><small>For Institutions &amp; Government Bodies</small></span>
+              <span className="nav__inst-arrow" aria-hidden="true"><ChevronRight size={20} /></span>
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

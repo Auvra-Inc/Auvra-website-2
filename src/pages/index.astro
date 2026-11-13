@@ -1,0 +1,373 @@
+---
+import Base from '../layouts/Base.astro';
+import PhoneFrame from '../components/PhoneFrame.astro';
+import Sunburst from '../components/Sunburst.astro';
+import Icon3D from '../components/Icon3D.jsx';
+import Carousel from '../components/Carousel.jsx';
+import Faq from '../components/Faq.jsx';
+import { MOVEMENT, EXPLORE_HREF } from '../data/site.js';
+import { DEFINITIONS } from '../data/definitions.js';
+import { FAQ_GROUPS } from '../data/faqs.js';
+
+const homeFaqs = [
+  FAQ_GROUPS[0].items[0], // What is Auvra?
+  FAQ_GROUPS[0].items[1], // What problem is Auvra solving?
+  FAQ_GROUPS[2].items[0], // What is a Contribution Badge?
+  FAQ_GROUPS[4].items[0], // What is My Vault?
+  FAQ_GROUPS[5].items[0], // What is Lens AI?
+];
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: homeFaqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+
+const products = [
+  { n: '01', name: 'Cultural Preservation', href: '/cultural-preservation', bg: '#024B50', chip: '#0B6A70', accent: '#BCE784', text: DEFINITIONS.culturalPreservation.short },
+  { n: '02', name: 'Contribution Badges', href: '/contribution-badges', bg: '#4A281C', chip: '#6D4435', accent: '#FF8F77', text: DEFINITIONS.contributionBadges.short },
+  { n: '03', name: 'Collectible Badges', href: '/collectible-badges', bg: '#3310BE', chip: '#5A3BE0', accent: '#FEEF9C', text: DEFINITIONS.collectibleBadges.short },
+  { n: '04', name: 'My Vault', href: '/my-vault', bg: '#1C1A18', chip: '#3A3632', accent: '#BCE784', text: DEFINITIONS.myVault.short },
+  { n: '05', name: 'Auvra Passport', href: '/auvra-passport', bg: '#C2563F', chip: '#D9735C', accent: '#FFF4D6', text: DEFINITIONS.auvraPassport.short },
+];
+const paths = [
+  { icon: 'shield', name: 'Contextual Validation', text: 'Context, clarification or supporting information about an existing cultural record.' },
+  { icon: 'mic', name: 'Memory & Oral Documentation', text: 'Personal memories, oral histories, stories, expressions and knowledge.' },
+  { icon: 'vault', name: 'Physical & Digital Stewardship', text: 'The care, preservation or stewardship of cultural materials and records.' },
+  { icon: 'gift', name: 'Cultural Continuation', text: 'How practices, knowledge and traditions continue across generations.' },
+];
+const audiences = [
+  { id: 'families', name: 'Families', text: 'Preserve stories, traditions, memories and ancestral knowledge.', photo: 'hands-braid', alt: 'An older hand braiding a child’s hair', href: '/my-vault' },
+  { id: 'creators', name: 'Creators', text: 'Document, attribute and share cultural expressions.', photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum', href: '/collectible-badges' },
+  { id: 'communities', name: 'Communities', text: 'Preserve collective knowledge, identity and traditions.', photo: 'singers', alt: 'Women in patterned cloth singing together', href: '/contribution-badges' },
+  { id: 'diaspora', name: 'Diaspora', text: 'Maintain meaningful connections with cultural origins across generations and distance.', photo: 'beaded-hair', alt: 'A woman wearing a beaded headdress', href: '/cultural-preservation' },
+  { id: 'institutions', name: 'Museums & Institutions', text: 'Support cultural documentation, attribution and long-term preservation.', photo: 'museum', alt: 'Columns of a national museum building', href: '/institutional-access' },
+];
+---
+<Base
+  title="Auvra · The Permanent Home for Human Culture"
+  description="Auvra is a cultural technology company building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
+  jsonld={[faqLd]}
+>
+  <!-- 1 · Hero -->
+  <section class="relative isolate overflow-hidden bg-cream -mt-[88px] pt-[150px] md:pt-[170px]" aria-labelledby="hero-title">
+    <div class="relative px-5 pb-16 md:pb-24 text-center">
+      <Sunburst class="!top-[46%]" />
+      <div class="relative z-10 mx-auto max-w-[1240px]">
+        <h1 id="hero-title" class="font-semibold uppercase text-carbon tracking-[-0.045em] leading-[0.86] text-[clamp(52px,15.2vw,128px)]">
+          <span class="hero-word">The</span> <span class="hero-word">Permanent</span> <span class="hero-word">Home</span> <span class="hero-word">for</span> <span class="hero-word">Human</span> <span class="hero-word">Culture.</span>
+        </h1>
+        <p class="mx-auto mt-8 max-w-[34rem] text-[17px] md:text-xl leading-relaxed text-[#3A3631]">Auvra is building the digital infrastructure for preserving, owning and passing down cultural heritage and traditions across generations.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={EXPLORE_HREF} class="btn btn--dark">Explore Auvra</a>
+          <a href="/about#mission" class="btn btn--ghost">Discover Our Mission</a>
+        </div>
+      </div>
+    </div>
+    <div class="relative grid grid-cols-1 md:grid-cols-2 h-[620px] md:h-[720px]">
+      <img src="/images/photos/joy-sky-1600.webp" srcset="/images/photos/joy-sky-960.webp 960w, /images/photos/joy-sky-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 50vw" alt="A young woman laughing with her arms open under a blue sky" class="h-full w-full object-cover object-[60%_30%]" fetchpriority="high" />
+      <img src="/images/photos/joy-sea-1600.webp" srcset="/images/photos/joy-sea-960.webp 960w, /images/photos/joy-sea-1600.webp 1600w" sizes="50vw" alt="A woman sitting on a sea wall on a sunny day, laughing" class="hidden md:block h-full w-full object-cover" loading="lazy" />
+      <!-- Floating product cards over the photos -->
+      <div class="absolute inset-0 flex items-center justify-center md:justify-between gap-6 px-5 md:px-[4%] pointer-events-none">
+        <div class="hidden lg:block w-[300px] rounded-[24px] bg-white/55 p-2 backdrop-blur-sm -rotate-3 translate-y-16">
+          <div class="rounded-[18px] bg-white p-4 shadow-xl">
+            <p class="flex items-center gap-2 text-[13px] font-semibold text-blue">✦ Lens AI · Translation</p>
+            <p class="mt-3 text-[11px] font-semibold uppercase tracking-wider text-grey">Igbo</p>
+            <p class="font-serif text-[17px] leading-snug">Nna nna anyị si Nnewi bịa</p>
+            <p class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-grey">English</p>
+            <p class="font-serif text-[17px] leading-snug">Our great-grandfather came from Nnewi</p>
+          </div>
+        </div>
+        <div class="w-[min(86vw,400px)] rounded-[26px] bg-white/55 p-2 backdrop-blur-sm">
+          <div class="rounded-[20px] bg-white p-5 shadow-2xl">
+            <div class="flex items-center gap-3">
+              <img src="/images/photos/hands-braid-480.webp" alt="" class="h-12 w-12 rounded-xl object-cover" />
+              <div class="text-left"><p class="text-[17px] font-semibold leading-tight">How our family began</p><p class="text-[13px] text-grey">Told by Grandma Nneoma · Igbo · 2:14</p></div>
+            </div>
+            <div class="mt-4 flex items-center gap-3 rounded-2xl bg-linen px-3 py-2.5">
+              <span class="grid h-9 w-9 flex-none place-items-center rounded-full bg-carbon text-xs text-white">▶</span>
+              <span class="wave" aria-hidden="true">{Array.from({ length: 30 }).map((_, i) => <i style={`--h:${22 + ((i * 37) % 70)}%`}></i>)}</span>
+            </div>
+            <div class="mt-4 flex items-center justify-between text-[13px]">
+              <span class="rounded-full bg-[#ECE8FF] px-3 py-1.5 font-semibold text-blue">Transcribed by Lens AI</span>
+              <span class="font-semibold text-[#2F6B12]">✓ Preserved</span>
+            </div>
+          </div>
+        </div>
+        <div class="hidden lg:block w-[280px] rounded-[24px] bg-white/55 p-2 backdrop-blur-sm rotate-3 -translate-y-10">
+          <div class="rounded-[18px] bg-white p-4 shadow-xl text-left">
+            <p class="text-[15px] font-semibold">Okafor Family Vault</p>
+            <p class="text-[13px] text-grey">Private · shared by invitation</p>
+            <div class="mt-3 flex">{['elder', 'beadwork', 'young-man', 'gele'].map((n) => <img src={`/images/photos/${n}-480.webp`} alt="" class="-mr-2.5 h-9 w-9 rounded-full border-[2.5px] border-white object-cover" />)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · The problem -->
+  <section class="bg-carbon text-white" aria-labelledby="problem-title">
+    <div class="wrap pt-20 md:pt-36 text-center">
+      <h2 id="problem-title" class="reveal mx-auto max-w-[17ch] font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(40px,7vw,84px)] text-balance">When knowledge disappears, a part of humanity disappears with it.</h2>
+      <div class="reveal mx-auto mt-10 max-w-[620px] space-y-5 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">
+        <p>Across the world, cultural knowledge lives in memories, conversations, family recordings, photographs, documents and community practices.</p>
+        <p>Much of this knowledge remains scattered across personal devices and informal channels. When the people holding it are no longer present, important stories, languages, traditions and histories can become difficult to recover.</p>
+        <p class="text-white">Human culture needs more than temporary storage. It needs systems that support continuity.</p>
+      </div>
+    </div>
+    <ul class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 md:divide-x md:divide-[#2B2B2B]">
+      {[
+        ['elder-drummer', 'Oral storytelling', 'An elder in white robes at a festival'],
+        ['gele', 'Family photographs', 'A woman in a gele and orange cloth at a celebration'],
+        ['hands-archive', 'Documents & artefacts', 'Hands turning the pages of an archive'],
+      ].map(([n, label, alt]) => (
+        <li class="relative h-[460px] md:h-[620px] overflow-hidden">
+          <img src={`/images/photos/${n}-960.webp`} alt={alt} class="h-[115%] w-full object-cover" data-parallax="-8" loading="lazy" />
+          <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent pb-8 pt-24 text-center text-lg">{label}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 3 · The Auvra approach -->
+  <section class="wrap py-20 md:py-32" aria-labelledby="approach-title">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end max-md:text-center">
+      <div>
+        <p class="kicker">The Auvra approach</p>
+        <h2 id="approach-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(40px,6vw,76px)]">Culture deserves more than storage.</h2>
+      </div>
+      <div class="reveal space-y-4 text-[17px] md:text-lg text-grey max-w-[560px] max-md:mx-auto">
+        <p>Auvra is creating a connected environment where cultural knowledge can be preserved, documented, attributed, understood and passed down.</p>
+        <p>Through preservation tools, contribution systems, collectible cultural expressions and emerging cultural AI technologies, Auvra connects cultural memory with the generations that come after it.</p>
+      </div>
+    </div>
+    <ul class="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 max-md:text-center">
+      {[
+        ['vault', 'Preserve', 'Keep important cultural knowledge accessible beyond the lifetime of the people who hold it.', 'bg-[#E8F1E4]'],
+        ['shield', 'Attribute', 'Connect cultural contributions to their origins and contributors.', 'bg-[#FFE9E3]'],
+        ['sparkle', 'Understand', 'Use technology to help document, interpret and organise cultural knowledge.', 'bg-[#ECE8FF]'],
+        ['gift', 'Continue', 'Enable future generations to discover, contribute to and carry cultural heritage forward.', 'bg-[#FFF4D6]'],
+      ].map(([icon, name, text, bg]) => (
+        <li class="reveal flex flex-col max-md:items-center">
+          <span class={`grid h-20 w-20 place-items-center rounded-2xl ${bg}`}><Icon3D name={icon} size={58} /></span>
+          <h3 class="mt-6 text-2xl font-semibold">{name}</h3>
+          <p class="mt-2 text-[17px] text-grey">{text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 4 · Ecosystem -->
+  <section id="ecosystem" class="py-16 md:py-28 overflow-hidden bg-linen scroll-mt-24" aria-labelledby="eco-title">
+    <div class="wrap grid gap-10 lg:grid-cols-[400px_1fr] lg:gap-16">
+      <div class="flex flex-col gap-6">
+        <p class="kicker !mb-0">The Auvra ecosystem</p>
+        <h2 id="eco-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(40px,5vw,64px)]">One connected ecosystem for human culture.</h2>
+        <p class="text-[17px] text-grey">Auvra brings together the tools and infrastructure needed to preserve cultural knowledge and support its continued use across generations.</p>
+        <Carousel client:visible label="products" target="eco-track" />
+      </div>
+      <ol id="eco-track" class="snap-row !gap-3 -mr-5 md:-mr-10 pr-5 py-2" tabindex="0" aria-label="Auvra products">
+        {products.map((p) => (
+          <li class="flex w-[280px] md:w-[400px] lg:w-[460px] flex-col justify-between rounded-[22px] p-6 md:p-10 min-h-[440px] md:min-h-[560px]" style={`background:${p.bg}`}>
+            <span class="grid h-14 w-14 md:h-20 md:w-20 place-items-center rounded-2xl text-xl md:text-3xl font-bold text-white" style={`background:${p.chip}`}>{p.n}</span>
+            <div class="flex flex-col gap-4">
+              <h3 class="text-sm md:text-lg font-semibold uppercase tracking-wide" style={`color:${p.accent}`}>{p.name}</h3>
+              <p class="text-xl md:text-[26px] leading-snug text-white">{p.text}</p>
+              <a href={p.href} class="inline-flex min-h-11 items-center font-semibold text-white underline underline-offset-4">Explore {p.name} →</a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5 · Contribution Badges -->
+  <section class="wrap py-20 md:py-32" aria-labelledby="contrib-title">
+    <div class="max-w-[820px] max-md:text-center max-md:mx-auto">
+      <p class="kicker">Contribution Badges</p>
+      <h2 id="contrib-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.6vw,72px)]">Every cultural contribution deserves its place in history.</h2>
+      <div class="reveal mt-8 space-y-4 text-[17px] md:text-lg text-grey">
+        <p>Culture is continuously documented, remembered, interpreted and passed down. Auvra Contribution Badges are designed to create permanent, attributable records of these contributions.</p>
+        <p>A preserved contribution retains its original record. Additional context can be added without silently replacing what was previously documented.</p>
+      </div>
+    </div>
+    <ol class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {paths.map((p, i) => (
+        <li class="reveal relative flex flex-col gap-4 rounded-[28px] border border-line bg-white p-7 md:p-8">
+          <span class="text-sm font-semibold text-olive">Path {i + 1}</span>
+          <Icon3D name={p.icon} size={64} />
+          <h3 class="text-[22px] font-semibold leading-tight">{p.name}</h3>
+          <p class="text-[16px] text-grey">{p.text}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="reveal mt-10 flex flex-col md:flex-row md:items-center gap-5 md:justify-between max-md:text-center">
+      <p class="status-note max-md:justify-center"><span class="status status--developing">In development</span> Submitting, assessing and issuing badges are separate steps. Badge issuance is not live yet.</p>
+      <a href="/contribution-badges" class="btn btn--dark self-center">Explore Contribution Badges</a>
+    </div>
+  </section>
+
+  <!-- 6 · Collectible Badges -->
+  <section class="bg-[#ECE8FF] py-20 md:py-28 overflow-hidden" aria-labelledby="collect-title">
+    <div class="wrap grid items-center gap-14 lg:grid-cols-2">
+      <div class="max-md:text-center">
+        <p class="kicker">Collectible Badges</p>
+        <h2 id="collect-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)]">Culture can be preserved, shared and carried forward.</h2>
+        <p class="reveal mt-8 text-[17px] md:text-lg text-grey">Auvra gives creators a way to document and distribute cultural expressions through Collectible Badges. Creators present cultural works with their context and attribution, so audiences can discover and claim them. A Collectible Badge may represent a digital or physical cultural expression.</p>
+        <ul class="reveal mt-8 flex flex-wrap gap-2 max-md:justify-center">
+          {['Creator attribution', 'Cultural context', 'Digital & physical formats', 'Audience discovery', 'Claiming experience', 'Creator participation'].map((t) => <li class="rounded-full bg-white px-4 py-2 text-[15px] font-medium text-blue">{t}</li>)}
+        </ul>
+        <a href="/collectible-badges" class="btn btn--dark mt-10">Explore Collectible Badges</a>
+      </div>
+      <PhoneFrame label="Example Collectible Badge screen in the Auvra app showing an Adire textile with its creator and cultural context" class="reveal">
+        <div class="h-full overflow-hidden bg-white text-carbon">
+          <div class="relative h-[52%]"><img src="/images/photos/drummer-blue-480.webp" alt="" class="h-full w-full object-cover" loading="lazy" /><span class="absolute left-3 top-[12%] rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold">Illustrative example</span></div>
+          <div class="flex flex-col gap-2 p-4">
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-blue">Collectible Badge · Digital</p>
+            <p class="text-[19px] font-semibold leading-tight">Adire indigo pattern, “Ọlọ́kun”</p>
+            <p class="text-[12px] text-grey">Created by a textile artist · Abeokuta</p>
+            <p class="font-serif text-[13px] leading-snug">Hand-dyed with indigo using resist techniques passed down through Yoruba women’s guilds.</p>
+            <span class="mt-2 rounded-full bg-carbon py-2.5 text-center text-[13px] font-semibold text-white">Claim in the app</span>
+          </div>
+        </div>
+      </PhoneFrame>
+    </div>
+  </section>
+
+  <!-- 7 · My Vault -->
+  <section class="wrap py-20 md:py-32 overflow-hidden" id="my-vault" aria-labelledby="vault-title">
+    <div class="grid items-center gap-14 lg:grid-cols-2">
+      <PhoneFrame label="My Vault in the Auvra app showing a family vault with a voice memory, wedding photos and handwritten recipes" class="reveal lg:order-1 order-2">
+        <div class="flex h-full flex-col gap-3 bg-[#FBF8F1] px-4 pt-[16%] text-carbon">
+          <div class="flex items-center justify-between"><div><p class="text-[17px] font-semibold">Okafor Family Vault</p><p class="text-[11px] text-grey">Private · 4 members</p></div><span class="rounded-full bg-carbon px-3 py-1.5 text-[11px] font-semibold text-white">+ Invite</span></div>
+          {[
+            ['🎙', 'How our family began', 'Voice memory · Grandma Nneoma', 'bg-[#FFE2DB]'],
+            ['img', 'Wedding photos, 1974', '24 photos · Uncle Emeka', ''],
+            ['📜', 'Mama’s handwritten recipes', 'Documents · Ada', 'bg-gold'],
+            ['🎵', 'Christmas songs in the village', 'Recording · Chidi', 'bg-[#E8F1E4]'],
+          ].map(([i, t, s, bg]) => (
+            <div class="flex items-center gap-3 rounded-2xl bg-white p-2.5 shadow-sm">
+              {i === 'img' ? <img src="/images/photos/gele-480.webp" alt="" class="h-10 w-10 rounded-xl object-cover" /> : <span class={`grid h-10 w-10 place-items-center rounded-xl ${bg}`}>{i}</span>}
+              <span><b class="block text-[13px] font-semibold">{t}</b><small class="text-[11px] text-grey">{s}</small></span>
+            </div>
+          ))}
+        </div>
+      </PhoneFrame>
+      <div class="lg:order-2 max-md:text-center">
+        <p class="kicker">My Vault</p>
+        <h2 id="vault-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)]">Your memories. Your heritage. Your personal archive.</h2>
+        <p class="reveal mt-8 text-[17px] md:text-lg text-grey">My Vault provides a personal environment for keeping and organising important memories, documents, recordings and cultural materials, so individuals and families keep access to the things they do not want to lose.</p>
+        <ul class="ticks reveal mt-8 text-left max-md:inline-flex">
+          <li>Personal preservation and organised memories</li>
+          <li>Family access through invitations</li>
+          <li>Private by default, shared only with people you invite</li>
+          <li>Built for long-term continuity</li>
+        </ul>
+        <p class="status-note reveal mt-8 max-md:justify-center"><span class="status status--planned">Planned</span> Personal AI OS: help to understand your Vault, using only what you authorise.</p>
+        <a href="/my-vault" class="btn btn--dark mt-8">Explore My Vault</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · Auvra Passport -->
+  <section class="wrap pb-20 md:pb-32" aria-labelledby="passport-title">
+    <div class="reveal grid items-center gap-10 rounded-[36px] bg-[#FFE9E3] p-8 md:p-16 lg:grid-cols-[1.2fr_1fr]">
+      <div class="max-md:text-center">
+        <p class="kicker">Auvra Passport</p>
+        <h2 id="passport-title" class="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)]">Connect people to the cultural records they contribute to.</h2>
+        <p class="mt-6 text-[17px] md:text-lg text-[#5A4A44]">{DEFINITIONS.auvraPassport.long}</p>
+        <a href="/auvra-passport" class="btn btn--dark mt-8">Explore Auvra Passport</a>
+      </div>
+      <div class="mx-auto w-full max-w-[360px] rounded-[28px] bg-white p-6 shadow-xl" aria-hidden="true">
+        <div class="flex items-center gap-3"><img src="/images/photos/young-man-480.webp" alt="" class="h-14 w-14 rounded-full object-cover" /><div><p class="font-semibold">Chidi Okeke</p><p class="text-[13px] text-grey">Auvra Passport</p></div><Icon3D name="passport" size={44} class="ml-auto" /></div>
+        <ul class="mt-5 space-y-2 text-[14px]">
+          <li class="flex justify-between rounded-xl bg-linen px-3 py-2.5"><span>Bronze casting, oral history</span><span class="text-grey">Original</span></li>
+          <li class="flex justify-between rounded-xl bg-linen px-3 py-2.5"><span>Igbo-Ukwu Heritage Circle</span><span class="text-grey">Member</span></li>
+          <li class="flex justify-between rounded-xl bg-linen px-3 py-2.5"><span>Okafor Family Vault</span><span class="text-grey">Invited</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · Technology -->
+  <section class="bg-carbon text-white py-20 md:py-32" aria-labelledby="tech-title">
+    <div class="wrap">
+      <div class="max-w-[860px] max-md:text-center max-md:mx-auto">
+        <p class="kicker !text-[#BDB6AA]">Technology</p>
+        <h2 id="tech-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.6vw,72px)]">Technology built around the preservation of human culture.</h2>
+        <p class="reveal mt-8 text-[17px] md:text-lg text-[#A8A29A]">Auvra is developing technology that helps cultural knowledge become more accessible, understandable and organised.</p>
+      </div>
+      <div class="mt-14 grid gap-4 md:grid-cols-2">
+        <article class="reveal flex flex-col gap-5 rounded-[32px] bg-blue p-8 md:p-12 min-h-[420px]">
+          <div class="flex items-center justify-between"><Icon3D name="speech" size={72} /><span class="status status--developing">In development</span></div>
+          <h3 class="mt-auto text-4xl md:text-5xl font-semibold tracking-tight">Lens AI</h3>
+          <p class="text-lg text-[#DCD5FF]">{DEFINITIONS.lensAI.long}</p>
+          <a href="/lens-ai" class="btn btn--light self-start">Explore Lens AI</a>
+        </article>
+        <article class="reveal flex flex-col gap-5 rounded-[32px] bg-teal p-8 md:p-12 min-h-[420px]">
+          <div class="flex items-center justify-between"><Icon3D name="globe" size={72} /><span class="status status--research">Research</span></div>
+          <h3 class="mt-auto text-4xl md:text-5xl font-semibold tracking-tight">A-Chronos</h3>
+          <p class="text-lg text-[#BFE0E1]">{DEFINITIONS.aChronos.long}</p>
+          <a href="/a-chronos" class="btn btn--light self-start">Explore A-Chronos</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Who we serve -->
+  <section class="py-20 md:py-32" aria-labelledby="serve-title">
+    <div class="wrap text-center">
+      <p class="kicker">Who we serve</p>
+      <h2 id="serve-title" class="reveal font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(44px,7vw,92px)]">Culture belongs to everyone.</h2>
+      <p class="reveal mx-auto mt-8 max-w-[640px] text-[17px] md:text-lg text-grey">Cultural heritage is preserved by individuals, families, creators, communities and institutions. Auvra is building an ecosystem that supports their different roles in keeping culture alive.</p>
+    </div>
+    <ul class="snap-row wrap mt-14 lg:!grid lg:grid-cols-5 lg:!overflow-visible">
+      {audiences.map((a) => (
+        <li id={a.id} class="reveal flex w-[78vw] max-w-[320px] lg:w-auto lg:max-w-none flex-col scroll-mt-28">
+          <img src={`/images/photos/${a.photo}-480.webp`} alt={a.alt} class="aspect-[3/4] w-full rounded-[24px] object-cover" loading="lazy" />
+          <h3 class="mt-5 text-2xl font-semibold">{a.name}</h3>
+          <p class="mt-2 text-[16px] text-grey">{a.text}</p>
+          <a href={a.href} class="text-link" aria-label={`Learn more: ${a.name}`}>Learn more →</a>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-12 text-center"><a href={EXPLORE_HREF} class="btn btn--dark">Explore Auvra</a></div>
+  </section>
+
+  <!-- FAQ (direct answers for search and answer engines) -->
+  <section class="wrap pb-20 md:pb-32 faq-sec" aria-labelledby="faq-title">
+    <div class="faq-sec__head">
+      <p class="kicker">Questions</p>
+      <h2 id="faq-title" class="h2">Got questions? Here are some answers</h2>
+      <div class="faq-sec__btns"><a class="btn btn--dark" href="/faqs">See all FAQs →</a><a class="btn btn--ghost" href="/contact">Contact us</a></div>
+    </div>
+    <Faq client:visible items={homeFaqs} />
+  </section>
+
+  <!-- 11 · Cultural continuity -->
+  <section class="bg-carbon text-white pt-20 md:pt-32 pb-20 md:pb-28 overflow-hidden" aria-labelledby="continuity-title">
+    <div class="wrap text-center">
+      <h2 id="continuity-title" class="reveal mx-auto max-w-[18ch] font-serif text-[clamp(40px,6.4vw,84px)] leading-[1.02]">What we preserve today becomes part of <span class="text-[#FFB4A3]">what tomorrow remembers.</span></h2>
+      <div class="reveal mx-auto mt-10 max-w-[640px] space-y-4 text-[17px] md:text-lg text-[#A8A29A]">
+        <p>The future of culture depends on what people choose to preserve, document and pass down today.</p>
+        <p>Auvra is building systems that help cultural knowledge remain connected to the people, communities and generations that give it meaning.</p>
+      </div>
+    </div>
+    <div class="marquee marquee--people mt-16" data-pause-offscreen aria-hidden="true">
+      <div class="marquee__track">
+        {[0, 1].map(() => (
+          <div class="marquee__group gap-3 md:gap-4 pr-3 md:pr-4">
+            {[...MOVEMENT, ...MOVEMENT].map((ph) => <img src={ph.thumb} alt="" class="h-[230px] md:h-[380px] w-auto aspect-[2/3] rounded-[20px] md:rounded-[28px] object-cover" loading="lazy" />)}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · Final CTA -->
+  <section class="relative isolate overflow-hidden px-3 md:px-16 pt-10 md:pt-24" style="background: linear-gradient(180deg, #DBC9F5 0%, #FF8F77 38%, #FBF8F1 76%, #fff 100%)" aria-labelledby="cta-title">
+    <div class="relative overflow-hidden rounded-t-[40px] bg-cream px-5 pt-28 pb-24 md:pb-32 text-center">
+      <Sunburst class="!top-[38%] opacity-80" />
+      <div class="relative z-10 mx-auto flex max-w-[900px] flex-col items-center gap-7">
+        <h2 id="cta-title" class="reveal font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(42px,8vw,104px)] text-balance">Help build the permanent home for human culture.</h2>
+        <p class="reveal max-w-[440px] text-[17px] md:text-lg text-[#3A3631]">Discover how Auvra is bringing preservation, technology and cultural continuity together.</p>
+        <a href={EXPLORE_HREF} class="btn btn--dark !px-12 !min-h-[60px]">Explore Auvra</a>
+      </div>
+    </div>
+  </section>
+</Base>

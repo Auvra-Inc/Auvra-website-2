@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.jsx';
+import Footer from '../components/Footer.astro';
+import IconSprite from '../components/IconSprite.jsx';
+import { SITE, SOCIAL, CONTACT_EMAIL } from '../data/site.js';
+
+/**
+ * Every page: unique title + description, canonical URL, Open Graph / X cards,
+ * Organization + WebSite JSON-LD, optional BreadcrumbList and page-specific JSON-LD.
+ * crumbs: [{ label, href? }] (Home is added automatically).
+ */
+const { title, description, image = '/og-image.jpg', jsonld = [], crumbs = null, noindex = false, ogType = 'website' } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonical = SITE + (path === '/' ? '/' : path);
+const ogImage = image.startsWith('http') ? image : SITE + image;
+const org = {
+  '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE}/#organization`,
+  name: 'Auvra', legalName: 'Auvra Tech Ltd', url: SITE, logo: `${SITE}/brand/auvra-logo-carbon.svg`, email: CONTACT_EMAIL,
+  description: 'Auvra is a cultural technology company building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
+  sameAs: SOCIAL.map((s) => s.href), address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
+};
+const site = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'Auvra', url: SITE, publisher: { '@id': `${SITE}/#organization` } };
+const breadcrumb = crumbs && {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [{ label: 'Home', href: '/' }, ...crumbs].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: SITE + (c.href || path) })),
+};
+const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="google-site-verification" content="uOCh-LWh0XBkm1lh4x4veDm4ZzqKMAjUVBEFtEmTMHQ" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Auvra" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@goauvra" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <IconSprite />
+    <Nav client:load pathname={path} />
+    <main id="main"><slot /></main>
+    <Footer />
+    <script>
+      import '../scripts/motion.js';
+    </script>
+  </body>
+</html>

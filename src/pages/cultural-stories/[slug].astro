@@ -1,0 +1,10 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoryPage from '../../views/insights/StoryPage.jsx';
+import { STORIES } from '../../data/stories.js';
+export function getStaticPaths() { return STORIES.map((story) => ({ params: { slug: story.slug }, props: { story } })); }
+const { story } = Astro.props;
+---
+<Base title={`${story.title} · Cultural Stories · Auvra`} description={story.summary} crumbs={[{ label: 'Cultural Stories', href: '/cultural-stories' }, { label: story.title }]}>
+  <StoryPage story={story} />
+</Base>

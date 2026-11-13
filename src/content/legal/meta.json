@@ -1,0 +1,66 @@
+{
+ "ai-policy": {
+  "title": "AI Policy",
+  "intro": [
+   "Lens AI is a tool, not a judge of cultural truth.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "aml": {
+  "title": "Anti-Money Laundering (AML) / Counter Financing of Terrorism (CFT) Policy",
+  "intro": [
+   "Ensuring Integrity, Transparency, and Compliance",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "collab": {
+  "title": "Collaboration Hub Terms",
+  "intro": [
+   "Clear rules for creating together wherever the work leads.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "community": {
+  "title": "Community Guidelines",
+  "intro": [
+   "Building a respectful, authentic, and inclusive cultural home.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "copyright": {
+  "title": "Copyright Policy",
+  "intro": [
+   "Respecting intellectual property rights.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "governance": {
+  "title": "Content Governance Policy",
+  "intro": [
+   "How we manage cultural content, verification, and moderation.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "privacy": {
+  "title": "Privacy Policy",
+  "intro": [
+   "Your privacy matters. Learn how we collect, use, and protect your information.",
+   "Last Updated: April 2026"
+  ],
+  "toc": true
+ },
+ "terms": {
+  "title": "Terms of Service",
+  "intro": [
+   "Please read these terms carefully before using our platform",
+   "Effective immediately upon platform use"
+  ],
+  "toc": true
+ }
+}

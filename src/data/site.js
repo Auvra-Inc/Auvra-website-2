@@ -1,3 +1,5 @@
+export const SITE = 'https://www.goauvra.com';
+
 // Central content and link config. Change store links here once the apps are live.
 export const STORE = {
   // TODO(Emmanuel): replace with the live App Store / Google Play listing URLs.

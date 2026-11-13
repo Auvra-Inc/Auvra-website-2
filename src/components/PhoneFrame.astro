@@ -1,0 +1,8 @@
+---
+// The device frame supplied by the Auvra team, with live HTML inside its screen.
+const { class: cls = '', label } = Astro.props;
+---
+<div class:list={['phone-frame', cls]} role={label ? 'img' : undefined} aria-label={label}>
+  <div class="phone-frame__screen"><slot /></div>
+  <img class="phone-frame__img" src="/images/phone-frame.png" alt="" width="604" height="1227" loading="lazy" />
+</div>

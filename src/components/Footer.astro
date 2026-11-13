@@ -1,0 +1,21 @@
+---
+import { FOOTER, CONTACT_EMAIL, SOCIAL } from '../data/site.js';
+---
+<footer class="footer">
+  <div class="wrap footer__top">
+    <div class="footer__brand">
+      <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="140" height="40" loading="lazy" /></a>
+      <p>Building the Permanent Home for Human Culture.</p>
+      <a class="footer__mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      <ul class="footer__social">{SOCIAL.map((s) => <li><a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>
+    </div>
+    {FOOTER.map((col) => (
+      <nav class="footer__col" aria-label={col.title}>
+        <h2>{col.title}</h2>
+        <ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </nav>
+    ))}
+  </div>
+  <div class="footer__word" aria-hidden="true">AUVRA</div>
+  <div class="wrap footer__bottom"><span>© Auvra. All rights reserved.</span><span>Lagos, Nigeria</span></div>
+</footer>
