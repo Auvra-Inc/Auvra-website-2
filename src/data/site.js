@@ -149,3 +149,16 @@ export const MOVEMENT = [
 ];
 
 export const DRIFT = ['dancers', 'procession', 'singers', 'face-paint', 'drummers-row', 'crowd', 'shrine', 'coral-beads', 'gele', 'red-cap', 'drum-street', 'village'].map((n) => p(n).thumb);
+
+// Partners shown in the footer strip (logos copied from the previous goauvra.com).
+export const PARTNERS = [
+  { name: 'ElevenLabs', src: '/partners/elevenlabs.svg' },
+  { name: 'OpenAI', src: '/partners/openai.svg' },
+  { name: 'NVIDIA', src: '/partners/nvidia.webp' },
+  { name: 'Paystack', src: '/partners/paystack.webp' },
+  { name: 'Dojah', src: '/partners/dojah.svg' },
+  { name: 'Polygon', src: '/partners/polygon.svg' },
+  { name: 'Fonbnk', src: '/partners/fonbnk.svg' },
+  { name: 'Crossmint', src: '/partners/crossmint.svg' },
+  { name: 'Breet', src: '/partners/breet.svg' },
+];

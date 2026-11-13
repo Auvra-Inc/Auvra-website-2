@@ -2,7 +2,7 @@
 // Closing call to action on every page (dark card, as in the Option B design), then the footer links.
 import StoreButtons from './StoreButtons.jsx';
 import { SubscribeForm } from './Forms.jsx';
-import { FOOTER, CONTACT_EMAIL, SOCIAL } from '../data/site.js';
+import { FOOTER, CONTACT_EMAIL, SOCIAL, PARTNERS } from '../data/site.js';
 ---
 <footer class="bg-white" aria-labelledby="footer-cta-title">
   <div class="px-3 md:px-10 pt-10 md:pt-20">
@@ -15,6 +15,16 @@ import { FOOTER, CONTACT_EMAIL, SOCIAL } from '../data/site.js';
       </div>
     </div>
   </div>
+  <section class="partners mx-auto max-w-[1240px] pt-14 md:pt-20" aria-labelledby="partners-title">
+    <h2 id="partners-title" class="px-6 text-center text-xs uppercase tracking-[0.14em] text-[#626262]">Our partners</h2>
+    <div class="partners__track-wrap">
+      <ul class="partners__track">
+        {[0, 1].map((copy) => PARTNERS.map((p) => (
+          <li aria-hidden={copy ? 'true' : undefined}><img src={p.src} alt={copy ? '' : p.name} loading="lazy" /></li>
+        )))}
+      </ul>
+    </div>
+  </section>
   <div class="mx-auto grid max-w-[1240px] gap-12 px-6 md:px-10 py-16 md:grid-cols-[1.2fr_2fr]">
     <div class="flex flex-col gap-4">
       <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="150" height="42" loading="lazy" class="h-10 w-auto" /></a>
