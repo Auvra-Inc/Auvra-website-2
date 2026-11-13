@@ -1,7 +1,7 @@
 import Icon3D from '../../components/Icon3D.jsx';
 import { Status } from '../../components/Page.jsx';
 import { DEFINITIONS } from '../../data/definitions.js';
-import { H1, H2_SM, LEAD, Crumbs, Photo, Kicker, QA, FaqList, FinalCta } from '../editorial.jsx';
+import { H1, H2_SM, LEAD, Crumbs, Photo, Kicker, QA, FaqList, FinalCta, nb } from '../editorial.jsx';
 
 // A-Chronos identity: Dark Teal #024B50 (Tailwind `teal`). Status: Research.
 // Never describe A-Chronos as a finished or production model, and never add benchmarks,
@@ -119,7 +119,7 @@ export default function AChronos() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-teal text-white -mt-[88px] pt-[130px] md:pt-[160px] pb-16 md:pb-24" aria-labelledby="chronos-title">
+      <section className="relative overflow-hidden bg-teal text-white pt-36 md:pt-44 pb-16 md:pb-24" aria-labelledby="chronos-title">
         <div className="wrap text-center">
           <Crumbs light items={[{ label: 'Technology' }, { label: 'A-Chronos' }]} />
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -152,7 +152,7 @@ export default function AChronos() {
       </section>
 
       {/* 2 · Why specialised */}
-      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby="why-title">
+      <section className="bg-[#191717] text-white py-20 md:py-32" aria-labelledby="why-title">
         <div className="wrap">
           <QA
             id="why-title"
@@ -257,7 +257,7 @@ export default function AChronos() {
         <div className="reveal grid gap-10 rounded-[36px] bg-teal p-8 md:p-16 text-white lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div className="max-md:text-center">
             <p className="kicker !text-[#BFE0E1]">Current research &amp; development status</p>
-            <h2 id="status-title" className={`${H2_SM} max-w-[16ch] max-md:mx-auto`}>Where is A-Chronos today?</h2>
+            <h2 id="status-title" className={`${H2_SM} max-w-[16ch] max-md:mx-auto`}>{nb('Where is A-Chronos today?')}</h2>
             <p className={`${LEAD} mt-7 text-[#D6ECEC]`}>A-Chronos is in the research stage. It is not a finished or production model, it is not available to use, and we have not published results yet. When we do, they will appear on <a className="underline text-white" href="/research">Auvra Research</a>.</p>
           </div>
           <dl className="grid gap-3 text-carbon">
@@ -298,8 +298,7 @@ export default function AChronos() {
         text="If you work with languages, archives or cultural knowledge and want to explore this research with us, we would like to hear from you."
         primary={{ href: '/contact', label: 'Talk to us' }}
         secondary={{ href: '/research', label: 'Follow our research' }}
-        from="#BFE0E1"
-        via="#BCE784"
+        tone="teal"
       />
     </>
   );

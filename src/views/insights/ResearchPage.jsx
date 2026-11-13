@@ -80,8 +80,7 @@ export default function ResearchPage({ item }) {
         text="Questions, corrections or collaboration ideas about this work are welcome."
         primary={{ href: '/contact', label: 'Contact us' }}
         secondary={{ href: '/research', label: 'All research' }}
-        from="#BFE0E1"
-        via="#DBC9F5"
+        tone="teal"
       />
     </>
   );

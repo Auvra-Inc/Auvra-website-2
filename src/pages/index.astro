@@ -26,12 +26,12 @@ const tiles = [
   { label: 'Pass it down forever', icon: 'gift', bg: 'radial-gradient(circle at 50% 45%, #FFFFFF 0%, #E2F0D6 45%, #C3DFAA 100%)', strip: '#D6EAC4' },
 ];
 const features = [
-  { icon: 'globe', tint: '#E0EEEF', name: 'Cultural Preservation', text: DEFINITIONS.culturalPreservation.short, href: '/cultural-preservation' },
-  { icon: 'shield', tint: '#FFE9E3', name: 'Contribution Badges', text: DEFINITIONS.contributionBadges.short, href: '/contribution-badges' },
-  { icon: 'gift', tint: '#ECE8FF', name: 'Collectible Badges', text: DEFINITIONS.collectibleBadges.short, href: '/collectible-badges' },
-  { icon: 'vault', tint: '#E8F1E4', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
-  { icon: 'passport', tint: '#F4F0E8', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
-  { icon: 'speech', tint: '#ECE8FF', name: 'Lens AI & A-Chronos', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable, and research towards AI that understands cultural context.', href: '/lens-ai' },
+  { art: 'pocket-watch', icon: 'globe', tint: '#E0EEEF', name: 'Cultural Preservation', text: DEFINITIONS.culturalPreservation.short, href: '/cultural-preservation' },
+  { art: 'coin', icon: 'shield', tint: '#FFE9E3', name: 'Contribution Badges', text: DEFINITIONS.contributionBadges.short, href: '/contribution-badges' },
+  { art: 'chess-knight', icon: 'gift', tint: '#ECE8FF', name: 'Collectible Badges', text: DEFINITIONS.collectibleBadges.short, href: '/collectible-badges' },
+  { art: 'key', icon: 'vault', tint: '#E8F1E4', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
+  { art: 'paper-plane', icon: 'passport', tint: '#F4F0E8', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
+  { art: 'magnifier', icon: 'speech', tint: '#ECE8FF', name: 'Lens AI & A-Chronos', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable, and research towards AI that understands cultural context.', href: '/lens-ai' },
 ];
 const steps = [
   { n: 1, title: 'Download Auvra', text: 'Create your free Auvra account in seconds on iPhone or Android.', bg: '#024B50', chip: '#0B6A70', accent: '#BCE784' },
@@ -39,6 +39,7 @@ const steps = [
   { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#3310BE', chip: '#5A3BE0', accent: '#DCD5FF' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
+const GALLERY_WALL = ['coral-beads', 'gele', 'drummer-blue', 'emir', 'young-man', 'singers', 'beaded-hair', 'elder', 'mask', 'drums', 'masquerade'];
 const audiences = [
   { id: 'families', name: 'Families' }, { id: 'creators', name: 'Creators' }, { id: 'communities', name: 'Communities' },
   { id: 'diaspora', name: 'Diaspora' }, { id: 'institutions', name: 'Museums & Institutions' },
@@ -142,7 +143,7 @@ const audiences = [
     <ul class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-5 lg:gap-y-[5.5rem] md:mt-20">
       {features.map((f) => (
         <li class="flex flex-col">
-          <span class="grid size-12 lg:size-16 place-items-center rounded-xl" style={`background:${f.tint}`}><Icon3D name={f.icon} size={44} /></span>
+          <img src={`/images/collage/${f.art}.webp`} alt="" aria-hidden="true" class="h-28 lg:h-32 w-auto self-start object-contain" loading="lazy" />
           <div class="reveal">
             <h3 class="mt-6 lg:mt-8 mb-2 lg:mb-5 text-xl font-semibold text-[#252020]"><a href={f.href} class="hover:underline">{f.name}</a></h3>
             <p class="text-base text-[#626262]">{f.text}</p>
@@ -150,6 +151,26 @@ const audiences = [
         </li>
       ))}
     </ul>
+  </section>
+
+
+  <!-- Statement: words and photos interleaved -->
+  <section class="bg-white px-6 py-20 md:py-32" aria-labelledby="statement-title">
+    <h2 id="statement-title" class="sr-only">Your story isn't lost. It's preserved.</h2>
+    <div class="mx-auto grid max-w-[1000px] grid-cols-2 md:grid-cols-[1.15fr_1fr_0.7fr] items-center gap-x-5 gap-y-6 md:gap-y-8" aria-hidden="true">
+      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-1">Your story</p>
+      <img src="/images/photos/beadwork-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-2" loading="lazy" />
+      <img src="/images/photos/drummer-blue-480.webp" alt="" class="reveal max-md:order-2 aspect-square w-full rounded-md object-cover shadow-md" loading="lazy" />
+      <img src="/images/photos/singers-480.webp" alt="" class="reveal aspect-[2/1] w-full rounded-md object-cover shadow-md max-md:order-4 max-md:aspect-square" loading="lazy" />
+      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] md:text-right max-md:col-span-2 max-md:order-3">isn't lost.</p>
+      <img src="/images/photos/coral-beads-480.webp" alt="" class="reveal max-md:order-4 max-md:aspect-square aspect-[3/4] w-full rounded-md object-cover shadow-md" loading="lazy" />
+      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-5">It's preserved.</p>
+      <img src="/images/photos/hands-braid-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-6 max-md:col-span-2" loading="lazy" />
+      <div class="hidden md:flex flex-col items-center gap-1 text-[22px] font-medium">
+        <span class="size-11 rounded-full border-2 border-carbon"></span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">20</span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">26</span><span class="size-11 rounded-full border-2 border-carbon"></span>
+      </div>
+    </div>
+    <p class="reveal mx-auto mt-16 md:mt-24 max-w-[560px] text-center text-[17px] md:text-xl"><b>Recorded</b> by the people who carry it, preserved <b>with intention</b>.</p>
   </section>
 
   <!-- 4 · Poster statement -->
@@ -199,14 +220,11 @@ const audiences = [
           {audiences.map((a) => <li id={a.id} class="scroll-mt-28"><span class="inline-flex min-h-11 items-center rounded-full border border-[#3A3632] px-4 text-sm text-[#FBF8F1]">{a.name}</span></li>)}
         </ul>
       </div>
-      <div class="marquee marquee--people w-full" data-pause-offscreen aria-hidden="true">
-        <div class="marquee__track">
-          {[0, 1].map(() => (
-            <div class="marquee__group gap-2 md:gap-3.5 pr-2 md:pr-3.5">
-              {[...MOVEMENT, ...MOVEMENT].map((ph) => <img src={ph.thumb} alt="" class="h-[184px] md:h-[368px] w-auto aspect-[2/3] rounded-xl md:rounded-3xl object-cover" loading="lazy" />)}
-            </div>
-          ))}
-        </div>
+      <div class="curved w-full" aria-hidden="true">
+        {GALLERY_WALL.map((n, i, arr) => {
+          const o = i - (arr.length - 1) / 2;
+          return <img src={`/images/photos/${n}-480.webp`} alt="" class="curved__card" style={`--o:${o};--a:${Math.abs(o)}`} loading="lazy" />;
+        })}
       </div>
     </div>
   </section>

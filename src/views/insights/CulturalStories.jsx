@@ -92,7 +92,7 @@ export function StoryListing() {
       <section className="wrap ins-block !pt-0" aria-labelledby="stories-title">
         <div className="ins-head"><h2 id="stories-title" className="ins-h2 scroll-mt-28">All stories</h2></div>
         <ListingTools id="stories" label="Search stories" placeholder="Search by title, place, community or contributor"
-          categories={STORY_CATEGORIES} cat={cat} setCat={setCat} q={q} setQ={setQ} count={results.length} noun="story" />
+          categories={STORY_CATEGORIES} cat={cat} setCat={setCat} q={q} setQ={setQ} count={results.length} noun="story" plural="stories" />
         {results.length > 0 ? (
           <div className="ins-grid">{results.map((s) => <StoryCard key={s.slug} story={s} />)}</div>
         ) : (
@@ -147,6 +147,7 @@ export default function CulturalStories({ listing }) {
         title="Preserve your story."
         text="Your family’s stories, languages and traditions deserve a permanent home, credited to you."
         secondary={{ href: '/cultural-preservation', label: 'Cultural Preservation' }}
+        tone="espresso"
       />
     </>
   );

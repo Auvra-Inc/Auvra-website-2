@@ -24,7 +24,7 @@ export function useListing(items, fields) {
   return { cat, setCat, q, setQ, results };
 }
 
-export function ListingTools({ id, label, placeholder, categories, cat, setCat, q, setQ, count, noun }) {
+export function ListingTools({ id, label, placeholder, categories, cat, setCat, q, setQ, count, noun, plural = `${noun}s` }) {
   return (
     <div className="ins-tools">
       <div className="ins-tools__row">
@@ -32,7 +32,7 @@ export function ListingTools({ id, label, placeholder, categories, cat, setCat, 
           <span className="sr-only">{label}</span>
           <input id={`${id}-search`} type="search" placeholder={placeholder} value={q} onChange={(e) => setQ(e.target.value)} />
         </label>
-        <p className="ins-count" aria-live="polite">{count} {count === 1 ? noun : `${noun}s`}</p>
+        <p className="ins-count" aria-live="polite">{count} {count === 1 ? noun : plural}</p>
       </div>
       <div className="filters" role="group" aria-label="Filter by category">
         {['All', ...categories.map((c) => c.name)].map((t) => (

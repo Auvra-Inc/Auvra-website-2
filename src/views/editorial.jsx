@@ -3,15 +3,15 @@
 // centred text on phones, dark carbon bands and `reveal` scroll-ins. Everything here is
 // static (no hooks), so it prerenders to plain HTML.
 
-export const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.88] text-[clamp(44px,10.5vw,118px)] text-balance';
-export const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
-export const H2_SM = 'font-semibold uppercase tracking-[-0.04em] leading-[0.95] text-[clamp(32px,4.2vw,54px)] text-balance';
+export const H1 = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.88] text-[clamp(44px,11vw,120px)] text-balance';
+export const H2 = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+export const H2_SM = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(32px,4.2vw,54px)] text-balance';
 export const LEAD = 'text-[17px] md:text-lg leading-relaxed';
 
 export function Crumbs({ items, light = false }) {
   return (
     <nav className={`crumbs ${light ? '[&_a]:!text-white/75 [&_[aria-current]]:!text-white [&_ol]:!text-white/75' : ''}`} aria-label="Breadcrumb">
-      <ol className="max-md:justify-center">
+      <ol className="justify-center">
         <li><a href="/">Home</a></li>
         {items.map((c, i) => (
           <li key={i}>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>
@@ -41,12 +41,18 @@ export function Kicker({ children, light = false }) {
   return <p className={`kicker ${light ? '!text-white/80' : ''}`}>{children}</p>;
 }
 
+// Keeps hyphenated names such as "A-Chronos" from breaking across lines in big headings.
+export function nb(text) {
+  if (typeof text !== 'string' || !text.includes('A-Chronos')) return text;
+  return text.split('A-Chronos').flatMap((part, i) => (i ? [<span key={i} className="whitespace-nowrap">A-Chronos</span>, part] : [part]));
+}
+
 // A question heading followed by a direct, factual answer (for answer engines), then any detail.
 export function QA({ id, kicker, q, answer, light = false, center = false, children, className = '' }) {
   return (
     <div className={`reveal min-w-0 max-md:text-center ${center ? 'md:text-center md:mx-auto' : ''} ${className}`}>
       {kicker && <Kicker light={light}>{kicker}</Kicker>}
-      <h2 id={id} className={`${H2} ${center ? 'mx-auto' : ''} max-w-[18ch]`}>{q}</h2>
+      <h2 id={id} className={`${H2} ${center ? 'mx-auto' : ''} max-w-[18ch]`}>{nb(q)}</h2>
       {answer && (
         <p className={`${LEAD} mt-7 max-w-[640px] max-md:mx-auto ${center ? 'md:mx-auto' : ''} ${light ? 'text-white/85' : 'text-[#3A3631]'}`}>{answer}</p>
       )}
@@ -89,21 +95,28 @@ export const faqJsonLd = (items) => ({
   mainEntity: items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 });
 
-// Closing call to action in the homepage's final-CTA style (soft gradient into a cream card).
-export function FinalCta({ id = 'cta-title', title, text, primary = { href: '/download', label: 'Explore Auvra' }, secondary, from = '#DBC9F5', via = '#FF8F77' }) {
+// Closing call to action for a page. The site footer already ends every page with the gradient
+// "Explore Auvra" card, so this is a solid colour band in the page's own identity colour.
+const CTA_TONES = {
+  carbon: { bg: '#191717', text: '#FBF8F1', sub: '#A8A29A', btn: 'btn--light', ghost: '!border-[#FBF8F1] !text-[#FBF8F1]' },
+  blue: { bg: '#3310BE', text: '#FFFFFF', sub: '#DCD5FF', btn: 'btn--light', ghost: '!border-white !text-white' },
+  teal: { bg: '#024B50', text: '#FFFFFF', sub: '#BFE0E1', btn: 'btn--light', ghost: '!border-white !text-white' },
+  espresso: { bg: '#4A281C', text: '#FFFFFF', sub: '#E9D9CF', btn: 'btn--light', ghost: '!border-white !text-white' },
+  linen: { bg: '#F4F0E8', text: '#1C1A18', sub: '#5F5B55', btn: 'btn--dark', ghost: '' },
+};
+
+export function FinalCta({ id = 'cta-title', title, text, primary = { href: '/download', label: 'Explore Auvra' }, secondary, tone = 'carbon', icon }) {
+  const t = CTA_TONES[tone] || CTA_TONES.carbon;
   return (
-    <section
-      className="relative isolate overflow-hidden px-3 md:px-16 pt-10 md:pt-20"
-      style={{ background: `linear-gradient(180deg, ${from} 0%, ${via} 40%, #FBF8F1 78%, #fff 100%)` }}
-      aria-labelledby={id}
-    >
-      <div className="relative overflow-hidden rounded-t-[40px] bg-cream px-5 pt-20 md:pt-28 pb-20 md:pb-28 text-center">
-        <div className="relative z-10 mx-auto flex max-w-[960px] flex-col items-center gap-7">
-          <h2 id={id} className="reveal font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.4vw,100px)] text-balance">{title}</h2>
-          {text && <p className="reveal max-w-[480px] text-[17px] md:text-lg text-[#3A3631]">{text}</p>}
+    <section className="px-3 md:px-6 pb-3 md:pb-6" aria-labelledby={id}>
+      <div className="relative overflow-hidden rounded-[32px] md:rounded-[40px] px-6 py-20 md:py-32 text-center" style={{ background: t.bg, color: t.text }}>
+        <div className="relative z-10 mx-auto flex max-w-[980px] flex-col items-center gap-7">
+          {icon}
+          <h2 id={id} className="reveal ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.9] text-[clamp(40px,7.4vw,100px)] text-balance">{nb(title)}</h2>
+          {text && <p className="reveal max-w-[480px] text-[17px] md:text-lg" style={{ color: t.sub }}>{text}</p>}
           <div className="flex flex-wrap justify-center gap-3">
-            <a href={primary.href} className="btn btn--dark !px-10 !min-h-[60px]">{primary.label}</a>
-            {secondary && <a href={secondary.href} className="btn btn--ghost !min-h-[60px]">{secondary.label}</a>}
+            <a href={primary.href} className={`btn ${t.btn} shimmer !px-10 !min-h-[60px]`}>{primary.label}</a>
+            {secondary && <a href={secondary.href} className={`btn btn--ghost !min-h-[60px] ${t.ghost}`}>{secondary.label}</a>}
           </div>
         </div>
       </div>

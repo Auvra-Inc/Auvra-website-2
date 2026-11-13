@@ -68,7 +68,7 @@ export default function StoryPage({ story }) {
         </section>
       )}
 
-      <FinalCta id="story-cta" title="Preserve your story." text="Record the stories, languages and traditions your family carries, and keep them credited to you for generations." secondary={{ href: '/cultural-stories', label: 'More stories' }} />
+      <FinalCta id="story-cta" title="Preserve your story." text="Record the stories, languages and traditions your family carries, and keep them credited to you for generations." secondary={{ href: '/cultural-stories', label: 'More stories' }} tone="espresso" />
     </>
   );
 }

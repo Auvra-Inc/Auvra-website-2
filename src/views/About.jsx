@@ -61,11 +61,11 @@ export default function About() {
   return (
     <>
       {/* 1 · Introduction */}
-      <section className="relative overflow-hidden bg-cream -mt-[88px] pt-[130px] md:pt-[160px]" aria-labelledby="about-title">
+      <section className="relative overflow-hidden bg-cream pt-36 md:pt-44" aria-labelledby="about-title">
         <div className="wrap pb-14 md:pb-20 text-center">
           <Crumbs items={[{ label: 'About Auvra' }]} />
           <p className="kicker">Company</p>
-          <h1 id="about-title" className={`${H1} mx-auto`}>About Auvra</h1>
+          <h1 id="about-title" className={`${H1} mx-auto !text-[clamp(64px,17.5vw,200px)]`}>About Auvra</h1>
           <p className="mx-auto mt-8 max-w-[40rem] text-[18px] md:text-[22px] leading-relaxed text-[#3A3631]">
             Auvra is a cultural technology company building the permanent home for human culture. We are developing the infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.
           </p>
@@ -92,7 +92,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-carbon text-white" aria-label="Why Auvra exists">
+      <section className="bg-[#191717] text-white" aria-label="Why Auvra exists">
         {STORY.map((s, i) => (
           <article key={s.id} className={`wrap grid gap-10 py-20 md:py-28 lg:grid-cols-2 lg:gap-16 lg:items-center ${i ? 'border-t border-[#2B2B2B]' : ''}`} aria-labelledby={`${s.id}-title`}>
             <div className={`max-md:text-center ${i % 2 ? 'lg:order-2' : ''}`}>
@@ -142,7 +142,7 @@ export default function About() {
       </section>
 
       {/* 3 · Our Mission */}
-      <section id="mission" className="scroll-mt-24 bg-carbon text-white py-24 md:py-36 overflow-hidden" aria-labelledby="mission-title">
+      <section id="mission" className="scroll-mt-24 bg-[#191717] text-white py-24 md:py-36 overflow-hidden" aria-labelledby="mission-title">
         <div className="wrap text-center">
           <h2 id="mission-title" className="kicker !text-[#FFB4A3] justify-center">Our Mission</h2>
           <p className="reveal mx-auto mt-4 max-w-[22ch] font-serif text-[clamp(32px,5.6vw,76px)] leading-[1.06]">
@@ -161,7 +161,7 @@ export default function About() {
         <div className="wrap grid items-center gap-12 py-20 md:py-32 lg:grid-cols-[1.2fr_1fr]">
           <div className="max-md:text-center">
             <h2 id="vision-title" className="kicker !text-[#FFB4A3]">Our Vision</h2>
-            <p className="reveal mt-2 font-semibold uppercase tracking-[-0.04em] leading-[0.95] text-[clamp(30px,4.4vw,58px)] text-balance">
+            <p className="reveal mt-2 ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(30px,4.4vw,58px)] text-balance">
               A world where no culture, story, language, tradition or contribution is lost simply because the people who carry it are no longer present.
             </p>
             <p className={`reveal ${LEAD} mt-8 max-w-[560px] text-[#E9D9CF] max-md:mx-auto`}>
@@ -230,7 +230,7 @@ export default function About() {
           {PRINCIPLES.map(([name, line, detail], i) => (
             <li key={name} className="reveal grid gap-3 border-b border-line py-9 md:grid-cols-[90px_1fr_1fr] md:gap-10 md:py-12 max-md:text-center">
               <span className="text-sm font-semibold text-olive md:pt-3">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="font-semibold uppercase tracking-[-0.035em] leading-[0.95] text-[clamp(34px,4.6vw,60px)]">{name}</h3>
+              <h3 className="ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(34px,4.6vw,60px)]">{name}</h3>
               <div className="md:pt-2">
                 <p className="text-[20px] md:text-[22px] font-medium leading-snug text-carbon">{line}</p>
                 <p className="mt-3 text-[17px] text-grey">{detail}</p>

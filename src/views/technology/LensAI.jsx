@@ -47,7 +47,7 @@ export default function LensAI({ demo }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#ECE8FF] -mt-[88px] pt-[130px] md:pt-[160px] pb-16 md:pb-24" aria-labelledby="lens-title">
+      <section className="relative overflow-hidden bg-[#ECE8FF] pt-36 md:pt-44 pb-16 md:pb-24" aria-labelledby="lens-title">
         <div className="wrap text-center">
           <Crumbs items={[{ label: 'Technology' }, { label: 'Lens AI' }]} />
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -102,7 +102,7 @@ export default function LensAI({ demo }) {
       </section>
 
       {/* 3 · Oral documentation */}
-      <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby="oral-title">
+      <section className="bg-[#191717] text-white py-20 md:py-32" aria-labelledby="oral-title">
         <div className="wrap">
           <QA
             id="oral-title"
@@ -232,7 +232,7 @@ export default function LensAI({ demo }) {
                           <span className="block text-[17px] md:text-[19px] font-semibold">{c.name}</span>
                           <span className="mt-1 block text-[15px] text-grey">{c.text}</span>
                         </th>
-                        <td className="px-5 md:px-8 py-5 text-right md:text-left"><Status kind={c.status} /></td>
+                        <td className="pl-0 pr-5 md:px-8 py-5 text-right md:text-left whitespace-nowrap [&_.status]:whitespace-nowrap"><Status kind={c.status} /></td>
                       </tr>
                     )) : (
                       <tr className="border-t border-line">
@@ -255,8 +255,7 @@ export default function LensAI({ demo }) {
         title="Give every voice a lasting record."
         text="Start preserving the stories and languages your family carries today, and be among the first to use Lens AI as it arrives."
         secondary={{ href: '/institutional-access', label: 'Institutional access' }}
-        from="#ECE8FF"
-        via="#BFB3FF"
+        tone="blue"
       />
     </>
   );

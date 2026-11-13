@@ -180,8 +180,7 @@ export default function Research({ listing }) {
         text="If you work on languages, archives or cultural heritage and would like to collaborate, we would like to hear from you."
         primary={{ href: '/contact', label: 'Contact us' }}
         secondary={{ href: '/institutional-access', label: 'Institutional access' }}
-        from="#BFE0E1"
-        via="#DBC9F5"
+        tone="teal"
       />
     </>
   );
