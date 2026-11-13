@@ -235,23 +235,21 @@ const audiences = [
     <p class="sr-only">Auvra keeps stories, music, languages, film, family recordings, art, recipes, voices and memories.</p>
   </section>
 
-  <!-- Statement: words and photos interleaved -->
-  <section class="bg-white px-6 py-20 md:py-32" aria-labelledby="statement-title">
+  <!-- Statement: words and rugs interleaved, laid out like the reference poster -->
+  <section class="bg-white px-5 py-20 md:py-32" aria-labelledby="statement-title">
     <h2 id="statement-title" class="sr-only">Your story isn't lost. It's preserved.</h2>
-    <div class="mx-auto grid max-w-[1000px] grid-cols-2 md:grid-cols-[1.15fr_1fr_0.7fr] items-center gap-x-5 gap-y-6 md:gap-y-8" aria-hidden="true">
-      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-1">Your story</p>
-      <img src="/images/photos/beadwork-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-2" loading="lazy" />
-      <img src="/images/photos/creator-studio-480.webp" alt="" class="reveal max-md:order-2 aspect-square w-full rounded-md object-cover shadow-md" loading="lazy" />
-      <img src="/images/photos/singers-480.webp" alt="" class="reveal aspect-[2/1] w-full rounded-md object-cover shadow-md max-md:order-4 max-md:aspect-square" loading="lazy" />
-      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] md:text-right max-md:col-span-2 max-md:order-3">isn't lost.</p>
-      <img src="/images/photos/creator-filmcrew-480.webp" alt="" class="reveal max-md:order-4 max-md:aspect-square aspect-[3/4] w-full rounded-md object-cover shadow-md" loading="lazy" />
-      <p class="reveal text-[15vw] md:text-[clamp(64px,7.4vw,104px)] font-medium leading-[0.86] tracking-[-0.04em] max-md:col-span-2 max-md:order-5">It's preserved.</p>
-      <img src="/images/photos/creator-filmmaker-480.webp" alt="" class="reveal aspect-[3/2] w-full rounded-md object-cover shadow-md max-md:order-6 max-md:col-span-2" loading="lazy" />
-      <div class="hidden md:flex flex-col items-center gap-1 text-[22px] font-medium">
-        <span class="size-11 rounded-full border-2 border-carbon"></span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">20</span><span class="grid size-11 place-items-center rounded-full border-2 border-carbon">26</span><span class="size-11 rounded-full border-2 border-carbon"></span>
-      </div>
+    <div class="rugs reveal" aria-hidden="true">
+      <p class="rugs__t" style="left:1.6%;top:1.6%">Your<br />story</p>
+      <img src="/images/rugs/lizard.webp" alt="" style="left:40.8%;top:3.1%;width:31.8%" loading="lazy" />
+      <img src="/images/rugs/tiger-palms.webp" alt="" style="left:77.9%;top:2.4%;width:21.6%" loading="lazy" />
+      <img src="/images/rugs/lemons.webp" alt="" style="left:1.6%;top:36.9%;width:41.1%" loading="lazy" />
+      <p class="rugs__t rugs__t--right" style="right:22.6%;top:36%">isn’t<br />lost.</p>
+      <img src="/images/rugs/tiger-flowers.webp" alt="" style="left:83.4%;top:36.3%;width:16.1%" loading="lazy" />
+      <p class="rugs__t" style="left:1.6%;top:71.4%">It’s<br />preserved.</p>
+      <img src="/images/rugs/oranges.webp" alt="" class="rugs__oranges" loading="lazy" />
+      <div class="rugs__dots"><span></span><span>20</span><span>26</span><span></span></div>
     </div>
-    <p class="reveal mx-auto mt-16 md:mt-24 max-w-[560px] text-center text-[17px] md:text-xl"><b>Made</b> by you, preserved <b>with intention</b>.</p>
+    <p class="reveal mx-auto mt-14 md:mt-20 max-w-[560px] text-center text-[15px] md:text-xl"><b>Made</b> by you, preserved <b>with intention</b>.</p>
   </section>
 
   <!-- 4 · Poster statement -->

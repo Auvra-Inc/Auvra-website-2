@@ -672,3 +672,12 @@ html { overflow-x: clip; }
   @keyframes heroDot { 0%, 2% { width: 8px; background: rgba(255,255,255,.5); } 3.6%, 25% { width: 26px; background: #fff; } 28.6%, 100% { width: 8px; background: rgba(255,255,255,.5); } }
   @media (prefers-reduced-motion: reduce) { .hero-slide { transform: none; } .hero-slide:not(:first-child) { display: none; } }
 }
+@layer components {
+  .rugs { position: relative; container-type: inline-size; width: 100%; max-width: 760px; margin: 0 auto; aspect-ratio: 760 / 620; }
+  .rugs > img { position: absolute; height: auto; display: block; }
+  .rugs__t { position: absolute; margin: 0; font-weight: 500; font-size: 11.6cqw; line-height: .86; letter-spacing: -0.045em; color: #111; white-space: nowrap; }
+  .rugs__t--right { text-align: right; }
+  .rugs__oranges { left: 59%; top: 71.4%; width: 30%; }
+  .rugs__dots { position: absolute; left: 93.6%; top: 71.6%; width: 6cqw; display: flex; flex-direction: column; gap: 0; }
+  .rugs__dots span { display: grid; place-items: center; width: 6cqw; height: 6cqw; border: max(1px, .32cqw) solid #111; border-radius: 50%; font-size: 3cqw; font-weight: 500; line-height: 1; letter-spacing: -0.04em; margin-top: -0.25cqw; }
+}
