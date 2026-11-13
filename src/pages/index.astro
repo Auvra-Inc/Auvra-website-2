@@ -114,7 +114,23 @@ const audiences = [
           <div class="mt-4 flex items-center justify-between rounded-xl bg-linen px-3 py-2.5 text-[14px]"><span class="font-semibold text-[#2F6B12]">✓ Preserved</span><span class="text-grey">Credited to you</span></div>
         </div>
       </div>
-      <div class="hero-slides__dots" aria-hidden="true">{[0, 1, 2, 3].map((i) => <span style={`--i:${i}`}></span>)}</div>
+      <div class="hero-slide" style="--i:4">
+        <img src="/images/photos/creator-braids-960.webp" alt="A smiling young woman with long braids and painted nails, face turned to the sun" class="object-[55%_30%]" loading="lazy" />
+        <div class="hero-notif">
+          <div class="hero-notif__head"><span>Notification Center</span><span class="hero-notif__x" aria-hidden="true">×</span></div>
+          <div class="hero-notif__stack">
+            <div class="hero-notif__card">
+              <span class="hero-notif__icon"><img src="/brand/auvra-mark-linen.svg" alt="" /></span>
+              <div class="min-w-0 flex-1 text-left">
+                <p class="flex items-baseline justify-between gap-2"><b class="text-[15px]">Auvra</b><span class="text-[12px] text-[#9A948D]">2 min ago</span></p>
+                <p class="mt-0.5 text-[13.5px] leading-snug text-[#6B6560]">You’ve earned the “Creator” badge 🏆 Your braiding tutorial was claimed 12 times.</p>
+                <p class="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#E8F1E4] px-2.5 py-1 text-[12px] font-semibold text-[#2F6B12]">✓ Payout sent to your account</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slides__dots" aria-hidden="true">{[0, 1, 2, 3, 4].map((i) => <span style={`--i:${i}`}></span>)}</div>
     </div>
     <div class="relative isolate hidden md:grid h-[640px] md:h-[732px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-clip">
       <img src="/images/photos/creator-painter-960.webp" srcset="/images/photos/creator-painter-480.webp 480w, /images/photos/creator-painter-960.webp 960w" sizes="(max-width: 767px) 100vw, 34vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="md:hidden lg:block h-full w-full object-cover object-[50%_30%]" fetchpriority="high" />

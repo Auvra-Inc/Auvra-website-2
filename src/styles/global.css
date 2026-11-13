@@ -865,3 +865,22 @@ html { overflow-x: clip; }
     .footer-main .border-y { font-size: 12px !important; column-gap: 12px; }
   }
 }
+@layer components {
+  /* Five slides: 7s each, 35s loop. */
+  .hero-slide { animation: heroSlide5 35s cubic-bezier(.65,0,.35,1) infinite backwards; animation-delay: calc(var(--i) * 7s - 1s); }
+  .hero-slides__dots span { animation: heroDot5 35s linear infinite backwards; animation-delay: calc(var(--i) * 7s - 1s); }
+  @keyframes heroSlide5 { 0% { transform: translateX(100%); } 2.86% { transform: translateX(0); } 20% { transform: translateX(0); } 22.86% { transform: translateX(-100%); } 100% { transform: translateX(-100%); } }
+  @keyframes heroDot5 { 0%, 1.6% { width: 8px; background: rgba(255,255,255,.5); } 2.86%, 20% { width: 26px; background: #fff; } 22.86%, 100% { width: 8px; background: rgba(255,255,255,.5); } }
+
+  /* Notification-centre card (glass, stacked), as in the reference */
+  .hero-notif { position: absolute; left: 50%; top: 70%; width: 86%; transform: translate(-50%, -50%); }
+  .hero-notif__head { display: flex; align-items: center; justify-content: space-between; margin: 0 4px 10px; color: #fff; font-size: 15px; font-weight: 500; text-shadow: 0 1px 8px rgba(0,0,0,.25); }
+  .hero-notif__x { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #191717; font-size: 18px; line-height: 1; text-shadow: none; }
+  .hero-notif__stack { position: relative; padding-bottom: 22px; }
+  .hero-notif__stack::before, .hero-notif__stack::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); border-radius: 18px; background: rgba(255,255,255,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .hero-notif__stack::before { bottom: 11px; width: 92%; height: 40px; }
+  .hero-notif__stack::after { bottom: 0; width: 82%; height: 40px; background: rgba(255,255,255,.35); }
+  .hero-notif__card { position: relative; z-index: 1; display: flex; gap: 12px; align-items: flex-start; border-radius: 20px; padding: 14px; background: rgba(255,255,255,.94); box-shadow: 0 0 0 7px rgba(255,255,255,.35), 0 24px 50px -20px rgba(0,0,0,.45); }
+  .hero-notif__icon { display: grid; place-items: center; flex: none; width: 46px; height: 46px; border-radius: 50%; background: #191717; }
+  .hero-notif__icon img { width: 24px; height: 24px; }
+}
