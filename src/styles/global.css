@@ -798,3 +798,8 @@ html { overflow-x: clip; }
   .wall__card, .wall__card.is-front { filter: none; box-shadow: 0 18px 30px -18px rgba(0,0,0,.45); transition: opacity .4s; }
   .wall-pip { display: inline-block; cursor: default; }
 }
+@layer components {
+  /* Brief highlight on the store buttons after Explore Auvra scrolls to them. */
+  #get-app.is-pinged .store { animation: storePing 1.2s ease .5s 2; }
+  @keyframes storePing { 50% { transform: translateY(-3px); box-shadow: 0 0 0 6px rgba(255,255,230,.35); } }
+}

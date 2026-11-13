@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.astro';
 import IconSprite from '../components/IconSprite.jsx';
-import { SITE, SOCIAL, CONTACT_EMAIL } from '../data/site.js';
+import { SITE, SOCIAL, CONTACT_EMAIL, STORE } from '../data/site.js';
 
 /**
  * Every page: unique title + description, canonical URL, Open Graph / X cards,
@@ -62,6 +62,24 @@ const ld = [org, site, ...(breadcrumb ? [breadcrumb] : []), ...jsonld];
     <Nav client:load pathname={path} />
     <main id="main"><slot /></main>
     <Footer />
+    <script is:inline define:vars={{ store: STORE }}>
+      // Explore Auvra: straight to the right app store on phones, else scroll to the download buttons.
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a[href="#get-app"]');
+        if (!a) return;
+        e.preventDefault();
+        const ua = navigator.userAgent || '';
+        const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        const android = /Android/i.test(ua);
+        if (store.live && ios) { location.href = store.appStore; return; }
+        if (store.live && android) { location.href = store.googlePlay; return; }
+        const t = document.getElementById('get-app');
+        if (!t) return;
+        if (window.__lenis) window.__lenis.scrollTo(t, { offset: -160 });
+        else t.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        t.classList.remove('is-pinged'); void t.offsetWidth; t.classList.add('is-pinged');
+      });
+    </script>
     <script>
       import '../scripts/motion.js';
     </script>

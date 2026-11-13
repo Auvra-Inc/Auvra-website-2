@@ -12,6 +12,7 @@ if (reduce) {
 } else {
   gsap.registerPlugin(ScrollTrigger);
   const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+  window.__lenis = lenis;
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -20,7 +21,7 @@ if (reduce) {
     const a = e.target.closest('a[href*="#"]');
     if (!a) return;
     const url = new URL(a.href, location.href);
-    if (url.pathname !== location.pathname || !url.hash) return;
+    if (url.pathname !== location.pathname || !url.hash || url.hash === "#get-app") return;
     const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
     if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -100 }); history.pushState(null, '', url.hash); }
   });

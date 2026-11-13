@@ -18,8 +18,10 @@ export const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/auvra/' },
 ];
 
-// Explore Auvra is the primary call to action across the site.
-export const EXPLORE_HREF = '/download';
+// Explore Auvra is the primary call to action. It never opens another page:
+// on iPhone/iPad it opens the App Store, on Android Google Play (once STORE.live is true),
+// otherwise it scrolls to the store buttons in the footer (#get-app), present on every page.
+export const EXPLORE_HREF = '#get-app';
 
 // Main navigation (PRD section 5.1). Who We Serve items are homepage anchors, not separate pages.
 export const NAV = [
