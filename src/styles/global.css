@@ -734,3 +734,9 @@ html { overflow-x: clip; }
   }
 }
 @layer components { .hero-slide__card--top { top: 24%; } }
+@layer components {
+  /* Hero headline: room between lines so each phrase can breathe. */
+  .hero-h1 { letter-spacing: -0.03em; }
+  .hero-h1 .hero-line + .hero-line { margin-top: .14em; }
+  .hero-h1 .serif-accent { font-size: 1em; line-height: 1.02; }
+}
