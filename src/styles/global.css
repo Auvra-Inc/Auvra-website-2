@@ -935,3 +935,9 @@ html { overflow-x: clip; }
   .footer-sub .subscribe .btn { min-height: 40px; height: 40px; padding: 0 16px; font-size: 14px; }
   .footer-sub .subscribe__msg { font-size: 13px; margin-top: 8px; }
 }
+@layer components {
+  /* Footer links laid out like the previous goauvra.com: logo block, then a 2-column grid of four groups */
+  .footer-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; justify-content: stretch !important; column-gap: 40px !important; row-gap: 32px !important; }
+  .footer-grid > :first-child { grid-column: 1 / -1; padding-right: 0; margin-bottom: 8px; }
+  @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.6fr repeat(4, 1fr) !important; column-gap: 32px !important; } .footer-grid > :first-child { grid-column: auto; margin-bottom: 0; } }
+}
