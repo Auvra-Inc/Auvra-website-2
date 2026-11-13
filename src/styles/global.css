@@ -589,3 +589,16 @@ html { overflow-x: clip; }
   .artifact:nth-of-type(3n) { animation-duration: 13s; animation-delay: -6s; }
   @keyframes artifactFloat { 0%, 100% { translate: 0 -6px; } 50% { translate: 0 6px; } }
 }
+@layer components {
+  .footer-stores .stores { flex-direction: column; align-items: center; gap: 14px; }
+  @media (min-width: 768px) { .footer-stores .stores { flex-direction: row; } }
+  .footer-stores .store { background: #FFFFE6; color: #191717; min-height: 64px; border-radius: 18px; padding: 10px 26px 10px 22px; }
+  .footer-stores .store small { font-size: 14px; opacity: 1; }
+  .footer-stores .store b { font-size: 22px; font-weight: 700; }
+  .footer-sub .subscribe { flex-wrap: nowrap; gap: 0; padding: 6px; border-radius: 999px; background: #2B2724; max-width: none; }
+  .footer-sub .subscribe input { border: 0; background: transparent; min-height: 56px; font-size: 17px; min-width: 0; }
+  .footer-sub .subscribe .btn { min-height: 56px; padding: 0 28px; font-size: 17px; background: #fff; color: #191717; flex: none; }
+  .footer-sub .subscribe__msg { position: absolute; }
+  .footer-sub { position: relative; }
+  .footer-sub .subscribe__msg:not(:empty) { position: static; flex-basis: 100%; }
+}

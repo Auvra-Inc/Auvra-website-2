@@ -1,44 +1,37 @@
 ---
-// Wysemarket-style closing block on every page: gradient band, cream card with a big call to action,
-// and the four footer groups in the right half.
-import Sunburst from './Sunburst.astro';
-import { FOOTER, CONTACT_EMAIL, SOCIAL, EXPLORE_HREF } from '../data/site.js';
-const { title = 'What we keep today, tomorrow remembers.', text = 'Help build the permanent home for human culture. Start preserving your family’s story today.' } = Astro.props;
+// Closing call to action on every page (dark card, as in the Option B design), then the footer links.
+import StoreButtons from './StoreButtons.jsx';
+import { SubscribeForm } from './Forms.jsx';
+import { FOOTER, CONTACT_EMAIL, SOCIAL } from '../data/site.js';
 ---
-<footer class="footer-cta overflow-hidden" aria-labelledby="footer-cta-title">
-  <img src="/images/artifacts/clay-3.webp" alt="" aria-hidden="true" class="footer-cta__deco artifact left-[-30px] md:left-[-10px] top-[2%] md:top-[14%] w-[110px] md:w-[210px] -rotate-12" loading="lazy" />
-  <img src="/images/artifacts/clay-2.webp" alt="" aria-hidden="true" class="footer-cta__deco artifact right-[-30px] md:right-[-10px] top-[1%] md:top-[4%] w-[120px] md:w-[220px] rotate-12" loading="lazy" />
-  <div class="footer-cta__card overflow-hidden">
-    <Sunburst class="!top-[17%] !w-[min(820px,150vw)]" />
-    <div class="relative z-10 mx-auto flex max-w-[880px] flex-col items-center gap-6 pt-28 md:pt-[11rem] pb-28 md:pb-40 text-center">
-      <h2 id="footer-cta-title" class="ws-h text-[clamp(42px,8vw,88px)]">{title}</h2>
-      <p class="max-w-[420px] text-[16px] md:text-[17px] text-[#3A3631]">{text}</p>
-      <a href={EXPLORE_HREF} class="btn btn--dark shimmer !min-h-[64px] !px-12 mt-4">Explore Auvra</a>
-    </div>
-    <div class="relative z-10 grid md:grid-cols-2 gap-10">
-      <div class="flex flex-col gap-4">
-        <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="150" height="42" loading="lazy" class="h-10 w-auto" /></a>
-        <p class="text-grey">Building the Permanent Home for Human Culture.</p>
-        <a class="font-medium underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-      </div>
-      <div class="flex flex-col divide-y divide-[#E8E8E8]">
-        <div class="grid grid-cols-2 gap-8 pb-10">
-          {FOOTER.map((col) => (
-            <nav aria-label={col.title} class="flex flex-col gap-4">
-              <h2 class="text-xs uppercase tracking-[0.12em] text-[#626262]">{col.title}</h2>
-              <ul class="flex flex-col">{col.links.map((l) => <li><a class="inline-flex min-h-[40px] items-center text-[15px] md:text-base hover:underline" href={l.href}>{l.label}</a></li>)}</ul>
-            </nav>
-          ))}
-        </div>
-        <div class="py-8 flex flex-col gap-4">
-          <h2 class="text-xs uppercase tracking-[0.12em] text-[#626262]">Follow us</h2>
-          <ul class="flex flex-wrap gap-x-6">{SOCIAL.map((s) => <li><a class="inline-flex min-h-[44px] items-center hover:underline" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>
-        </div>
-        <div class="py-8 flex flex-col gap-2 text-sm text-[#626262]">
-          <span>© Auvra. All rights reserved.</span>
-          <span>Auvra was created to give families, creators and communities a permanent home for the culture they carry.</span>
-        </div>
+<footer class="bg-white" aria-labelledby="footer-cta-title">
+  <div class="px-3 md:px-10 pt-10 md:pt-20">
+    <div class="relative mx-auto max-w-[1240px] overflow-hidden rounded-[36px] md:rounded-[44px] bg-[#191717] px-6 py-24 md:py-32 text-center" style="background-image: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(120,110,95,.55), rgba(25,23,23,0) 70%)">
+      <div class="mx-auto flex max-w-[860px] flex-col items-center gap-7">
+        <h2 id="footer-cta-title" class="ws-h text-[#FBF8F1] text-[clamp(44px,9vw,104px)] !leading-[0.92]">What we keep today, tomorrow remembers.</h2>
+        <p class="max-w-[30ch] text-[18px] md:text-[22px] leading-relaxed text-[#D9D3C8]">Start preserving your family’s story today. It’s free to begin.</p>
+        <div class="footer-stores mt-4"><StoreButtons variant="light" /></div>
+        <div class="footer-sub mt-6 w-full max-w-[560px]"><SubscribeForm client:visible id="footer-email" /></div>
       </div>
     </div>
+  </div>
+  <div class="mx-auto grid max-w-[1240px] gap-12 px-6 md:px-10 py-16 md:grid-cols-[1.2fr_2fr]">
+    <div class="flex flex-col gap-4">
+      <a href="/" aria-label="Auvra home"><img src="/brand/auvra-logo-carbon.svg" alt="Auvra" width="150" height="42" loading="lazy" class="h-10 w-auto" /></a>
+      <p class="text-grey">Building the Permanent Home for Human Culture.</p>
+      <a class="font-medium underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      <ul class="flex flex-wrap gap-x-6">{SOCIAL.map((s) => <li><a class="inline-flex min-h-[44px] items-center hover:underline" href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {FOOTER.map((col) => (
+        <nav aria-label={col.title} class="flex flex-col gap-3">
+          <h2 class="text-xs uppercase tracking-[0.12em] text-[#626262]">{col.title}</h2>
+          <ul class="flex flex-col">{col.links.map((l) => <li><a class="inline-flex min-h-[40px] items-center text-[15px] hover:underline" href={l.href}>{l.label}</a></li>)}</ul>
+        </nav>
+      ))}
+    </div>
+  </div>
+  <div class="mx-auto flex max-w-[1240px] flex-wrap justify-between gap-2 border-t border-line px-6 md:px-10 py-6 text-sm text-[#626262]">
+    <span>© Auvra. All rights reserved.</span><span>Lagos, Nigeria</span>
   </div>
 </footer>
