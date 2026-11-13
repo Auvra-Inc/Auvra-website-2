@@ -85,7 +85,7 @@ export default function About() {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-2 md:gap-3 px-2 md:px-3">
-          <Photo name="family-path" eager alt="A family walking together along a grassy path, children leading the way" className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 100vw, 45vw" />
+          <Photo name="drums" eager alt="Drummers in beads and patterned cloth playing talking drums at a festival" className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] object-cover object-[50%_18%]" sizes="(max-width: 760px) 100vw, 45vw" />
           <Photo name="warrior-dance" eager alt="A line of dancers in red and white performing a traditional dance" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
           <Photo name="emir" eager alt="A man in white royal robes and turban, holding a staff" className="h-[240px] md:h-[560px] w-full rounded-[24px] object-cover" sizes="(max-width: 760px) 50vw, 28vw" />
         </div>
