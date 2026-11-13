@@ -83,11 +83,11 @@ export default function LensAI({ demo }) {
           <QA
             id="lang-title"
             kicker="Language understanding"
-            q="Why does Lens AI focus on underrepresented languages?"
-            answer="Because most speech and language technology is built for a small number of widely written languages, while much of the world’s cultural knowledge is spoken in languages that technology barely hears."
+            q="Which languages does Lens AI focus on?"
+            answer="Lens AI focuses on indigenous and underrepresented languages, starting with African languages, English and French. Most speech and language technology is built for a few widely written languages, while much of the world’s cultural knowledge is spoken in languages that technology barely hears."
           >
             <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-grey max-w-[600px] max-md:mx-auto">
-              <p>Lens AI is being developed with speech and language technology for indigenous and underrepresented languages, starting with African languages, English and French.</p>
+              <p>Lens AI is being developed with speech and language technology for these languages, so that a story told in a language that is rarely written down can be as easy to keep and read as one told in English.</p>
               <p>Many of these languages are mostly spoken rather than written, mix with other languages mid-sentence, and carry words that have no direct translation. Lens AI is designed to keep the original words visible next to any translation, so meaning is not quietly flattened.</p>
             </div>
           </QA>

@@ -35,7 +35,7 @@ const LINKS = [
     q: 'How does Auvra Passport relate to Contribution Badges?',
     a: 'When you add context, a memory or care to a cultural record, a Contribution Badge is designed to record that contribution. Auvra Passport is designed to connect those badges back to you, so your contributions across many records sit together under your name.',
     points: ['Your contributions, gathered in one place', 'Attribution that stays with the record', 'A history of how you have helped keep culture complete'],
-    photo: 'elder', alt: 'An elder in traditional dress, the kind of knowledge holder whose memories contributions preserve',
+    photo: 'elder', alt: 'An elder in a wide-brimmed hat and robes, the kind of knowledge holder whose memories contributions preserve',
   },
   {
     id: 'collectible', href: '/collectible-badges', icon: 'gift', label: 'Collectible Badges', bg: 'bg-blue', sub: 'text-[#DCD5FF]', accent: 'text-[#DCD5FF]',
@@ -88,7 +88,7 @@ export default function AuvraPassport() {
             <figcaption className="mt-3 text-center text-[14px] text-[#5A4A44]">Illustrative example of the records a Passport connects.</figcaption>
           </figure>
         </div>
-        <Photo name="crowd" alt="A crowd gathered together at a cultural festival" sizes="100vw" className="h-[360px] md:h-[560px] w-full object-cover" />
+        <Photo name="crowd" alt="Men in red caps and patterned clothing gathered at a festival" sizes="100vw" className="h-[360px] md:h-[560px] w-full object-cover" />
       </section>
 
       {/* 1 · What it is */}

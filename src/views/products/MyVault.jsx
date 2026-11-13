@@ -110,7 +110,7 @@ export default function MyVault() {
 
       {/* 2 · Personal preservation (full-bleed photo) */}
       <section aria-labelledby="personal-title">
-        <Photo name="young-man" alt="A young man in traditional dress looking towards the camera" sizes="100vw" className="h-[420px] md:h-[620px] w-full object-cover object-[50%_30%]" />
+        <Photo name="young-man" alt="A young man in a wrapper and coral beads standing outdoors" sizes="100vw" className="h-[420px] md:h-[620px] w-full object-cover object-[50%_30%]" />
         <div className="wrap py-20 md:py-28 grid gap-10 lg:grid-cols-2 lg:gap-20">
           <div className="reveal max-md:text-center">
             <p className="kicker">Personal preservation</p>
@@ -138,7 +138,7 @@ export default function MyVault() {
           </div>
           <div className="reveal grid grid-cols-2 gap-3">
             <Photo name="hands-braid" alt="An older hand braiding a child’s hair" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover" />
-            <Photo name="elder" alt="An elder in traditional dress seated at home" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover translate-y-8" />
+            <Photo name="elder" alt="An elder in a wide-brimmed hat and robes among family and friends" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover translate-y-8" />
           </div>
         </div>
       </section>

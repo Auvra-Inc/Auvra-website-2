@@ -44,7 +44,7 @@ export function Kicker({ children, light = false }) {
 // A question heading followed by a direct, factual answer (for answer engines), then any detail.
 export function QA({ id, kicker, q, answer, light = false, center = false, children, className = '' }) {
   return (
-    <div className={`reveal max-md:text-center ${center ? 'md:text-center md:mx-auto' : ''} ${className}`}>
+    <div className={`reveal min-w-0 max-md:text-center ${center ? 'md:text-center md:mx-auto' : ''} ${className}`}>
       {kicker && <Kicker light={light}>{kicker}</Kicker>}
       <h2 id={id} className={`${H2} ${center ? 'mx-auto' : ''} max-w-[18ch]`}>{q}</h2>
       {answer && (

@@ -23,11 +23,11 @@ const JOURNEY = [
 ];
 
 const EXAMPLES = [
-  { photo: 'mask', alt: 'A carved wooden mask with painted details', kind: 'Traditional artwork', title: 'Carved ancestral mask', creator: 'A woodcarver from Benin City', context: 'Carved in a style used for masquerades that honour ancestors, with notes on the wood, tools and meaning of the markings.', format: 'Physical, with a digital record' },
-  { photo: 'drummers-row', alt: 'A row of drummers playing together', kind: 'Music', title: 'Dùndún praise rhythm', creator: 'A talking-drum ensemble from Oyo', context: 'A recorded praise rhythm with an explanation of who it honours and when it is traditionally played.', format: 'Digital' },
-  { photo: 'durbar', alt: 'Horsemen in colourful regalia at a durbar festival', kind: 'Cultural photography', title: 'Durbar morning', creator: 'A documentary photographer from Kano', context: 'A photograph of the durbar procession, with the names of the regalia and the history of the festival.', format: 'Digital, with an optional print' },
-  { photo: 'coral-beads', alt: 'Close-up of layered coral bead necklaces', kind: 'Craftsmanship', title: 'Coral bead regalia', creator: 'A bead-maker and her apprentices', context: 'Beadwork made for ceremonial dress, with the stringing technique and the occasions it is worn for.', format: 'Physical, with a digital record' },
-  { photo: 'dancers', alt: 'Dancers in traditional costume performing together', kind: 'Documented cultural expression', title: 'New yam festival dance', creator: 'A community dance troupe', context: 'A documented performance with the meaning of the movements and the role of the dance in the festival.', format: 'Digital' },
+  { photo: 'mask', alt: 'A person wearing a carved wooden mask and a patterned robe', kind: 'Traditional artwork', title: 'Carved ancestral mask', creator: 'A woodcarver from Benin City', context: 'Carved in a style used for masquerades that honour ancestors, with notes on the wood, tools and meaning of the markings.', format: 'Physical, with a digital record' },
+  { photo: 'drummers-row', alt: 'Men playing large drums in a street procession', kind: 'Music', title: 'Dùndún praise rhythm', creator: 'A talking-drum ensemble from Oyo', context: 'A recorded praise rhythm with an explanation of who it honours and when it is traditionally played.', format: 'Digital' },
+  { photo: 'durbar', alt: 'A horseman in colourful regalia riding in a festival procession', kind: 'Cultural photography', title: 'Durbar morning', creator: 'A documentary photographer from Kano', context: 'A photograph of the durbar procession, with the names of the regalia and the history of the festival.', format: 'Digital, with an optional print' },
+  { photo: 'coral-beads', alt: 'Women wearing coral bead necklaces and red headwear at a festival', kind: 'Craftsmanship', title: 'Coral bead regalia', creator: 'A bead-maker and her apprentices', context: 'Beadwork made for ceremonial dress, with the stringing technique and the occasions it is worn for.', format: 'Physical, with a digital record' },
+  { photo: 'dancers', alt: 'Dancers in raffia costumes performing outdoors', kind: 'Documented cultural expression', title: 'New yam festival dance', creator: 'A community dance troupe', context: 'A documented performance with the meaning of the movements and the role of the dance in the festival.', format: 'Digital' },
 ];
 
 const TINTS = { gold: 'bg-[#FFF4D6]', lime: 'bg-[#E8F1E4]', salmon: 'bg-[#FFE9E3]', blue: 'bg-[#ECE8FF]', carbon: 'bg-linen' };
@@ -59,7 +59,7 @@ export default function CollectibleBadges() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr]">
-          <Photo name="masquerade" alt="A masquerade performer in colourful costume at a festival" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
+          <Photo name="masquerade" alt="A performer with blue face paint and a horned headdress at a festival" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
           <Photo name="drummer-blue" alt="A man in blue adire cloth playing a talking drum" eager sizes="(max-width: 760px) 100vw, 60vw" className="h-[420px] md:h-[600px] w-full object-cover" />
         </div>
       </section>

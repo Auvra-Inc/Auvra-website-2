@@ -42,9 +42,9 @@ const PATHS = [
 
 const EXAMPLES = [
   { photo: 'gele', alt: 'A woman in a gele and orange cloth at a family celebration', path: 'Contextual Validation', title: 'Naming the people in a wedding photograph', text: 'A niece adds the names of the guests in her aunt’s wedding photo, and the town where it was taken, while an older relative can still confirm them.' },
-  { photo: 'elder', alt: 'An elder seated in traditional dress, looking towards the camera', path: 'Memory & Oral Documentation', title: 'A grandfather explains a proverb', text: 'A grandson records his grandfather explaining a proverb in Yoruba: when it is used, what it means and the story behind it.' },
-  { photo: 'hands-archive', alt: 'Hands turning the pages of an old archive book', path: 'Physical & Digital Stewardship', title: 'Letters kept safe before the paper fails', text: 'A family photographs a box of letters sent home in the 1960s and notes who wrote each one, so the originals and their story are not lost.' },
-  { photo: 'drummers-row', alt: 'A row of drummers playing together at a festival', path: 'Cultural Continuation', title: 'Teaching the festival rhythms', text: 'A drummer documents how he now teaches young players the rhythms for the annual festival, linking it to an older recording of his teacher.' },
+  { photo: 'elder', alt: 'An elder in a wide-brimmed hat and robes among a festival crowd', path: 'Memory & Oral Documentation', title: 'A grandfather explains a proverb', text: 'A grandson records his grandfather explaining a proverb in Yoruba: when it is used, what it means and the story behind it.' },
+  { photo: 'hands-archive', alt: 'Hands searching through an archive of stored records', path: 'Physical & Digital Stewardship', title: 'Letters kept safe before the paper fails', text: 'A family photographs a box of letters sent home in the 1960s and notes who wrote each one, so the originals and their story are not lost.' },
+  { photo: 'drummers-row', alt: 'Men playing large drums in a street procession', path: 'Cultural Continuation', title: 'Teaching the festival rhythms', text: 'A drummer documents how he now teaches young players the rhythms for the annual festival, linking it to an older recording of his teacher.' },
 ];
 
 const STEPS = [
@@ -78,7 +78,7 @@ export default function ContributionBadges() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr]">
           <Photo name="singers" alt="Women in patterned cloth singing together at a community gathering" eager sizes="(max-width: 760px) 100vw, 60vw" className="h-[420px] md:h-[600px] w-full object-cover" />
-          <Photo name="hands-archive" alt="Hands turning the pages of an archive of cultural records" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
+          <Photo name="hands-archive" alt="Hands searching through an archive of stored records" eager sizes="40vw" className="hidden md:block h-[600px] w-full object-cover" />
         </div>
       </section>
 
