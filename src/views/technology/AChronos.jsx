@@ -47,10 +47,10 @@ const FUTURE = [
 // Diagram: one record, its context, and its relationships to other records.
 function ContextDiagram() {
   const context = [
-    ['Who', 'Shared by Grandma Nneoma, family elder'],
-    ['Language', 'Igbo, with an English translation'],
-    ['Where & when', 'Nnewi · recorded at a family gathering'],
-    ['Community', 'Okafor family · shared with family members'],
+    ['Who', 'Shared by Gogo Thandiwe, family elder'],
+    ['Language', 'isiZulu, with an English translation'],
+    ['Where & when', 'Durban · recorded at a family gathering'],
+    ['Community', 'Dlamini family · shared with family members'],
   ];
   const related = [
     ['adds context to', 'A cousin’s memory of the same journey', 'Later contribution, attributed to the cousin'],

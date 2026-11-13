@@ -40,7 +40,7 @@ function VaultScreen() {
   return (
     <div className="flex h-full flex-col gap-3 bg-[#FBF8F1] px-4 pt-[16%] text-carbon">
       <div className="flex items-center justify-between">
-        <div><p className="text-[17px] font-semibold">Okafor Family Vault</p><p className="text-[11px] text-grey">Private · shared by invitation</p></div>
+        <div><p className="text-[17px] font-semibold">Ndiaye Family Vault</p><p className="text-[11px] text-grey">Private · shared by invitation</p></div>
         <span className="rounded-full bg-carbon px-3 py-1.5 text-[11px] font-semibold text-white">+ Invite</span>
       </div>
       <div className="flex gap-1.5 text-[11px] font-semibold">
@@ -50,10 +50,10 @@ function VaultScreen() {
         <span className="rounded-full bg-white px-2.5 py-1">Docs</span>
       </div>
       {[
-        ['🎙', 'How our family began', 'Voice memory · Grandma Nneoma', 'bg-[#FFE2DB]'],
+        ['🎙', 'How our family began', 'Voice memory · Grandma Awa', 'bg-[#FFE2DB]'],
         ['img', 'Wedding photos, 1974', '24 photos · Uncle Emeka', ''],
         ['📜', 'Mama’s handwritten recipes', 'Documents · Ada', 'bg-[#ECE8FF]'],
-        ['🎵', 'Christmas songs in the village', 'Recording · Chidi', 'bg-[#E8F1E4]'],
+        ['🎵', 'Songs from the village wedding', 'Recording · Moussa', 'bg-[#E8F1E4]'],
       ].map(([i, t, s, bg]) => (
         <div key={t} className="flex items-center gap-3 rounded-2xl bg-white p-2.5 shadow-sm">
           {i === 'img'
@@ -242,7 +242,7 @@ export default function MyVault() {
           <div className="mx-auto w-full max-w-[380px] rounded-[26px] bg-white/10 p-2" aria-hidden="true">
             <div className="flex flex-col gap-3 rounded-[20px] bg-white p-5 text-carbon">
               <p className="self-end rounded-[18px] rounded-br-md bg-carbon px-4 py-3 text-[15px] text-white">Which songs did Grandma record?</p>
-              <p className="rounded-[18px] rounded-bl-md bg-[#F2EFFF] px-4 py-3 text-[15px]">From the items you have allowed me to read: two Christmas songs and a lullaby in Igbo.</p>
+              <p className="rounded-[18px] rounded-bl-md bg-[#F2EFFF] px-4 py-3 text-[15px]">From the items you have allowed me to read: two wedding songs and a lullaby in Wolof.</p>
               <p className="text-center text-[12px] text-grey">Concept illustration · not released</p>
             </div>
           </div>
