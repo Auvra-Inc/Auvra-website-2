@@ -86,11 +86,11 @@ export default function About() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-2 md:gap-3 px-2 md:px-3">
           <img
-            src="/images/photos/auvra-ceramics-v2-1200.webp"
-            srcSet="/images/photos/auvra-ceramics-v2-800.webp 800w, /images/photos/auvra-ceramics-v2-1200.webp 1200w"
+            src="/images/photos/auvra-ceramics-v3-1200.webp"
+            srcSet="/images/photos/auvra-ceramics-v3-800.webp 800w, /images/photos/auvra-ceramics-v3-1200.webp 1200w"
             sizes="(max-width: 760px) 100vw, 40vw"
             width="1200" height="1500"
-            alt="Handmade ceramic cups, bowls and vases floating on black around the word auvra"
+            alt="Handmade ceramic cups, bowls and vases floating on black around the word Auvra"
             className="col-span-2 md:col-span-1 h-[360px] md:h-[560px] w-full rounded-[24px] bg-[#0c0c0c] object-cover object-center"
             fetchPriority="high" decoding="async"
           />
