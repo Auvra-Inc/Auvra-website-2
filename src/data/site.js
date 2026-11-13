@@ -157,13 +157,13 @@ export const DRIFT = ['dancers', 'procession', 'singers', 'face-paint', 'drummer
 
 // Partners shown in the footer strip (logos copied from the previous goauvra.com).
 export const PARTNERS = [
-  { name: 'ElevenLabs', src: '/partners/elevenlabs.svg', h: 21.0 },
-  { name: 'OpenAI', src: '/partners/openai.svg', h: 30.4 },
-  { name: 'NVIDIA', src: '/partners/nvidia.webp', h: 30.0 },
-  { name: 'Paystack', src: '/partners/paystack.webp', h: 24.5 },
-  { name: 'Dojah', src: '/partners/dojah.svg', h: 38.0 },
-  { name: 'Polygon', src: '/partners/polygon.svg', h: 25.9 },
-  { name: 'Fonbnk', src: '/partners/fonbnk.svg', h: 28.0 },
-  { name: 'Crossmint', src: '/partners/crossmint.svg', h: 25.2 },
-  { name: 'Breet', src: '/partners/breet-v2.svg', h: 30.0 },
+  { name: 'ElevenLabs', src: '/partners/elevenlabs.svg', h: 16.8, iw: 694, ih: 90 },
+  { name: 'OpenAI', src: '/partners/openai.svg', h: 24.3, iw: 300, ih: 82 },
+  { name: 'NVIDIA', src: '/partners/nvidia.webp', h: 24.0, iw: 900, ih: 238 },
+  { name: 'Paystack', src: '/partners/paystack.webp', h: 19.6, iw: 900, ih: 159 },
+  { name: 'Dojah', src: '/partners/dojah.svg', h: 30.4, iw: 67, ih: 30 },
+  { name: 'Polygon', src: '/partners/polygon.svg', h: 20.7, iw: 300, ih: 60 },
+  { name: 'Fonbnk', src: '/partners/fonbnk.svg', h: 22.4, iw: 127, ih: 30 },
+  { name: 'Crossmint', src: '/partners/crossmint.svg', h: 20.2, iw: 150, ih: 28 },
+  { name: 'Breet', src: '/partners/breet-v2.svg', h: 24.0, iw: 300, ih: 99 },
 ];
