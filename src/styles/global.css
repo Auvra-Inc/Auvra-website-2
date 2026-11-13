@@ -607,3 +607,11 @@ html { overflow-x: clip; }
   .curved--big .curved__card { width: clamp(70px, 9vw, 150px); border-radius: 6px; transform: rotateY(calc(var(--o) * -11deg)) scale(calc(1 + var(--a) * var(--a) * 0.035 + var(--a) * 0.05)); box-shadow: 0 18px 30px -18px rgba(0,0,0,.45); }
   @media (max-width: 767px) { .curved--big { perspective: 420px; gap: 3px; padding: 60px 0 50px; margin: -10px 0; } .curved--big .curved__card { width: 50px; transform: rotateY(calc(var(--o) * -13deg)) scale(calc(1 + var(--a) * var(--a) * 0.04 + var(--a) * 0.06)); } }
 }
+@layer components {
+  .serif-accent { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.02em; }
+  .ws-h .serif-accent { font-size: 1.04em; }
+  .hero-stores .stores { justify-content: center; gap: 14px; margin-top: 6px; }
+  .hero-stores .store { background: #191717; color: #fff; min-height: 64px; border-radius: 18px; padding: 10px 26px 10px 22px; }
+  .hero-stores .store small { font-size: 13px; opacity: .9; }
+  .hero-stores .store b { font-size: 21px; font-weight: 700; }
+}
