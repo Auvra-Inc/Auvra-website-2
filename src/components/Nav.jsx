@@ -9,6 +9,7 @@ export default function Nav({ pathname = '/' }) {
   const [expanded, setExpanded] = useState(null);
   const navRef = useRef(null);
   const toggleRef = useRef(null);
+  const openedByKey = useRef(false);
   const panelRef = useRef(null);
   const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +49,8 @@ export default function Nav({ pathname = '/' }) {
 
   useEffect(() => {
     if (!open) return;
-    panelRef.current?.querySelector('a, button')?.focus();
+    // Move focus into the menu only when it was opened from the keyboard (no focus ring after a tap).
+    if (openedByKey.current) panelRef.current?.querySelector('a, button')?.focus();
     const onKey = (e) => { if (e.key === 'Escape') close(true); };
     const onDown = (e) => { if (navRef.current && !navRef.current.contains(e.target)) close(); };
     document.addEventListener('keydown', onKey);
@@ -67,7 +69,7 @@ export default function Nav({ pathname = '/' }) {
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta shimmer">Explore Auvra</a>
           <a href={EXPLORE_HREF} className="nav__btn nav__cta-icon" aria-label="Explore Auvra" title="Explore Auvra"><Compass size={20} aria-hidden="true" /></a>
-          <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((o) => !o)}>
+          <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openedByKey.current = true; }} onPointerDown={() => { openedByKey.current = false; }} onClick={() => setOpen((o) => !o)}>
             {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
