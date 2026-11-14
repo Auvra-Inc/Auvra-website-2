@@ -74,7 +74,7 @@ export function FaqList({ id = 'faq-title', title = 'Questions and answers', ite
         </div>
         <div className="border-t border-line">
           {items.map((f, i) => (
-            <details key={f.q} className="group border-b border-line" open={i === 0}>
+            <details key={f.q} name="faq" className="group border-b border-line" open={i === 0}>
               <summary className="flex min-h-[76px] cursor-pointer list-none items-center justify-between gap-5 py-5 text-left text-[clamp(18px,1.7vw,22px)] font-medium tracking-[-0.01em] [&::-webkit-details-marker]:hidden">
                 <h3 className="font-medium">{f.q}</h3>
                 <span aria-hidden="true" className="relative grid h-10 w-10 flex-none place-items-center rounded-full bg-linen text-xl transition-colors group-open:bg-carbon group-open:text-white">

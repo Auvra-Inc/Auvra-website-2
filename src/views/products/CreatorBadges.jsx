@@ -303,7 +303,7 @@ function FaqBlock({ items, title, pid = (x) => x }) {
       </div>
       <div className="border-t border-line">
         {items.map((f, i) => (
-          <details key={f.q} className="group border-b border-line" open={i === 0}>
+          <details key={f.q} name="faq" className="group border-b border-line" open={i === 0}>
             <summary className="flex min-h-[76px] cursor-pointer list-none items-center justify-between gap-5 py-5 [&::-webkit-details-marker]:hidden">
               <h3 className="text-[19px] md:text-[22px] font-medium leading-snug">{f.q}</h3>
               <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-linen text-xl transition-transform group-open:rotate-45 group-open:bg-carbon group-open:text-white" aria-hidden="true">+</span>

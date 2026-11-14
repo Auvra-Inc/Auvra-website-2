@@ -1,15 +1,15 @@
 import { useState, useId } from 'react';
 
-// Accordion. The first item starts open; several can be open at once.
+// Accordion. One answer is open at a time: opening another closes the one before it.
 export default function Faq({ items, headingLevel = 3, firstOpen = true }) {
-  const [open, setOpen] = useState(() => new Set(firstOpen ? [0] : []));
+  const [open, setOpen] = useState(firstOpen ? 0 : -1);
   const base = useId();
   const H = `h${headingLevel}`;
-  const toggle = (i) => setOpen((s) => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n; });
+  const toggle = (i) => setOpen((cur) => (cur === i ? -1 : i));
   return (
     <div className="faq">
       {items.map((f, i) => {
-        const isOpen = open.has(i);
+        const isOpen = open === i;
         return (
           <div className="faq__item" key={f.q}>
             <H className="faq__h">

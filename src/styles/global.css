@@ -1286,3 +1286,18 @@ html { overflow-x: clip; }
     .logo-film__spin, .logo-film__piece { animation: none !important; }
   }
 }
+
+/* ───────── Legal pages: type ─────────
+   Section headings stay in the display face; everything you read is a plain sans at a comfortable size. */
+@layer components {
+  .legal-doc h2 { font-size: clamp(21px, 2.3vw, 28px) !important; letter-spacing: -0.02em !important; line-height: 1.12 !important; margin: 52px 0 14px !important; }
+  .legal-doc h3 { font-family: var(--legal-sans); font-size: 16px !important; font-weight: 600; margin: 26px 0 8px !important; }
+  .legal-doc p, .legal-doc li, .legal-doc td, .legal-doc th { font-family: var(--legal-sans); color: #5C5852 !important; font-size: 15px !important; line-height: 1.68 !important; }
+  .legal-doc p + p { margin-top: 12px; }
+  .legal-doc table { font-size: 14px; }
+  .legal__more, .legal__more a, .legal__contact { font-family: var(--legal-sans); font-size: 15px; }
+  @media (min-width: 768px) { .legal-doc p, .legal-doc li, .legal-doc td, .legal-doc th { font-size: 16px !important; } }
+
+  /* FAQ on dark: answers a touch lighter so they read clearly. */
+  .ws-faq .faq__a p { color: #C9C3BA; }
+}
