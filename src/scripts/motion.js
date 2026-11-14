@@ -17,6 +17,7 @@ document.addEventListener('click', (e) => {
 });
 
 if ('IntersectionObserver' in window) {
-  const po = new IntersectionObserver((entries) => entries.forEach((en) => en.target.classList.toggle('is-paused', !en.isIntersecting)));
-  document.querySelectorAll('[data-pause-offscreen]').forEach((el) => po.observe(el));
+  const po = new IntersectionObserver((entries) => entries.forEach((en) => en.target.classList.toggle('is-paused', !en.isIntersecting)), { rootMargin: '10% 0px' });
+  // Looping motion only runs while it is on screen, so it never competes with scrolling elsewhere on the page.
+  document.querySelectorAll('[data-pause-offscreen], .hero-slides, .moods, .aud-marquee, .partners__track-wrap, .ceramics, .phone-frame, .artifact').forEach((el) => po.observe(el));
 }

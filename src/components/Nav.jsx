@@ -5,6 +5,8 @@ import { NAV, EXPLORE_HREF } from '../data/site.js';
 // Floating pill navigation (as on the current goauvra.com) holding the PRD menu groups.
 export default function Nav({ pathname = '/' }) {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const closeTimer = useRef(null);
   const [expanded, setExpanded] = useState(null);
   const navRef = useRef(null);
   const toggleRef = useRef(null);
@@ -43,7 +45,16 @@ export default function Nav({ pathname = '/' }) {
     return () => { window.removeEventListener('scroll', onScroll); clear(); };
   }, []);
 
-  const close = (returnFocus = false) => { setOpen(false); if (returnFocus) toggleRef.current?.focus(); };
+  // The panel stays mounted for a moment after closing so it can ease out instead of vanishing.
+  const close = (returnFocus = false) => {
+    setOpen((o) => {
+      if (o) { setClosing(true); clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setClosing(false), 200); }
+      return false;
+    });
+    if (returnFocus) toggleRef.current?.focus();
+  };
+  const toggle = () => { if (open) close(); else { clearTimeout(closeTimer.current); setClosing(false); setOpen(true); } };
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   useEffect(() => {
     if (!open) return;
@@ -67,14 +78,14 @@ export default function Nav({ pathname = '/' }) {
         <div className="nav__actions">
           <a href={EXPLORE_HREF} className="btn btn--dark nav__cta shimmer">Explore Auvra</a>
           <a href={EXPLORE_HREF} className="nav__btn nav__cta-icon" aria-label="Explore Auvra" title="Explore Auvra"><Compass size={20} aria-hidden="true" /></a>
-          <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openedByKey.current = true; }} onPointerDown={() => { openedByKey.current = false; }} onClick={() => setOpen((o) => !o)}>
+          <button ref={toggleRef} className="nav__btn nav__menu" type="button" aria-expanded={open} aria-controls="nav-panel" aria-label={open ? 'Close menu' : 'Open menu'} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openedByKey.current = true; }} onPointerDown={() => { openedByKey.current = false; }} onClick={toggle}>
             {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {open && (
-          <div className="nav__panel nav__panel--in" id="nav-panel" ref={panelRef}>
+      {(open || closing) && (
+          <div className={`nav__panel ${open ? 'nav__panel--in' : 'nav__panel--out'}`} id="nav-panel" ref={panelRef} aria-hidden={open ? undefined : 'true'}>
             <nav aria-label="Main">
               <ul className="nav__list">
                 {NAV.map((g) => {
@@ -90,15 +101,18 @@ export default function Nav({ pathname = '/' }) {
                     <li key={g.title}>
                       <button type="button" className={`nav__expand${active ? ' is-active' : ''}`} aria-expanded={isOpen} aria-controls={id} onClick={() => setExpanded(isOpen ? null : g.title)}>
                         {g.title}
-                        <span className="nav__chev" style={{ display: 'grid', transform: isOpen ? 'rotate(180deg)' : 'none' }}><ChevronDown size={20} aria-hidden="true" /></span>
+                        <span className="nav__chev" style={{ display: 'grid', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}><ChevronDown size={20} aria-hidden="true" /></span>
                       </button>
-                      {isOpen && (
-                          <ul className="nav__sub nav__sub--in" id={id} style={{ overflow: 'hidden' }}>
+                      {/* Always mounted so the group can ease open and shut (height via grid rows); hidden from focus and AT while shut. */}
+                      <div className="nav__subwrap" data-open={isOpen ? '' : undefined}>
+                        <div className="nav__subclip">
+                          <ul className="nav__sub" id={id}>
                             {g.links.map((l) => (
                               <li key={l.href}><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} onClick={() => close()}><span className="nav__sub-label">{l.label}</span>{l.note && <small className="nav__sub-note">{l.note}</small>}</a></li>
                             ))}
                           </ul>
-                        )}
+                        </div>
+                      </div>
                     </li>
                   );
                 })}

@@ -1033,3 +1033,64 @@ html { overflow-x: clip; }
   @media (max-width: 767px) { .moods { aspect-ratio: 1000 / 667 !important; } }
   .mood img { object-fit: contain !important; animation: none !important; transform: none !important; }
 }
+@layer components {
+  /* ===== Motion polish: compositor-only movement, seamless loops, no pops ===== */
+
+  /* Marquees: one loop is exactly half the track plus half a gap. The gap and the loop distance now read the
+     same variable, so the track can never snap at the loop point when a gap is retuned. */
+  .aud-track { --mq-gap: 14px; }
+  .partners__track { --mq-gap: 52px; }
+  @media (max-width: 767px) { .partners__track { --mq-gap: 34px; } }
+  @media (min-width: 768px) { .aud-track { --mq-gap: 20px; } .partners__track { --mq-gap: 76px; } }
+  .aud-track, .partners__track { gap: var(--mq-gap); animation-name: mqLoop; will-change: transform; backface-visibility: hidden; }
+  @keyframes mqLoop { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(calc(-50% - var(--mq-gap) / 2), 0, 0); } }
+
+  /* Mood slideshow: a true cross-fade. The incoming frame fades in on top while the outgoing one stays fully
+     opaque underneath, so the dark backdrop never shows through mid-fade; the first frame starts already visible. */
+  .mood { animation-name: moodCross; animation-delay: calc(var(--i) * 6s - 2s); backface-visibility: hidden; }
+  @keyframes moodCross {
+    0% { opacity: 0; z-index: 2; } 3.7% { opacity: 1; z-index: 2; } 11.11% { opacity: 1; z-index: 2; }
+    11.12% { opacity: 1; z-index: 1; } 14.81% { opacity: 1; z-index: 1; } 14.82%, 100% { opacity: 0; z-index: 0; }
+  }
+
+  /* Button shimmer: slide with a transform instead of animating `left` (which re-laid-out the nav every frame). */
+  .shimmer::before { left: 0; transform: translate3d(-134%, 0, 0) skewX(-25deg); animation-name: shimmerSlide; will-change: transform; }
+  @keyframes shimmerSlide { to { transform: translate3d(167%, 0, 0) skewX(-25deg); } }
+
+  /* Lens AI scan line: same travel, moved by transform instead of `top`. */
+  .scan-line { top: 14%; bottom: 37%; height: auto; background: none; box-shadow: none; animation-name: scanSweep; will-change: transform; }
+  .scan-line::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, #fff, transparent); box-shadow: 0 0 14px 2px rgba(255,255,255,.6); }
+  @keyframes scanSweep { to { transform: translate3d(0, 100%, 0); } }
+
+  /* Phone hero slider + curved wall: keep each moving piece on its own layer, and keep their layout contained. */
+  .hero-slide { will-change: transform; backface-visibility: hidden; }
+  .hero-slides__dots { contain: layout; }
+  .wall__stage { contain: layout paint; }
+  .wall__card { will-change: transform, opacity; }
+
+  /* Reveal on scroll: one soft ease-out curve for both properties. */
+  .js .reveal { transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .js .slide-in { transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1); }
+
+  /* Nav: the pill glides on its own layer; the menu eases out as well as in; groups open by height, not by popping. */
+  .nav { will-change: transform; }
+  .nav__panel--in { animation: navIn .28s cubic-bezier(.22,1,.36,1) both; }
+  .nav__panel--out { animation: navOut .18s cubic-bezier(.4,0,1,1) both; transform-origin: top center; pointer-events: none; }
+  @keyframes navOut { to { opacity: 0; transform: translateY(-8px) scale(.98); } }
+  .nav__subwrap { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .36s cubic-bezier(.22,1,.36,1), opacity .24s ease, visibility 0s linear .36s; }
+  .nav__subwrap[data-open] { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition-delay: 0s; }
+  .nav__subclip { min-height: 0; overflow: hidden; }
+  .nav__sub { overflow: hidden; }
+  .nav__chev { transition: transform .36s cubic-bezier(.22,1,.36,1); }
+  /* The arrow was being turned twice (wrapper and icon), so it spun a full circle and ended where it began. */
+  .nav__expand .nav__chev svg { transform: none !important; transition: none; }
+
+  /* Paused-while-off-screen also covers pseudo-elements (button shimmer). */
+  .is-paused::before, .is-paused::after, .is-paused *::before, .is-paused *::after { animation-play-state: paused !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-line { transform: translateY(53%); }
+    .nav__panel--out { display: none !important; }
+    .nav__subwrap { transition: none; }
+  }
+}
