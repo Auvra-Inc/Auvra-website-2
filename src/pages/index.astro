@@ -236,7 +236,7 @@ const audiences = [
 
   <!-- Evolution collage: objects across generations -->
   <section class="bg-[#FBF8F1] px-6 py-24 md:py-36" aria-labelledby="evo-title">
-    <ul class="mx-auto flex max-w-[980px] items-end justify-center gap-3 md:gap-8" aria-hidden="true">
+    <ul class="mx-auto flex max-w-[980px] items-end justify-center gap-3 md:gap-8" aria-hidden="true" data-pause-offscreen>
       {[
         ['clay-3', 'bg-[#D9EEDC]', '-rotate-2'],
         ['benin-mask', '', ''],
@@ -246,7 +246,7 @@ const audiences = [
       ].map(([n, patch, rot], i) => (
         <li class={`relative flex flex-1 items-end justify-center ${i % 2 ? 'pb-2' : 'pb-8 md:pb-14'}`}>
           {patch && <span class={`absolute inset-x-[4%] bottom-[8%] top-[18%] ${patch} ${rot}`} style="clip-path: polygon(2% 0, 100% 3%, 97% 100%, 0 96%)"></span>}
-          <img src={`/images/artifacts/${n}.webp`} alt="" class="reveal relative w-full max-w-[150px] object-contain" loading="lazy" />
+          <img src={`/images/artifacts/${n}.webp`} alt="" class="reveal obj-bob relative w-full max-w-[150px] object-contain" style={`--bob-d:${[5.2, 6.4, 4.8, 6.9, 5.6][i]}s;--bob-s:${[0, -2.1, -3.4, -1.2, -4.3][i]}s`} loading="lazy" />
         </li>
       ))}
     </ul>

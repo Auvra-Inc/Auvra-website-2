@@ -1180,3 +1180,11 @@ html { overflow-x: clip; }
   @keyframes vtIn { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
   .nav { view-transition-name: site-nav; }
 }
+
+/* Object row: each piece drifts gently up and down at its own pace (uses `translate`, so the scroll reveal is untouched). */
+@layer components {
+  .obj-bob { animation: objBob var(--bob-d, 5.5s) ease-in-out var(--bob-s, 0s) infinite alternate; will-change: translate; }
+  @keyframes objBob { from { translate: 0 -7px; } to { translate: 0 7px; } }
+  @media (min-width: 768px) { @keyframes objBob { from { translate: 0 -11px; } to { translate: 0 11px; } } }
+  @media (prefers-reduced-motion: reduce) { .obj-bob { animation: none; } }
+}
