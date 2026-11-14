@@ -4,6 +4,6 @@ import Faqs from '../views/Faqs.jsx';
 import { FAQ_GROUPS } from '../data/faqs.js';
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ_GROUPS.flatMap((g) => g.items).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
-<Base title="FAQs · Auvra, Contribution Badges, My Vault, Lens AI and more" description="Answers about Auvra, cultural preservation, Contribution Badges, Collectible Badges, My Vault, Lens AI, A-Chronos and working with institutions." crumbs={[{ label: 'FAQs' }]} jsonld={[faqLd]}>
+<Base title="FAQs · Auvra, Contribution Badges, My Vault, Lens AI and more" description="Answers about Auvra, cultural preservation, Contribution Badges, Creator Badges, My Vault, Lens AI, A-Chronos and working with institutions." crumbs={[{ label: 'FAQs' }]} jsonld={[faqLd]}>
   <Faqs client:load />
 </Base>

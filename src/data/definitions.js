@@ -13,18 +13,18 @@ export const DEFINITIONS = {
   },
   badges: {
     name: 'Cultural Badges',
-    short: 'Digital badges that keep cultural work credited: Contribution Badges record what people add to a cultural record, and Collectible Badges carry a creator’s own work with its context.',
-    long: 'Cultural Badges are digital badges that keep cultural work credited to the people behind it. There are two types: Contribution Badges, which record the context, memories and care people add to what has already been preserved, and Collectible Badges, which let creators document and share their own cultural work, such as music, art or craft, with its story attached.',
+    short: 'Digital badges that keep cultural work credited: Contribution Badges record what people add to a cultural record, and Creator Badges carry a creator’s own work with its context.',
+    long: 'Cultural Badges are digital badges that keep cultural work credited to the people behind it. There are two types: Contribution Badges, which record the context, memories and care people add to what has already been preserved, and Creator Badges, which let creators document and share their own cultural work, such as music, art or craft, with its story attached.',
   },
   contributionBadges: {
     name: 'Contribution Badges',
     short: 'Permanent, attributable records of cultural contributions that preserve their original context while allowing additional knowledge to be documented.',
     long: 'A Contribution Badge is a permanent, attributable record of a cultural contribution. It preserves the original record and its context, while allowing additional knowledge to be documented alongside it without silently replacing what came before.',
   },
-  collectibleBadges: {
-    name: 'Collectible Badges',
+  creatorBadges: {
+    name: 'Creator Badges',
     short: 'A way for creators to document, attribute and distribute cultural expressions as digital or physical badges.',
-    long: 'A Collectible Badge lets a creator document, attribute and distribute a cultural expression, such as an artwork, a song or a craft, as a digital or physical item that carries its cultural context and the creator’s attribution.',
+    long: 'A Creator Badge lets a creator document, attribute and distribute a cultural expression, such as an artwork, a song or a craft, as a digital or physical item that carries its cultural context and the creator’s attribution.',
   },
   myVault: {
     name: 'My Vault',

@@ -7,7 +7,7 @@ const pages = [
   ['/', 'Home: what Auvra is and how it works'],
   ['/about', 'About Auvra: story, mission, vision and C.U.L.T.U.R.E. values'],
   ['/cultural-preservation', 'Cultural Preservation'],
-  ['/badges', 'Cultural Badges: Contribution Badges and Collectible Badges'],
+  ['/badges', 'Cultural Badges: Contribution Badges and Creator Badges'],
   ['/my-vault', 'My Vault'],
   ['/auvra-passport', 'Auvra Passport'],
   ['/lens-ai', 'Lens AI, including Scan'],

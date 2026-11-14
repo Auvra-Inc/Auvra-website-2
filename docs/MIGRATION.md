@@ -26,7 +26,7 @@ Every route of the old site and every URL in its sitemap (`public/sitemap.txt`) 
 | `/collab` | `/terms` | 301 (the old page was the collaboration terms) |
 | `/sitemap.txt` | `/sitemap.xml` | 301 |
 | `/contribution-badges` | `/badges#contribution` | 301 |
-| `/collectible-badges`, `/creator-badges` | `/badges#collectible` | 301 |
+| `/collectible-badges`, `/creator-badges` | `/badges#creator` | 301 |
 
 Any other unknown URL returns the site's 404 page with a real 404 status.
 

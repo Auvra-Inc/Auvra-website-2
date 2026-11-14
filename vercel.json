@@ -44,12 +44,12 @@
     },
     {
       "source": "/collectible-badges",
-      "destination": "/badges#collectible",
+      "destination": "/badges#creator",
       "permanent": true
     },
     {
       "source": "/creator-badges",
-      "destination": "/badges#collectible",
+      "destination": "/badges#creator",
       "permanent": true
     },
     {

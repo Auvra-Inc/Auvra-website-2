@@ -251,7 +251,7 @@ export default function ContributionBadges({ embedded = false }) {
 
       {!embedded && (<Related current="/badges#contribution" notes={{
         '/cultural-preservation': 'Contributions add to records that have already been preserved, keeping their origin and context intact.',
-        '/badges#collectible': 'Collectible Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
+        '/badges#creator': 'Creator Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
         '/my-vault': 'Keep the recordings, photos and documents behind your contributions in your own private Vault.',
         '/auvra-passport': 'Auvra Passport is designed to connect you to the contributions you have made, so they stay attributed to you.',
       }} />)}

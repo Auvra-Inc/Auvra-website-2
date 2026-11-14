@@ -13,7 +13,7 @@ export const PRODUCT_INFO = [
     text: 'Attributable records of the context, memories and care people add to what has already been preserved.',
   },
   {
-    href: '/badges#collectible', label: 'Collectible Badges', icon: 'gift', tint: 'salmon',
+    href: '/badges#creator', label: 'Creator Badges', icon: 'gift', tint: 'salmon',
     text: 'A way for creators to document, attribute and share cultural expressions as digital or physical badges.',
   },
   {

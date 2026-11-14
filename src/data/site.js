@@ -30,7 +30,7 @@ export const NAV = [
   {
     title: 'Technology',
     links: [
-      { label: 'Cultural Badges', href: '/badges', note: 'Contribution and Collectible Badges' },
+      { label: 'Cultural Badges', href: '/badges', note: 'Contribution and Creator Badges' },
       { label: 'Model · A-Chronos', href: '/a-chronos', note: 'Our cultural heritage model' },
       { label: 'Lens AI', href: '/lens-ai', note: 'Transcribe, translate and Scan' },
     ],

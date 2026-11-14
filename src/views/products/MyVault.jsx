@@ -255,7 +255,7 @@ export default function MyVault() {
         <Related current="/my-vault" notes={{
           '/cultural-preservation': 'My Vault is where individuals and families keep the materials they are preserving.',
           '/badges#contribution': 'Materials in your Vault can become the start of contributions to a shared cultural record.',
-          '/badges#collectible': 'Creators can keep the recordings and documents behind their work in a Vault.',
+          '/badges#creator': 'Creators can keep the recordings and documents behind their work in a Vault.',
           '/auvra-passport': 'Auvra Passport is designed to connect you to the Vaults and records you are part of.',
         }} />
       </div>
