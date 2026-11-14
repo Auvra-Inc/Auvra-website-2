@@ -1100,8 +1100,8 @@ html { overflow-x: clip; }
   .hero-h1 { letter-spacing: -0.02em !important; word-spacing: 0.06em; }
 }
 @layer components {
-  .nav__logo img { height: 28px !important; }
-  @media (min-width: 768px) { .nav__logo img { height: 32px !important; } }
-  .footer-logo { height: 30px !important; }
-  @media (min-width: 768px) { .footer-logo { height: 34px !important; } }
+  .nav__logo img { height: 21px !important; }
+  @media (min-width: 768px) { .nav__logo img { height: 24px !important; } }
+  .footer-logo { height: 23px !important; }
+  @media (min-width: 768px) { .footer-logo { height: 26px !important; } }
 }
