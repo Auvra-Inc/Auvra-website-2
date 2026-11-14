@@ -81,7 +81,7 @@ export function StoryListing() {
                 <button type="button" className="ins-cat" aria-pressed={cat === c.name} onClick={() => { setCat(cat === c.name ? 'All' : c.name); document.getElementById('stories-title')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   <b>{c.name}</b>
                   <span>{c.blurb}</span>
-                  <small>{n ? `${n} ${n === 1 ? 'story' : 'stories'}` : 'Coming soon'}</small>
+                  <small>{n ? `${n} ${n === 1 ? 'story' : 'stories'}` : 'Stories'}</small>
                 </button>
               </li>
             );

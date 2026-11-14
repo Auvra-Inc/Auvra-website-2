@@ -4,8 +4,8 @@ import { DEFINITIONS } from '../../data/definitions.js';
 import { FAQ_GROUPS } from '../../data/faqs.js';
 import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
 
-const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
-const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+const H1 = 'font-semibold uppercase tracking-[-0.022em] [word-spacing:0.08em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
+const H2 = 'font-semibold uppercase tracking-[-0.02em] [word-spacing:0.08em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
 const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
 
 // src/data/faqs.js has no Auvra Passport group yet. The first and second answers below are new and
@@ -38,11 +38,11 @@ const LINKS = [
     photo: 'elder', alt: 'An elder in a wide-brimmed hat and robes, the kind of knowledge holder whose memories contributions preserve',
   },
   {
-    id: 'creator', href: '/badges#creator', icon: 'gift', label: 'Creator Badges', bg: 'bg-blue', sub: 'text-[#BFE0E1]', accent: 'text-[#BFE0E1]',
-    q: 'How does Auvra Passport relate to Creator Badges?',
-    a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Creator Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
+    id: 'collectible', href: '/badges#collectible', icon: 'gift', label: 'Collectible Badges', bg: 'bg-blue', sub: 'text-[#BFE0E1]', accent: 'text-[#BFE0E1]',
+    q: 'How does Auvra Passport relate to Collectible Badges?',
+    a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Collectible Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
     points: ['Creators linked to the work they share', 'Claimed badges kept with their story', 'Credit that travels with every badge'],
-    photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum, the kind of creator whose work a Creator Badge credits',
+    photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum, the kind of creator whose work a Collectible Badge credits',
   },
   {
     id: 'vault', href: '/my-vault', icon: 'vault', label: 'My Vault', bg: 'bg-teal', sub: 'text-[#BFE0E1]', accent: 'text-lime',
@@ -158,7 +158,7 @@ export default function AuvraPassport() {
                   <Icon3D name={l.icon} size={56} />
                   <p className={`text-[13px] font-semibold uppercase tracking-[0.1em] ${l.accent}`}>Passport + {l.label}</p>
                 </div>
-                <h2 id={`${l.id}-title`} className="mt-5 font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">{l.q}</h2>
+                <h2 id={`${l.id}-title`} className="mt-5 font-semibold uppercase tracking-[-0.02em] [word-spacing:0.08em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">{l.q}</h2>
                 <p className={`mt-6 text-[17px] md:text-lg leading-relaxed ${l.sub}`}>{l.a}</p>
                 <ul className="ticks mt-8 text-left max-md:inline-flex">
                   {l.points.map((p) => <li key={p}>{p}</li>)}

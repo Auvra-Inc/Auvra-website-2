@@ -44,7 +44,7 @@ const SERVES = [
 const PRODUCTS = [
   { n: '01', name: 'Cultural Preservation', href: '/cultural-preservation', chip: '#024B50', text: DEFINITIONS.culturalPreservation.short },
   { n: '02', name: 'Contribution Badges', href: '/badges#contribution', chip: '#4A281C', text: DEFINITIONS.contributionBadges.short },
-  { n: '03', name: 'Creator Badges', href: '/badges#creator', chip: '#0B6A70', text: DEFINITIONS.creatorBadges.short },
+  { n: '03', name: 'Collectible Badges', href: '/badges#collectible', chip: '#0B6A70', text: DEFINITIONS.collectibleBadges.short },
   { n: '04', name: 'My Vault', href: '/my-vault', chip: '#1C1A18', text: DEFINITIONS.myVault.short },
   { n: '05', name: 'Auvra Passport', href: '/auvra-passport', chip: '#C2563F', text: DEFINITIONS.auvraPassport.short },
 ];
@@ -91,7 +91,7 @@ export default function About() {
           <p className="kicker">Company</p>
           <h1 id="about-title" className={`${H1} mx-auto !text-[clamp(64px,17.5vw,200px)]`}>About Auvra</h1>
           <p className="mx-auto mt-8 max-w-[40rem] text-[18px] md:text-[22px] leading-relaxed text-[#3A3631]">
-            Auvra is a cultural technology company building the permanent home for human culture. We are developing the infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.
+            Auvra is a cultural technology platform building the permanent home for human culture. We are developing the infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a href="#mission" className="btn btn--dark">Our mission</a>
@@ -175,7 +175,7 @@ export default function About() {
         <div className="wrap grid items-center gap-12 py-20 md:py-32 lg:grid-cols-[1.2fr_1fr]">
           <div className="max-md:text-center">
             <h2 id="vision-title" className="kicker !text-[#FFB4A3]">Our Vision</h2>
-            <p className="reveal mt-2 ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(30px,4.4vw,58px)] text-balance">
+            <p className="reveal mt-2 ws-h font-bold uppercase tracking-[-0.022em] [word-spacing:0.08em] !leading-[0.95] text-[clamp(30px,4.4vw,58px)] text-balance">
               A world where no culture, story, language, tradition or contribution is lost simply because the people who carry it are no longer present.
             </p>
             <p className={`reveal ${LEAD} mt-8 max-w-[560px] text-[#E9D9CF] max-md:mx-auto`}>

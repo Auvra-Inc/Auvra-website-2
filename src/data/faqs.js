@@ -1,11 +1,11 @@
 // FAQ page content, grouped by the PRD's categories (section 16).
 // Answers marked `confirm: true` describe product status and must be checked by the Auvra team before launch.
-// Per the agreed scope, any Creator Badge fee is not shown on the public site.
+// Per the agreed scope, any Collectible Badge fee is not shown on the public site.
 export const FAQ_GROUPS = [
   {
     title: 'About Auvra',
     items: [
-      { q: 'What is Auvra?', a: 'Auvra is building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
+      { q: 'What is Auvra?', a: 'Auvra is a cultural technology platform building the permanent home for human culture. We are developing the digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down their cultural heritage and traditions across generations.' },
       { q: 'What problem is Auvra solving?', a: 'Much of the world\'s cultural knowledge lives in memories, conversations, family recordings, photographs and community practices, scattered across personal devices and informal channels. When the people holding it are no longer present, stories, languages and traditions can become difficult to recover. Auvra provides systems built for continuity, not temporary storage.' },
       { q: 'Who is Auvra building for?', a: 'Families, creators, communities, diaspora audiences, and museums and institutions. Each plays a different role in keeping culture alive, and Auvra is designed to support all of them.' },
       { q: 'Is Auvra only focused on African culture?', a: 'No. Auvra is building for human culture everywhere. Our work began in Africa, where many languages and oral traditions are underrepresented in existing technology, but the platform is open to every culture and community.' },
@@ -23,8 +23,8 @@ export const FAQ_GROUPS = [
   {
     title: 'Cultural Badges',
     items: [
-      { q: 'What is a Badge?', a: 'A Badge on Auvra is a digital badge that keeps cultural work credited to the people behind it. There are two types. A Contribution Badge is a permanent, attributable record of something you add to an existing cultural record, such as a memory, a correction or context. A Creator Badge lets a creator document and share their own cultural work, such as a song, an artwork or a craft, with its story and their name attached.' },
-      { q: 'What is the difference between Contribution Badges and Creator Badges?', a: 'Contribution Badges recognise what people add to records that already exist, so the original stays intact and every addition is credited. Creator Badges carry a creator’s own work, presented with its cultural context and the creator’s attribution.' },
+      { q: 'What is a Badge?', a: 'A Badge on Auvra is a digital badge that keeps cultural work credited to the people behind it. There are two types. A Contribution Badge is a permanent, attributable record of something you add to an existing cultural record, such as a memory, a correction or context. A Collectible Badge lets a creator document and share their own cultural work, such as a song, an artwork or a craft, with its story and their name attached.' },
+      { q: 'What is the difference between Contribution Badges and Collectible Badges?', a: 'Contribution Badges recognise what people add to records that already exist, so the original stays intact and every addition is credited. Collectible Badges carry a creator’s own work, presented with its cultural context and the creator’s attribution.' },
     ],
   },
   {
@@ -33,17 +33,15 @@ export const FAQ_GROUPS = [
       { q: 'What is a Contribution Badge?', a: 'A Contribution Badge is a permanent, attributable record of a cultural contribution. It preserves the original record and its context while allowing additional knowledge to be documented alongside it.' },
       { q: 'What are the four contribution paths?', a: 'Contextual Validation, Memory & Oral Documentation, Physical & Digital Stewardship, and Cultural Continuation. Each describes a different way people help keep a cultural record complete and alive.' },
       { q: 'Can a contribution be corrected?', a: 'Yes, but corrections are added as new contributions with their own attribution. The original record is never silently replaced, so the history of what was documented stays visible.' },
-      { q: 'How are contributions assessed?', a: 'Submitting a contribution, assessing it and issuing a badge are separate steps. The assessment process is still being finalised, and we will publish how it works before badges are issued.', confirm: true },
-      { q: 'When are badges issued?', a: 'Badge issuance is not yet available. We will announce when it opens and update this answer.', confirm: true },
     ],
   },
   {
-    title: 'Creator Badges',
+    title: 'Collectible Badges',
     items: [
-      { q: 'What is a Creator Badge?', a: 'A Creator Badge lets a creator document, attribute and share a cultural expression, such as an artwork, a song or a craft, with its cultural context, as a digital or physical item.' },
+      { q: 'What is a Collectible Badge?', a: 'A Collectible Badge lets a creator document, attribute and share a cultural expression, such as an artwork, a song or a craft, with its cultural context, as a digital or physical item.' },
       { q: 'Who can create one?', a: 'Creators who document and share cultural expressions: musicians, artists, storytellers, photographers, craft practitioners, performers and other cultural creators.' },
       { q: 'What can be represented?', a: 'Digital or physical cultural expressions, for example traditional artwork, music, cultural photography, craftsmanship and documented cultural practices, always presented with the creator\'s attribution and context.' },
-      { q: 'How does claiming work?', a: 'Audiences discover a Creator Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
+      { q: 'How does claiming work?', a: 'Audiences discover a Collectible Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
     ],
   },
   {
@@ -53,14 +51,13 @@ export const FAQ_GROUPS = [
       { q: 'Who can own a Vault?', a: 'Any Auvra user can create a Vault. The Vault owner chooses the subscription that applies to it.' },
       { q: 'How can family members be invited?', a: 'The Vault owner shares an invitation code. Family members download Auvra, enter the code and join the Vault.' },
       { q: 'Do invited members need a separate subscription?', a: 'No. Invited members join the owner\'s Vault through the invitation code and do not need their own subscription to join it.' },
-      { q: 'What is the planned Personal AI OS?', a: 'Personal AI OS is a planned capability, not yet released. It is intended to help you understand and interact with information in your Vault, using only the information you have authorised it to access.' },
     ],
   },
   {
     title: 'Technology',
     items: [
       { q: 'What is Lens AI?', a: 'Lens AI is Auvra\'s AI initiative for cultural documentation. It supports transcription and translation of oral histories, language understanding, and the organisation of cultural knowledge. People can always review and edit what it produces.' },
-      { q: 'What is A-Chronos?', a: 'A-Chronos is Auvra\'s foundational model research initiative focused on cultural heritage. It is a research and development effort, not a released product.' },
+      { q: 'What is A-Chronos?', a: 'A-Chronos is Auvra\'s foundational model research initiative focused on cultural heritage.' },
       { q: 'How does Auvra approach responsible AI?', a: 'AI at Auvra supports the people documenting culture; it does not replace their knowledge or authority. We work from consent, attribution, privacy, cultural context and human oversight. Read our AI Policy for details.' },
     ],
   },

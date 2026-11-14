@@ -4,8 +4,8 @@ import { DEFINITIONS } from '../../data/definitions.js';
 import { FAQ_GROUPS } from '../../data/faqs.js';
 import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
 
-const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
-const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+const H1 = 'font-semibold uppercase tracking-[-0.022em] [word-spacing:0.08em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
+const H2 = 'font-semibold uppercase tracking-[-0.02em] [word-spacing:0.08em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
 const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
 
 // FAQ answers reused verbatim from src/data/faqs.js. Also used for the FAQPage JSON-LD in the route.
@@ -189,7 +189,7 @@ export default function CulturalPreservation() {
       <div id="connections" className="pt-20 md:pt-32 scroll-mt-24">
         <Related current="/cultural-preservation" notes={{
           '/badges#contribution': 'When someone adds context, a memory or care to a preserved record, a Contribution Badge is designed to record that contribution.',
-          '/badges#creator': 'Creators can document and share cultural expressions as badges, with their context and attribution kept intact.',
+          '/badges#collectible': 'Creators can document and share cultural expressions as badges, with their context and attribution kept intact.',
           '/my-vault': 'The private place where individuals and families keep the materials they are preserving.',
           '/auvra-passport': 'Connects you to the records you have preserved and the contributions you have made.',
         }} />

@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import IconSprite from '../components/IconSprite.jsx';
 import { SITE, SOCIAL, CONTACT_EMAIL, SUPPORT_EMAIL, STORE } from '../data/site.js';
 
@@ -17,13 +19,15 @@ const ogImage = image.startsWith('http') ? image : SITE + image;
 const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE}/#organization`,
   name: 'Auvra', legalName: 'Auvra Tech Ltd', url: SITE, email: CONTACT_EMAIL,
-  logo: { '@type': 'ImageObject', url: `${SITE}/brand/auvra-lockup-carbon.svg` },
+  identifier: { '@type': 'PropertyValue', propertyID: 'CAC RC Number (Nigeria)', value: '8895504' },
+  foundingLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressCountry: 'NG' } },
+  logo: { '@type': 'ImageObject', url: `${SITE}/brand/auvra-lockup-v2-carbon.svg` },
   contactPoint: [
     { '@type': 'ContactPoint', contactType: 'customer support', email: SUPPORT_EMAIL, availableLanguage: ['en'] },
     { '@type': 'ContactPoint', contactType: 'general enquiries', email: CONTACT_EMAIL, availableLanguage: ['en'] },
   ],
   knowsAbout: ['Cultural preservation', 'Oral history', 'African languages', 'Transcription', 'Translation', 'Digital heritage', 'Family history'],
-  description: 'Auvra is building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
+  description: 'Auvra is a cultural technology platform building the permanent home for human culture. It develops digital infrastructure that helps individuals, families, creators and communities preserve, own and pass down cultural heritage across generations.',
   sameAs: SOCIAL.map((s) => s.href), address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
 };
 const site = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'Auvra', url: SITE, inLanguage: 'en', publisher: { '@id': `${SITE}/#organization` } };
@@ -90,10 +94,8 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
       })();
     </script>
     <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
-    <!-- Vercel Web Analytics + Speed Insights (Core Web Vitals). Served by Vercel once enabled on the project. -->
-    <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
-    <script is:inline defer src="/_vercel/insights/script.js"></script>
-    <script is:inline defer src="/_vercel/speed-insights/script.js"></script>
+    <Analytics />
+    <SpeedInsights />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

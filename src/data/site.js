@@ -30,7 +30,7 @@ export const NAV = [
   {
     title: 'Technology',
     links: [
-      { label: 'Cultural Badges', href: '/badges', note: 'Contribution and Creator Badges' },
+      { label: 'Cultural Badges', href: '/badges', note: 'Contribution and Collectible Badges' },
       { label: 'Model · A-Chronos', href: '/a-chronos', note: 'Our cultural heritage model' },
       { label: 'Lens AI', href: '/lens-ai', note: 'Transcribe, translate and Scan' },
     ],
@@ -83,7 +83,7 @@ export const FOOTER = [
 export const HOME_FAQS = [
   {
     q: 'What is Auvra?',
-    a: 'Auvra is the permanent home for human culture, where families, creators and communities preserve stories, languages and traditions as permanent, credited records, and pass them down.',
+    a: 'Auvra is a cultural technology platform building the permanent home for human culture, where families, creators and communities preserve stories, languages and traditions as permanent, credited records, and pass them down.',
   },
   {
     q: 'What does Lens AI do?',

@@ -74,7 +74,7 @@ This is not a rushed release. It is a deliberate construction of something meant
 
 Alongside development, we have initiated conversations with cultural institutions, community elders, preservation organizations, and heritage foundations worldwide. These are not partnerships we announce lightly. They are relationships built on trust, mutual respect, and a shared understanding that culture is not a commodity. It is identity.
 
-If you represent a community, museum, or cultural organization that shares this vision, we invite you to join the conversation. You can reach us directly at [hello@goauvra.com](mailto:hello@goauvra.com). Tell us what you need. Help us build what you have been waiting for.
+If you represent a community, museum, or cultural organization that shares this vision, we invite you to join the conversation. You can reach us directly at [info@goauvra.com](mailto:info@goauvra.com). Tell us what you need. Help us build what you have been waiting for.
 
 Auvra is not being built in isolation. It is being built with the people who will one day depend on it.
 
@@ -112,4 +112,4 @@ The Auvra Team
 
 ## Stay Connected
 
-Follow our journey on [Instagram](https://www.instagram.com/goauvra) and on [X](https://x.com/goauvra) at goauvra. [Visit our homepage](/) to learn more and sign up for updates. For partnerships and institutional inquiries, contact us at [hello@goauvra.com](mailto:hello@goauvra.com) or [apply for Institutional Access](/institutional-access).
+Follow our journey on [Instagram](https://www.instagram.com/goauvra) and on [X](https://x.com/goauvra) at goauvra. [Visit our homepage](/) to learn more and sign up for updates. For partnerships and institutional inquiries, contact us at [info@goauvra.com](mailto:info@goauvra.com) or [apply for Institutional Access](/institutional-access).

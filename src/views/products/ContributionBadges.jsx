@@ -5,13 +5,13 @@ import { FAQ_GROUPS } from '../../data/faqs.js';
 import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
 
 // Typography shared with the homepage.
-const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
-const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+const H1 = 'font-semibold uppercase tracking-[-0.022em] [word-spacing:0.08em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
+const H2 = 'font-semibold uppercase tracking-[-0.02em] [word-spacing:0.08em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
 const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
 
 // FAQ answers reused verbatim from src/data/faqs.js. Also used for the FAQPage JSON-LD in the route.
 const group = FAQ_GROUPS.find((g) => g.title === 'Contribution Badges').items;
-export const FAQS = [group[0], group[1], group[2], group[3]];
+export const FAQS = group.slice(0, 4);
 
 const PATHS = [
   {
@@ -48,16 +48,12 @@ const EXAMPLES = [
 ];
 
 const STEPS = [
-  { n: '01', name: 'Submit', kind: 'developing', label: 'In development', text: 'Choose the record you are adding to, pick the contribution path that fits, and share your contribution with its context: who, where, when and how you know.' },
-  { n: '02', name: 'Assessment', kind: 'planned', label: 'Planned', text: 'Contributions are reviewed before any badge is issued. How assessment works is still being finalised, and we will publish it before badges are issued.' },
-  { n: '03', name: 'Badge issued', kind: 'planned', label: 'Planned', text: 'After assessment, a Contribution Badge would be issued as a permanent record attributed to the contributor. Badge issuance is not available yet.' },
+  { n: '01', name: 'Submit', text: 'Choose the record you are adding to, pick the contribution path that fits, and share your contribution with its context: who, where, when and how you know.' },
+  { n: '02', name: 'Assessment', text: 'Contributions are reviewed for context and accuracy before any badge is issued, so every record stays trustworthy.' },
+  { n: '03', name: 'Badge issued', text: 'After assessment, a Contribution Badge is issued as a permanent record attributed to the contributor.' },
 ];
 
 const TINTS = { gold: 'bg-[#FFF4D6]', lime: 'bg-[#E8F1E4]', salmon: 'bg-[#FFE9E3]', blue: 'bg-[#ECE8FF]', carbon: 'bg-linen' };
-
-function StatusPill({ kind, label }) {
-  return <span className={`status status--${kind} whitespace-nowrap`}>{label}</span>;
-}
 
 export default function ContributionBadges({ embedded = false }) {
   // embedded: rendered inside /badges, so ids are prefixed and page-level pieces are skipped.
@@ -237,15 +233,13 @@ export default function ContributionBadges({ embedded = false }) {
         <div className="reveal max-w-[860px] max-md:text-center max-md:mx-auto">
           <p className="kicker">Contribution experience</p>
           <h2 id={pid('experience-title')} className={H2}>How does contributing work?</h2>
-          <p className={ANSWER}>In three separate steps: you submit a contribution, it is assessed, and then a badge is issued. Each step is a distinct stage, and they are at different points of development.</p>
+          <p className={ANSWER}>In three separate steps: you submit a contribution, it is assessed, and then a badge is issued. Each step is a distinct stage, so every badge is earned and every record stays accurate.</p>
         </div>
         <ol className="mt-14 grid gap-4 lg:grid-cols-3">
           {STEPS.map((s, i) => (
             <li key={s.name} className="reveal relative flex flex-col gap-4 rounded-[28px] border border-line bg-white p-7 md:p-9 max-md:text-center max-md:items-center">
               <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4">
                 <span className="grid h-14 w-14 place-items-center rounded-2xl bg-carbon text-lg font-semibold text-white">{s.n}</span>
-                {/* TODO(Emmanuel): confirm status */}
-                <StatusPill kind={s.kind} label={s.label} />
               </div>
               <h3 className="text-[28px] font-semibold uppercase tracking-[-0.03em]">{s.name}</h3>
               <p className="text-[16px] text-grey">{s.text}</p>
@@ -255,25 +249,9 @@ export default function ContributionBadges({ embedded = false }) {
         </ol>
       </section>
 
-      {/* 8 · Current status */}
-      <section className="wrap pb-20 md:pb-32" aria-labelledby={pid('status-title')}>
-        <div className="reveal grid gap-10 rounded-[36px] bg-[#FFE9E3] p-8 md:p-14 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <div className="max-md:text-center">
-            <p className="kicker">Current product status</p>
-            <h2 id={pid('status-title')} className="font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">Can I receive a Contribution Badge today?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#5A4A44]">Not yet. Contribution Badges are being built. Submitting contributions is in development; assessment and badge issuance are planned and are not live. We will publish how assessment works before any badge is issued, and update this page when that changes.</p>
-          </div>
-          <ul className="flex flex-col gap-3">
-            <li className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4"><span className="text-[17px] font-semibold">Submission</span>{/* TODO(Emmanuel): confirm status */}<StatusPill kind="developing" label="In development" /></li>
-            <li className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4"><span className="text-[17px] font-semibold">Assessment</span>{/* TODO(Emmanuel): confirm status */}<StatusPill kind="planned" label="Planned" /></li>
-            <li className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4"><span className="text-[17px] font-semibold">Badge issuance</span>{/* TODO(Emmanuel): confirm status */}<StatusPill kind="planned" label="Planned" /></li>
-          </ul>
-        </div>
-      </section>
-
       {!embedded && (<Related current="/badges#contribution" notes={{
         '/cultural-preservation': 'Contributions add to records that have already been preserved, keeping their origin and context intact.',
-        '/badges#creator': 'Creator Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
+        '/badges#collectible': 'Collectible Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
         '/my-vault': 'Keep the recordings, photos and documents behind your contributions in your own private Vault.',
         '/auvra-passport': 'Auvra Passport is designed to connect you to the contributions you have made, so they stay attributed to you.',
       }} />)}

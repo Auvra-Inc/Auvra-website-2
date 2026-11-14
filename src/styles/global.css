@@ -1094,3 +1094,14 @@ html { overflow-x: clip; }
     .nav__subwrap { transition: none; }
   }
 }
+@layer components {
+  /* Readable display headings: slightly looser letters and clear gaps between words (Wysemarket-style). */
+  .ws-h, .h2 { letter-spacing: -0.022em !important; word-spacing: 0.08em; }
+  .hero-h1 { letter-spacing: -0.02em !important; word-spacing: 0.06em; }
+}
+@layer components {
+  .nav__logo img { height: 28px !important; }
+  @media (min-width: 768px) { .nav__logo img { height: 32px !important; } }
+  .footer-logo { height: 30px !important; }
+  @media (min-width: 768px) { .footer-logo { height: 34px !important; } }
+}

@@ -4,13 +4,13 @@ import { DEFINITIONS } from '../../data/definitions.js';
 import { FAQ_GROUPS } from '../../data/faqs.js';
 import { Photo, PRODUCT_INFO, PRODUCTS_CRUMB } from './shared.jsx';
 
-const H1 = 'font-semibold uppercase tracking-[-0.045em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
-const H2 = 'font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+const H1 = 'font-semibold uppercase tracking-[-0.022em] [word-spacing:0.08em] leading-[0.9] text-[clamp(40px,7.2vw,96px)] text-balance';
+const H2 = 'font-semibold uppercase tracking-[-0.02em] [word-spacing:0.08em] leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
 const ANSWER = 'mt-6 text-[17px] md:text-lg leading-relaxed text-grey';
 
-// FAQ answers reused verbatim from src/data/faqs.js: What is My Vault, Who can own, Separate subscription, Personal AI OS.
+// FAQ answers reused verbatim from src/data/faqs.js: What is My Vault, Who can own, Separate subscription.
 const group = FAQ_GROUPS.find((g) => g.title === 'My Vault').items;
-export const FAQS = [group[0], group[1], group[3], group[4]];
+export const FAQS = group.slice(0, 4);
 
 const TYPES = [
   { icon: 'mic', name: 'Voice recordings', text: 'Stories, songs and conversations, kept in the voice of the person who told them.', bg: 'bg-[#FFE9E3]' },
@@ -227,28 +227,6 @@ export default function MyVault() {
         </div>
       </section>
 
-      {/* 7 · Personal AI OS (planned) */}
-      <section className="wrap pb-20 md:pb-32" aria-labelledby="ai-title">
-        <div className="reveal grid items-center gap-10 rounded-[36px] bg-blue p-8 md:p-14 text-white lg:grid-cols-[1.3fr_1fr]">
-          <div className="max-md:text-center">
-            <div className="flex items-center gap-3 max-md:justify-center">
-              <p className="kicker !mb-0 !text-[#BFE0E1]">Personal AI OS</p>
-              {/* TODO(Emmanuel): confirm status */}
-              <span className="status status--planned !bg-white">Planned</span>
-            </div>
-            <h2 id="ai-title" className="mt-5 font-semibold uppercase tracking-[-0.04em] leading-[0.92] text-[clamp(34px,4.6vw,60px)] text-balance">What is the planned Personal AI OS?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BFE0E1]">Personal AI OS is a planned capability, not yet released. It is intended to help you understand and interact with information in your Vault, using only the information you have authorised it to access.</p>
-          </div>
-          <div className="mx-auto w-full max-w-[380px] rounded-[26px] bg-white/10 p-2" aria-hidden="true">
-            <div className="flex flex-col gap-3 rounded-[20px] bg-white p-5 text-carbon">
-              <p className="self-end rounded-[18px] rounded-br-md bg-carbon px-4 py-3 text-[15px] text-white">Which songs did Grandma record?</p>
-              <p className="rounded-[18px] rounded-bl-md bg-[#E6F2F2] px-4 py-3 text-[15px]">From the items you have allowed me to read: two wedding songs and a lullaby in Wolof.</p>
-              <p className="text-center text-[12px] text-grey">Concept illustration · not released</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 8 · Privacy and control */}
       <section id="privacy" className="bg-carbon text-white py-20 md:py-32 scroll-mt-24" aria-labelledby="privacy-title">
         <div className="wrap">
@@ -262,7 +240,7 @@ export default function MyVault() {
             {[
               ['Private by default', 'Nothing in your Vault is public. It is a space for you and the people you choose.'],
               ['Shared by invitation only', 'People join only with an invitation code from the Vault owner.'],
-              ['Your information, your say', 'Any planned AI features would use only the information you have authorised.'],
+              ['Your information, your say', 'AI features use only the information you have authorised.'],
             ].map(([t, d]) => (
               <li key={t} className="reveal rounded-[28px] bg-[#2A2724] p-7 md:p-9 max-md:text-center">
                 <h3 className="text-[22px] font-semibold leading-tight">{t}</h3>
@@ -277,7 +255,7 @@ export default function MyVault() {
         <Related current="/my-vault" notes={{
           '/cultural-preservation': 'My Vault is where individuals and families keep the materials they are preserving.',
           '/badges#contribution': 'Materials in your Vault can become the start of contributions to a shared cultural record.',
-          '/badges#creator': 'Creators can keep the recordings and documents behind their work in a Vault.',
+          '/badges#collectible': 'Creators can keep the recordings and documents behind their work in a Vault.',
           '/auvra-passport': 'Auvra Passport is designed to connect you to the Vaults and records you are part of.',
         }} />
       </div>

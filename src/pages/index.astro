@@ -30,7 +30,7 @@ const tiles = [
 ];
 const features = [
   { art: 'pocket-watch', name: 'Cultural Preservation', text: 'The heart of Auvra. Document stories, languages and traditions, and keep them credited with two types of digital badges.', href: '/cultural-preservation',
-    badges: [{ art: 'coin', name: 'Contribution Badges', href: '/badges#contribution' }, { art: 'chess-knight', name: 'Creator Badges', href: '/badges#creator' }] },
+    badges: [{ art: 'coin', name: 'Contribution Badges', href: '/badges#contribution' }, { art: 'chess-knight', name: 'Collectible Badges', href: '/badges#collectible' }] },
   { art: 'key', name: 'My Vault', text: DEFINITIONS.myVault.short, href: '/my-vault' },
   { art: 'paper-plane', name: 'Auvra Passport', text: DEFINITIONS.auvraPassport.short, href: '/auvra-passport' },
   { art: 'magnifier', name: 'Lens AI', text: 'AI that transcribes and translates oral histories, tags cultural items and makes archives searchable. You can always review and edit what it writes.', href: '/lens-ai' },
@@ -62,7 +62,7 @@ const audiences = [
 ---
 <Base
   title="Auvra · Your story. Your culture. Your legacy."
-  description="Auvra is building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
+  description="Auvra is a cultural technology platform building the permanent home for human culture: infrastructure to preserve, own and pass down cultural heritage and traditions across generations."
   jsonld={[faqLd]}
 >
   <!-- 1 · Hero -->
@@ -437,13 +437,13 @@ const audiences = [
     <div class="reveal mx-auto max-w-[760px] px-6 text-center">
       <p class="mb-3 text-sm uppercase tracking-[0.12em] text-[#5B5560]">Inside the Auvra app</p>
       <h2 id="show-title" class="ws-h text-[2.6rem] leading-[2.4rem] md:text-[4.2rem] md:leading-[3.9rem] text-carbon">Point. Discover. <span class="serif-accent">Preserve.</span></h2>
-      <p class="mx-auto mt-5 max-w-[34rem] text-[15px] md:text-lg leading-relaxed text-[#4A4540]">Scan an object to learn its story, then listen to, read and translate the stories families have kept.</p>
+      <p class="mx-auto mt-5 max-w-[34rem] text-[15px] md:text-lg leading-relaxed text-[#4A4540]">Scan an object to start its record, then listen to, read and translate the stories families have kept.</p>
     </div>
 
     <div class="app-show__row">
       <!-- Scan -->
       <div class="app-show__item">
-        <PhoneFrame label="Illustrative Scan screen in the Auvra app: the camera frames a carved wooden mask and Auvra shows what it is and where it comes from">
+        <PhoneFrame label="Illustrative Scan screen in the Auvra app: the camera frames a carved wooden mask and Lens AI suggests context to review">
           <div class="relative flex h-full flex-col bg-[#FBF8F1]">
             <div class="relative h-[56%] flex-none overflow-hidden">
               <img src="/images/photos/mask-960.webp" alt="" class="h-full w-full object-cover object-[50%_22%]" loading="lazy" />
@@ -473,7 +473,7 @@ const audiences = [
             </div>
           </div>
         </PhoneFrame>
-        <p class="app-show__cap"><b>Scan</b> Point your camera at an object to see what it is and where it comes from.</p>
+        <p class="app-show__cap"><b>Scan</b> Point your camera at an object, capture it and explore suggested context.</p>
       </div>
 
       <!-- Story -->

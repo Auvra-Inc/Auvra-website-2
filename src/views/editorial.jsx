@@ -4,9 +4,9 @@ import { photoSrcset } from '../data/hires.js';
 // centred text on phones, dark carbon bands and `reveal` scroll-ins. Everything here is
 // static (no hooks), so it prerenders to plain HTML.
 
-export const H1 = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.88] text-[clamp(44px,11vw,120px)] text-balance';
-export const H2 = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
-export const H2_SM = 'ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.95] text-[clamp(32px,4.2vw,54px)] text-balance';
+export const H1 = 'ws-h font-bold uppercase tracking-[-0.022em] [word-spacing:0.08em] !leading-[0.88] text-[clamp(44px,11vw,120px)] text-balance';
+export const H2 = 'ws-h font-bold uppercase tracking-[-0.022em] [word-spacing:0.08em] !leading-[0.92] text-[clamp(38px,5.4vw,70px)] text-balance';
+export const H2_SM = 'ws-h font-bold uppercase tracking-[-0.022em] [word-spacing:0.08em] !leading-[0.95] text-[clamp(32px,4.2vw,54px)] text-balance';
 export const LEAD = 'text-[17px] md:text-lg leading-relaxed';
 
 export function Crumbs({ items, light = false }) {
@@ -113,7 +113,7 @@ export function FinalCta({ id = 'cta-title', title, text, primary = { href: '#ge
       <div className="relative overflow-hidden rounded-[32px] md:rounded-[40px] px-6 py-20 md:py-32 text-center" style={{ background: t.bg, color: t.text }}>
         <div className="relative z-10 mx-auto flex max-w-[980px] flex-col items-center gap-7">
           {icon}
-          <h2 id={id} className="reveal ws-h font-bold uppercase tracking-[-0.045em] !leading-[0.9] text-[clamp(40px,7.4vw,100px)] text-balance">{nb(title)}</h2>
+          <h2 id={id} className="reveal ws-h font-bold uppercase tracking-[-0.022em] [word-spacing:0.08em] !leading-[0.9] text-[clamp(40px,7.4vw,100px)] text-balance">{nb(title)}</h2>
           {text && <p className="reveal max-w-[480px] text-[17px] md:text-lg" style={{ color: t.sub }}>{text}</p>}
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a href={primary.href} className={`poster-cta shimmer ${t.btn === 'btn--dark' ? 'poster-cta--dark' : ''}`}>{primary.label}<span className="poster-cta__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg></span></a>

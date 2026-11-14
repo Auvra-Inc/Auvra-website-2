@@ -1,5 +1,4 @@
 import Icon3D from '../../components/Icon3D.jsx';
-import { Status } from '../../components/Page.jsx';
 import { DEFINITIONS } from '../../data/definitions.js';
 import { H1, H2_SM, LEAD, Crumbs, Photo, Kicker, QA, FaqList, FinalCta, nb } from '../editorial.jsx';
 
@@ -9,8 +8,7 @@ import { H1, H2_SM, LEAD, Crumbs, Photo, Kicker, QA, FaqList, FinalCta, nb } fro
 
 export const CHRONOS_FAQS = [
   { q: 'What is A-Chronos?', a: DEFINITIONS.aChronos.long },
-  { q: 'Is A-Chronos available to use?', a: 'No. A-Chronos is a research and development initiative, not a released product or a finished model. We will share what we learn through Auvra Research as work is published.' },
-  { q: 'How is A-Chronos different from Lens AI?', a: 'Lens AI is the set of AI tools being built into the Auvra app today, such as transcription, translation and tagging. A-Chronos is longer-term research into AI that understands cultural knowledge, context and the relationships between records, which may inform future Lens AI capabilities.' },
+  { q: 'How is A-Chronos different from Lens AI?', a: 'Lens AI is the set of AI tools in the Auvra app, such as transcription, translation and tagging. A-Chronos is longer-term research into AI that understands cultural knowledge, context and the relationships between records, which may inform future Lens AI capabilities.' },
   { q: 'Why does cultural heritage need specialised AI?', a: 'Cultural meaning depends on context: who shared something, in which language, where, for which occasion, and who is allowed to know it. General-purpose AI is mostly built from widely published text and tends to lose that context, especially for oral, local and underrepresented traditions.' },
   { q: 'Will my private content be used for A-Chronos research?', a: 'Auvra does not use personal content, including private Vault content, to train its AI by default. Any contribution to AI improvement would be opt-in, through a separate consent flow, as described in our AI Policy.' },
 ];
@@ -124,7 +122,6 @@ export default function AChronos() {
           <Crumbs light items={[{ label: 'Technology' }, { label: 'A-Chronos' }]} />
           <div className="flex flex-wrap items-center justify-center gap-3">
             <p className="kicker !mb-0 !text-[#BFE0E1]">A-Chronos</p>
-            <Status kind="research" />
           </div>
           <h1 id="chronos-title" className={`${H1} mx-auto mt-6 max-w-[14ch]`}>Building foundational AI for cultural heritage.</h1>
           <p className="mx-auto mt-8 max-w-[36rem] text-[18px] md:text-xl leading-relaxed text-[#D6ECEC]">A long-term research initiative asking how AI could understand cultural knowledge the way its custodians do: in context, in relationship, and with respect.</p>
@@ -146,7 +143,7 @@ export default function AChronos() {
           <QA id="what-title" kicker="What it is" q="What is A-Chronos?" />
           <div className="reveal space-y-5 max-md:text-center">
             <p className={`${LEAD} text-carbon`}>{DEFINITIONS.aChronos.long}</p>
-            <p className={`${LEAD} text-grey`}>It is research, not a product. A-Chronos is not a finished or production model, and it is not available to use. It is the long-term work behind Auvra’s technology: asking what it would take for AI to treat culture as living knowledge with owners, origins and meaning.</p>
+            <p className={`${LEAD} text-grey`}>A-Chronos is the long-term research behind Auvra’s technology: asking what it would take for AI to treat culture as living knowledge with owners, origins and meaning.</p>
           </div>
         </div>
       </section>
@@ -211,17 +208,17 @@ export default function AChronos() {
           id="lens-title"
           kicker="Relationship with Lens AI"
           q="How does A-Chronos relate to Lens AI?"
-          answer="Lens AI is the applied side: AI tools being built into the Auvra app now. A-Chronos is the research side: longer-term work on how AI can understand cultural knowledge, which may shape what Lens AI becomes."
+          answer="Lens AI is the applied side: AI tools inside the Auvra app. A-Chronos is the research side: longer-term work on how AI can understand cultural knowledge, which may shape what Lens AI becomes."
         />
         <div className="mt-14 grid gap-3 md:grid-cols-2">
           <a href="/lens-ai" className="reveal flex flex-col gap-4 rounded-[32px] bg-blue p-8 md:p-12 text-white no-underline min-h-[320px] max-md:items-center max-md:text-center">
-            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="speech" size={64} /><Status kind="developing" /></div>
+            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="speech" size={64} /></div>
             <h3 className="mt-auto text-4xl font-semibold tracking-tight">Lens AI</h3>
             <p className="text-lg text-[#BFE0E1]">Transcription, translation and tagging inside the app, reviewed by people. Built for use.</p>
             <span className="font-semibold underline underline-offset-4">Explore Lens AI</span>
           </a>
           <div className="reveal flex flex-col gap-4 rounded-[32px] bg-teal p-8 md:p-12 text-white min-h-[320px] max-md:items-center max-md:text-center">
-            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="globe" size={64} /><Status kind="research" /></div>
+            <div className="flex w-full items-center justify-between max-md:flex-col max-md:gap-4"><Icon3D name="globe" size={64} /></div>
             <h3 className="mt-auto text-4xl font-semibold tracking-tight">A-Chronos</h3>
             <p className="text-lg text-[#BFE0E1]">Research into context, relationships and cultural knowledge representation. Built for understanding.</p>
             <span className="font-semibold text-lime">You are here</span>
@@ -249,29 +246,6 @@ export default function AChronos() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* 7 · Current status */}
-      <section id="status" className="wrap scroll-mt-24 py-20 md:py-32" aria-labelledby="status-title">
-        <div className="reveal grid gap-10 rounded-[36px] bg-teal p-8 md:p-16 text-white lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <div className="max-md:text-center">
-            <p className="kicker !text-[#BFE0E1]">Current research &amp; development status</p>
-            <h2 id="status-title" className={`${H2_SM} max-w-[16ch] max-md:mx-auto`}>{nb('Where is A-Chronos today?')}</h2>
-            <p className={`${LEAD} mt-7 text-[#D6ECEC]`}>A-Chronos is in the research stage. It is not a finished or production model, it is not available to use, and we have not published results yet. When we do, they will appear on <a className="underline text-white" href="/research">Auvra Research</a>.</p>
-          </div>
-          <dl className="grid gap-3 text-carbon">
-            {[
-              ['Stage', <Status key="s" kind="research" />],
-              ['Availability', 'Not available to use'],
-              ['Publications', 'In preparation'],
-            ].map(([k, v]) => (
-              <div key={k} className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4">
-                <dt className="text-[15px] font-semibold text-teal">{k}</dt>
-                <dd className="text-right text-[16px]">{v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 

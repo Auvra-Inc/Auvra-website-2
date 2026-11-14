@@ -1,35 +1,15 @@
 import Icon3D from '../../components/Icon3D.jsx';
-import { Status } from '../../components/Page.jsx';
 import { DEFINITIONS } from '../../data/definitions.js';
 import { H1, H2, LEAD, Crumbs, Photo, Kicker, QA, FaqList, FinalCta } from '../editorial.jsx';
 
 export const LENS_FAQS = [
   { q: 'What is Lens AI?', a: DEFINITIONS.lensAI.long },
-  { q: 'Is Lens AI available yet?', a: 'Not yet. Lens AI is in development. Transcription and translation of voice notes and cultural tagging are being built now, and archive search is planned.' },
   { q: 'Which languages will Lens AI support?', a: 'Lens AI starts with African languages, English and French, with a focus on indigenous and underrepresented languages. The list is expected to grow as communities contribute recordings with their consent.' },
   { q: 'What is Scan?', a: DEFINITIONS.scan.long },
   { q: 'Can I edit what Lens AI produces?', a: 'Yes. Every transcript, translation and tag is a draft that the person who shared the memory can review and correct. Lens AI supports people; it does not replace their knowledge or authority.' },
   { q: 'Does Auvra use my content to train Lens AI?', a: 'By default, no. Auvra does not use your personal content, including private Vault content, to train or improve Lens AI. Any programme to improve Lens AI would be opt-in, through a separate consent flow. See the AI Policy for details.' },
 ];
 
-// Current development status. Keep this table honest: only move a row to "Available now" once it has shipped.
-const CAPABILITIES = [
-  // TODO(Emmanuel): confirm
-  { name: 'Scan', text: 'Point your camera at an object, fabric, carving or place to see what it is, where it comes from and its cultural context.', status: 'planned' },
-  // TODO(Emmanuel): confirm
-  { name: 'Transcription and translation of voice notes', text: 'Turn a recorded memory into written text in its original language, with a translation alongside.', status: 'developing' },
-  // TODO(Emmanuel): confirm
-  { name: 'Cultural tagging', text: 'Suggested tags for people, places, languages and practices, which you can accept, edit or remove.', status: 'developing' },
-  // TODO(Emmanuel): confirm
-  { name: 'Review and editing of AI drafts', text: 'Every transcript, translation and tag can be checked and corrected by the person who shared it.', status: 'developing' },
-  // TODO(Emmanuel): confirm
-  { name: 'Archive search', text: 'Find a story, a voice or a place across your preserved records using everyday words.', status: 'planned' },
-];
-const GROUPS = [
-  { kind: 'live', title: 'Available now', empty: 'No Lens AI capabilities are publicly available yet. We will list them here as they launch.' },
-  { kind: 'developing', title: 'In development' },
-  { kind: 'planned', title: 'Planned' },
-];
 
 const STEPS = [
   ['mic', 'Record', 'An elder tells a story in their own language, as a voice note or a longer recording.'],
@@ -55,7 +35,6 @@ export default function LensAI({ demo }) {
           <Crumbs items={[{ label: 'Technology' }, { label: 'Lens AI' }]} />
           <div className="flex flex-wrap items-center justify-center gap-3">
             <p className="kicker !mb-0">Lens AI</p>
-            <Status kind="developing" />
           </div>
           <h1 id="lens-title" className={`${H1} mx-auto mt-6 max-w-[15ch] text-carbon`}>Technology that helps cultural knowledge become more accessible.</h1>
           <p className="mx-auto mt-8 max-w-[36rem] text-[18px] md:text-xl leading-relaxed text-[#3A3631]">Speech and language tools that help families and communities document what they know, in the languages they speak, and keep it readable for the generations after them.</p>
@@ -126,7 +105,7 @@ export default function LensAI({ demo }) {
               </li>
             ))}
           </ol>
-          <p className="reveal mt-10 text-center text-[16px] text-[#A8A29A]">Transcription and translation of voice notes are <span className="text-white">in development</span>. AI-assisted drafts always sit beside the original recording, never in place of it.</p>
+          <p className="reveal mt-10 text-center text-[16px] text-[#A8A29A]">AI-assisted drafts always sit beside the original recording, never in place of it.</p>
         </div>
       </section>
 
@@ -155,7 +134,6 @@ export default function LensAI({ demo }) {
           >
             <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-grey max-w-[600px] max-md:mx-auto">
               <p>Good organisation is what lets someone find a grandmother’s recipe or a village festival recording years later. Tags are suggestions: you accept, edit or remove them, and you can always add the context only you know.</p>
-              <p>Over time, this organisation is what will make archive search possible across everything a family or community has preserved. Archive search is planned.</p>
             </div>
           </QA>
         </div>
@@ -169,7 +147,7 @@ export default function LensAI({ demo }) {
             <h2 id="scan-title" className={`reveal ${H2} max-w-[14ch] max-lg:mx-auto`}>What does Scan do?</h2>
             <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#BDB6AC] max-w-[560px] max-lg:mx-auto">{DEFINITIONS.scan.long}</p>
             <ul className="mt-8 grid gap-3 text-left max-w-[520px] max-lg:mx-auto">
-              {[['Point', 'Aim your camera at a mask, a fabric, an instrument or a building.'], ['Recognise', 'Lens AI identifies what it is and where it is likely from.'], ['Learn and keep', 'See its story and context, then save it to your Vault with your own notes.']].map(([t, d], i) => (
+              {[['Point', 'Aim your camera at a mask, a fabric, an instrument or a carving.'], ['Capture', 'Save a clear record of the object, with the photo kept as the original.'], ['Add its story', 'Lens AI suggests context for you to review, then you add what you know and keep it in your Vault.']].map(([t, d], i) => (
                 <li key={t} className="flex gap-4 rounded-2xl bg-white/5 p-4"><span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-white text-[14px] font-semibold text-[#191717]">{i + 1}</span><span><b className="block text-[16px]">{t}</b><span className="text-[15px] text-[#BDB6AC]">{d}</span></span></li>
               ))}
             </ul>
@@ -180,13 +158,13 @@ export default function LensAI({ demo }) {
               <span className="scan-corners" />
               <span className="scan-line" />
               <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white p-4 text-left text-[#191717] shadow-xl">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Scan · Recognised</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Scan · Suggested context</p>
                 <p className="mt-1 text-[17px] font-semibold leading-tight">Carved wooden mask</p>
                 <p className="mt-1 text-[13px] text-grey">West Africa · worn at festivals and ceremonies to honour ancestors.</p>
                 <div className="mt-3 flex gap-2 text-[12px] font-medium"><span className="rounded-full bg-[#E6F2F2] px-2.5 py-1 text-blue">See its story</span><span className="rounded-full bg-[#F4F0E8] px-2.5 py-1">Save to Vault</span></div>
               </div>
             </div>
-            <p className="mt-3 text-center text-[13px] text-[#8A8580]">Illustrative example. Scan is planned.</p>
+            <p className="mt-3 text-center text-[13px] text-[#8A8580]">Illustrative example. AI-generated suggestions may require human review.</p>
           </div>
         </div>
       </section>
@@ -234,59 +212,12 @@ export default function LensAI({ demo }) {
         </div>
       </section>
 
-      {/* 7 · Current development status */}
-      <section id="status" className="scroll-mt-24 bg-linen py-20 md:py-32" aria-labelledby="status-title">
-        <div className="wrap">
-          <QA
-            id="status-title"
-            kicker="Current development status"
-            q="What can Lens AI do today?"
-            answer="Lens AI is in development and is not yet publicly available. This table shows, honestly, what is being built now and what is planned. We update it as capabilities ship."
-          />
-          <div className="reveal mt-12 overflow-hidden rounded-[24px] bg-white">
-            <table className="w-full border-collapse text-left">
-              <caption className="sr-only">Lens AI capabilities and their development status</caption>
-              <thead>
-                <tr className="border-b border-line text-[13px] uppercase tracking-[0.08em] text-olive">
-                  <th scope="col" className="px-5 md:px-8 py-4 font-semibold">Capability</th>
-                  <th scope="col" className="px-5 md:px-8 py-4 font-semibold text-right md:text-left md:w-[200px]">Status</th>
-                </tr>
-              </thead>
-              {GROUPS.map((g) => {
-                const rows = CAPABILITIES.filter((c) => c.status === g.kind);
-                return (
-                  <tbody key={g.kind}>
-                    <tr className="bg-[#FBF8F1]">
-                      <th scope="rowgroup" colSpan={2} className="px-5 md:px-8 py-3 text-[15px] font-semibold">{g.title}</th>
-                    </tr>
-                    {rows.length ? rows.map((c) => (
-                      <tr key={c.name} className="border-t border-line align-top">
-                        <th scope="row" className="px-5 md:px-8 py-5 font-normal">
-                          <span className="block text-[17px] md:text-[19px] font-semibold">{c.name}</span>
-                          <span className="mt-1 block text-[15px] text-grey">{c.text}</span>
-                        </th>
-                        <td className="pl-0 pr-5 md:px-8 py-5 text-right md:text-left whitespace-nowrap [&_.status]:whitespace-nowrap"><Status kind={c.status} /></td>
-                      </tr>
-                    )) : (
-                      <tr className="border-t border-line">
-                        <td colSpan={2} className="px-5 md:px-8 py-5 text-[15px] text-grey">{g.empty}</td>
-                      </tr>
-                    )}
-                  </tbody>
-                );
-              })}
-            </table>
-          </div>
-          <p className="reveal mt-8 text-center text-[16px] text-grey">Looking further ahead? Read about <a className="text-blue underline" href="/a-chronos">A-Chronos</a>, our foundational model research, and follow published work on <a className="text-blue underline" href="/research">Research</a>.</p>
-        </div>
-      </section>
-
       <FaqList items={LENS_FAQS} title="Lens AI, answered" />
 
       {/* 8 · Final CTA */}
       <FinalCta
         title="Give every voice a lasting record."
-        text="Start preserving the stories and languages your family carries today, and be among the first to use Lens AI as it arrives."
+        text="Start preserving the stories and languages your family carries today, with Lens AI helping you capture and translate them."
         secondary={{ href: '/institutional-access', label: 'Institutional access' }}
         tone="blue"
       />

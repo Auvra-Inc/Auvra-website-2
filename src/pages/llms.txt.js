@@ -7,7 +7,7 @@ const pages = [
   ['/', 'Home: what Auvra is and how it works'],
   ['/about', 'About Auvra: story, mission, vision and C.U.L.T.U.R.E. values'],
   ['/cultural-preservation', 'Cultural Preservation'],
-  ['/badges', 'Cultural Badges: Contribution Badges and Creator Badges'],
+  ['/badges', 'Cultural Badges: Contribution Badges and Collectible Badges'],
   ['/my-vault', 'My Vault'],
   ['/auvra-passport', 'Auvra Passport'],
   ['/lens-ai', 'Lens AI, including Scan'],
@@ -24,7 +24,7 @@ export function GET() {
 
 > ${COMPANY.long}
 
-Auvra is operated by Auvra Tech Ltd (Lagos, Nigeria). It helps families, creators, communities, diaspora audiences and institutions preserve stories, languages and traditions as credited records and pass them down. The Auvra app is available for iPhone and Android.
+Auvra Tech Ltd, operating under the brand name Auvra, is a registered Nigerian company (RC Number: 8895504). It helps families, creators, communities, diaspora audiences and institutions preserve stories, languages and traditions as credited records and pass them down. The Auvra app is built for iPhone and Android.
 
 ## Products and technology
 ${defs}
