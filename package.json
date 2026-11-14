@@ -2,6 +2,8 @@
   "name": "auvra-website",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
+  "author": "Auvra Tech Ltd",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
