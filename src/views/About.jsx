@@ -1,4 +1,5 @@
 import Icon3D from '../components/Icon3D.jsx';
+import LogoFilm from '../components/LogoFilm.jsx';
 import { Status } from '../components/Page.jsx';
 import { COMPANY, DEFINITIONS } from '../data/definitions.js';
 import { EXPLORE_HREF } from '../data/site.js';
@@ -123,6 +124,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Brand film: the mark over moving dunes */}
+      <div className="px-2 md:px-3 pb-20 md:pb-32"><LogoFilm className="reveal" /></div>
 
       <section className="bg-[#191717] text-white" aria-label="Why Auvra exists">
         {STORY.map((s, i) => (
