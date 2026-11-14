@@ -21,12 +21,12 @@ const ICONS = {
 ---
 <footer class="bg-white" aria-labelledby="footer-cta-title">
   <div class="px-3 md:px-10 pt-10 md:pt-20">
-    <div class="relative mx-auto max-w-[1240px] overflow-hidden rounded-[36px] md:rounded-[44px] bg-[#191717] px-6 py-24 md:py-32 text-center" style="background-image: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(120,110,95,.55), rgba(25,23,23,0) 70%)">
-      <div class="mx-auto flex max-w-[860px] flex-col items-center gap-7">
-        <h2 id="footer-cta-title" class="ws-h text-[#FBF8F1] text-[clamp(44px,9vw,104px)] !leading-[0.92]">What we keep today, tomorrow remembers.</h2>
-        <p class="max-w-[36ch] text-[16px] md:text-[20px] leading-relaxed text-[#D9D3C8]">Start preserving your family’s story, your creative work or your community’s heritage today. It’s free to begin.</p>
-        <div id="get-app" class="footer-stores mt-4 scroll-mt-40"><StoreButtons variant="light" /></div>
-        <div class="footer-sub mt-5 w-full max-w-[380px]"><SubscribeForm client:visible id="footer-email" /></div>
+    <div class="footer-card relative mx-auto max-w-[1240px] overflow-hidden rounded-[36px] md:rounded-[44px] bg-[#191717] px-6 py-24 md:py-32 text-center" data-pause-offscreen style="background-image: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(120,110,95,.55), rgba(25,23,23,0) 70%)">
+      <div class="relative mx-auto flex max-w-[860px] flex-col items-center gap-7">
+        <h2 id="footer-cta-title" class="reveal ws-h text-[#FBF8F1] text-[clamp(44px,9vw,104px)] !leading-[0.92]">What we keep today, tomorrow remembers.</h2>
+        <p class="reveal max-w-[36ch] text-[16px] md:text-[20px] leading-relaxed text-[#D9D3C8]">Start preserving your family’s story, your creative work or your community’s heritage today. It’s free to begin.</p>
+        <div id="get-app" class="reveal footer-stores mt-4 scroll-mt-40"><StoreButtons variant="light" /></div>
+        <div class="reveal footer-sub mt-5 w-full max-w-[380px]"><SubscribeForm client:visible id="footer-email" /></div>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@ const ICONS = {
   </section>
   <div class="footer-main mx-auto max-w-[1240px] px-6 md:px-10 pt-10 md:pt-14">
     <div class="footer-grid">
-      <div class="flex flex-col gap-3">
+      <div class="reveal flex flex-col gap-3">
         <a href="/" aria-label="Auvra home" class="self-start"><img src="/brand/auvra-lockup-v2-carbon.svg" alt="Auvra" width="94" height="23" loading="lazy" class="footer-logo" /></a>
         <p class="text-[14px] md:text-[15px] text-[#6B6560]">The Permanent Home for Human Culture.</p>
         <ul class="mt-1 flex -ml-2.5 gap-0.5" aria-label="Auvra on social media">
@@ -52,9 +52,9 @@ const ICONS = {
         </ul>
       </div>
       {FOOTER_COLS.map((col) => (
-        <nav aria-label={col.title} class="flex flex-col gap-4">
+        <nav aria-label={col.title} class="reveal flex flex-col gap-4">
           <h2 class="text-[13px] font-medium uppercase tracking-[0.12em] text-[#6B6560]">{col.title}</h2>
-          <ul class="flex flex-col gap-4">{col.links.map((l) => <li><a class="text-[12px] md:text-[14px] leading-tight text-[#4A4540] transition-colors hover:text-[#191717]" href={l.href}>{l.label}</a></li>)}</ul>
+          <ul class="flex flex-col gap-4">{col.links.map((l) => <li><a class="footer-link text-[12px] md:text-[14px] leading-tight text-[#4A4540] hover:text-[#191717]" href={l.href}>{l.label}</a></li>)}</ul>
         </nav>
       ))}
     </div>
@@ -68,5 +68,5 @@ const ICONS = {
       <p>All trademarks, service marks and registered marks belong to their respective owners.</p>
     </div>
   </div>
-  <div class="footer-pattern" aria-hidden="true"></div>
+  <div class="footer-pattern" aria-hidden="true" data-pause-offscreen></div>
 </footer>
