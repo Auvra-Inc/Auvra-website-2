@@ -51,11 +51,6 @@
       "source": "/creator-badges",
       "destination": "/badges#creator",
       "permanent": true
-    },
-    {
-      "source": "/collab",
-      "destination": "/terms",
-      "permanent": true
     }
   ],
   "headers": [

@@ -40,6 +40,10 @@ ${POSTS.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}): ${p.description || '
 - [Privacy Policy](${SITE}/privacy)
 - [AI Policy](${SITE}/ai-policy)
 - [Community Guidelines](${SITE}/community)
+- [Content Governance Policy](${SITE}/governance)
+- [Copyright Policy](${SITE}/copyright)
+- [AML/CFT Policy](${SITE}/aml)
+- [Collaboration Hub Terms](${SITE}/collab)
 
 ## Contact
 - General enquiries: ${CONTACT_EMAIL}

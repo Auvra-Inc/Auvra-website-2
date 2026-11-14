@@ -23,7 +23,7 @@ Every route of the old site and every URL in its sitemap (`public/sitemap.txt`) 
 | `/institutional-access` | `/institutional-access` | Same path |
 | `/institutions` | `/institutional-access` | 301 |
 | `/waitlist` | `/download` | 301 |
-| `/collab` | `/terms` | 301 (the old page was the collaboration terms) |
+| `/collab` | `/collab` | Same path (Collaboration Hub Terms) |
 | `/sitemap.txt` | `/sitemap.xml` | 301 |
 | `/contribution-badges` | `/badges#contribution` | 301 |
 | `/collectible-badges`, `/creator-badges` | `/badges#creator` | 301 |

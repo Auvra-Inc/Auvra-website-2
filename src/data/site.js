@@ -62,6 +62,7 @@ export const FOOTER = [
       { label: 'Terms of Service', href: '/terms' },
       { label: 'Privacy Policy', href: '/privacy' },
       { label: 'AML / CFT Policy', href: '/aml' },
+      { label: 'Collaboration Hub Terms', href: '/collab' },
     ],
   },
   {
