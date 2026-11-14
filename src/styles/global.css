@@ -1236,44 +1236,48 @@ html { overflow-x: clip; }
 }
 
 /* ───────── Logo film (About page) ─────────
-   Dunes: each wave is a pre-blurred strip twice the width of the frame that slides exactly one period per loop,
-   inside a wrapper that rises and falls. Only transforms animate, so the blur is rasterised once. */
+   Dunes: each wave is a softly blurred strip twice the width of the frame that slides exactly one period per loop,
+   inside a wrapper that rises and falls. Only transforms animate. Blur and type scale with the frame (cqw units),
+   so the scene is as crisp on a phone as on a desktop. clip-path keeps all four corners round on every browser. */
 @layer components {
-  .logo-film { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 3; border-radius: 24px; color: #FFE7DA;
-    background: linear-gradient(180deg, #6F8087 0%, #8E9797 30%, #B9A79C 46%, #221A14 60%); contain: layout paint; }
-  @media (min-width: 768px) { .logo-film { aspect-ratio: 16 / 9; } }
-  .logo-film__sun { position: absolute; left: 50%; top: -30%; width: 84%; aspect-ratio: 1.7; border-radius: 50%; translate: -50% 0;
-    background: radial-gradient(closest-side, #FBF4DC 0%, rgba(251, 244, 220, .85) 38%, rgba(251, 244, 220, 0) 100%);
-    animation: filmSun 9s ease-in-out infinite alternate; will-change: transform, opacity; }
-  @keyframes filmSun { from { transform: scale(.92); opacity: .82; } to { transform: scale(1.1); opacity: 1; } }
+  .logo-film { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 3; border-radius: 24px; clip-path: inset(0 round 24px); color: #FFEDE3;
+    container-type: inline-size; transform: translateZ(0);
+    background: linear-gradient(180deg, #6C7F88 0%, #8D989A 26%, #C2AD9F 40%, #1F1814 56%); }
+  @media (min-width: 768px) { .logo-film { aspect-ratio: 16 / 9; border-radius: 32px; clip-path: inset(0 round 32px); } }
+  .js .logo-film.reveal { transform: translate3d(0, 24px, 0); } .js .logo-film.reveal.is-in { transform: translateZ(0); }
+  .logo-film__sun { position: absolute; left: 50%; top: -34%; width: 84%; aspect-ratio: 1.7; border-radius: 50%; translate: -50% 0;
+    background: radial-gradient(closest-side, #FFF8E0 0%, rgba(255, 248, 224, .9) 36%, rgba(255, 248, 224, 0) 100%);
+    animation: filmSun 5s ease-in-out infinite alternate; will-change: transform, opacity; }
+  @keyframes filmSun { from { transform: scale(.88); opacity: .78; } to { transform: scale(1.14); opacity: 1; } }
 
   .logo-film__bob { position: absolute; left: 0; width: 100%; height: 100%; animation: filmBob var(--bob) ease-in-out var(--s) infinite alternate; will-change: transform; }
   @keyframes filmBob { from { transform: translate3d(0, calc(var(--amp) * -1), 0); } to { transform: translate3d(0, var(--amp), 0); } }
-  .logo-film__wave { position: absolute; left: 0; top: 0; width: 200%; height: 100%; filter: blur(var(--blur)); will-change: transform;
+  .logo-film__wave { position: absolute; left: 0; top: 0; width: 200%; height: 100%; filter: blur(calc(var(--blur) * .1cqw)); will-change: transform;
     animation: filmSlide var(--speed) linear var(--s) infinite; animation-direction: var(--dir); }
   @keyframes filmSlide { to { transform: translate3d(-50%, 0, 0); } }
 
-  .logo-film__grain { position: absolute; inset: 0; background: url('/images/grain.png') 0 0 / 180px 180px; mix-blend-mode: overlay; opacity: .34; pointer-events: none; }
+  /* A light film grain only: enough for texture, not enough to look like a compressed image. */
+  .logo-film__grain { position: absolute; inset: 0; background: url('/images/grain.png') 0 0 / 140px 140px; mix-blend-mode: soft-light; opacity: .16; pointer-events: none; }
 
-  .logo-film__row { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10%; padding: 0 5%; }
-  .logo-film__word { width: clamp(64px, 15vw, 190px); height: auto; justify-self: end; }
-  .logo-film__mark { width: clamp(64px, 14vw, 170px); height: auto; overflow: visible; }
-  .logo-film__tag { justify-self: start; font-family: var(--serif); font-size: clamp(11px, 1.9vw, 26px); line-height: 1.2; letter-spacing: -0.01em; text-align: left; white-space: nowrap; }
+  .logo-film__row { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8cqw; padding: 0 5cqw; }
+  .logo-film__word { width: 13cqw; min-width: 52px; height: auto; justify-self: end; }
+  .logo-film__mark { width: 9.5cqw; min-width: 40px; height: auto; overflow: visible; }
+  .logo-film__tag { justify-self: start; font-family: var(--display); font-weight: 500; font-size: max(10.5px, 2cqw); line-height: 1.18; letter-spacing: -0.01em; text-align: left; white-space: nowrap; }
 
-  /* The mark turns slowly, then every loop it whirls round once: the pieces fly out, blur and gather again. */
-  .logo-film__spin { transform-box: view-box; animation: filmSpin 9s cubic-bezier(.6, 0, .2, 1) infinite; will-change: transform; }
+  /* The mark turns steadily, then every loop it whirls round once: the pieces fly out and gather again. */
+  .logo-film__spin { transform-box: view-box; animation: filmSpin 6s infinite; will-change: transform; }
   @keyframes filmSpin {
     0% { transform: rotate(0deg); animation-timing-function: linear; }
-    64% { transform: rotate(38deg); animation-timing-function: cubic-bezier(.7, 0, .15, 1); }
+    58% { transform: rotate(60deg); animation-timing-function: cubic-bezier(.7, 0, .15, 1); }
     100% { transform: rotate(360deg); }
   }
-  .logo-film__piece { transform-box: fill-box; transform-origin: center; animation: filmPiece 9s ease-in-out infinite; animation-delay: calc(var(--i) * .05s); }
+  .logo-film__piece { transform-box: fill-box; transform-origin: center; animation: filmPiece 6s ease-in-out infinite; animation-delay: calc(var(--i) * .04s); }
   @keyframes filmPiece {
-    0%, 12% { transform: translate(0, 0) scale(1); filter: blur(0); opacity: 1; }
-    38% { transform: translate(calc(var(--px) * 5px), calc(var(--py) * 5px)) scale(1); }
-    62% { transform: translate(0, 0) scale(1); filter: blur(0); opacity: 1; }
-    80% { transform: translate(calc(var(--px) * 24px), calc(var(--py) * 24px)) scale(.72) rotate(70deg); filter: blur(3px); opacity: .85; }
-    100% { transform: translate(0, 0) scale(1); filter: blur(0); opacity: 1; }
+    0%, 8% { transform: translate(0, 0) scale(1); opacity: 1; }
+    30% { transform: translate(calc(var(--px) * 7px), calc(var(--py) * 7px)) scale(1); }
+    56% { transform: translate(0, 0) scale(1); opacity: 1; }
+    78% { transform: translate(calc(var(--px) * 26px), calc(var(--py) * 26px)) scale(.7) rotate(80deg); opacity: .9; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
   }
 
   @media (prefers-reduced-motion: reduce) {

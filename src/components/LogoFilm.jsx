@@ -2,14 +2,14 @@
 // Pure CSS motion on GPU layers (see "Logo film" in global.css). Decorative: the whole scene is one labelled image.
 import { MARK, WORD } from '../data/logoPaths.js';
 
-const WAVE = 'M0 60 C180 60 320 0 500 0 S820 60 1000 60 S1320 0 1500 0 S1820 60 2000 60 V700 H0Z';
+const WAVE = 'M0 150 C180 150 320 0 500 0 S820 150 1000 150 S1320 0 1500 0 S1820 150 2000 150 V900 H0Z';
 // top = where the crest sits, speed = seconds per loop (negative runs the other way), bob = seconds per rise and fall
 const WAVES = [
-  { c: '#F9D8C2', top: 26, speed: 34, bob: 9, amp: 5, blur: 16, s: -4 },
-  { c: '#F2957A', top: 33, speed: -27, bob: 11, amp: 6, blur: 14, s: -9 },
-  { c: '#5B3F86', top: 40, speed: 22, bob: 8, amp: 7, blur: 12, s: -2 },
-  { c: '#221A14', top: 46, speed: -18, bob: 10, amp: 8, blur: 10, s: -6 },
-  { c: '#D9A7C7', top: 92, speed: 25, bob: 12, amp: 14, blur: 22, s: -11 },
+  { c: '#FBDCC8', top: 20, speed: 13, bob: 5, amp: 5, blur: 9, s: -4 },
+  { c: '#F4917A', top: 28, speed: -10, bob: 6, amp: 6, blur: 8, s: -9 },
+  { c: '#5E3F8E', top: 36, speed: 8.5, bob: 4.5, amp: 6, blur: 7, s: -2 },
+  { c: '#1F1814', top: 44, speed: -7.5, bob: 5.5, amp: 7, blur: 6, s: -6 },
+  { c: '#D9A7C7', top: 90, speed: 11, bob: 6.5, amp: 9, blur: 12, s: -11 },
 ];
 
 export default function LogoFilm({ className = '' }) {
@@ -19,8 +19,8 @@ export default function LogoFilm({ className = '' }) {
       <div className="logo-film__sun" />
       {WAVES.map((w, i) => (
         <div key={i} className="logo-film__bob" style={{ top: w.top + '%', '--bob': w.bob + 's', '--amp': w.amp + '%', '--s': w.s + 's' }}>
-          <svg className="logo-film__wave" viewBox="0 0 2000 700" preserveAspectRatio="none" aria-hidden="true"
-            style={{ '--speed': Math.abs(w.speed) + 's', '--dir': w.speed < 0 ? 'reverse' : 'normal', '--blur': w.blur + 'px', '--s': w.s + 's' }}>
+          <svg className="logo-film__wave" viewBox="0 0 2000 900" preserveAspectRatio="none" aria-hidden="true"
+            style={{ '--speed': Math.abs(w.speed) + 's', '--dir': w.speed < 0 ? 'reverse' : 'normal', '--blur': w.blur, '--s': w.s + 's' }}>
             <path d={WAVE} fill={w.c} />
           </svg>
         </div>
