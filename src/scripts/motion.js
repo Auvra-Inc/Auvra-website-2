@@ -21,3 +21,22 @@ if ('IntersectionObserver' in window) {
   // Looping motion only runs while it is on screen, so it never competes with scrolling elsewhere on the page.
   document.querySelectorAll('[data-pause-offscreen], .hero-slides, .moods, .aud-marquee, .partners__track-wrap, .ceramics, .phone-frame, .artifact').forEach((el) => po.observe(el));
 }
+
+// Lazy images ease in once loaded. Images that already animate (marquees, slides, floating pieces) are left alone,
+// and nothing can stay hidden: errors and a timeout both reveal the image.
+if (!reduce) {
+  document.querySelectorAll('main img[loading="lazy"]').forEach((img) => {
+    if (img.complete || img.closest('.moods, .hero-slides, .ceramics, .wall, .partners, .aud-marquee, .marquee, .phone-frame')) return;
+    if (getComputedStyle(img).animationName !== 'none') return;
+    img.classList.add('img-wait');
+    let done = false;
+    const show = () => {
+      if (done) return; done = true;
+      img.classList.remove('img-wait'); img.classList.add('img-in');
+      img.addEventListener('animationend', () => img.classList.remove('img-in'), { once: true });
+    };
+    img.addEventListener('load', show, { once: true });
+    img.addEventListener('error', show, { once: true });
+    setTimeout(show, 4000);
+  });
+}

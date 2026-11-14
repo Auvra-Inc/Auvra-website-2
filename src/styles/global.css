@@ -1114,3 +1114,69 @@ html { overflow-x: clip; }
     .hero-h1 .serif-accent { line-height: 0.9 !important; letter-spacing: -0.03em !important; margin: 0.04em 0 !important; }
   }
 }
+
+/* ───────── Motion polish layer ─────────
+   Everything here is additive and progressive: browsers without a feature simply skip it,
+   and reduced-motion turns it all off at the bottom of the block. */
+@layer components {
+  /* 1 · Entrances. Home hero: the line under the headline and the store buttons follow the words in. */
+  #home .hero-h1 ~ p { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .5s both; }
+  #home .hero-stores { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .62s both; }
+  /* Inner pages: the page title and its lead rise in once on load. */
+  main h1:not(.hero-h1) { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .05s both; }
+  .page-hero > .kicker, .page-hero > .crumbs, .legal__head > .crumbs { animation: fadeIn .6s ease both; }
+  .page-hero > .lead, .legal__updated, .legal__intro { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .16s both; }
+  @keyframes riseIn { from { opacity: 0; transform: translate3d(0, 18px, 0); } }
+  @keyframes fadeIn { from { opacity: 0; } }
+
+  /* 2 · Lazy images ease in when they finish loading (classes are set by motion.js). */
+  .img-wait { opacity: 0 !important; }
+  .img-in { animation: fadeIn .6s ease both; }
+
+  /* 3 · Touch feedback: buttons give slightly under the finger. */
+  .btn:active, .poster-cta:active, .store:active, .ghost-cta:active, .filter:active, .share-btn:active { transform: scale(.97) !important; transition-duration: .08s !important; }
+
+  /* 4 · Text links: the underline draws in from the left instead of popping. */
+  .text-link { text-decoration: none !important; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size .35s cubic-bezier(.22,1,.36,1); }
+  .text-link:hover, .text-link:focus-visible { background-size: 100% 1.5px; }
+
+  /* 5 · FAQ rows (<details>): the +/− badge turns as the row opens. */
+  details > summary > span[aria-hidden='true'] { transition: transform .4s cubic-bezier(.22,1,.36,1), background-color .25s, color .25s; }
+  details[open] > summary > span[aria-hidden='true'] { transform: rotate(180deg); }
+
+  /* 6 · Reading progress: a hairline at the top of articles and policies. */
+  @supports (animation-timeline: scroll()) {
+    body:has(.post__body, .ins-prose, .legal-doc)::before {
+      content: ''; position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 70; background: var(--blue);
+      transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
+      animation: readProgress linear both; animation-timeline: scroll(root block);
+    }
+    @keyframes readProgress { to { transform: scaleX(1); } }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #home .hero-h1 ~ p, #home .hero-stores, main h1:not(.hero-h1), .page-hero > *, .legal__head > *, .img-in { animation: none !important; }
+    .img-wait { opacity: 1 !important; }
+    details > summary > span[aria-hidden='true'] { transition: none; }
+    body::before { display: none !important; }
+  }
+}
+
+/* FAQ rows open and close by height where the browser can animate to "auto". */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root { interpolate-size: allow-keywords; }
+    details::details-content { block-size: 0; overflow: clip; opacity: 0; transition: block-size .42s cubic-bezier(.22,1,.36,1), opacity .3s ease, content-visibility .42s allow-discrete; }
+    details[open]::details-content { block-size: auto; opacity: 1; }
+  }
+}
+
+/* Page-to-page: a short cross-fade between pages, with the menu bar held in place. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: vtOut .16s ease both; }
+  ::view-transition-new(root) { animation: vtIn .34s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes vtOut { to { opacity: 0; } }
+  @keyframes vtIn { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
+  .nav { view-transition-name: site-nav; }
+}
