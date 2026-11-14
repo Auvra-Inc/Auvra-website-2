@@ -2,6 +2,14 @@
 // The dunes are drawn by src/scripts/logo-film.js (WebGL); the mark animates in CSS (see "Logo film" in global.css). Decorative: the whole scene is one labelled image.
 import { MARK, WORD } from '../data/logoPaths.js';
 
+// Short lines about culture that fade in and out, one at a time, in the lower part of the scene.
+const QUOTES = [
+  ['When an elder dies, a library burns to the ground.', 'Amadou Hampâté Bâ'],
+  ['A people without the knowledge of their past history, origin and culture is like a tree without roots.', 'Marcus Garvey'],
+  ['Until the lion learns to write, every story will glorify the hunter.', 'African proverb'],
+  ['What we keep today, tomorrow remembers.', 'Auvra'],
+];
+
 export default function LogoFilm({ className = '' }) {
   const half = 100;
   return (
@@ -18,6 +26,14 @@ export default function LogoFilm({ className = '' }) {
           </g>
         </svg>
         <p className="logo-film__tag">The Permanent Home<br />for Human Culture</p>
+      </div>
+      <div className="logo-film__quotes" aria-hidden="true" style={{ '--n': QUOTES.length }}>
+        {QUOTES.map(([q, by], i) => (
+          <figure key={by} className="logo-film__quote" style={{ '--i': i }}>
+            <blockquote>“{q}”</blockquote>
+            <figcaption>{by}</figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   );

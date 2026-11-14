@@ -1270,7 +1270,19 @@ html { overflow-x: clip; }
     100% { transform: translate(0, 0) scale(1); opacity: 1; }
   }
 
+  /* Quotes: one at a time, each rises in, holds, then lifts away (6s each, four in a 24s loop). */
+  .logo-film__quotes { position: absolute; left: 50%; bottom: 7.5cqw; width: min(86cqw, 760px); translate: -50% 0; display: grid; text-align: center; pointer-events: none; }
+  .logo-film__quote { grid-area: 1 / 1; align-self: end; margin: 0; opacity: 0; animation: filmQuote 24s cubic-bezier(.22,1,.36,1) infinite; animation-delay: calc(var(--i) * 6s); text-shadow: 0 1px 14px rgba(20, 14, 8, .55); }
+  .logo-film__quote blockquote { margin: 0; font-family: var(--display); font-weight: 500; font-size: max(12.5px, 2.15cqw); line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+  .logo-film__quote figcaption { margin-top: .7em; font-family: var(--display); font-weight: 500; font-size: max(9.5px, 1.05cqw); letter-spacing: .14em; text-transform: uppercase; opacity: .78; }
+  @keyframes filmQuote {
+    0% { opacity: 0; transform: translate3d(0, 14px, 0); filter: blur(6px); }
+    4%, 21% { opacity: 1; transform: none; filter: blur(0); }
+    25%, 100% { opacity: 0; transform: translate3d(0, -10px, 0); filter: blur(6px); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .logo-film__quote { animation: none !important; } .logo-film__quote:first-child { opacity: 1; }
     .logo-film__spin, .logo-film__piece { animation: none !important; }
   }
 }
