@@ -40,3 +40,7 @@ if (!reduce) {
     setTimeout(show, 4000);
   });
 }
+
+// The About page logo film loads its renderer only when the scene exists.
+const film = document.querySelector('canvas[data-film]');
+if (film) import('./logo-film.js').then((m) => m.default(film, reduce));
