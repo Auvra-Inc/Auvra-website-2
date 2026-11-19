@@ -33,7 +33,6 @@ const others = Object.entries(PAGES).filter(([k, v]) => k !== legal && v.group =
       <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span>{page.group}</span></li><li><span aria-current="page">{page.label}</span></li></ol></nav>
       <h1 class="legal__title">{m.title}</h1>
       {updated && <p class="legal__updated">{updated.replace(/^Last Updated:/i, 'Last updated:')}</p>}
-      {m.version && <p class="legal__intro">{m.version}</p>}
       {intro && <p class="legal__intro">{intro}</p>}
     </header>
     {toc.length > 3 && (
