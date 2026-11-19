@@ -1328,3 +1328,26 @@ html { overflow-x: clip; }
   .legal-doc table { border-radius: 12px; overflow: hidden; }
   .legal-doc th { background: #F7F4EE; color: var(--carbon) !important; font-weight: 600; }
 }
+
+/* ───────── Legal and Trust & Safety pages: refined document type ─────────
+   A narrower reading column, regular-weight text one step smaller, numbered section headings
+   with a hairline above each, and quieter sub-headings, lists and tables. */
+@layer components {
+  .legal-doc { max-width: 720px; margin-inline: auto; }
+  .legal-doc p, .legal-doc li, .legal-doc td, .legal-doc th { font-size: 14px !important; font-weight: 400 !important; line-height: 1.7 !important; color: #6B6761 !important; }
+  @media (min-width: 768px) { .legal-doc p, .legal-doc li, .legal-doc td, .legal-doc th { font-size: 15px !important; } }
+  .legal-doc p + p { margin-top: 10px !important; }
+  .legal-doc section { padding-top: 34px; margin-top: 34px; border-top: 1px solid var(--line); }
+  .legal-doc section:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+  .legal-doc h2 { font-size: clamp(17px, 2vw, 21px) !important; line-height: 1.2 !important; letter-spacing: -0.01em !important; margin: 0 0 14px !important; }
+  .legal-doc h3 { font-size: 14.5px !important; font-weight: 600 !important; letter-spacing: 0; color: var(--carbon); margin: 22px 0 6px !important; }
+  @media (min-width: 768px) { .legal-doc h3 { font-size: 15.5px !important; } }
+  .legal-doc ul, .legal-doc ol { margin: 8px 0 12px !important; padding-left: 20px !important; }
+  .legal-doc li + li { margin-top: 4px !important; }
+  .legal-doc strong, .legal-doc b { font-weight: 600 !important; color: #3A3631 !important; }
+  .legal-doc table { margin: 14px 0 !important; border: 1px solid var(--line); }
+  .legal-doc th, .legal-doc td { padding: 9px 12px !important; font-size: 13.5px !important; }
+  .legal__intro { font-size: 14px !important; }
+}
+
+@layer components { .legal-doc { margin-top: 36px; } }
