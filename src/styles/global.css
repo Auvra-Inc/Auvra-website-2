@@ -1380,3 +1380,12 @@ html { overflow-x: clip; }
   .legal-doc h3 { font-weight: 500 !important; }
   .legal__updated { font-weight: 400 !important; }
 }
+
+/* Phone hero slides: 4 seconds per slide (was 7), with a quicker 0.8s glide between them. */
+@layer components {
+  .hero-slide { animation: heroSlide5b 20s cubic-bezier(.65,0,.35,1) infinite backwards !important; animation-delay: calc(var(--i) * 4s - .8s) !important; }
+  .hero-slides__dots span { animation: heroDot5b 20s linear infinite backwards !important; animation-delay: calc(var(--i) * 4s - .8s) !important; }
+  @keyframes heroSlide5b { 0% { transform: translateX(100%); } 4% { transform: translateX(0); } 20% { transform: translateX(0); } 24% { transform: translateX(-100%); } 100% { transform: translateX(-100%); } }
+  @keyframes heroDot5b { 0%, 2% { width: 8px; background: rgba(255,255,255,.5); } 4%, 20% { width: 26px; background: #fff; } 24%, 100% { width: 8px; background: rgba(255,255,255,.5); } }
+  @media (prefers-reduced-motion: reduce) { .hero-slide, .hero-slides__dots span { animation: none !important; } }
+}
