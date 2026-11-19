@@ -13,22 +13,22 @@ export const DEFINITIONS = {
   },
   badges: {
     name: 'Cultural Badges',
-    short: 'Digital badges that keep cultural work credited: Contribution Badges record what people add to a cultural record, and Creator Badges carry a creator’s own work with its context.',
-    long: 'Cultural Badges are digital badges that keep cultural work credited to the people behind it. There are two types: Contribution Badges, which record the context, memories and care people add to what has already been preserved, and Creator Badges, which let creators document and share their own cultural work, such as music, art or craft, with its story attached.',
+    short: 'Auvra’s two public badges: Contribution Badges recognise the cultural contributions that belong to people and communities, and Heirloom Badges celebrate the creative works creators leave behind.',
+    long: 'Auvra is built around two public badge categories and one private preservation space. Contribution Badges recognise cultural and communal contributions that belong to people and communities, and cannot be bought or claimed. Heirloom Badges represent creative works published by creators for Explorers to discover and claim. My Vault is the private space where people preserve their own memories and collections.',
   },
   contributionBadges: {
     name: 'Contribution Badges',
-    short: 'Permanent, attributable records of cultural contributions that preserve their original context while allowing additional knowledge to be documented.',
-    long: 'A Contribution Badge is a permanent, attributable record of a cultural contribution. It preserves the original record and its context, while allowing additional knowledge to be documented alongside it without silently replacing what came before.',
+    short: 'Recognising the cultural contributions that belong to us: languages, dance, artifacts, food, traditions, music and other shared cultural expression.',
+    long: 'A Contribution Badge recognises cultural and communal contributions that belong to people and communities, such as languages, dance, artifacts, food, traditions and music. It honours what communities have created, preserved and passed down across generations. People contribute through four paths, and a Contribution Badge cannot be bought or claimed.',
   },
-  creatorBadges: {
-    name: 'Creator Badges',
-    short: 'A way for creators to document, attribute and distribute cultural expressions as digital or physical badges.',
-    long: 'A Creator Badge lets a creator document, attribute and distribute a cultural expression, such as an artwork, a song or a craft, as a digital or physical item that carries its cultural context and the creator’s attribution.',
+  heirloomBadges: {
+    name: 'Heirloom Badges',
+    short: 'Celebrating the creative works we leave behind: original works published by creators for Explorers to discover and claim.',
+    long: 'An Heirloom Badge represents a creator’s original cultural or creative work made available within Auvra, such as music, photography, artwork, storytelling, crafts or literature. Creators make their work discoverable, and Explorers build collections of creative and cultural works that hold meaning for them.',
   },
   myVault: {
     name: 'My Vault',
-    short: 'A personal environment for keeping and organising important memories, cultural records and preserved materials.',
+    short: 'A private space for preserving and managing your own memories, collections, documents and recordings.',
     long: 'My Vault is a personal environment for keeping and organising important memories, recordings, documents and cultural materials, so individuals and families keep access to the things they do not want to lose.',
   },
   auvraPassport: {

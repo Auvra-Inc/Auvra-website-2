@@ -44,17 +44,22 @@
     },
     {
       "source": "/collectible-badges",
-      "destination": "/badges#creator",
+      "destination": "/badges#heirloom",
       "permanent": true
     },
     {
       "source": "/creator-badges",
-      "destination": "/badges#creator",
+      "destination": "/badges#heirloom",
       "permanent": true
     },
     {
       "source": "/collab",
       "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/heirloom-badges",
+      "destination": "/badges#heirloom",
       "permanent": true
     }
   ],

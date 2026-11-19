@@ -1,8 +1,8 @@
 ---
-// Cultural Badges: one page for both badge types (Contribution Badges and Creator Badges).
+// Cultural Badges: one page for both badge types (Contribution Badges and Heirloom Badges).
 import Base from '../layouts/Base.astro';
 import ContributionView, { FAQS as CONTRIB_FAQS } from '../views/products/ContributionBadges.jsx';
-import CreatorView, { FAQS as CREATOR_FAQS } from '../views/products/CreatorBadges.jsx';
+import CreatorView, { FAQS as CREATOR_FAQS } from '../views/products/HeirloomBadges.jsx';
 import { CtaBlock } from '../components/Page.jsx';
 import { DEFINITIONS } from '../data/definitions.js';
 
@@ -10,12 +10,12 @@ const faqs = [...CONTRIB_FAQS, ...CREATOR_FAQS];
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const types = [
   { id: 'contribution', art: 'coin', name: 'Contribution Badges', text: DEFINITIONS.contributionBadges.short, tint: '#FFF4E8' },
-  { id: 'creator', art: 'chess-knight', name: 'Creator Badges', text: DEFINITIONS.creatorBadges.short, tint: '#ECE8FF' },
+  { id: 'heirloom', art: 'chess-knight', name: 'Heirloom Badges', text: DEFINITIONS.heirloomBadges.short, tint: '#ECE8FF' },
 ];
 ---
 <Base
-  title="Cultural Badges · Contribution Badges and Creator Badges · Auvra"
-  description="Cultural Badges keep cultural work credited. Contribution Badges record what people add to a record; Creator Badges carry a creator’s own work and context."
+  title="Cultural Badges · Contribution Badges and Heirloom Badges · Auvra"
+  description="Auvra’s two public badges. Contribution Badges recognise cultural contributions that belong to people and communities; Heirloom Badges celebrate the creative works creators leave behind, for Explorers to discover and claim."
   crumbs={[{ label: 'Technology', href: '/lens-ai' }, { label: 'Cultural Badges' }]}
   jsonld={[faqLd]}
 >
@@ -38,6 +38,6 @@ const types = [
     </div>
   </section>
   <div id="contribution" class="scroll-mt-20"><ContributionView embedded /></div>
-  <div id="creator" class="scroll-mt-20"><CreatorView embedded /></div>
+  <div id="heirloom" class="scroll-mt-20"><CreatorView embedded /></div>
   <CtaBlock title="Keep culture credited" text="Contribute to the cultural record or share your own work with its story attached. Start on Auvra today." />
 </Base>

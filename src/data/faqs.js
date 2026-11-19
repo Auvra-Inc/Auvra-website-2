@@ -1,6 +1,6 @@
 // FAQ page content, grouped by the PRD's categories (section 16).
 // Answers marked `confirm: true` describe product status and must be checked by the Auvra team before launch.
-// Per the agreed scope, any Creator Badge fee is not shown on the public site.
+// Per the agreed scope, any Heirloom Badge fee is not shown on the public site.
 export const FAQ_GROUPS = [
   {
     title: 'About Auvra',
@@ -23,25 +23,28 @@ export const FAQ_GROUPS = [
   {
     title: 'Cultural Badges',
     items: [
-      { q: 'What is a Badge?', a: 'A Badge on Auvra is a digital badge that keeps cultural work credited to the people behind it. There are two types. A Contribution Badge is a permanent, attributable record of something you add to an existing cultural record, such as a memory, a correction or context. A Creator Badge lets a creator document and share their own cultural work, such as a song, an artwork or a craft, with its story and their name attached.' },
-      { q: 'What is the difference between Contribution Badges and Creator Badges?', a: 'Contribution Badges recognise what people add to records that already exist, so the original stays intact and every addition is credited. Creator Badges carry a creator’s own work, presented with its cultural context and the creator’s attribution.' },
+      { q: 'What is a Badge?', a: 'Auvra has two public badges. A Contribution Badge recognises cultural and communal contributions that belong to people and communities, such as languages, dance, artifacts, food, traditions and music. An Heirloom Badge represents a creator’s original creative work, published for Explorers to discover and claim.' },
+      { q: 'What are Auvra’s three core experiences?', a: 'Contribution Badges (public) recognise cultural contributions that belong to people and communities. Heirloom Badges (public) represent creative works published by creators for Explorers to discover and claim. My Vault (private) is a personal space for preserving your own memories, collections, documents and recordings.' },
+      { q: 'What is the difference between Contribution Badges and Heirloom Badges?', a: 'Contribution Badges recognise cultural heritage that belongs to people and communities; they cannot be bought or claimed, and people take part through the four contribution paths. Heirloom Badges are published by creators for their own works, which Explorers can discover and claim.' },
     ],
   },
   {
     title: 'Contribution Badges',
     items: [
-      { q: 'What is a Contribution Badge?', a: 'A Contribution Badge is a permanent, attributable record of a cultural contribution. It preserves the original record and its context while allowing additional knowledge to be documented alongside it.' },
-      { q: 'What are the four contribution paths?', a: 'Contextual Validation, Memory & Oral Documentation, Physical & Digital Stewardship, and Cultural Continuation. Each describes a different way people help keep a cultural record complete and alive.' },
+      { q: 'What is a Contribution Badge?', a: 'A Contribution Badge recognises cultural and communal contributions that belong to people and communities, such as languages, dance, artifacts, food, traditions and music. It honours what communities have created, preserved and passed down, and gives those contributions a lasting record within Auvra. It cannot be bought or claimed.' },
+      { q: 'What are the four contribution paths?', a: 'Contextual Validation (adding knowledge and context), Memory & Oral Documentation (sharing memories, oral histories and stories), Physical & Digital Stewardship (preserving cultural materials, artifacts and records) and Cultural Continuation (practising, teaching and continuing traditions). They are the ways people contribute, not separate badge types.' },
+      { q: 'Can a Contribution Badge be bought or claimed?', a: 'No. Contribution Badges recognise heritage that belongs to people and communities, so they cannot be bought or claimed. People take part by contributing through the four paths.' },
       { q: 'Can a contribution be corrected?', a: 'Yes, but corrections are added as new contributions with their own attribution. The original record is never silently replaced, so the history of what was documented stays visible.' },
     ],
   },
   {
-    title: 'Creator Badges',
+    title: 'Heirloom Badges',
     items: [
-      { q: 'What is a Creator Badge?', a: 'A Creator Badge lets a creator document, attribute and share a cultural expression, such as an artwork, a song or a craft, with its cultural context, as a digital or physical item.' },
-      { q: 'Who can create one?', a: 'Creators who document and share cultural expressions: musicians, artists, storytellers, photographers, craft practitioners, performers and other cultural creators.' },
+      { q: 'What is an Heirloom Badge?', a: 'An Heirloom Badge represents a creator’s original cultural or creative work made available within Auvra, such as music, photography, artwork, storytelling, crafts or literature. It is published by the creator and can be discovered and claimed by Explorers.' },
+      { q: 'Who publishes Heirloom Badges?', a: 'Creators publish them for their own works: musicians, photographers, artists, storytellers, craft practitioners, writers and other cultural creators.' },
+      { q: 'Who are Explorers?', a: 'Explorers are people on Auvra who discover creative and cultural works and claim the Heirloom Badges that hold meaning for them, building their own collections.' },
       { q: 'What can be represented?', a: 'Digital or physical cultural expressions, for example traditional artwork, music, cultural photography, craftsmanship and documented cultural practices, always presented with the creator\'s attribution and context.' },
-      { q: 'How does claiming work?', a: 'Audiences discover a Creator Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
+      { q: 'How does claiming work?', a: 'Explorers discover an Heirloom Badge, read its story and context, and claim it through the Auvra app. The creator stays credited wherever the badge goes.', confirm: true },
     ],
   },
   {

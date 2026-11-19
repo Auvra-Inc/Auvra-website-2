@@ -89,8 +89,11 @@ export default function ContributionBadges({ embedded = false }) {
           <div className="reveal max-md:text-center">
             <p className="kicker">What they are</p>
             <h2 id={pid('what-title')} className={H2}>What is a Contribution Badge?</h2>
-            <p className={ANSWER}>A Contribution Badge is a record that says who added something to Auvra’s cultural record, what they added and when. It is attached to the contribution itself, so the credit travels with the knowledge.</p>
-            <p className="mt-4 text-[17px] md:text-lg leading-relaxed text-grey">Contributions are not only new uploads. Naming the people in an old photo, recording an elder’s memory, caring for a box of letters or teaching a tradition to the next generation are all contributions worth recording.</p>
+            <p className={ANSWER}>A Contribution Badge recognises cultural and communal contributions that belong to people and communities: languages, dance, artifacts, food, traditions, music and other shared cultural expression. It honours what communities have created, preserved and passed down across generations, and gives those contributions a lasting record within Auvra.</p>
+            <ul className="mt-5 space-y-2 text-[17px] md:text-lg leading-relaxed text-grey max-md:text-left max-md:inline-block">
+              {['Belongs to the people and communities represented.', 'Recognises shared cultural heritage and contributions.', 'Cannot be bought or claimed.', 'Honours cultural knowledge, practices and expressions passed down through generations.'].map((t) => <li key={t} className="flex gap-3"><span aria-hidden="true" className="text-teal">✓</span><span>{t}</span></li>)}
+            </ul>
+            <p className="mt-5 text-[17px] md:text-lg leading-relaxed text-grey">People contribute through four paths, which are part of what a Contribution Badge is, not separate badge types.</p>
           </div>
           {/* Illustrative record card */}
           <figure className="reveal mx-auto w-full max-w-[440px]">
@@ -251,7 +254,7 @@ export default function ContributionBadges({ embedded = false }) {
 
       {!embedded && (<Related current="/badges#contribution" notes={{
         '/cultural-preservation': 'Contributions add to records that have already been preserved, keeping their origin and context intact.',
-        '/badges#creator': 'Creator Badges carry a creator’s work and attribution; Contribution Badges record what people add to existing records.',
+        '/badges#heirloom': 'Heirloom Badges are published by creators for Explorers to discover and claim; Contribution Badges recognise heritage that belongs to communities and cannot be claimed.',
         '/my-vault': 'Keep the recordings, photos and documents behind your contributions in your own private Vault.',
         '/auvra-passport': 'Auvra Passport is designed to connect you to the contributions you have made, so they stay attributed to you.',
       }} />)}
