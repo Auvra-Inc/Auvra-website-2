@@ -119,7 +119,7 @@ export default function Nav({ pathname = '/' }) {
               </ul>
             </nav>
             <a className="nav__inst" href="/institutional-access" onClick={() => close()}>
-              <img src="/images/photos/museum-480.webp" alt="" width="480" height="360" loading="lazy" />
+              <img src="/images/photos/museum-480.webp" alt="Columns of a national museum building" width="480" height="360" loading="lazy" />
               <span className="nav__inst-text"><b>Apply for Institutional Access</b><small>For Institutions &amp; Government Bodies</small></span>
               <span className="nav__inst-arrow" aria-hidden="true"><ChevronRight size={18} /></span>
             </a>

@@ -59,6 +59,7 @@ const audiences = [
   { id: 'diaspora', name: 'Diaspora', photo: 'dancer-wheel', alt: 'A dancer framed by a large feathered fan costume' },
   { id: 'institutions', name: 'Museums & Institutions', photo: 'hands-archive', alt: 'Hands turning the pages of an archive of old documents' },
 ];
+import { altFor, moodAlt } from '../data/alts.js';
 ---
 <Base
   title="Auvra · Your story. Your culture. Your legacy."
@@ -84,7 +85,7 @@ const audiences = [
         <img src="/images/photos/creator-painter-960.webp" srcset={photoSrcset('creator-painter')} sizes="100vw" alt="An artist in a brown leather jacket standing in front of a large geometric painting" class="object-[50%_30%]" fetchpriority="high" decoding="async" />
         <div class="hero-slide__card">
           <div class="flex items-center gap-3">
-            <img src="/images/photos/elder-hands-480.webp" alt="" class="h-12 w-12 rounded-xl object-cover" />
+            <img src="/images/photos/elder-hands-480.webp" alt={altFor('elder-hands')} class="h-12 w-12 rounded-xl object-cover" />
             <div class="text-left"><p class="text-[16px] font-semibold leading-tight">How our family began</p><p class="text-[13px] text-grey">Told by Grandpa Kofi · Twi · 2:14</p></div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3 text-center text-[15px] font-medium"><span class="rounded-xl bg-[#E8F1E4] py-2.5 text-[#2F6B12]">▶ Listen</span><span class="rounded-xl bg-[#ECE8FF] py-2.5 text-blue">Translate</span></div>
@@ -124,7 +125,7 @@ const audiences = [
           <div class="hero-notif__head"><span>Notification Center</span><span class="hero-notif__x" aria-hidden="true">×</span></div>
           <div class="hero-notif__stack">
             <div class="hero-notif__card">
-              <span class="hero-notif__icon"><img src="/brand/auvra-mark-linen.svg" alt="" /></span>
+              <span class="hero-notif__icon"><img src="/brand/auvra-mark-linen.svg" alt="Auvra logo mark" /></span>
               <div class="min-w-0 flex-1 text-left">
                 <p class="flex items-baseline justify-between gap-2"><b class="text-[15px]">Auvra</b><span class="text-[12px] text-[#9A948D]">2 min ago</span></p>
                 <p class="mt-0.5 text-[13.5px] leading-snug text-[#6B6560]">You’ve earned the “Creator” badge 🏆 Your braiding tutorial was claimed 12 times.</p>
@@ -153,7 +154,7 @@ const audiences = [
       <div class="absolute left-1/2 top-[74%] md:top-[72%] z-10 w-[78%] md:max-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-2xl md:rounded-[24px] bg-white/50 p-2">
         <div class="rounded-[18px] bg-white p-5 shadow-2xl">
           <div class="flex items-center gap-3">
-            <img src="/images/photos/elder-hands-480.webp" alt="" class="h-12 w-12 rounded-xl object-cover" />
+            <img src="/images/photos/elder-hands-480.webp" alt={altFor('elder-hands')} class="h-12 w-12 rounded-xl object-cover" />
             <div class="text-left"><p class="text-[16px] md:text-[17px] font-semibold leading-tight">How our family began</p><p class="text-[13px] text-grey">Told by Grandpa Kofi · Twi · 2:14</p></div>
           </div>
           <div class="mt-4 grid grid-cols-2 gap-3 text-center text-[15px] font-medium">
@@ -216,14 +217,14 @@ const audiences = [
     <ul class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-5 lg:gap-y-[5.5rem] md:mt-20">
       {features.map((f) => (
         <li class="flex flex-col">
-          <img src={`/images/collage/${f.art}.webp`} alt="" aria-hidden="true" class="h-28 lg:h-32 w-auto self-start object-contain" loading="lazy" />
+          <img src={`/images/collage/${f.art}.webp`} alt={altFor(f.art)} class="h-28 lg:h-32 w-auto self-start object-contain" loading="lazy" />
           <div class="reveal">
             <h3 class="mt-6 lg:mt-8 mb-2 lg:mb-5 flex items-center gap-2 text-xl font-semibold text-[#252020]"><a href={f.href} class="hover:underline">{f.name}</a>{f.isNew && <span class="rounded-full bg-[#191717] px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-white">New</span>}</h3>
             <p class="text-base text-[#626262]">{f.text}</p>
             {f.badges && (
               <ul class="mt-4 flex flex-wrap gap-2" aria-label="Badge types">
                 {f.badges.map((b) => (
-                  <li><a href={b.href} class="inline-flex items-center gap-2 rounded-full border border-[#E7E2DA] bg-[#FBF8F1] py-1 pl-1 pr-3.5 text-[14px] font-medium text-[#252020] transition-colors hover:bg-[#F4F0E8]"><img src={`/images/collage/${b.art}.webp`} alt="" class="h-7 w-7 rounded-full bg-white object-contain p-0.5" loading="lazy" />{b.name}</a></li>
+                  <li><a href={b.href} class="inline-flex items-center gap-2 rounded-full border border-[#E7E2DA] bg-[#FBF8F1] py-1 pl-1 pr-3.5 text-[14px] font-medium text-[#252020] transition-colors hover:bg-[#F4F0E8]"><img src={`/images/collage/${b.art}.webp`} alt={altFor(b.art)} class="h-7 w-7 rounded-full bg-white object-contain p-0.5" loading="lazy" />{b.name}</a></li>
                 ))}
               </ul>
             )}
@@ -246,7 +247,7 @@ const audiences = [
       ].map(([n, patch, rot], i) => (
         <li class={`relative flex flex-1 items-end justify-center ${i % 2 ? 'pb-2' : 'pb-8 md:pb-14'}`}>
           {patch && <span class={`absolute inset-x-[4%] bottom-[8%] top-[18%] ${patch} ${rot}`} style="clip-path: polygon(2% 0, 100% 3%, 97% 100%, 0 96%)"></span>}
-          <img src={`/images/artifacts/${n}.webp`} alt="" class="reveal obj-bob relative w-full max-w-[150px] object-contain" style={`--bob-d:${[5.2, 6.4, 4.8, 6.9, 5.6][i]}s;--bob-s:${[0, -2.1, -3.4, -1.2, -4.3][i]}s`} loading="lazy" />
+          <img src={`/images/artifacts/${n}.webp`} alt={altFor(n)} class="reveal obj-bob relative w-full max-w-[150px] object-contain" style={`--bob-d:${[5.2, 6.4, 4.8, 6.9, 5.6][i]}s;--bob-s:${[0, -2.1, -3.4, -1.2, -4.3][i]}s`} loading="lazy" />
         </li>
       ))}
     </ul>
@@ -256,6 +257,7 @@ const audiences = [
       <p class="reveal">Every piece stays credited to the person who made or shared it, wherever it travels.</p>
       <p class="reveal">Pass it on to family, collaborators and the next generation, so nothing important is lost.</p>
     </div>
+    <p class="reveal mx-auto mt-10 max-w-[640px] text-center text-[14px] leading-relaxed text-[#8A8580]">Safeguarding living heritage is a recognised global priority, set out in UNESCO’s <a class="underline underline-offset-2 hover:text-carbon" href="https://ich.unesco.org/en/convention" target="_blank" rel="noopener">Convention for the Safeguarding of the Intangible Cultural Heritage</a> and the <a class="underline underline-offset-2 hover:text-carbon" href="https://www.unesco.org/en/decades/indigenous-languages" target="_blank" rel="noopener">International Decade of Indigenous Languages (2022–2032)</a>.</p>
   </section>
 
   <!-- Moods: slow cross-fading textures with a glass label -->
@@ -264,7 +266,7 @@ const audiences = [
     <div class="moods mx-auto max-w-[1240px]" aria-hidden="true">
       {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
         <div class="mood" style={`--i:${i}`}>
-          <img src={`/images/moods/frame-${i}.webp`} alt="" width="1000" height="667" loading="lazy" decoding="async" />
+          <img src={`/images/moods/frame-${i}.webp`} alt={moodAlt(i)} width="1000" height="667" loading="lazy" decoding="async" />
         </div>
       ))}
     </div>
@@ -276,13 +278,13 @@ const audiences = [
     <h2 id="statement-title" class="sr-only">Your story isn't lost. It's preserved.</h2>
     <div class="rugs reveal" aria-hidden="true">
       <p class="rugs__t" style="left:1.6%;top:1.6%">Your<br />story</p>
-      <img src="/images/rugs/lizard.webp" alt="" style="left:40.8%;top:3.1%;width:31.8%" loading="lazy" />
-      <img src="/images/rugs/tiger-palms.webp" alt="" style="left:77.9%;top:2.4%;width:21.6%" loading="lazy" />
-      <img src="/images/rugs/lemons.webp" alt="" style="left:1.6%;top:36.9%;width:41.1%" loading="lazy" />
+      <img src="/images/rugs/lizard.webp" alt={altFor('lizard')} style="left:40.8%;top:3.1%;width:31.8%" loading="lazy" />
+      <img src="/images/rugs/tiger-palms.webp" alt={altFor('tiger-palms')} style="left:77.9%;top:2.4%;width:21.6%" loading="lazy" />
+      <img src="/images/rugs/lemons.webp" alt={altFor('lemons')} style="left:1.6%;top:36.9%;width:41.1%" loading="lazy" />
       <p class="rugs__t rugs__t--right" style="right:22.6%;top:36%">isn’t<br />lost.</p>
-      <img src="/images/rugs/tiger-flowers.webp" alt="" style="left:83.4%;top:36.3%;width:16.1%" loading="lazy" />
+      <img src="/images/rugs/tiger-flowers.webp" alt={altFor('tiger-flowers')} style="left:83.4%;top:36.3%;width:16.1%" loading="lazy" />
       <p class="rugs__t" style="left:1.6%;top:71.4%">It’s<br />preserved.</p>
-      <img src="/images/rugs/oranges.webp" alt="" class="rugs__oranges" loading="lazy" />
+      <img src="/images/rugs/oranges.webp" alt={altFor('oranges')} class="rugs__oranges" loading="lazy" />
       <div class="rugs__dots"><span></span><span>20</span><span>26</span><span></span></div>
     </div>
     <p class="reveal mx-auto mt-14 md:mt-20 max-w-[560px] text-center text-[15px] md:text-xl"><b>Made</b> by you, preserved <b>with intention</b>.</p>
@@ -294,7 +296,7 @@ const audiences = [
       ['stone-2', 'left-[-6%] top-[3%] w-[44vw] md:left-[6%] md:top-[8%] md:w-[230px]', '-8'],
       ['stone-3', 'right-[-4%] top-[4%] w-[30vw] md:right-[9%] md:top-[10%] md:w-[150px]', '-14'],
       ['stone-9', 'right-[-6%] bottom-[2%] w-[40vw] md:right-[5%] md:bottom-[10%] md:w-[230px]', '-6'],
-    ].map(([n, pos, px]) => <img src={`/images/artifacts/${n}.webp`} alt="" aria-hidden="true" class={`artifact absolute -z-10 ${pos}`} data-parallax={px} loading="lazy" />)}
+    ].map(([n, pos, px]) => <img src={`/images/artifacts/${n}.webp`} alt={altFor(n)} class={`artifact absolute -z-10 ${pos}`} data-parallax={px} loading="lazy" />)}
     <div class="reveal flex flex-col items-center">
       <h2 id="poster-title" class="ws-h text-[#FBF8F1] mb-[3.75rem] md:mb-[4.5rem] max-w-[820px] text-[3.4rem] leading-[3.5rem] sm:text-[5rem] sm:leading-[4.2rem] md:text-[6.25rem] md:leading-[5.5rem] lg:text-[7rem]">Because<br /> culture is worth more than a scroll</h2>
       <p class="mb-10 max-w-[379px] md:max-w-[573px] text-sm md:text-lg md:leading-7 text-[#FFF4EE]">Every day, stories are told at family gatherings, in village squares and on voice notes, and then they disappear. When an elder passes, a library goes with them. Auvra gives that knowledge a calm, permanent home, owned by the people who carry it.</p>
@@ -313,7 +315,7 @@ const audiences = [
     </p>
     <div class="wall" aria-hidden="true">
       <div class="wall__stage">
-        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-640.webp`} alt="" class="wall__card" data-i={i} loading="lazy" decoding="async" width="640" height="853" />)}
+        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-640.webp`} alt={altFor(n)} class="wall__card" data-i={i} loading="lazy" decoding="async" width="640" height="853" />)}
       </div>
       <div class="wall__chips">
         {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`}><span class="wall__dot"></span>{t.label}</span>)}
@@ -407,7 +409,7 @@ const audiences = [
   <!-- 6 · Dark FAQ + movement -->
   <section id="faqs" class="flex flex-col gap-y-[11rem] md:gap-y-[14rem] lg:gap-y-[19rem] bg-[#191717] py-[3.75rem] md:pt-[6.5rem] md:pb-[10.5rem]" aria-labelledby="faq-title">
     <div class="flex flex-col items-center">
-      <div class="mb-10 flex items-center" aria-hidden="true"><img src="/images/artifacts/ceramic-3.webp" alt="" class="artifact w-[110px] md:w-[150px] -rotate-6" loading="lazy" /><img src="/images/artifacts/ceramic-2.webp" alt="" class="artifact -ml-4 w-[130px] md:w-[180px] -translate-y-6" loading="lazy" /><img src="/images/artifacts/ceramic-4.webp" alt="" class="artifact -ml-4 w-[90px] md:w-[130px] rotate-6 translate-y-4" loading="lazy" /></div>
+      <div class="mb-10 flex items-center" aria-hidden="true"><img src="/images/artifacts/ceramic-3.webp" alt={altFor('ceramic-3')} class="artifact w-[110px] md:w-[150px] -rotate-6" loading="lazy" /><img src="/images/artifacts/ceramic-2.webp" alt={altFor('ceramic-2')} class="artifact -ml-4 w-[130px] md:w-[180px] -translate-y-6" loading="lazy" /><img src="/images/artifacts/ceramic-4.webp" alt={altFor('ceramic-4')} class="artifact -ml-4 w-[90px] md:w-[130px] rotate-6 translate-y-4" loading="lazy" /></div>
       <h2 id="faq-title" class="reveal ws-h mb-[6.5rem] max-w-xs md:max-w-xl text-center text-[#FBF8F1] text-[2.75rem] leading-[2.75rem] sm:text-[3.4rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[5.5rem] lg:leading-[4.4rem]">Got questions? Here are some answers</h2>
       <div class="ws-faq w-full max-w-[946px] px-8 md:px-4">
         <Faq client:visible items={homeFaqs} firstOpen={false} />
@@ -446,13 +448,13 @@ const audiences = [
         <PhoneFrame label="Illustrative Scan screen in the Auvra app: the camera frames a carved wooden mask and Lens AI suggests context to review">
           <div class="relative flex h-full flex-col bg-[#FBF8F1]">
             <div class="relative h-[56%] flex-none overflow-hidden">
-              <img src="/images/photos/mask-960.webp" alt="" class="h-full w-full object-cover object-[50%_22%]" loading="lazy" />
+              <img src="/images/photos/mask-960.webp" alt={altFor('mask')} class="h-full w-full object-cover object-[50%_22%]" loading="lazy" />
               <span class="app-scan-frame"></span>
             </div>
             <div class="app-sheet">
               <span class="app-sheet__handle"></span>
               <div class="flex items-center gap-2 rounded-full bg-[#F0ECE5] p-1.5 pr-3">
-                <span class="grid h-7 w-7 flex-none place-items-center rounded-full bg-carbon"><img src="/brand/auvra-mark-linen.svg" alt="" class="h-3.5 w-3.5" /></span>
+                <span class="grid h-7 w-7 flex-none place-items-center rounded-full bg-carbon"><img src="/brand/auvra-mark-linen.svg" alt="Auvra logo mark" class="h-3.5 w-3.5" /></span>
                 <span class="grid h-7 w-7 flex-none place-items-center rounded-md bg-white text-[#191717]" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.2"/></svg></span>
                 <span class="truncate text-[10.5px] text-[#9A948D]">Ask Lens AI about this object</span>
               </div>
@@ -464,10 +466,10 @@ const audiences = [
               <div class="mt-2.5 flex gap-2.5">
                 <p class="flex-1 text-[9.5px] leading-[1.45] text-[#3A3631]">Carved wooden masks like this are worn at festivals and ceremonies across West Africa to honour ancestors and mark important moments.</p>
                 <div class="grid w-[34%] flex-none grid-cols-2 gap-1 self-start rounded-lg bg-carbon p-1">
-                  <img src="/images/photos/sculpture-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
-                  <img src="/images/photos/masquerade-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
-                  <img src="/images/photos/face-paint-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
-                  <img src="/images/photos/carnival-480.webp" alt="" class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/sculpture-480.webp" alt={altFor('sculpture')} class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/masquerade-480.webp" alt={altFor('masquerade')} class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/face-paint-480.webp" alt={altFor('face-paint')} class="aspect-square w-full rounded object-cover" loading="lazy" />
+                  <img src="/images/photos/carnival-480.webp" alt={altFor('carnival')} class="aspect-square w-full rounded object-cover" loading="lazy" />
                 </div>
               </div>
             </div>

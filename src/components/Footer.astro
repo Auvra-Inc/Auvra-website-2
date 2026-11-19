@@ -35,7 +35,7 @@ const ICONS = {
     <div class="partners__track-wrap">
       <ul class="partners__track">
         {[0, 1].map((copy) => PARTNERS.map((p) => (
-          copy ? <li aria-hidden="true"><img src={p.src} alt="" loading="lazy" decoding="async" style={`height:${p.h}px`} /></li> : <li><img src={p.src} alt={p.name} loading="lazy" decoding="async" style={`height:${p.h}px`} /></li>
+          copy ? <li aria-hidden="true"><img src={p.src} alt={`${p.name} logo`} loading="lazy" decoding="async" style={`height:${p.h}px`} /></li> : <li><img src={p.src} alt={`${p.name} logo`} loading="lazy" decoding="async" style={`height:${p.h}px`} /></li>
         )))}
       </ul>
     </div>
