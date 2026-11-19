@@ -48,6 +48,7 @@ ${POSTS.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}): ${p.description || '
 - [Content Governance Policy](${SITE}/governance)
 - [Copyright Policy](${SITE}/copyright)
 - [AML/CFT Policy](${SITE}/aml)
+- [Account Deletion Policy](${SITE}/account-deletion)
 
 ## Contact
 - General enquiries: ${CONTACT_EMAIL}
