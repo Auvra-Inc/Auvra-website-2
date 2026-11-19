@@ -1368,3 +1368,6 @@ html { overflow-x: clip; }
 
 /* Short list items look gappy when justified, so lists stay left-aligned. */
 @layer components { .legal-doc li { text-align: left; } }
+
+/* No hyphenation: words are never split across lines. */
+@layer components { .legal-doc p, .legal-doc li { hyphens: none !important; -webkit-hyphens: none !important; word-spacing: 0 !important; } }
