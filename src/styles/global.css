@@ -1318,3 +1318,13 @@ html { overflow-x: clip; }
   }
   @media (prefers-reduced-motion: reduce) { .dark-lead { animation: none !important; background: none; color: #E2DCD2; } }
 }
+
+/* Legal pages: lighter, evenly wrapped body text, like a classic terms page. */
+@layer components {
+  .legal-doc p, .legal-doc li, .legal-doc td, .legal-doc th { color: #6A665F !important; line-height: 1.62 !important; letter-spacing: -0.003em; text-wrap: pretty; hyphens: none; }
+  .legal-doc h2 { text-wrap: balance; }
+  .legal-doc li::marker { color: #A9A39A; }
+  .legal-doc strong, .legal-doc b { color: #3A3631; }
+  .legal-doc table { border-radius: 12px; overflow: hidden; }
+  .legal-doc th { background: #F7F4EE; color: var(--carbon) !important; font-weight: 600; }
+}
