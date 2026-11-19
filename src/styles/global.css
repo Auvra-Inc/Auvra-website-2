@@ -1389,3 +1389,29 @@ html { overflow-x: clip; }
   @keyframes heroDot5b { 0%, 2% { width: 8px; background: rgba(255,255,255,.5); } 4%, 20% { width: 26px; background: #fff; } 24%, 100% { width: 8px; background: rgba(255,255,255,.5); } }
   @media (prefers-reduced-motion: reduce) { .hero-slide, .hero-slides__dots span { animation: none !important; } }
 }
+
+/* Updates sign-up: the bar turns into a confirmation in place; any error sits quietly underneath. */
+@layer components {
+  .subscribe-wrap { width: 100%; }
+  .subscribe__note { min-height: 0; margin: 8px 0 0; font-size: 13px; text-align: center; color: var(--salmon); }
+  .subscribe__note:empty { display: none; }
+  .subscribe--light ~ .subscribe__note { color: #B42E14; }
+  .subscribe--done { display: flex !important; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap !important; min-height: 48px; padding: 4px 18px 4px 6px !important; border-radius: 999px; background: #2B2724; color: #FBF8F1; font-size: 14px; animation: subDone .55s cubic-bezier(.16,1,.3,1) both; }
+  .subscribe--done.subscribe--light { background: #F4F0E8; color: var(--carbon); }
+  .subscribe__check { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--lime); color: #191717; animation: subCheck .5s cubic-bezier(.34,1.56,.64,1) .15s both; }
+  .subscribe__check path { stroke-dasharray: 24; stroke-dashoffset: 24; animation: subTick .45s ease-out .35s forwards; }
+  .subscribe__done-text b { font-weight: 600; }
+  .subscribe__spin { display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: subSpin .7s linear infinite; vertical-align: -3px; }
+  @keyframes subDone { from { opacity: 0; transform: scale(.96); } }
+  @keyframes subCheck { from { transform: scale(0); } }
+  @keyframes subTick { to { stroke-dashoffset: 0; } }
+  @keyframes subSpin { to { transform: rotate(360deg); } }
+  @media (min-width: 768px) { .subscribe--done { font-size: 15px; } }
+  @media (prefers-reduced-motion: reduce) { .subscribe--done, .subscribe__check, .subscribe__check path { animation: none; stroke-dashoffset: 0; } }
+}
+
+@layer components { .subscribe__note[data-state='info'] { color: #D2CCC2; } }
+
+@layer components { .subscribe__done-text { white-space: nowrap; } @media (max-width: 480px) { .subscribe__done-more { display: none; } } }
+
+@layer components { .footer-sub .subscribe--done { gap: 12px !important; } }

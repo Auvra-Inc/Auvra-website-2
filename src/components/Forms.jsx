@@ -31,18 +31,28 @@ export function SubscribeForm({ light = false, id = 'sub-email' }) {
     setInvalid(false); setState({ s: 'sending', msg: 'Sending…' });
     try {
       const how = await send({ type: 'updates', email, website: form.website?.value || '' });
-      setState({ s: 'success', msg: how === 'sent' ? "You're on the list. We'll be in touch." : 'Your email app has opened. Press send to confirm.' });
-      if (how === 'sent') form.reset();
+      if (how === 'sent') setState({ s: 'success', msg: '' });
+      else setState({ s: 'info', msg: 'Your email app has opened. Press send to confirm.' });
     } catch { setState({ s: 'error', msg: failText }); }
   };
+  if (state.s === 'success') {
+    return (
+      <div className={`subscribe subscribe--done${light ? ' subscribe--light' : ''}`} role="status" aria-live="polite">
+        <span className="subscribe__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>
+        <span className="subscribe__done-text"><b>You’re on the list.</b><span className="subscribe__done-more"> We’ll keep you posted.</span></span>
+      </div>
+    );
+  }
   return (
-    <form className={`subscribe${light ? ' subscribe--light' : ''}`} onSubmit={onSubmit} noValidate>
-      <label htmlFor={id} className="sr-only">Your email for updates</label>
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
-      <input id={id} name="email" type="email" autoComplete="email" placeholder="Your email" required aria-invalid={invalid || undefined} />
-      <button type="submit" className={`btn ${light ? 'btn--dark' : 'btn--lemon'}`} disabled={state.s === 'sending'}>{state.s === 'sending' ? 'Sending…' : 'Get updates'}</button>
-      <p className="subscribe__msg" role="status" aria-live="polite" data-state={state.s}>{state.msg}</p>
-    </form>
+    <div className="subscribe-wrap">
+      <form className={`subscribe${light ? ' subscribe--light' : ''}`} onSubmit={onSubmit} noValidate>
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
+        <label htmlFor={id} className="sr-only">Your email for updates</label>
+        <input id={id} name="email" type="email" autoComplete="email" placeholder="Your email" required aria-invalid={invalid || undefined} onInput={() => { if (state.s === 'error') { setInvalid(false); setState({ s: 'idle', msg: '' }); } }} />
+        <button type="submit" className={`btn ${light ? 'btn--dark' : 'btn--lemon'}`} disabled={state.s === 'sending'}>{state.s === 'sending' ? <span className="subscribe__spin" aria-label="Sending" /> : 'Get updates'}</button>
+      </form>
+      <p className="subscribe__note" role="status" aria-live="polite" data-state={state.s}>{state.s === 'error' || state.s === 'info' ? state.msg : ''}</p>
+    </div>
   );
 }
 
