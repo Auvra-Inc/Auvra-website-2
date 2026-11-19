@@ -314,7 +314,7 @@ import { altFor, moodAlt } from '../data/alts.js';
     </p>
     <div class="wall" aria-hidden="true">
       <div class="wall__stage">
-        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-640.webp`} srcset={photoSrcset(n)} sizes="(max-width: 767px) 60vw, 26vw" alt={altFor(n)} class="wall__card" data-i={i} loading="lazy" decoding="async" width="640" height="853" />)}
+        {WALL_CARDS.map((n, i) => <img src={`/images/photos/${n}-640.webp`} alt={altFor(n)} class="wall__card" data-i={i} loading="lazy" decoding="async" width="640" height="853" />)}
       </div>
       <div class="wall__chips">
         {WALL_TOPICS.map((t, k) => <span class={`wall__chip${k === 0 ? ' is-on' : ''}`}><span class="wall__dot"></span>{t.label}</span>)}

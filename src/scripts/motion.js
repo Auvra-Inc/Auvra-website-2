@@ -49,6 +49,8 @@ if (film) import('./logo-film.js').then((m) => m.default(film, reduce));
 // so it needs a wider file than its box. Tell the browser the real width needed and it picks the right size.
 const fitSizes = () => {
   document.querySelectorAll('img[srcset]').forEach((img) => {
+    // Leave moving galleries alone: swapping their files mid-animation makes them stutter.
+    if (img.closest('.wall, .hero-slides, .aud-marquee, .moods, .partners, .carousel, .logo-film')) return;
     const w = img.offsetWidth, h = img.offsetHeight;
     if (!w || !h || !img.naturalWidth) return;
     const ratio = img.naturalWidth / img.naturalHeight;
