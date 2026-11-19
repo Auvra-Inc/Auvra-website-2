@@ -44,3 +44,21 @@ if (!reduce) {
 // The About page logo film loads its renderer only when the scene exists.
 const film = document.querySelector('canvas[data-film]');
 if (film) import('./logo-film.js').then((m) => m.default(film, reduce));
+
+// Sharp images everywhere: an image cropped to fill its box (object-fit: cover) shows only part of the file,
+// so it needs a wider file than its box. Tell the browser the real width needed and it picks the right size.
+const fitSizes = () => {
+  document.querySelectorAll('img[srcset]').forEach((img) => {
+    const w = img.offsetWidth, h = img.offsetHeight;
+    if (!w || !h || !img.naturalWidth) return;
+    const ratio = img.naturalWidth / img.naturalHeight;
+    const cover = getComputedStyle(img).objectFit === 'cover';
+    const need = Math.ceil(cover ? Math.max(w, h * ratio) : w);
+    const cur = parseInt(img.dataset.fitw || '0', 10);
+    if (need > cur) { img.dataset.fitw = need; img.sizes = need + 'px'; }
+  });
+};
+document.querySelectorAll('img[srcset]').forEach((img) => { if (!img.complete) img.addEventListener('load', fitSizes, { once: true }); });
+window.addEventListener('load', fitSizes);
+let fitT; window.addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeout(fitSizes, 200); });
+fitSizes();

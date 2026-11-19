@@ -181,7 +181,7 @@ export default function HeirloomBadges({ embedded = false }) {
           <Phone label="Illustrative Heirloom Badge screen in the Auvra app: a talking-drum recording with its creator, cultural context and a claim button" className="reveal">
             <div className="h-full overflow-hidden bg-white text-carbon">
               <div className="relative h-[50%]">
-                <img src="/images/photos/drummer-blue-480.webp" alt="" className="h-full w-full object-cover" loading="lazy" />
+                <img src="/images/photos/drummer-blue-960.webp" srcSet="/images/photos/drummer-blue-480.webp 480w, /images/photos/drummer-blue-960.webp 960w, /images/photos/drummer-blue-1600.webp 1600w" sizes="(max-width: 767px) 80vw, 320px" alt="A drummer in blue playing a talking drum" className="h-full w-full object-cover" loading="lazy" />
                 <span className="absolute left-3 top-[13%] rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold">Illustrative example</span>
               </div>
               <div className="flex flex-col gap-2 p-4">
