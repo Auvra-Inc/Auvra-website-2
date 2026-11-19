@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { CONTACT_EMAIL } from '../data/site.js';
 
-// Set VITE_FORM_ENDPOINT (e.g. a Formspree or serverless URL) at build time to post forms as JSON.
-// Without it, forms open the visitor's email app addressed to info@goauvra.com, so they always work.
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || '';
+// Forms post to the site's own server function (api/forms.js), so visitors never leave the page.
+// VITE_FORM_ENDPOINT can point somewhere else if needed.
+const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || '/api/forms';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-async function send(payload, subject, body) {
-  if (ENDPOINT) {
-    const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
-    if (!res.ok) throw new Error('Request failed');
-    return 'sent';
+async function send(payload) {
+  const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+  if (res.ok) return 'sent';
+  // Only until the email service key is added in Vercel: fall back to the visitor's email app so nothing is lost.
+  if (res.status === 503) {
+    const body = Object.entries(payload).filter(([k]) => k !== 'website').map(([k, v]) => `${k}: ${v}`).join('\n');
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Auvra website: ' + payload.type)}&body=${encodeURIComponent(body)}`;
+    return 'mail';
   }
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  return 'mail';
+  throw new Error('Request failed');
 }
 
 const failText = `Something went wrong. Please try again, or email ${CONTACT_EMAIL}.`;
@@ -28,7 +30,7 @@ export function SubscribeForm({ light = false, id = 'sub-email' }) {
     if (!EMAIL_RE.test(email)) { setInvalid(true); setState({ s: 'error', msg: 'Please enter a valid email address.' }); form.email.focus(); return; }
     setInvalid(false); setState({ s: 'sending', msg: 'Sending…' });
     try {
-      const how = await send({ type: 'updates', email }, 'Please send me Auvra updates', `Please add ${email} to Auvra updates.`);
+      const how = await send({ type: 'updates', email, website: form.website?.value || '' });
       setState({ s: 'success', msg: how === 'sent' ? "You're on the list. We'll be in touch." : 'Your email app has opened. Press send to confirm.' });
       if (how === 'sent') form.reset();
     } catch { setState({ s: 'error', msg: failText }); }
@@ -36,6 +38,7 @@ export function SubscribeForm({ light = false, id = 'sub-email' }) {
   return (
     <form className={`subscribe${light ? ' subscribe--light' : ''}`} onSubmit={onSubmit} noValidate>
       <label htmlFor={id} className="sr-only">Your email for updates</label>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
       <input id={id} name="email" type="email" autoComplete="email" placeholder="Your email" required aria-invalid={invalid || undefined} />
       <button type="submit" className={`btn ${light ? 'btn--dark' : 'btn--lemon'}`} disabled={state.s === 'sending'}>{state.s === 'sending' ? 'Sending…' : 'Get updates'}</button>
       <p className="subscribe__msg" role="status" aria-live="polite" data-state={state.s}>{state.msg}</p>
@@ -61,15 +64,15 @@ export function EnquiryForm({ kind, fields, submitLabel = 'Send message', subjec
     const first = Object.keys(errors)[0];
     if (first) { setState({ s: 'error', msg: 'Please fill in the highlighted fields.' }); form[first].focus(); return; }
     setState({ s: 'sending', msg: 'Sending…' });
-    const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
     try {
-      const how = await send({ type: kind, ...data }, subjectFor(data), body);
+      const how = await send({ type: kind, ...data });
       setState({ s: 'success', msg: how === 'sent' ? 'Thank you. Your message has been sent and we will reply soon.' : 'Your email app has opened with your message. Press send to finish.' });
       if (how === 'sent') form.reset();
     } catch { setState({ s: 'error', msg: failText }); }
   };
   return (
     <form className="form" onSubmit={onSubmit} noValidate>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
       {fields.map((f) => {
         const common = { name: f.name, id: `${kind}-${f.name}`, required: f.required, 'aria-invalid': bad[f.name] || undefined, autoComplete: f.autoComplete };
         if (f.type === 'checkbox') return (
