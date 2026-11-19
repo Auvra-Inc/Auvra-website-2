@@ -1123,7 +1123,10 @@ html { overflow-x: clip; }
   #home .hero-h1 ~ p { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .5s both; }
   #home .hero-stores { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .62s both; }
   /* Inner pages: the page title and its lead rise in once on load. */
-  main h1:not(.hero-h1) { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .05s both; }
+  /* Page titles: hidden until the brand font is ready, then one smooth fade-and-rise (no font-swap jump). */
+  .js main h1:not(.hero-h1) { opacity: 0; }
+  .js.fonts-in main h1:not(.hero-h1) { opacity: 1; animation: titleIn 1s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes titleIn { from { opacity: 0; transform: translate3d(0, 14px, 0); } to { opacity: 1; transform: none; } }
   .page-hero > .kicker, .page-hero > .crumbs, .legal__head > .crumbs { animation: fadeIn .6s ease both; }
   .page-hero > .lead, .legal__updated, .legal__intro { animation: riseIn .8s cubic-bezier(.22,1,.36,1) .16s both; }
   @keyframes riseIn { from { opacity: 0; transform: translate3d(0, 18px, 0); } }
@@ -1156,6 +1159,7 @@ html { overflow-x: clip; }
 
   @media (prefers-reduced-motion: reduce) {
     #home .hero-h1 ~ p, #home .hero-stores, main h1:not(.hero-h1), .page-hero > *, .legal__head > *, .img-in { animation: none !important; }
+    .js main h1:not(.hero-h1) { opacity: 1 !important; }
     .img-wait { opacity: 1 !important; }
     details > summary > span[aria-hidden='true'] { transition: none; }
     body::before { display: none !important; }
@@ -1177,7 +1181,7 @@ html { overflow-x: clip; }
   ::view-transition-old(root) { animation: vtOut .16s ease both; }
   ::view-transition-new(root) { animation: vtIn .34s cubic-bezier(.22,1,.36,1) both; }
   @keyframes vtOut { to { opacity: 0; } }
-  @keyframes vtIn { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
+  @keyframes vtIn { from { opacity: 0; } }
   .nav { view-transition-name: site-nav; }
 }
 
@@ -1415,3 +1419,5 @@ html { overflow-x: clip; }
 @layer components { .subscribe__done-text { white-space: nowrap; } @media (max-width: 480px) { .subscribe__done-more { display: none; } } }
 
 @layer components { .footer-sub .subscribe--done { gap: 12px !important; } }
+
+@layer components { .js:not(.fonts-in) .hero-word { animation-play-state: paused; opacity: 0; } }
