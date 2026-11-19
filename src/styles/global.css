@@ -1351,3 +1351,20 @@ html { overflow-x: clip; }
 }
 
 @layer components { .legal-doc { margin-top: 36px; } }
+
+/* Legal and Trust & Safety: justified text that lines up on both edges, with even word spacing
+   (hyphenation keeps gaps from opening up on narrow screens) and more breathing room between blocks. */
+@layer components {
+  .legal-doc p, .legal-doc li { text-align: justify; text-justify: inter-word; hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 7 3 3; text-wrap: wrap; word-spacing: 0.02em; }
+  .legal-doc td, .legal-doc th, .legal-doc h2, .legal-doc h3 { text-align: left; hyphens: none; }
+  .legal-doc p + p { margin-top: 14px !important; }
+  .legal-doc section { padding-top: 40px; margin-top: 40px; }
+  .legal-doc h2 { margin-bottom: 16px !important; }
+  .legal-doc h3 { margin-top: 26px !important; margin-bottom: 8px !important; }
+  .legal-doc ul, .legal-doc ol { margin: 12px 0 16px !important; }
+  .legal-doc li + li { margin-top: 7px !important; }
+  .legal-doc a { overflow-wrap: anywhere; }
+}
+
+/* Short list items look gappy when justified, so lists stay left-aligned. */
+@layer components { .legal-doc li { text-align: left; } }
