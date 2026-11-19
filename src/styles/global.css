@@ -1371,3 +1371,12 @@ html { overflow-x: clip; }
 
 /* No hyphenation: words are never split across lines. */
 @layer components { .legal-doc p, .legal-doc li { hyphens: none !important; -webkit-hyphens: none !important; word-spacing: 0 !important; } }
+
+/* Lighter reading weight for policy text. */
+@layer components {
+  .legal-doc p, .legal-doc li, .legal-doc td { font-weight: 300 !important; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  .legal-doc strong, .legal-doc b, .legal-doc th { font-weight: 500 !important; }
+  .legal-doc h2 { font-weight: 600 !important; }
+  .legal-doc h3 { font-weight: 500 !important; }
+  .legal__updated { font-weight: 400 !important; }
+}
