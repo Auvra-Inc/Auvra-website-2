@@ -101,11 +101,11 @@ export default function LensAI({ demo }) {
                   <span className="text-sm font-semibold text-[#BFB3FF]">Step {i + 1}</span>
                 </div>
                 <h3 className="text-2xl font-semibold">{name}</h3>
-                <p className="text-[16px] text-[#A8A29A]">{text}</p>
+                <p className="text-[16px] text-[#D2CCC2]">{text}</p>
               </li>
             ))}
           </ol>
-          <p className="reveal mt-10 text-center text-[16px] text-[#A8A29A]">AI-assisted drafts always sit beside the original recording, never in place of it.</p>
+          <p className="reveal mt-10 text-center text-[16px] text-[#D2CCC2]">AI-assisted drafts always sit beside the original recording, never in place of it.</p>
         </div>
       </section>
 

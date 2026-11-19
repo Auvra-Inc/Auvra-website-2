@@ -200,9 +200,9 @@ export default function HeirloomBadges({ embedded = false }) {
       <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby={pid('relationship-title')}>
         <div className="wrap">
           <div className="reveal mx-auto max-w-[900px] text-center">
-            <p className="kicker !text-[#BDB6AA]">Creators and Explorers</p>
+            <p className="kicker !text-[#D2CCC2]">Creators and Explorers</p>
             <h2 id={pid('relationship-title')} className={`${H2} mx-auto max-w-[18ch]`}>What connects a creator to Explorers?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">The story behind the work. Explorers do not just receive an item; they learn where it comes from and who made it. Creators keep their name on their work and can see it carried by people who value it.</p>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#D2CCC2]">The story behind the work. Explorers do not just receive an item; they learn where it comes from and who made it. Creators keep their name on their work and can see it carried by people who value it.</p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-2">
             <article className="reveal rounded-[28px] bg-[#2A2724] p-7 md:p-10 max-md:text-center">

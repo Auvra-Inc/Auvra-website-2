@@ -1301,3 +1301,20 @@ html { overflow-x: clip; }
   /* FAQ on dark: answers a touch lighter so they read clearly. */
   .ws-faq .faq__a p { color: #C9C3BA; }
 }
+
+/* ───────── Text on dark sections ─────────
+   Supporting paragraphs under headings on dark backgrounds: a warm off-white that reads clearly,
+   with a soft band of light that passes across once as the text appears, then again every few seconds. */
+@layer components {
+  .dark-lead { color: #E2DCD2; }
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .dark-lead {
+      background-image: linear-gradient(100deg, #E2DCD2 0%, #E2DCD2 42%, #FFFFFF 50%, #E2DCD2 58%, #E2DCD2 100%);
+      background-size: 260% 100%; background-position: 100% 0;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .js .reveal.is-in .dark-lead, .dark-lead.is-in { animation: leadLight 7s cubic-bezier(.45,0,.25,1) .5s infinite; }
+    @keyframes leadLight { 0% { background-position: 100% 0; } 32%, 100% { background-position: 0% 0; } }
+  }
+  @media (prefers-reduced-motion: reduce) { .dark-lead { animation: none !important; background: none; color: #E2DCD2; } }
+}

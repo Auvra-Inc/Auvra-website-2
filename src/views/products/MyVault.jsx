@@ -205,9 +205,9 @@ export default function MyVault() {
               </div>
             </div>
             <dl className="mt-8 grid gap-5">
-              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#BDB6AA]">How they get access</dt><dd className="mt-1 text-[17px]">Creates the Vault</dd></div>
-              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#BDB6AA]">Subscription</dt><dd className="mt-1 text-[17px]">Selects and pays for the applicable subscription</dd></div>
-              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#BDB6AA]">Invitations</dt><dd className="mt-1 text-[17px]">Decides who to invite and shares the invitation code</dd></div>
+              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#D2CCC2]">How they get access</dt><dd className="mt-1 text-[17px]">Creates the Vault</dd></div>
+              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#D2CCC2]">Subscription</dt><dd className="mt-1 text-[17px]">Selects and pays for the applicable subscription</dd></div>
+              <div><dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#D2CCC2]">Invitations</dt><dd className="mt-1 text-[17px]">Decides who to invite and shares the invitation code</dd></div>
             </dl>
           </article>
           <article className="reveal flex flex-col rounded-[32px] bg-[#E8F1E4] p-8 md:p-12" aria-labelledby="member-title">
@@ -232,9 +232,9 @@ export default function MyVault() {
         <div className="wrap">
           <div className="reveal mx-auto max-w-[900px] text-center">
             <Icon3D name="shield" size={80} className="mx-auto" />
-            <p className="kicker mt-6 !text-[#BDB6AA]">Privacy and user control</p>
+            <p className="kicker mt-6 !text-[#D2CCC2]">Privacy and user control</p>
             <h2 id="privacy-title" className={`${H2} mx-auto max-w-[16ch]`}>Is my Vault private?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">Yes. My Vault is private by default and shared only with people you invite. You decide what goes in, who can join, and what stays yours alone.</p>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#D2CCC2]">Yes. My Vault is private by default and shared only with people you invite. You decide what goes in, who can join, and what stays yours alone.</p>
           </div>
           <ul className="mt-14 grid gap-4 md:grid-cols-3">
             {[
@@ -244,7 +244,7 @@ export default function MyVault() {
             ].map(([t, d]) => (
               <li key={t} className="reveal rounded-[28px] bg-[#2A2724] p-7 md:p-9 max-md:text-center">
                 <h3 className="text-[22px] font-semibold leading-tight">{t}</h3>
-                <p className="mt-3 text-[16px] text-[#BDB6AA]">{d}</p>
+                <p className="mt-3 text-[16px] text-[#D2CCC2]">{d}</p>
               </li>
             ))}
           </ul>

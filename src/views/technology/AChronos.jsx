@@ -162,7 +162,7 @@ export default function AChronos() {
             {WHY.map(([name, text]) => (
               <li key={name} className="reveal rounded-[24px] bg-[#252321] p-7 md:p-9 max-md:text-center">
                 <h3 className="text-[24px] font-semibold leading-tight text-[#9FD4D6]">{name}</h3>
-                <p className="mt-3 text-[17px] text-[#A8A29A]">{text}</p>
+                <p className="mt-3 text-[17px] text-[#D2CCC2]">{text}</p>
               </li>
             ))}
           </ul>

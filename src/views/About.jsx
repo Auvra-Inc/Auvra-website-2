@@ -133,8 +133,8 @@ export default function About() {
           <article key={s.id} className={`wrap grid gap-10 py-20 md:py-28 lg:grid-cols-2 lg:gap-16 lg:items-center ${i ? 'border-t border-[#2B2B2B]' : ''}`} aria-labelledby={`${s.id}-title`}>
             <div className={`max-md:text-center ${i % 2 ? 'lg:order-2' : ''}`}>
               <h2 id={`${s.id}-title`} className={`reveal ${H2_SM} max-w-[16ch] max-md:mx-auto`}>{s.q}</h2>
-              <p className={`reveal ${LEAD} mt-7 text-white`}>{s.a}</p>
-              <div className="reveal mt-5 space-y-4 text-[17px] leading-relaxed text-[#A8A29A]">
+              <p className={`reveal ${LEAD} mt-7 text-[#FBF8F1]`}>{s.a}</p>
+              <div className="reveal mt-5 space-y-4 text-[17px] leading-relaxed text-[#E2DCD2]">
                 {s.body.map((p) => <p key={p.slice(0, 20)}>{p}</p>)}
               </div>
             </div>

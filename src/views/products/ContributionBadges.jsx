@@ -120,9 +120,9 @@ export default function ContributionBadges({ embedded = false }) {
       <section className="bg-carbon text-white py-20 md:py-32" aria-labelledby={pid('why-title')}>
         <div className="wrap">
           <div className="reveal mx-auto max-w-[860px] text-center">
-            <p className="kicker !text-[#BDB6AA]">Attribution</p>
+            <p className="kicker !text-[#D2CCC2]">Attribution</p>
             <h2 id={pid('why-title')} className={`${H2} mx-auto max-w-[18ch]`}>Why do cultural contributions need attribution?</h2>
-            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#A8A29A]">Because cultural knowledge comes from people. When a memory, a translation or a correction loses its name, later readers cannot tell where it came from, how much to trust it, or whom to thank.</p>
+            <p className="mt-6 text-[17px] md:text-lg leading-relaxed text-[#D2CCC2]">Because cultural knowledge comes from people. When a memory, a translation or a correction loses its name, later readers cannot tell where it came from, how much to trust it, or whom to thank.</p>
           </div>
           <ul className="mt-14 grid gap-4 md:grid-cols-3">
             {[
@@ -132,7 +132,7 @@ export default function ContributionBadges({ embedded = false }) {
             ].map(([t, d]) => (
               <li key={t} className="reveal rounded-[28px] bg-[#2A2724] p-7 md:p-9 max-md:text-center">
                 <h3 className="text-[22px] font-semibold leading-tight">{t}</h3>
-                <p className="mt-3 text-[16px] text-[#BDB6AA]">{d}</p>
+                <p className="mt-3 text-[16px] text-[#D2CCC2]">{d}</p>
               </li>
             ))}
           </ul>
