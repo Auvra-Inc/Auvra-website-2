@@ -9,7 +9,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 async function send(payload) {
   const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
   if (res.ok) return 'sent';
-  // Only until the email service key is added in Vercel: fall back to the visitor's email app so nothing is lost.
+  // If the server cannot deliver email right now, fall back to the visitor's email app so nothing is lost.
   if (res.status === 503) {
     const body = Object.entries(payload).filter(([k]) => k !== 'website').map(([k, v]) => `${k}: ${v}`).join('\n');
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Auvra website: ' + payload.type)}&body=${encodeURIComponent(body)}`;

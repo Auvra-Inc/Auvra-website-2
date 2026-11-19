@@ -23,7 +23,10 @@ async function saveContact(email) {
 
 async function notify(subject, lines, replyTo) {
   const text = lines.join('\n');
-  const r = await resend('/emails', { from: FROM, to: [TO], subject, text, ...(replyTo ? { reply_to: replyTo } : {}) });
+  const msg = { to: [TO], subject, text, ...(replyTo ? { reply_to: replyTo } : {}) };
+  let r = await resend('/emails', { from: FROM, ...msg });
+  // Until the sending domain is verified in Resend, try Resend's shared sender (delivers to the account's own address).
+  if (!r.ok) r = await resend('/emails', { from: 'Auvra Website <onboarding@resend.dev>', ...msg });
   return r.ok;
 }
 
@@ -44,7 +47,8 @@ export default async function handler(req, res) {
     }
     const lines = Object.entries(data).filter(([k]) => k !== 'website').map(([k, v]) => `${k}: ${clean(v)}`);
     const sent = await notify(`Website enquiry (${type || 'general'})`, lines, email);
-    return sent ? res.status(200).json({ ok: true }) : res.status(502).json({ ok: false });
+    // If email delivery is unavailable, tell the page so it can hand the message to the visitor's email app instead.
+    return sent ? res.status(200).json({ ok: true }) : res.status(503).json({ ok: false, error: 'email_unavailable' });
   } catch {
     return res.status(502).json({ ok: false });
   }
