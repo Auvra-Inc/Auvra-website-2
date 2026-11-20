@@ -6,7 +6,7 @@ export async function GET() {
   const urls = [];
   for (const [file, load] of Object.entries(pages)) {
     const route = file.replace(/^\.\//, '/').replace(/\.astro$/, '').replace(/\/index$/, '') || '/';
-    if (route.includes('404')) continue;
+    if (route.includes('404') || route.includes('og-card')) continue;
     if (route.includes('[')) {
       const mod = await load();
       const paths = (await mod.getStaticPaths?.({ paginate: () => [] })) || [];
