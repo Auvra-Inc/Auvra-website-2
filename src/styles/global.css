@@ -1508,13 +1508,14 @@ html { overflow-x: clip; }
     mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 9%, #000 90%, transparent); mask-composite: intersect; }
   .tale__pan > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; mix-blend-mode: multiply; }
   .tale.s-0 [data-scene='0'], .tale.s-1 [data-scene='1'], .tale.s-2 [data-scene='2'], .tale.s-3 [data-scene='3'] { --rv: 150%; opacity: 1; transition: --rv 2.6s cubic-bezier(.45,0,.2,1), opacity .4s ease; }
-  .tale.s-0 [data-scene='0'] .tale__pan, .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan, .tale.s-3 [data-scene='3'] .tale__pan { animation: kenburns 9s cubic-bezier(.3,0,.4,1) both; }
+  .tale.s-0 [data-scene='0'] .tale__pan, .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan, .tale.s-3 [data-scene='3'] .tale__pan { animation: kenburns 14s cubic-bezier(.3,0,.4,1) both; }
   [data-scene='1'] .tale__pan, [data-scene='3'] .tale__pan { --kx: -1; }
   @keyframes kenburns { from { transform: translate3d(calc(var(--kx, 1) * 1.5%), 1%, 0) scale(1.04); } to { transform: translate3d(calc(var(--kx, 1) * -1.5%), 0, 0) scale(1.1); } }
 
   /* Dusk and lanterns on the closing scene. */
   .tale__dusk { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 30%, rgba(30,46,110,.22), rgba(16,26,70,.5)); mix-blend-mode: multiply; opacity: 0; transition: opacity 2.4s ease .6s; }
   .tale.s-3 .tale__dusk { opacity: 1; }
+  .tale__scene--gate .tale__dusk { -webkit-mask: url('/images/story/gate.webp') 0 0 / 100% 100% no-repeat; mask: url('/images/story/gate.webp') 0 0 / 100% 100% no-repeat; }
   .tale__lamp { position: absolute; width: 18%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,196,110,.95) 0 6%, rgba(255,170,80,.45) 18%, rgba(255,150,60,0) 62%); opacity: 0; transition: opacity 1.8s ease 1.6s; }
   .tale.s-3 .tale__lamp { opacity: 1; animation: lamp 2.6s ease-in-out infinite alternate; }
   @keyframes lamp { from { transform: translate(-50%, -50%) scale(.92); filter: brightness(.9); } to { transform: translate(-50%, -50%) scale(1.08); filter: brightness(1.1); } }
@@ -1562,14 +1563,14 @@ html { overflow-x: clip; }
   .tale__run.is-left .tale__rider, .tale__run.is-left .tale__dust { transform: scaleX(-1); }
   .tale__run.is-left .tale__dust { left: auto; right: -8%; }
   .tale.s-2 [data-scene='2'] .tale__run { animation: rideR 5.4s cubic-bezier(.3,.1,.7,.9) var(--d) both; }
-  .tale.s-3 [data-scene='3'] .tale__run { animation: rideL 5.4s cubic-bezier(.3,.1,.7,.9) calc(var(--d) + 2.4s) both; }
+  .tale.s-3 [data-scene='3'] .tale__run { animation: rideL 5.4s cubic-bezier(.3,.1,.7,.9) calc(var(--d) + 3.5s) both; }
   @keyframes rideR { 0% { opacity: 0; transform: translate3d(-110%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(420%, 0, 0); } }
   @keyframes rideL { 0% { opacity: 0; transform: translate3d(420%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(-110%, 0, 0); } }
 
   /* Camel caravan (Muybridge walking camel redrawn in ink). */
   .tale__camel { position: absolute; left: 0; bottom: var(--b); width: calc(var(--w) * 1%); aspect-ratio: 260 / 149; overflow: hidden; opacity: 0; }
   .tale__camelstrip { width: 1300%; height: 100%; background: url('/images/story/camel.webp') 0 0 / 100% 100% no-repeat; animation: gallop 1.15s steps(13) infinite; }
-  .tale.s-1 [data-scene='1'] .tale__camel { animation: caravan 15s linear var(--d) both; }
+  .tale.s-1 [data-scene='1'] .tale__camel { animation: caravan 19s linear var(--d) both; }
   @keyframes caravan { 0% { opacity: 0; transform: translate3d(0%, 0, 0); } 6% { opacity: 1; } 100% { opacity: 1; transform: translate3d(430%, 0, 0); } }
 
   .tale__birds { position: absolute; top: 30%; left: 0; width: max(70px, 10vw); fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; opacity: 0; }
@@ -1585,7 +1586,7 @@ html { overflow-x: clip; }
     /* On phones the wide engravings pan slowly from one side to the other. */
     .tale__scene { height: 52%; }
     .tale__scene--gate { height: auto; width: 112%; }
-    .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan { animation-name: panPhone; animation-duration: 9s; animation-timing-function: cubic-bezier(.35,0,.45,1); }
+    .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan { animation-name: panPhone; animation-duration: 14s; animation-timing-function: cubic-bezier(.35,0,.45,1); }
     @keyframes panPhone { from { transform: translate3d(calc(var(--kx, 1) * 16%), 0, 0) scale(1.02); } to { transform: translate3d(calc(var(--kx, 1) * -16%), 0, 0) scale(1.06); } }
   }
   @media (min-width: 768px) {

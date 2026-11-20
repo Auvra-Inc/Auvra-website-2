@@ -14,22 +14,22 @@ const SCENES = [
 ];
 // Walkers per scene: kind, size (% of scene height), start delay, crossing time, direction, baseline (% from bottom).
 const WALKERS = [
-  [{ k: 'staff', s: 15, d: 0.4, t: 15, dir: 1, b: 4 }, { k: 'pot', s: 13.5, d: 1.6, t: 17, dir: 1, b: 2 }, { k: 'child', s: 9.5, d: 2.1, t: 17, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.9, t: 16, dir: -1, b: 6 }],
-  [{ k: 'book', s: 15, d: 0.2, t: 14, dir: -1, b: 5 }, { k: 'staff', s: 14, d: 1.4, t: 15, dir: 1, b: 3 }, { k: 'plain', s: 13, d: 2.4, t: 15.5, dir: 1, b: 2 }],
-  [{ k: 'drum', s: 14, d: 0.6, t: 13, dir: 1, b: 3 }, { k: 'pot', s: 13.5, d: 1.5, t: 14, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.2, t: 14.5, dir: -1, b: 5 }],
-  [{ k: 'staff', s: 15, d: 0.8, t: 15, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 1.3, t: 15, dir: -1, b: 2 }, { k: 'plain', s: 14, d: 1.0, t: 15, dir: -1, b: 1.5 }],
+  [{ k: 'staff', s: 15, d: 0.4, t: 15, dir: 1, b: 4 }, { k: 'pot', s: 13.5, d: 1.6, t: 17, dir: 1, b: 2 }, { k: 'child', s: 9.5, d: 2.1, t: 17, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.9, t: 16, dir: -1, b: 6 }, { k: 'staff', s: 14.5, d: 6.5, t: 16, dir: -1, b: 3 }, { k: 'pot', s: 13.5, d: 7.5, t: 17, dir: 1, b: 5 }],
+  [{ k: 'book', s: 15, d: 0.2, t: 14, dir: -1, b: 5 }, { k: 'staff', s: 14, d: 1.4, t: 15, dir: 1, b: 3 }, { k: 'plain', s: 13, d: 2.4, t: 15.5, dir: 1, b: 2 }, { k: 'book', s: 14, d: 6.8, t: 15, dir: 1, b: 6 }],
+  [{ k: 'drum', s: 14, d: 0.6, t: 13, dir: 1, b: 3 }, { k: 'pot', s: 13.5, d: 1.5, t: 14, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.2, t: 14.5, dir: -1, b: 5 }, { k: 'drum', s: 14, d: 6, t: 14, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 7, t: 13, dir: 1, b: 2 }],
+  [{ k: 'staff', s: 15, d: 0.8, t: 15, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 1.3, t: 15, dir: -1, b: 2 }, { k: 'plain', s: 14, d: 1.0, t: 15, dir: -1, b: 1.5 }, { k: 'pot', s: 13.5, d: 6.5, t: 16, dir: 1, b: 5 }],
 ];
 // Camel caravan (Muybridge's 1887 walking camel, redrawn in ink): width (% of scene), baseline, delay.
 const CAMELS = [
   [],
-  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }],
+  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }, { w: 17, b: 3, d: 4 }],
   [],
   [],
 ];
 const RIDERS = [
   [],
   [],
-  [{ w: 26, b: 1, d: 1.4 }, { w: 23, b: 6, d: 1.9 }, { w: 25, b: -1, d: 2.6 }],
+  [{ w: 26, b: 1, d: 1.4 }, { w: 23, b: 6, d: 1.9 }, { w: 25, b: -1, d: 2.6 }, { w: 24, b: 3, d: 7.4 }, { w: 27, b: -1, d: 8 }],
   [{ w: 30, b: 0, d: 0.6 }, { w: 27, b: 6, d: 1.0 }, { w: 29, b: -2, d: 1.5 }, { w: 25, b: 9, d: 2.0 }],
 ];
 ---
@@ -92,7 +92,7 @@ const RIDERS = [
     var tale = document.querySelector('[data-tale]'); if (!tale) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var hero = tale.closest('section'), timers = [], idle, playing = false, warmed = false;
-    var WAIT = 3000, SCENE = 7600, FADE = 1400;
+    var WAIT = 3000, SCENE = 13000, FADE = 1600;
     var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
     var all = ['is-on', 'is-birds', 's-0', 's-1', 's-2', 's-3', 'c-0', 'c-1', 'c-2', 'c-3'];
     // Fetch the drawings early so the first scene never appears half-loaded.
