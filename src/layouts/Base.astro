@@ -106,6 +106,18 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
       })();
     </script>
     <script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+    <!-- Google tag (gtag.js) for Google Ads. Visitors in the EEA, UK and Switzerland get no ad
+         cookies (Consent Mode: denied by default there); Google receives cookieless signals only. -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+      gtag('js', new Date());
+      gtag('config', 'AW-18536223502');
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18536223502"></script>
     <Analytics />
     <SpeedInsights />
   </head>
@@ -122,6 +134,12 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
       </script>
     )}
     <script is:inline define:vars={{ store: STORE }}>
+      // Google Ads conversion: someone heads to the Google Play listing.
+      function trackPlay() { if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-18536223502/YASbCOjKsLwdEI6m4YZF', transport_type: 'beacon' }); }
+      document.addEventListener('click', (e) => {
+        const p = e.target.closest && e.target.closest('a[href^="https://play.google.com/"]');
+        if (p) trackPlay();
+      });
       // Explore Auvra: straight to the right app store on phones, else scroll to the download buttons.
       document.addEventListener('click', (e) => {
         const a = e.target.closest && e.target.closest('a[href="#get-app"]');
@@ -131,7 +149,7 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
         const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
         const android = /Android/i.test(ua);
         if (store.appStoreLive && ios) { location.href = store.appStore; return; }
-        if (store.googlePlayLive && android) { location.href = store.googlePlay; return; }
+        if (store.googlePlayLive && android) { trackPlay(); setTimeout(function () { location.href = store.googlePlay; }, 250); return; }
         const t = document.getElementById('get-app');
         if (!t) return;
         if (window.__lenis) window.__lenis.scrollTo(t, { offset: -160 });
