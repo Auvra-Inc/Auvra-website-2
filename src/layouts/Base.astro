@@ -12,7 +12,7 @@ import { SITE, SOCIAL, CONTACT_EMAIL, SUPPORT_EMAIL, STORE } from '../data/site.
  * Organization + WebSite JSON-LD, optional BreadcrumbList and page-specific JSON-LD.
  * crumbs: [{ label, href? }] (Home is added automatically).
  */
-const { title, description, image = '/og-image.jpg', jsonld = [], crumbs = null, noindex = false, ogType = 'website' } = Astro.props;
+const { title, description, image = '/og-auvra.jpg', jsonld = [], crumbs = null, noindex = false, ogType = 'website' } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = SITE + (path === '/' ? '/' : path);
 const ogImage = image.startsWith('http') ? image : SITE + image;
@@ -22,7 +22,7 @@ const org = {
   identifier: { '@type': 'PropertyValue', propertyID: 'CAC RC Number (Nigeria)', value: '8895504' },
   foundingLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressCountry: 'NG' } },
   logo: { '@type': 'ImageObject', url: `${SITE}/brand/auvra-logo-512.png`, width: 512, height: 512 },
-  image: `${SITE}/og-image.jpg`,
+  image: `${SITE}/og-auvra.jpg`,
   slogan: 'The permanent home for human culture.',
   contactPoint: [
     { '@type': 'ContactPoint', contactType: 'customer support', email: SUPPORT_EMAIL, availableLanguage: ['en'] },
