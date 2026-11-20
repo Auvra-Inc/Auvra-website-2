@@ -2,6 +2,7 @@
 // Homepage, laid out like wysemarket.com: hero → dark intro with three tiles → product features →
 // poster statement → how it works carousel → dark FAQ + movement strip → gradient CTA footer.
 import Base from '../layouts/Base.astro';
+import HeroSketch from '../components/HeroSketch.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import Icon3D from '../components/Icon3D.jsx';
 import Carousel from '../components/Carousel.jsx';
@@ -78,6 +79,7 @@ import { altFor, moodAlt } from '../data/alts.js';
   <!-- 1 · Hero -->
   <section id="home" class="flex flex-col" aria-labelledby="hero-title">
     <div class="relative flex flex-col overflow-hidden px-3 md:px-[3.25rem] pt-32 md:pt-48 pb-20 md:pb-28" style="background: linear-gradient(180deg, #F4F0E8 0%, #F7F4EE 45%, #FCFBF8 75%, #FFFFFF 100%)">
+      <HeroSketch />
       <div class="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center gap-10 md:gap-8 text-center">
         <h1 id="hero-title" class="ws-h text-carbon hero-h1 !leading-[0.96] text-[20vw] md:text-[clamp(68px,9.2vw,136px)] md:!leading-[0.98]">
           {[['Your', 'story.'], ['Your', 'culture.'], ['Your', 'legacy.']].map(([a, b]) => (

@@ -1,0 +1,171 @@
+---
+// Hero ink sketch: an old city gate drawn line by line in blue ink, then a story plays out in front of it:
+// horsemen charge across, people pass through the gate and birds cross the sky.
+// It appears behind the hero words after the visitor has stayed a few seconds (see the script below).
+// Everything is hand-built SVG, so it stays sharp at any size and weighs only a few kilobytes.
+
+const GROUND = 690;
+
+// Wall bricks: short horizontal strokes, staggered, on both towers.
+const bricks = [];
+for (let row = 0; row < 11; row++) {
+  const y = 312 + row * 30;
+  const off = row % 2 ? 22 : 0;
+  for (let x = 362 + off; x < 512; x += 46) bricks.push([x, y, Math.min(x + 30, 512)]);
+  for (let x = 690 + off; x < 838; x += 46) bricks.push([x, y, Math.min(x + 30, 838)]);
+}
+
+// Hatching for the shaded right face of the gate opening.
+const hatch = [];
+for (let y = 430; y < GROUND; y += 11) hatch.push([652, y, 684, y - 14]);
+
+// Zanko horns along the top of the wall.
+const horns = [];
+for (let x = 352; x <= 848; x += 31) horns.push(x);
+
+// Ground perspective lines converging on the gate.
+const rays = [-560, -360, -200, -80, 80, 200, 360, 560].map((dx) => [600 + dx * 2.2, 800, 600 + dx * 0.18, GROUND]);
+
+// Townspeople: robed figures (x, scale, walking?)
+const people = [
+  [250, 1, 0], [282, 0.92, 0], [960, 1.05, 0], [990, 0.95, 0], [1030, 0.9, 0],
+  [560, 0.62, 1], [612, 0.6, 1], [640, 0.58, 0],
+];
+
+// Horsemen: start delay (s), scale, vertical offset.
+const riders = [
+  { d: 0, s: 1, y: 0 },
+  { d: 1.1, s: 0.86, y: -18 },
+  { d: 2.3, s: 0.94, y: 6 },
+];
+---
+<div class="sketch" aria-hidden="true" data-sketch>
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice" class="sketch__svg">
+    <defs>
+      <symbol id="sk-person" viewBox="-12 -64 24 64" overflow="visible">
+        <path d="M-7,0 L-9,-34 Q-9,-46 0,-48 Q9,-46 9,-34 L7,0 Z" class="sk-fill" />
+        <circle cx="0" cy="-54" r="6" class="sk-fill" />
+        <path d="M-6,-58 Q0,-66 6,-58" class="sk-line" />
+      </symbol>
+      <g id="sk-horse">
+        <g class="sk-body">
+          <!-- horse, facing left -->
+          <path class="sk-fill" d="M-44,-62 Q-40,-80 -4,-80 Q34,-82 42,-66 Q46,-52 30,-46 L-30,-46 Q-46,-48 -44,-62 Z" />
+          <path class="sk-fill" d="M-30,-74 L-50,-108 Q-54,-116 -46,-118 L-38,-112 L-16,-78 Z" />
+          <path class="sk-fill" d="M-46,-118 L-70,-100 Q-74,-94 -66,-92 L-44,-100 Z" />
+          <path class="sk-fill" d="M-44,-118 L-40,-128 L-36,-116 Z" />
+          <path class="sk-line sk-tail" d="M40,-70 Q66,-74 72,-50 Q70,-40 60,-36" />
+          <path class="sk-line sk-mane" d="M-36,-112 Q-30,-100 -24,-94 M-32,-106 Q-24,-96 -20,-88" />
+          <!-- rider -->
+          <path class="sk-fill" d="M-8,-80 L4,-80 L12,-112 Q6,-118 -2,-114 Z" />
+          <circle cx="4" cy="-124" r="7" class="sk-fill" />
+          <path class="sk-fill" d="M-4,-128 Q4,-138 12,-128 Q4,-126 -4,-128 Z" />
+          <path class="sk-fill sk-robe" d="M10,-110 Q44,-112 60,-92 L24,-84 Z" />
+          <path class="sk-line" d="M-2,-80 L-8,-58" />
+          <path class="sk-line sk-spear" d="M-78,-142 L30,-100" />
+          <path class="sk-fill sk-flag" d="M18,-104 L40,-118 L34,-98 Z" />
+        </g>
+        <g class="sk-legs-a">
+          <path class="sk-leg" d="M-30,-50 L-56,-30 L-70,-16" />
+          <path class="sk-leg" d="M-22,-50 L-42,-24 L-48,-8" />
+          <path class="sk-leg" d="M30,-50 L50,-30 L72,-22" />
+          <path class="sk-leg" d="M24,-50 L38,-24 L46,-6" />
+        </g>
+        <g class="sk-legs-b">
+          <path class="sk-leg" d="M-28,-50 L-20,-28 L-30,-10" />
+          <path class="sk-leg" d="M-20,-50 L-8,-30 L-14,-14" />
+          <path class="sk-leg" d="M28,-50 L14,-28 L6,-4" />
+          <path class="sk-leg" d="M22,-50 L20,-26 L26,-2" />
+        </g>
+      </g>
+    </defs>
+
+    <!-- sky and the view through the gate -->
+    <path class="sk-sky" d="M520,690 L520,430 Q600,330 680,430 L680,690 Z" />
+    <g class="sk-draw">
+      <circle cx="600" cy="520" r="34" class="sk-line" />
+      <path class="sk-line" d="M566,520 L566,600 L634,600 L634,520" />
+      <path class="sk-line" d="M646,600 L646,470 L656,458 L666,470 L666,600" />
+      <path class="sk-line" d="M650,490 L662,490 M650,530 L662,530" />
+      <path class="sk-line" d="M538,600 L538,560 L560,560 L560,600" />
+    </g>
+
+    <!-- the wall and gate -->
+    <path class="sk-wall" d="M346,690 L360,296 L840,296 L854,690 Z M520,690 L520,430 Q600,330 680,430 L680,690 Z" fill-rule="evenodd" />
+    <path class="sk-shade" d="M652,690 L652,420 Q666,410 680,430 L680,690 Z" />
+    <g class="sk-draw">
+      <path class="sk-line sk-strong" d="M346,690 L360,296 L840,296 L854,690" />
+      <path class="sk-line sk-strong" d="M520,690 L520,430 Q600,330 680,430 L680,690" />
+      <path class="sk-line" d="M506,690 L506,424 Q600,306 694,424 L694,690" />
+      <path class="sk-line" d="M360,296 L840,296" />
+      {horns.map((x) => <path class="sk-line" d={`M${x - 9},296 L${x},270 L${x + 9},296`} />)}
+      {bricks.map(([x1, y, x2]) => <path class="sk-line sk-thin sk-brick" d={`M${x1},${y} L${x2},${y}`} />)}
+      {hatch.map(([x1, y1, x2, y2]) => <path class="sk-line sk-thin" d={`M${x1},${y1} L${x2},${y2}`} />)}
+      <path class="sk-line" d="M410,360 L410,404 L444,404 L444,360 Z M427,360 L427,404" />
+      <path class="sk-line" d="M756,360 L756,404 L790,404 L790,360 Z M773,360 L773,404" />
+      <path class="sk-line" d="M392,560 Q404,520 416,560 L416,690 M392,560 L392,690" />
+    </g>
+
+    <!-- houses and palms either side -->
+    <g class="sk-draw">
+      <path class="sk-line" d="M90,690 L96,520 L250,520 L256,690" />
+      <path class="sk-line" d="M96,520 L104,500 L112,520 M150,520 L158,498 L166,520 M236,520 L244,500 L250,520" />
+      <path class="sk-line" d="M150,690 L150,610 Q170,586 190,610 L190,690" />
+      <path class="sk-line" d="M120,560 L136,560 L136,580 L120,580 Z" />
+      <path class="sk-line" d="M944,690 L950,540 L1110,540 L1116,690" />
+      <path class="sk-line" d="M950,540 L958,520 L966,540 M1020,540 L1028,518 L1036,540 M1098,540 L1106,520 L1110,540" />
+      <path class="sk-line" d="M1060,690 L1060,620 Q1078,598 1096,620 L1096,690" />
+      <path class="sk-line" d="M980,580 L998,580 L998,602 L980,602 Z" />
+      <path class="sk-line" d="M284,690 Q276,600 296,470" />
+      <path class="sk-line" d="M296,470 Q258,456 236,478 M296,470 Q270,438 246,440 M296,470 Q312,436 340,438 M296,470 Q334,462 350,486 M296,470 Q298,444 290,424" />
+      <path class="sk-line" d="M908,690 Q918,610 900,500" />
+      <path class="sk-line" d="M900,500 Q862,490 846,512 M900,500 Q878,470 854,474 M900,500 Q916,468 946,470 M900,500 Q936,494 952,516 M900,500 Q904,474 896,456" />
+    </g>
+
+    <!-- ground -->
+    <g class="sk-draw">
+      <path class="sk-line" d="M0,690 L1200,690" />
+      {rays.map(([x1, y1, x2, y2]) => <path class="sk-line sk-thin" d={`M${x1},${y1} L${x2},${y2}`} />)}
+      <path class="sk-line sk-thin" d="M120,740 L1080,740 M30,780 L1170,780" />
+    </g>
+
+    <!-- birds -->
+    <g class="sk-birds">
+      <path class="sk-line sk-bird" d="M0,0 Q8,-8 16,0 Q24,-8 32,0" transform="translate(180 170)" />
+      <path class="sk-line sk-bird" d="M0,0 Q6,-6 12,0 Q18,-6 24,0" transform="translate(226 150)" />
+      <path class="sk-line sk-bird" d="M0,0 Q7,-7 14,0 Q21,-7 28,0" transform="translate(260 186)" />
+    </g>
+
+    <!-- townspeople -->
+    <g class="sk-people">
+      {people.map(([x, s, walk], i) => (
+        <g class={walk ? 'sk-walker' : 'sk-stander'} style={`--x:${x}px;--s:${s};--i:${i}`}>
+          <use href="#sk-person" width="24" height="64" x="-12" y="-64" />
+        </g>
+      ))}
+    </g>
+
+    <!-- the charge -->
+    <g class="sk-riders">
+      {riders.map((r) => (
+        <g class="sk-rider" style={`--d:${r.d}s;--s:${r.s};--y:${r.y}px`}>
+          <g class="sk-rider__pos">
+            <g class="sk-dust"><circle cx="78" cy="-6" r="8" /><circle cx="100" cy="-10" r="11" /><circle cx="124" cy="-5" r="7" /></g>
+            <use href="#sk-horse" />
+          </g>
+        </g>
+      ))}
+    </g>
+  </svg>
+</div>
+
+<script is:inline>
+  // Show the sketch once the visitor has stayed on the opening screen for a few seconds.
+  (function () {
+    var el = document.querySelector('[data-sketch]'); if (!el) return;
+    var t, shown = false;
+    var arm = function () { clearTimeout(t); if (shown) return; t = setTimeout(function () { if (window.scrollY < innerHeight * 0.6) { shown = true; el.classList.add('is-on'); el.closest('section').classList.add('has-sketch'); } else arm(); }, 3200); };
+    addEventListener('scroll', function () { if (!shown) arm(); }, { passive: true });
+    arm();
+  })();
+</script>

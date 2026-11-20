@@ -1482,3 +1482,82 @@ html { overflow-x: clip; }
   @media (min-width: 768px) { .mission { padding: 120px 40px 72px; } .mission__card { border-radius: 28px; } }
   @media (prefers-reduced-motion: reduce) { .mission__bg, .mission__slide, .mission__slide img, .mission__name, .mission__meta { transition: none; } .mission__ring { display: none; } }
 }
+
+/* ───────── Hero ink sketch ─────────
+   Blue-ink drawing behind the hero words: lines draw in, shaded areas wash in, then the story loops
+   (horsemen charge across, people stroll, birds glide). A soft haze keeps the words easy to read. */
+@layer components {
+  .sketch { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.4s cubic-bezier(.33,1,.68,1); }
+  .sketch.is-on { opacity: 1; }
+  .sketch__svg { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; }
+  #home .has-sketch::after, .has-sketch > div:first-child::after { content: none; }
+  #home.has-sketch .hero-h1, #home.has-sketch .hero-h1 ~ p { text-shadow: 0 0 18px #F7F4EE, 0 0 36px #F7F4EE, 0 0 2px #F7F4EE; }
+  .sketch::after { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 46% at 50% 42%, rgba(247,244,238,.86) 0%, rgba(247,244,238,.55) 55%, rgba(247,244,238,0) 100%); }
+
+  .sk-line { fill: none; stroke: #2A4AA0; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sk-strong { stroke-width: 2.6; }
+  .sk-thin { stroke-width: 1.2; opacity: .8; }
+  .sk-fill { fill: #2A4AA0; }
+  .sk-sky { fill: #A9C4EA; opacity: 0; transition: opacity 1.6s ease 2.2s; }
+  .sk-wall { fill: #F3F1EA; opacity: 0; transition: opacity 1s ease .2s; }
+  .sk-shade { fill: #3B5CB4; opacity: 0; transition: opacity 1.6s ease 2.4s; }
+  .sketch.is-on .sk-sky { opacity: .85; } .sketch.is-on .sk-wall { opacity: .9; } .sketch.is-on .sk-shade { opacity: .9; }
+
+  /* lines draw themselves */
+  .sk-draw .sk-line { stroke-dasharray: 1400; stroke-dashoffset: 1400; }
+  .sketch.is-on .sk-draw .sk-line { animation: skDraw 3.2s cubic-bezier(.45,0,.2,1) forwards; }
+  .sketch.is-on .sk-draw:nth-of-type(2) .sk-line { animation-delay: .3s; }
+  .sketch.is-on .sk-draw:nth-of-type(3) .sk-line { animation-delay: .8s; }
+  .sketch.is-on .sk-draw:nth-of-type(4) .sk-line { animation-delay: .5s; }
+  @keyframes skDraw { to { stroke-dashoffset: 0; } }
+
+  /* the charge */
+  .sk-leg { fill: none; stroke: #2A4AA0; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+  .sk-riders, .sk-people, .sk-birds { opacity: 0; transition: opacity 1.2s ease 3s; }
+  .sketch.is-on .sk-riders, .sketch.is-on .sk-people, .sketch.is-on .sk-birds { opacity: 1; }
+  .sk-rider { transform: translate(0, calc(690px + var(--y))); }
+  .sk-rider__pos { transform: translateX(1400px); }
+  .sketch.is-on .sk-rider__pos { animation: skRun 7.5s linear calc(3s + var(--d)) infinite; }
+  @keyframes skRun { from { transform: translateX(1400px) scale(var(--s)); } to { transform: translateX(-220px) scale(var(--s)); } }
+  .sketch.is-on .sk-body { animation: skBob .36s ease-in-out infinite alternate; }
+  @keyframes skBob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+  .sketch.is-on .sk-legs-a { animation: skLegA .36s steps(1) infinite; }
+  .sketch.is-on .sk-legs-b { animation: skLegB .36s steps(1) infinite; }
+  .sk-legs-b { opacity: 0; }
+  @keyframes skLegA { 0% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes skLegB { 0% { opacity: 0; } 50% { opacity: 1; } }
+  .sk-dust circle { fill: #8FA9DA; opacity: 0; }
+  .sketch.is-on .sk-dust circle { animation: skDust .72s ease-out infinite; }
+  .sketch.is-on .sk-dust circle:nth-child(2) { animation-delay: .24s; } .sketch.is-on .sk-dust circle:nth-child(3) { animation-delay: .48s; }
+  @keyframes skDust { 0% { opacity: .6; transform: translate(0, 0) scale(.6); } 100% { opacity: 0; transform: translate(26px, -10px) scale(1.4); } }
+  .sk-tail, .sk-robe, .sk-flag { transform-box: fill-box; }
+  .sketch.is-on .sk-robe, .sketch.is-on .sk-flag { animation: skFlutter .36s ease-in-out infinite alternate; transform-origin: 0% 50%; }
+  @keyframes skFlutter { to { transform: skewY(-6deg) scaleX(1.06); } }
+
+  /* townspeople */
+  .sk-stander, .sk-walker { transform: translate(var(--x), 690px) scale(var(--s)); }
+  .sketch.is-on .sk-walker { animation: skWalk 14s ease-in-out calc(var(--i) * -3s) infinite alternate; }
+  @keyframes skWalk { from { transform: translate(var(--x), 690px) scale(var(--s)); } to { transform: translate(calc(var(--x) + 60px), 690px) scale(var(--s)); } }
+
+  /* birds */
+  .sk-bird { stroke-width: 1.8; }
+  .sketch.is-on .sk-birds { animation: skBirds 18s linear 3s infinite; }
+  @keyframes skBirds { from { transform: translate(-200px, 20px); } to { transform: translate(1100px, -60px); } }
+
+  .sketch.is-paused *, .is-paused .sketch * { animation-play-state: paused !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .sketch.is-on * { animation: none !important; }
+    .sk-draw .sk-line { stroke-dashoffset: 0; }
+    .sk-rider__pos { transform: translateX(780px) scale(var(--s)); }
+  }
+}
+@layer components {
+  .sk-thin { opacity: .55; }
+  .sk-brick { opacity: .4; }
+  @media (max-width: 767px) {
+    /* Phones: the scene sits as a band along the bottom of the opening screen, under the headline. */
+    .sketch__svg { width: 200%; left: -50%; right: auto; height: auto; aspect-ratio: 3 / 2; top: auto; bottom: 0; }
+    .sketch::after { background: radial-gradient(80% 40% at 50% 36%, rgba(247,244,238,.92) 0%, rgba(247,244,238,.6) 60%, rgba(247,244,238,0) 100%); }
+    .sk-brick { display: none; }
+  }
+}
