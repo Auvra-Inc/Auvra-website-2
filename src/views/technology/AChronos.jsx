@@ -132,7 +132,7 @@ export default function AChronos() {
         </div>
         <div className="mt-14 grid grid-cols-3 gap-2 md:gap-3 px-2 md:px-3">
           <Photo name="museum" eager alt="Columns of a national museum building" className="h-[200px] md:h-[440px] w-full rounded-[20px] object-cover" sizes="33vw" />
-          <Photo name="mask" eager alt="A person in a carved wooden mask and woven cloth" className="h-[200px] md:h-[440px] w-full rounded-[20px] object-cover" sizes="33vw" />
+          <Photo name="ancestor-skull" eager alt="A man in a woven red cap and beaded regalia holding an ancestral skull" className="h-[200px] md:h-[440px] w-full rounded-[20px] object-cover" sizes="33vw" />
           <Photo name="hands-archive" eager alt="Hands turning the pages of an archive" className="h-[200px] md:h-[440px] w-full rounded-[20px] object-cover" sizes="33vw" />
         </div>
       </section>

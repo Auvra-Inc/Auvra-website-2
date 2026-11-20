@@ -46,7 +46,7 @@ function FirstStories() {
   return (
     <div className="ins-empty-hero">
       <div className="ins-empty-hero__img">
-        <img src="/images/photos/hands-braid-960.webp" srcSet="/images/photos/hands-braid-480.webp 480w, /images/photos/hands-braid-960.webp 960w" sizes="(max-width: 900px) 100vw, 50vw" alt="An older hand braiding a child's hair" width="960" height="720" />
+        <img src="/images/photos/cowrie-girl-960.webp" srcSet="/images/photos/cowrie-girl-480.webp 480w, /images/photos/cowrie-girl-960.webp 960w" sizes="(max-width: 900px) 100vw, 50vw" alt="A girl with white face paint, cowrie shells and a feathered collar" width="960" height="720" />
       </div>
       <div className="ins-empty-hero__text">
         <p className="kicker">Featured story</p>

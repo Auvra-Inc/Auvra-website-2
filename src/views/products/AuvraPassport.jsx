@@ -42,7 +42,7 @@ const LINKS = [
     q: 'How does Auvra Passport relate to Heirloom Badges?',
     a: 'For creators, Auvra Passport is designed to connect you to the cultural expressions you share as Heirloom Badges, so your authorship stays clear. For audiences, it can show the badges you have claimed, each with its creator credited.',
     points: ['Creators linked to the work they share', 'Claimed badges kept with their story', 'Credit that travels with every badge'],
-    photo: 'drummer-blue', alt: 'A man in blue adire playing a talking drum, the kind of creator whose work an Heirloom Badge credits',
+    photo: 'talking-drums', alt: 'A woman in a patterned robe between carved talking drums, the kind of creator whose work an Heirloom Badge credits',
   },
   {
     id: 'vault', href: '/my-vault', icon: 'vault', label: 'My Vault', bg: 'bg-teal', sub: 'text-[#BFE0E1]', accent: 'text-lime',
@@ -144,7 +144,7 @@ export default function AuvraPassport() {
               <li>Later additions never erase earlier credit</li>
             </ul>
           </div>
-          <Photo name="singers" alt="Women in patterned cloth singing together" sizes="(max-width: 1024px) 100vw, 50vw" className="reveal aspect-[4/5] md:aspect-square w-full rounded-[32px] object-cover" />
+          <Photo name="sisters-guitar" alt="Three women with sculpted hair and lace blouses, one holding a guitar" sizes="(max-width: 1024px) 100vw, 50vw" className="reveal aspect-[4/5] md:aspect-square w-full rounded-[32px] object-cover" />
         </div>
       </section>
 

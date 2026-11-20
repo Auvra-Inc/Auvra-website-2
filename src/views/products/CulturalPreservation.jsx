@@ -74,7 +74,7 @@ export default function CulturalPreservation() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr]">
           <Photo name="hands-braid" alt="An older hand braiding a child's hair, a skill passed from one generation to the next" eager sizes="(max-width: 760px) 100vw, 45vw" className="h-[420px] md:h-[600px] w-full object-cover" />
           <Photo name="elder-drummer" alt="An elder in white robes holding a drumstick at a festival" eager sizes="28vw" className="hidden md:block h-[600px] w-full object-cover" />
-          <Photo name="singers" alt="Women in patterned cloth singing together" eager sizes="28vw" className="hidden md:block h-[600px] w-full object-cover" />
+          <Photo name="cowrie-girl" alt="A girl with white face paint, cowrie shells and a feathered collar" eager sizes="28vw" className="hidden md:block h-[600px] w-full object-cover" />
         </div>
       </section>
 

@@ -2,6 +2,13 @@
 // Keep each under 125 characters and describe what the image shows.
 export const ALT = {
   // Photographs
+  'talking-drums': 'A woman in a patterned robe standing between two carved talking drums',
+  'cowrie-profile': 'A woman in profile wearing a long cowrie-shell headdress',
+  'cowrie-veil': 'A woman veiled by long hair and a cowrie-shell headdress',
+  'ancestor-skull': 'A man in a woven red cap and beaded regalia holding an ancestral skull',
+  'gele-tying': 'Women in woven cloth tying each other’s head wraps',
+  'sisters-guitar': 'Three women with sculpted hair and lace blouses, one holding a guitar',
+  'cowrie-girl': 'A girl with white face paint, cowrie shells and a feathered collar',
   carnival: 'Dancers in bright red, yellow and green costumes parading down a tree-lined street',
   'creator-filmcrew': 'A small film crew reviewing footage together on set',
   'drum-flag': 'Two men standing beside a large ceremonial drum painted in red, green and white',

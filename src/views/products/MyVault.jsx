@@ -137,7 +137,7 @@ export default function MyVault() {
             <p className="mt-4 text-[17px] md:text-lg leading-relaxed text-[#BFE0E1]">Each person’s additions stay credited to them, so the family record shows who remembered what.</p>
           </div>
           <div className="reveal grid grid-cols-2 gap-3">
-            <Photo name="hands-braid" alt="An older hand braiding a child’s hair" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover" />
+            <Photo name="gele-tying" alt="Women helping each other tie their head wraps before a celebration" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover" />
             <Photo name="elder" alt="An elder in a wide-brimmed hat and robes among family and friends" sizes="(max-width: 1024px) 50vw, 25vw" className="aspect-[3/4] w-full rounded-[24px] object-cover translate-y-8" />
           </div>
         </div>

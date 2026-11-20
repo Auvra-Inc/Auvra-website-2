@@ -114,8 +114,8 @@ export default function LensAI({ demo }) {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="reveal order-2 lg:order-1 mx-auto w-full max-w-[460px] rounded-[28px] bg-linen p-5 md:p-7" aria-hidden="true">
             <div className="flex items-center gap-3 rounded-2xl bg-white p-3">
-              <Photo name="coral-beads" alt="" className="h-14 w-14 rounded-xl object-cover" sizes="56px" />
-              <div className="text-left"><p className="text-[16px] font-semibold leading-tight">Festival dancers</p><p className="text-[13px] text-grey">Photo · added by a family member</p></div>
+              <Photo name="cowrie-profile" alt="" className="h-14 w-14 rounded-xl object-cover" sizes="56px" />
+              <div className="text-left"><p className="text-[16px] font-semibold leading-tight">Cowrie headdress</p><p className="text-[13px] text-grey">Photo · added by a family member</p></div>
             </div>
             <p className="mt-5 text-[11px] font-semibold uppercase tracking-wider text-blue">Suggested tags · review before saving</p>
             <ul className="mt-3 flex flex-wrap gap-2">
@@ -154,13 +154,13 @@ export default function LensAI({ demo }) {
           </div>
           <div className="reveal mx-auto w-full max-w-[380px]" aria-hidden="true">
             <div className="scan-view relative overflow-hidden rounded-[32px] border border-white/10">
-              <Photo name="mask" alt="" className="aspect-[3/4] w-full object-cover" sizes="380px" />
+              <Photo name="cowrie-veil" alt="" className="aspect-[3/4] w-full object-cover" sizes="380px" />
               <span className="scan-corners" />
               <span className="scan-line" />
               <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white p-4 text-left text-[#191717] shadow-xl">
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-blue">Scan · Suggested context</p>
-                <p className="mt-1 text-[17px] font-semibold leading-tight">Carved wooden mask</p>
-                <p className="mt-1 text-[13px] text-grey">West Africa · worn at festivals and ceremonies to honour ancestors.</p>
+                <p className="mt-1 text-[17px] font-semibold leading-tight">Cowrie-shell headdress</p>
+                <p className="mt-1 text-[13px] text-grey">West Africa · cowries, once used as currency, worn as adornment.</p>
                 <div className="mt-3 flex gap-2 text-[12px] font-medium"><span className="rounded-full bg-[#E6F2F2] px-2.5 py-1 text-blue">See its story</span><span className="rounded-full bg-[#F4F0E8] px-2.5 py-1">Save to Vault</span></div>
               </div>
             </div>

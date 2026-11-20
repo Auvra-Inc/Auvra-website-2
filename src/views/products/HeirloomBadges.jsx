@@ -113,7 +113,7 @@ export default function HeirloomBadges({ embedded = false }) {
           <figure className="reveal mx-auto w-full max-w-[460px]">
             <dl className="overflow-hidden rounded-[28px] border border-line bg-white shadow-xl">
               <div className="relative">
-                <Photo name="mask" alt="" sizes="460px" className="h-[200px] w-full object-cover" />
+                <Photo name="cowrie-profile" alt="" sizes="460px" className="h-[200px] w-full object-cover" />
                 <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[12px] font-semibold">Illustrative example</span>
               </div>
               {[

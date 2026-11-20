@@ -143,13 +143,13 @@ export const GALLERY = [
   { ...p('coral-beads'), alt: 'Dancers in red caps and coral beads at a festival', caption: 'Festival dancers', place: 'South-East Nigeria', credit: 'Photographer credit pending' },
 ];
 
-export const RIBBON = ['coral-beads', 'drummer-blue', 'masquerade', 'gele', 'white-agbada', 'emir', 'singers', 'red-cap', 'mask', 'elder-drummer', 'young-man', 'beadwork'].map((n) => ({
+export const RIBBON = ['cowrie-profile', 'talking-drums', 'masquerade', 'gele-tying', 'white-agbada', 'emir', 'sisters-guitar', 'red-cap', 'cowrie-girl', 'elder-drummer', 'young-man', 'beadwork'].map((n) => ({
   ...p(n),
 }));
 
 export const MOVEMENT = [
   { ...p('young-man'), alt: 'A young man in traditional wrapper and coral beads' },
-  { ...p('singers'), alt: 'Women in patterned cloth singing together' },
+  { ...p('sisters-guitar'), alt: 'Three women with sculpted hair, one holding a guitar' },
   { ...p('elder'), alt: 'An elder in a feathered cap at a ceremony' },
   { ...p('beaded-hair'), alt: 'A woman wearing a beaded headdress' },
 ];
