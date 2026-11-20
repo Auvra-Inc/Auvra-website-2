@@ -1510,6 +1510,7 @@ html { overflow-x: clip; }
   .tale.s-0 [data-scene='0'], .tale.s-1 [data-scene='1'], .tale.s-2 [data-scene='2'], .tale.s-3 [data-scene='3'] { --rv: 150%; opacity: 1; transition: --rv 2.6s cubic-bezier(.45,0,.2,1), opacity .4s ease; }
   .tale.s-0 [data-scene='0'] .tale__pan, .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan, .tale.s-3 [data-scene='3'] .tale__pan { animation: kenburns 14s cubic-bezier(.3,0,.4,1) both; }
   [data-scene='1'] .tale__pan, [data-scene='3'] .tale__pan { --kx: -1; }
+  .tale.s-3 [data-scene='3'] .tale__pan { animation-duration: 18s; }
   @keyframes kenburns { from { transform: translate3d(calc(var(--kx, 1) * 1.5%), 1%, 0) scale(1.04); } to { transform: translate3d(calc(var(--kx, 1) * -1.5%), 0, 0) scale(1.1); } }
 
   /* Dusk and lanterns on the closing scene. */
@@ -1520,38 +1521,16 @@ html { overflow-x: clip; }
   .tale.s-3 .tale__lamp { opacity: 1; animation: lamp 2.6s ease-in-out infinite alternate; }
   @keyframes lamp { from { transform: translate(-50%, -50%) scale(.92); filter: brightness(.9); } to { transform: translate(-50%, -50%) scale(1.08); filter: brightness(1.1); } }
 
-  /* Townspeople: each figure crosses the scene while its body bobs and its legs and arms swing. */
-  .tale__walk { position: absolute; left: 0; right: 0; bottom: var(--b); height: calc(var(--s) * 1.2%); opacity: 0; }
-  .tale__man { position: absolute; left: 0; bottom: 0; height: 100%; width: auto; aspect-ratio: 40 / 100; overflow: visible; }
-  .tale__walk.is-left .tale__man { transform: scaleX(-1); }
-  .tale.s-0 [data-scene='0'] .tale__walk, .tale.s-1 [data-scene='1'] .tale__walk, .tale.s-2 [data-scene='2'] .tale__walk, .tale.s-3 [data-scene='3'] .tale__walk { animation: walkR var(--t) linear var(--d) both; }
-  .tale.s-0 [data-scene='0'] .tale__walk.is-left, .tale.s-1 [data-scene='1'] .tale__walk.is-left, .tale.s-2 [data-scene='2'] .tale__walk.is-left, .tale.s-3 [data-scene='3'] .tale__walk.is-left { animation-name: walkL; }
-  @keyframes walkR { 0% { opacity: 0; transform: translate3d(6%, 0, 0); } 8% { opacity: 1; } 100% { opacity: 1; transform: translate3d(78%, 0, 0); } }
-  @keyframes walkL { 0% { opacity: 0; transform: translate3d(90%, 0, 0); } 8% { opacity: 1; } 100% { opacity: 1; transform: translate3d(18%, 0, 0); } }
-  .tale__man path, .tale__man circle, .tale__man rect { fill: var(--ink); stroke: var(--ink); stroke-linejoin: round; stroke-linecap: round; }
-  .tale__leg, .tale__arm, .tale__staff { fill: none !important; stroke-width: 3.4; }
-  .tale__staff { stroke-width: 2; }
-  .tale__robe { stroke-width: 1; }
-  .tale__wrap { fill: #F4F0E8 !important; stroke-width: 1.4; }
-  .tale__pot { fill: #F4F0E8 !important; stroke-width: 2; }
-  .tale__book { fill: #F4F0E8 !important; stroke-width: 1.6; }
-  .tale__drum { fill: #F4F0E8 !important; stroke-width: 1.8; }
-  .tale__bob, .tale__leg, .tale__arm { transform-box: fill-box; }
-  .tale__bob { transform-origin: 50% 100%; animation: bob .9s ease-in-out infinite; }
-  .tale__leg { transform-origin: 50% 0; animation: stride .9s ease-in-out infinite alternate; }
-  .tale__leg--b { animation-delay: -.9s; }
-  .tale__arm { transform-origin: 50% 0; animation: swing .9s ease-in-out infinite alternate-reverse; }
-  .tale__arm--b { animation-delay: -.9s; }
-  .tale__arm--up { animation: none; }
-  .tale__arm--beat { animation: beat .45s ease-in-out infinite alternate; }
-  .tale__man--child .tale__bob { animation-duration: .7s; }
-  .tale__man--child .tale__leg, .tale__man--child .tale__arm { animation-duration: .7s; }
-  .tale__man--staff .tale__bob { animation-duration: 1.05s; }
-  .tale__man--staff .tale__leg, .tale__man--staff .tale__arm { animation-duration: 1.05s; }
-  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-2.4%) rotate(1deg); } }
-  @keyframes stride { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
-  @keyframes swing { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
-  @keyframes beat { from { transform: rotate(-30deg); } to { transform: rotate(10deg); } }
+  /* The storyteller: a real man riding a donkey (Muybridge, 1887) redrawn in ink, crossing each scene. */
+  .tale__trav { position: absolute; left: 0; right: 0; bottom: var(--b); opacity: 0; z-index: 2; filter: drop-shadow(0 0 3px rgba(247,244,238,.9)); }
+  .tale__travbox { width: var(--w); aspect-ratio: 260 / 221; overflow: hidden; }
+  .tale__trav.is-left .tale__travbox { transform: scaleX(-1); }
+  .tale__travstrip { width: 1100%; height: 100%; background: url('/images/story/traveller.webp') 0 0 / 100% 100% no-repeat; animation: amble 1.05s steps(11) infinite; }
+  @keyframes amble { to { transform: translate3d(-100%, 0, 0); } }
+  .tale.s-0 [data-scene='0'] .tale__trav, .tale.s-1 [data-scene='1'] .tale__trav, .tale.s-2 [data-scene='2'] .tale__trav { animation: travR var(--t) linear var(--d) both; }
+  .tale.s-3 [data-scene='3'] .tale__trav { animation: travL var(--t) linear var(--d) both; }
+  @keyframes travR { 0% { opacity: 0; transform: translate3d(4%, 0, 0); } 7% { opacity: 1; } 100% { opacity: 1; transform: translate3d(68%, 0, 0); } }
+  @keyframes travL { 0% { opacity: 0; transform: translate3d(66%, 0, 0); } 7% { opacity: 1; } 100% { opacity: 1; transform: translate3d(14%, 0, 0); } }
 
   /* Riders (Muybridge gallop frames redrawn in ink). */
   .tale__run { position: absolute; left: 0; bottom: var(--b); width: calc(var(--w) * 1%); aspect-ratio: 360 / 217; opacity: 0; }
@@ -1580,7 +1559,7 @@ html { overflow-x: clip; }
   .tale__caps { position: absolute; left: 0; right: 0; top: clamp(104px, 15%, 160px); display: grid; padding: 0 22px; text-align: center; }
   .tale__cap { grid-area: 1 / 1; margin: 0 auto; max-width: 22ch; font-family: var(--serif); font-size: clamp(22px, 6vw, 38px); line-height: 1.18; color: var(--ink); text-wrap: balance;
     opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(6px); transition: opacity 1.1s cubic-bezier(.33,1,.68,1), transform 1.1s cubic-bezier(.33,1,.68,1), filter 1.1s ease; }
-  .tale.c-0 [data-cap='0'], .tale.c-1 [data-cap='1'], .tale.c-2 [data-cap='2'], .tale.c-3 [data-cap='3'] { opacity: 1; transform: none; filter: none; }
+  .tale.c-0 [data-cap='0'], .tale.c-1 [data-cap='1'], .tale.c-2 [data-cap='2'], .tale.c-3 [data-cap='3'], .tale.c-4 [data-cap='4'] { opacity: 1; transform: none; filter: none; }
 
   @media (max-width: 767px) {
     /* On phones the wide engravings pan slowly from one side to the other. */

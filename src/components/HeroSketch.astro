@@ -1,37 +1,41 @@
 ---
-// "The Tale": a short illustrated story that plays in the hero when a visitor lingers for a few seconds.
-// The headline steps aside and four ink scenes wash in one after another, each slowly panning:
-// the old city gate, Timbuktu's scholars, the royal procession of Benin, and the gate again at dusk.
-// Robed townspeople walk through every scene and riders gallop past, then the words return.
+// "The Storyteller": a short illustrated story that plays in the hero when a visitor lingers for a few seconds.
+// The headline steps aside and one traveller carries his people's stories through four ink scenes:
+// he rides out through the old city gate, reaches Timbuktu, where scholars wrote knowledge into books,
+// then Benin, where the king's history lived in music and bronze, and comes home at dusk to tell them again.
+// Every moving figure is a real person or animal: Eadweard Muybridge's 1887 motion photographs
+// (a man riding a donkey, a walking camel, galloping horses with riders), redrawn frame by frame in ink.
 // Scenes are public-domain engravings (Barth's Timbuktu, 1858; Dapper's Benin, 1668) redrawn in ink.
-// Riders and camels are animated from Eadweard Muybridge's 1887 motion photographs (public domain).
 
 const SCENES = [
-  { img: 'gate', w: 1170, h: 1177, cap: 'Long ago, every journey began at the old city gate.' },
-  { img: 'timbuktu', w: 1280, h: 750, cap: 'In Timbuktu, scholars kept the world’s knowledge in handwritten books.' },
-  { img: 'benin', w: 1280, h: 736, cap: 'In Benin, the king’s procession filled the streets with music.' },
-  { img: 'gate', w: 1170, h: 1177, cap: 'Today, Auvra keeps every story, for good.', dusk: true },
+  { img: 'gate', w: 1170, h: 1177, caps: ['Long ago, a storyteller rode out through the old city gate, carrying his people’s stories.'] },
+  { img: 'timbuktu', w: 1280, h: 750, caps: ['In Timbuktu, scholars wrote stories like his into books that survive to this day.'] },
+  { img: 'benin', w: 1280, h: 736, caps: ['In Benin, he heard the king’s history told in music, procession and bronze.'] },
+  { img: 'gate', w: 1170, h: 1177, dusk: true, caps: ['He came home at dusk and told them all again, so no one would forget.', 'Today, Auvra keeps every story, for good.'] },
 ];
-// Walkers per scene: kind, size (% of scene height), start delay, crossing time, direction, baseline (% from bottom).
-const WALKERS = [
-  [{ k: 'staff', s: 15, d: 0.4, t: 15, dir: 1, b: 4 }, { k: 'pot', s: 13.5, d: 1.6, t: 17, dir: 1, b: 2 }, { k: 'child', s: 9.5, d: 2.1, t: 17, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.9, t: 16, dir: -1, b: 6 }, { k: 'staff', s: 14.5, d: 6.5, t: 16, dir: -1, b: 3 }, { k: 'pot', s: 13.5, d: 7.5, t: 17, dir: 1, b: 5 }],
-  [{ k: 'book', s: 15, d: 0.2, t: 14, dir: -1, b: 5 }, { k: 'staff', s: 14, d: 1.4, t: 15, dir: 1, b: 3 }, { k: 'plain', s: 13, d: 2.4, t: 15.5, dir: 1, b: 2 }, { k: 'book', s: 14, d: 6.8, t: 15, dir: 1, b: 6 }],
-  [{ k: 'drum', s: 14, d: 0.6, t: 13, dir: 1, b: 3 }, { k: 'pot', s: 13.5, d: 1.5, t: 14, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.2, t: 14.5, dir: -1, b: 5 }, { k: 'drum', s: 14, d: 6, t: 14, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 7, t: 13, dir: 1, b: 2 }],
-  [{ k: 'staff', s: 15, d: 0.8, t: 15, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 1.3, t: 15, dir: -1, b: 2 }, { k: 'plain', s: 14, d: 1.0, t: 15, dir: -1, b: 1.5 }, { k: 'pot', s: 13.5, d: 6.5, t: 16, dir: 1, b: 5 }],
+// The traveller in each scene: width (% of scene), baseline (% from bottom), delay, crossing time, direction.
+const TRAVELLER = [
+  { w: 25, b: 7, d: 0.6, t: 14, dir: 1 },
+  { w: 20, b: 9, d: -1.5, t: 15, dir: 1 },
+  { w: 20, b: 8, d: 0.4, t: 13, dir: 1 },
+  { w: 25, b: 7, d: 0.8, t: 16, dir: -1 },
 ];
-// Camel caravan (Muybridge's 1887 walking camel, redrawn in ink): width (% of scene), baseline, delay.
+// Camel caravan that he travels with in Timbuktu (Muybridge's walking camel).
 const CAMELS = [
   [],
-  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }, { w: 17, b: 3, d: 4 }],
+  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }, { w: 17, b: 3, d: 4.5 }],
   [],
   [],
 ];
+// The king's horsemen in Benin (Muybridge's galloping horse and rider).
 const RIDERS = [
   [],
   [],
-  [{ w: 26, b: 1, d: 1.4 }, { w: 23, b: 6, d: 1.9 }, { w: 25, b: -1, d: 2.6 }, { w: 24, b: 3, d: 7.4 }, { w: 27, b: -1, d: 8 }],
-  [{ w: 30, b: 0, d: 0.6 }, { w: 27, b: 6, d: 1.0 }, { w: 29, b: -2, d: 1.5 }, { w: 25, b: 9, d: 2.0 }],
+  [{ w: 26, b: 1, d: 3.6 }, { w: 23, b: 6, d: 4.1 }, { w: 25, b: -1, d: 4.8 }, { w: 24, b: 3, d: 8.6 }],
+  [],
 ];
+let capIndex = 0;
+const CAPS = SCENES.flatMap((sc) => sc.caps.map((c) => ({ text: c, i: capIndex++ })));
 ---
 <div class="tale" aria-hidden="true" data-tale>
   <div class="tale__stage">
@@ -44,30 +48,14 @@ const RIDERS = [
             <span class="tale__lamp" style="left:23%;top:61%"></span>
             <span class="tale__lamp" style="left:79%;top:63%;animation-delay:-1.3s"></span>
           </>}
-          {WALKERS[i].map((w) => (
-            <div class={`tale__walk ${w.dir < 0 ? 'is-left' : ''}`} style={`--s:${w.s};--d:${w.d}s;--t:${w.t}s;--b:${w.b}%`}>
-              <svg class={`tale__man tale__man--${w.k}`} viewBox="0 0 40 100">
-                <g class="tale__bob">
-                  <path class="tale__leg tale__leg--a" d="M18 70 L17 97 L13 98" />
-                  <path class="tale__leg tale__leg--b" d="M22 70 L23 97 L27 98" />
-                  <path class="tale__robe" d="M15 22 C17 19 23 19 25 22 L30 74 C25 79 15 79 10 74 Z" />
-                  <circle class="tale__head" cx="20" cy="12.5" r="6" />
-                  <path class="tale__wrap" d="M13.6 11 C14 4.5 26 4.5 26.4 11 C23 9 17 9 13.6 11 Z" />
-                  <path class="tale__arm tale__arm--a" d="M17 25 L13 49" />
-                  {w.k === 'staff' && <path class="tale__staff" d="M31 14 L34 98" />}
-                  {w.k === 'pot' && <><path class="tale__arm tale__arm--up" d="M24 25 L28 11 L24 4" /><path class="tale__pot" d="M12 4 C12 -4 28 -4 28 4 C28 7 12 7 12 4 Z" /></>}
-                  {w.k === 'book' && <rect class="tale__book" x="24" y="34" width="9" height="12" rx="1" transform="rotate(-12 28 40)" />}
-                  {w.k === 'drum' && <><path class="tale__drum" d="M23 40 L33 40 L31 60 L25 60 Z" /><path class="tale__arm tale__arm--beat" d="M24 26 L30 38" /></>}
-                  {w.k !== 'pot' && w.k !== 'drum' && <path class="tale__arm tale__arm--b" d="M23 25 L27 49" />}
-                </g>
-              </svg>
-            </div>
-          ))}
           {CAMELS[i].map((c) => (
             <div class="tale__camel" style={`--w:${c.w};--b:${c.b}%;--d:${c.d}s`}><div class="tale__camelstrip"></div></div>
           ))}
+          <div class={`tale__trav ${TRAVELLER[i].dir < 0 ? 'is-left' : ''}`} style={`--w:${TRAVELLER[i].w}%;--b:${TRAVELLER[i].b}%;--d:${TRAVELLER[i].d}s;--t:${TRAVELLER[i].t}s`}>
+            <div class="tale__travbox"><div class="tale__travstrip"></div></div>
+          </div>
           {RIDERS[i].map((r) => (
-            <div class={`tale__run ${i === 3 ? 'is-left' : ''}`} style={`--w:${r.w};--b:${r.b}%;--d:${r.d}s`}>
+            <div class="tale__run" style={`--w:${r.w};--b:${r.b}%;--d:${r.d}s`}>
               <div class="tale__rider"><div class="tale__strip"></div></div>
               <span class="tale__dust"></span>
             </div>
@@ -82,7 +70,7 @@ const RIDERS = [
   </div>
 
   <div class="tale__caps">
-    {SCENES.map((sc, i) => <p class="tale__cap" data-cap={i}>{sc.cap}</p>)}
+    {CAPS.map((c) => <p class="tale__cap" data-cap={c.i}>{c.text}</p>)}
   </div>
 </div>
 
@@ -92,10 +80,11 @@ const RIDERS = [
     var tale = document.querySelector('[data-tale]'); if (!tale) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var hero = tale.closest('section'), timers = [], idle, playing = false, warmed = false;
-    var WAIT = 3000, SCENE = 13000, FADE = 1600;
+    var WAIT = 3000, FADE = 1600;
+    // Scene lengths (ms); the last scene holds two captions.
+    var LEN = [13000, 13000, 13000, 17000];
     var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
-    var all = ['is-on', 'is-birds', 's-0', 's-1', 's-2', 's-3', 'c-0', 'c-1', 'c-2', 'c-3'];
-    // Fetch the drawings early so the first scene never appears half-loaded.
+    var all = ['is-on', 'is-birds', 's-0', 's-1', 's-2', 's-3', 'c-0', 'c-1', 'c-2', 'c-3', 'c-4'];
     var warm = function (sel) {
       tale.querySelectorAll(sel || 'img').forEach(function (im) { im.loading = 'eager'; if (im.decode) im.decode().catch(function () {}); });
     };
@@ -105,27 +94,35 @@ const RIDERS = [
       all.forEach(function (c) { tale.classList.remove(c); });
       arm(20000);
     };
+    var cap = function (n, from, to) {
+      at(from, function () { tale.classList.add('c-' + n); });
+      at(to, function () { tale.classList.remove('c-' + n); });
+    };
     var play = function () {
       if (playing || window.scrollY > innerHeight * 0.4 || document.hidden) return arm(WAIT);
       playing = true; if (!warmed) { warmed = true; warm(); }
       hero.classList.add('tale-on');
       at(250, function () { tale.classList.add('is-on'); });
-      for (var i = 0; i < 4; i++) (function (i) {
-        var t = 350 + i * SCENE;
-        at(t, function () { tale.classList.add('s-' + i); if (i) tale.classList.remove('s-' + (i - 1)); });
-        at(t + 700, function () { tale.classList.add('c-' + i); });
-        at(t + SCENE - FADE, function () { tale.classList.remove('c-' + i); });
-        if (i === 0 || i === 3) at(t + 1200, function () { tale.classList.remove('is-birds'); void tale.offsetWidth; tale.classList.add('is-birds'); });
-      })(i);
-      at(350 + 4 * SCENE - 600, function () { tale.classList.remove('s-3'); });
-      at(350 + 4 * SCENE + 200, stop);
+      var t = 350;
+      LEN.forEach(function (len, i) {
+        (function (t, i, len) {
+          at(t, function () { tale.classList.add('s-' + i); if (i) tale.classList.remove('s-' + (i - 1)); });
+          if (i < 3) cap(i, t + 700, t + len - FADE);
+          else { cap(3, t + 700, t + 8200); cap(4, t + 9000, t + len - FADE); }
+          if (i === 0 || i === 3) at(t + 1200, function () { tale.classList.remove('is-birds'); void tale.offsetWidth; tale.classList.add('is-birds'); });
+        })(t, i, len);
+        t += len;
+      });
+      at(t - 600, function () { tale.classList.remove('s-3'); });
+      at(t + 200, stop);
     };
     var arm = function (ms) { clearTimeout(idle); idle = setTimeout(play, ms); };
     ['scroll', 'pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) {
       addEventListener(ev, function () { if (playing) stop(); else arm(WAIT); }, { passive: true });
     });
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
-    if (document.readyState === 'complete') setTimeout(warm, 600, '[data-scene="0"] img'); else addEventListener('load', function () { setTimeout(warm, 600, '[data-scene="0"] img'); });
+    var first = function () { setTimeout(warm, 600, '[data-scene="0"] img'); };
+    if (document.readyState === 'complete') first(); else addEventListener('load', first);
     arm(WAIT);
   })();
 </script>
