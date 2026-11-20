@@ -1484,62 +1484,108 @@ html { overflow-x: clip; }
 }
 
 
-/* ───────── The Tale of the Gate (hero story) ─────────
-   Plays after the visitor lingers: the words step aside, the ink gate washes in from the top,
-   riders gallop out (Muybridge frames redrawn in ink), dusk and lanterns, then a full charge returns. */
+
+/* ───────── The Tale (hero story) ─────────
+   After a few seconds on the opening screen the words step aside and four ink scenes wash in,
+   each slowly panning, with robed townspeople walking through and riders galloping past. */
 @property --rv { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
 @layer components {
-  #home .hero-h1, #home .hero-h1 ~ p, #home .hero-stores { transition: opacity .9s cubic-bezier(.33,1,.68,1), filter .9s ease, transform .9s cubic-bezier(.33,1,.68,1); }
+  #home .hero-h1, #home .hero-h1 ~ p, #home .hero-stores { transition: opacity 1s cubic-bezier(.33,1,.68,1), filter 1s ease, transform 1s cubic-bezier(.33,1,.68,1); }
   #home.tale-on .hero-h1, #home.tale-on .hero-h1 ~ p, #home.tale-on .hero-stores { opacity: 0; filter: blur(8px); transform: translate3d(0, -10px, 0); pointer-events: none; }
 
-  .tale { --ink: #2A4AA0; --unit: 1vw; position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 1.2s cubic-bezier(.33,1,.68,1), visibility 0s linear 1.2s; }
+  .tale { --ink: #22409A; position: absolute; inset: 0 0 auto; height: min(100%, 100svh); z-index: 5; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 1.1s cubic-bezier(.33,1,.68,1), visibility 0s linear 1.1s; }
   .tale.is-on { opacity: 1; visibility: visible; transition-delay: 0s; }
   .tale__stage { position: absolute; inset: 0; overflow: hidden; }
 
-  .tale__scene { position: absolute; left: 50%; bottom: 3%; width: min(100%, 520px); aspect-ratio: 1170 / 1177; transform: translateX(-50%); }
-  .tale__gate { width: 100%; height: 100%; display: block; mix-blend-mode: multiply;
-    -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--rv) - 22%), transparent var(--rv)); mask-image: linear-gradient(180deg, #000 calc(var(--rv) - 22%), transparent var(--rv));
-    transition: --rv 4.2s cubic-bezier(.45,0,.2,1); }
-  .tale.is-drawn .tale__gate { --rv: 125%; }
+  /* Scenes: centred on the lower part of the hero; wider than a phone screen so they can pan across. */
+  .tale__scene { position: absolute; left: 50%; bottom: 2%; height: 60%; aspect-ratio: var(--ar); transform: translateX(-50%);
+    -webkit-mask-image: radial-gradient(circle at 50% 58%, #000 calc(var(--rv) - 26%), transparent var(--rv)); mask-image: radial-gradient(circle at 50% 58%, #000 calc(var(--rv) - 26%), transparent var(--rv));
+    opacity: 0; transition: --rv 2.6s cubic-bezier(.45,0,.2,1), opacity 1.2s ease; }
+  .tale__scene--gate { height: 56%; }
+  .tale__pan { position: absolute; inset: 0; will-change: transform;
+    -webkit-mask-image: radial-gradient(72% 70% at 50% 54%, #000 60%, transparent 100%); mask-image: radial-gradient(72% 70% at 50% 54%, #000 60%, transparent 100%); }
+  .tale__scene--gate .tale__pan { -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 9%, #000 90%, transparent); -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent), linear-gradient(180deg, transparent, #000 9%, #000 90%, transparent); mask-composite: intersect; }
+  .tale__pan > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; mix-blend-mode: multiply; }
+  .tale.s-0 [data-scene='0'], .tale.s-1 [data-scene='1'], .tale.s-2 [data-scene='2'], .tale.s-3 [data-scene='3'] { --rv: 150%; opacity: 1; transition: --rv 2.6s cubic-bezier(.45,0,.2,1), opacity .4s ease; }
+  .tale.s-0 [data-scene='0'] .tale__pan, .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan, .tale.s-3 [data-scene='3'] .tale__pan { animation: kenburns 9s cubic-bezier(.3,0,.4,1) both; }
+  [data-scene='1'] .tale__pan, [data-scene='3'] .tale__pan { --kx: -1; }
+  @keyframes kenburns { from { transform: translate3d(calc(var(--kx, 1) * 1.5%), 1%, 0) scale(1.04); } to { transform: translate3d(calc(var(--kx, 1) * -1.5%), 0, 0) scale(1.1); } }
 
-  .tale__dusk { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 30%, rgba(30,46,110,.25), rgba(16,26,70,.55)); mix-blend-mode: multiply; opacity: 0; transition: opacity 2.2s ease; }
-  .tale.is-dusk .tale__dusk { opacity: 1; }
-  .tale__lamp { position: absolute; width: 18%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,196,110,.95) 0 6%, rgba(255,170,80,.45) 18%, rgba(255,150,60,0) 62%); opacity: 0; transition: opacity 1.8s ease .4s; }
-  .tale.is-dusk .tale__lamp { opacity: 1; animation: lamp 2.6s ease-in-out infinite alternate; }
+  /* Dusk and lanterns on the closing scene. */
+  .tale__dusk { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 30%, rgba(30,46,110,.22), rgba(16,26,70,.5)); mix-blend-mode: multiply; opacity: 0; transition: opacity 2.4s ease .6s; }
+  .tale.s-3 .tale__dusk { opacity: 1; }
+  .tale__lamp { position: absolute; width: 18%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,196,110,.95) 0 6%, rgba(255,170,80,.45) 18%, rgba(255,150,60,0) 62%); opacity: 0; transition: opacity 1.8s ease 1.6s; }
+  .tale.s-3 .tale__lamp { opacity: 1; animation: lamp 2.6s ease-in-out infinite alternate; }
   @keyframes lamp { from { transform: translate(-50%, -50%) scale(.92); filter: brightness(.9); } to { transform: translate(-50%, -50%) scale(1.08); filter: brightness(1.1); } }
 
-  .tale__birds { position: absolute; top: 24%; left: 0; width: calc(18 * var(--unit)); min-width: 70px; fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; opacity: 0; transform: translateX(-30vw); }
-  .tale.is-birds .tale__birds { animation: birds 16s linear forwards; }
-  @keyframes birds { 0% { opacity: 0; transform: translate(-30vw, 6vh); } 8% { opacity: .9; } 85% { opacity: .9; } 100% { opacity: 0; transform: translate(110vw, -4vh); } }
+  /* Townspeople: each figure crosses the scene while its body bobs and its legs and arms swing. */
+  .tale__walk { position: absolute; left: 0; right: 0; bottom: var(--b); height: calc(var(--s) * 1.2%); opacity: 0; }
+  .tale__man { position: absolute; left: 0; bottom: 0; height: 100%; width: auto; aspect-ratio: 40 / 100; overflow: visible; }
+  .tale__walk.is-left .tale__man { transform: scaleX(-1); }
+  .tale.s-0 [data-scene='0'] .tale__walk, .tale.s-1 [data-scene='1'] .tale__walk, .tale.s-2 [data-scene='2'] .tale__walk, .tale.s-3 [data-scene='3'] .tale__walk { animation: walkR var(--t) linear var(--d) both; }
+  .tale.s-0 [data-scene='0'] .tale__walk.is-left, .tale.s-1 [data-scene='1'] .tale__walk.is-left, .tale.s-2 [data-scene='2'] .tale__walk.is-left, .tale.s-3 [data-scene='3'] .tale__walk.is-left { animation-name: walkL; }
+  @keyframes walkR { 0% { opacity: 0; transform: translate3d(6%, 0, 0); } 8% { opacity: 1; } 100% { opacity: 1; transform: translate3d(78%, 0, 0); } }
+  @keyframes walkL { 0% { opacity: 0; transform: translate3d(90%, 0, 0); } 8% { opacity: 1; } 100% { opacity: 1; transform: translate3d(18%, 0, 0); } }
+  .tale__man path, .tale__man circle, .tale__man rect { fill: var(--ink); stroke: var(--ink); stroke-linejoin: round; stroke-linecap: round; }
+  .tale__leg, .tale__arm, .tale__staff { fill: none !important; stroke-width: 3.4; }
+  .tale__staff { stroke-width: 2; }
+  .tale__robe { stroke-width: 1; }
+  .tale__wrap { fill: #F4F0E8 !important; stroke-width: 1.4; }
+  .tale__pot { fill: #F4F0E8 !important; stroke-width: 2; }
+  .tale__book { fill: #F4F0E8 !important; stroke-width: 1.6; }
+  .tale__drum { fill: #F4F0E8 !important; stroke-width: 1.8; }
+  .tale__bob, .tale__leg, .tale__arm { transform-box: fill-box; }
+  .tale__bob { transform-origin: 50% 100%; animation: bob .9s ease-in-out infinite; }
+  .tale__leg { transform-origin: 50% 0; animation: stride .9s ease-in-out infinite alternate; }
+  .tale__leg--b { animation-delay: -.9s; }
+  .tale__arm { transform-origin: 50% 0; animation: swing .9s ease-in-out infinite alternate-reverse; }
+  .tale__arm--b { animation-delay: -.9s; }
+  .tale__arm--up { animation: none; }
+  .tale__arm--beat { animation: beat .45s ease-in-out infinite alternate; }
+  .tale__man--child .tale__bob { animation-duration: .7s; }
+  .tale__man--child .tale__leg, .tale__man--child .tale__arm { animation-duration: .7s; }
+  .tale__man--staff .tale__bob { animation-duration: 1.05s; }
+  .tale__man--staff .tale__leg, .tale__man--staff .tale__arm { animation-duration: 1.05s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-2.4%) rotate(1deg); } }
+  @keyframes stride { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
+  @keyframes swing { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
+  @keyframes beat { from { transform: rotate(-30deg); } to { transform: rotate(10deg); } }
 
-  .tale__charge { position: absolute; left: 0; right: 0; bottom: 4%; height: 0; }
-  .tale__run { position: absolute; left: 0; bottom: calc(var(--y) * 1px); width: calc(var(--w) * var(--unit)); aspect-ratio: 360 / 217; opacity: 0; }
+  /* Riders (Muybridge gallop frames redrawn in ink). */
+  .tale__run { position: absolute; left: 0; bottom: var(--b); width: calc(var(--w) * 1%); aspect-ratio: 360 / 217; opacity: 0; }
   .tale__rider { position: absolute; inset: 0; overflow: hidden; }
   .tale__strip { width: 1300%; height: 100%; background: url('/images/story/gallop.png') 0 0 / 100% 100% no-repeat; animation: gallop .56s steps(13) infinite; }
   @keyframes gallop { to { transform: translate3d(-100%, 0, 0); } }
-  .tale__dust { position: absolute; left: -8%; bottom: -4%; width: 40%; height: 26%; border-radius: 50%; background: radial-gradient(closest-side, rgba(42,74,160,.32), rgba(42,74,160,0)); animation: dust .56s ease-out infinite; }
+  .tale__dust { position: absolute; left: -8%; bottom: -4%; width: 40%; height: 26%; border-radius: 50%; background: radial-gradient(closest-side, rgba(34,64,154,.3), rgba(34,64,154,0)); animation: dust .56s ease-out infinite; }
   @keyframes dust { 0% { transform: scale(.6); opacity: .9; } 100% { transform: translate(-20%, -30%) scale(1.5); opacity: 0; } }
+  .tale__run.is-left .tale__rider, .tale__run.is-left .tale__dust { transform: scaleX(-1); }
+  .tale__run.is-left .tale__dust { left: auto; right: -8%; }
+  .tale.s-2 [data-scene='2'] .tale__run { animation: rideR 5.4s cubic-bezier(.3,.1,.7,.9) var(--d) both; }
+  .tale.s-3 [data-scene='3'] .tale__run { animation: rideL 5.4s cubic-bezier(.3,.1,.7,.9) calc(var(--d) + 2.4s) both; }
+  @keyframes rideR { 0% { opacity: 0; transform: translate3d(-110%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(420%, 0, 0); } }
+  @keyframes rideL { 0% { opacity: 0; transform: translate3d(420%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(-110%, 0, 0); } }
 
-  .tale.is-out .tale__charge--out .tale__run { animation: rideOut 5.6s linear var(--d) forwards; }
-  @keyframes rideOut { 0% { opacity: 1; transform: translate3d(-45vw, 0, 0); } 100% { opacity: 1; transform: translate3d(115vw, 0, 0); } }
-  .tale__charge--back .tale__rider, .tale__charge--back .tale__dust { transform: scaleX(-1); }
-  .tale__charge--back .tale__dust { left: auto; right: -8%; }
-  .tale.is-back .tale__charge--back .tale__run { animation: rideBack 6.2s linear var(--d) forwards; }
-  @keyframes rideBack { 0% { opacity: 1; transform: translate3d(115vw, 0, 0); } 100% { opacity: 1; transform: translate3d(-50vw, 0, 0); } }
+  .tale__birds { position: absolute; top: 30%; left: 0; width: max(70px, 10vw); fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; opacity: 0; }
+  .tale.is-birds .tale__birds { animation: birds 14s linear forwards; }
+  @keyframes birds { 0% { opacity: 0; transform: translate3d(-20vw, 5vh, 0); } 10% { opacity: .85; } 85% { opacity: .85; } 100% { opacity: 0; transform: translate3d(105vw, -4vh, 0); } }
 
-  .tale__caps { position: absolute; left: 0; right: 0; top: clamp(110px, 16%, 170px); display: grid; padding: 0 22px; text-align: center; }
+  .tale__caps { position: absolute; left: 0; right: 0; top: clamp(104px, 15%, 160px); display: grid; padding: 0 22px; text-align: center; }
   .tale__cap { grid-area: 1 / 1; margin: 0 auto; max-width: 22ch; font-family: var(--serif); font-size: clamp(22px, 6vw, 38px); line-height: 1.18; color: var(--ink); text-wrap: balance;
     opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(6px); transition: opacity 1.1s cubic-bezier(.33,1,.68,1), transform 1.1s cubic-bezier(.33,1,.68,1), filter 1.1s ease; }
-  .tale.cap-0 [data-cap='0'], .tale.cap-1 [data-cap='1'], .tale.cap-2 [data-cap='2'], .tale.cap-3 [data-cap='3'] { opacity: 1; transform: none; filter: none; }
+  .tale.c-0 [data-cap='0'], .tale.c-1 [data-cap='1'], .tale.c-2 [data-cap='2'], .tale.c-3 [data-cap='3'] { opacity: 1; transform: none; filter: none; }
 
-  @media (min-width: 768px) {
-    .tale { --unit: .55vw; }
-    .tale__scene { width: auto; height: 74%; bottom: 2%; }
-    .tale__caps { top: clamp(110px, 13%, 150px); }
-    .tale__cap { max-width: 28ch; font-size: clamp(26px, 2.6vw, 40px); }
+  @media (max-width: 767px) {
+    /* On phones the wide engravings pan slowly from one side to the other. */
+    .tale__scene { height: 52%; }
+    .tale__scene--gate { height: auto; width: 112%; }
+    .tale.s-1 [data-scene='1'] .tale__pan, .tale.s-2 [data-scene='2'] .tale__pan { animation-name: panPhone; animation-duration: 9s; animation-timing-function: cubic-bezier(.35,0,.45,1); }
+    @keyframes panPhone { from { transform: translate3d(calc(var(--kx, 1) * 16%), 0, 0) scale(1.02); } to { transform: translate3d(calc(var(--kx, 1) * -16%), 0, 0) scale(1.06); } }
   }
-}
-@layer components {
-  /* Soften the drawing's paper edges into the page so no rectangle shows. */
-  .tale__scene { -webkit-mask-image: radial-gradient(75% 70% at 50% 56%, #000 62%, transparent 100%); mask-image: radial-gradient(75% 70% at 50% 56%, #000 62%, transparent 100%); }
+  @media (min-width: 768px) {
+    .tale__scene { height: 66%; }
+    .tale__scene--gate { height: 70%; }
+    .tale__caps { top: clamp(104px, 12%, 150px); }
+    .tale__cap { max-width: 30ch; font-size: clamp(26px, 2.6vw, 40px); }
+  }
 }

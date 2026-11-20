@@ -1,92 +1,121 @@
 ---
-// "The Tale of the Gate": a short illustrated story that plays in the hero when a visitor lingers.
-// The headline steps aside, an ink drawing of an old city gate washes in, and the story unfolds:
-// riders gallop out with news and songs, dusk falls and lanterns glow while elders retell the tales,
-// then a full cavalry charge thunders back before the words return.
-// Riders are animated from Eadweard Muybridge's 1887 gallop photographs (public domain), redrawn in ink.
+// "The Tale": a short illustrated story that plays in the hero when a visitor lingers for a few seconds.
+// The headline steps aside and four ink scenes wash in one after another, each slowly panning:
+// the old city gate, Timbuktu's scholars, the royal procession of Benin, and the gate again at dusk.
+// Robed townspeople walk through every scene and riders gallop past, then the words return.
+// Scenes are public-domain engravings (Barth's Timbuktu, 1858; Dapper's Benin, 1668) redrawn in ink.
+// Riders are animated from Eadweard Muybridge's 1887 gallop photographs (public domain).
 
-const CAPTIONS = [
-  'Long ago, every journey began at the old city gate.',
-  'Riders carried news, songs and stories between kingdoms.',
-  'At night, elders told them again, so no one would forget.',
-  'Today, Auvra keeps every story, for good.',
+const SCENES = [
+  { img: 'gate', w: 1170, h: 1177, cap: 'Long ago, every journey began at the old city gate.' },
+  { img: 'timbuktu', w: 1280, h: 750, cap: 'In Timbuktu, scholars kept the world’s knowledge in handwritten books.' },
+  { img: 'benin', w: 1280, h: 736, cap: 'In Benin, the king’s procession filled the streets with music.' },
+  { img: 'gate', w: 1170, h: 1177, cap: 'Today, Auvra keeps every story, for good.', dusk: true },
 ];
-const charge1 = [{ w: 30, y: 0, d: 0 }, { w: 26, y: -5, d: 0.55 }, { w: 28, y: 3, d: 1.2 }];
-const charge2 = [{ w: 34, y: 2, d: 0 }, { w: 30, y: -6, d: 0.35 }, { w: 32, y: 5, d: 0.8 }, { w: 27, y: -10, d: 1.2 }, { w: 33, y: 8, d: 1.6 }];
+// Walkers per scene: kind, size (% of scene height), start delay, crossing time, direction, baseline (% from bottom).
+const WALKERS = [
+  [{ k: 'staff', s: 15, d: 0.4, t: 15, dir: 1, b: 4 }, { k: 'pot', s: 13.5, d: 1.6, t: 17, dir: 1, b: 2 }, { k: 'child', s: 9.5, d: 2.1, t: 17, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.9, t: 16, dir: -1, b: 6 }],
+  [{ k: 'book', s: 15, d: 0.2, t: 14, dir: -1, b: 5 }, { k: 'staff', s: 14, d: 1.4, t: 15, dir: 1, b: 3 }, { k: 'plain', s: 13, d: 2.4, t: 15.5, dir: 1, b: 2 }],
+  [{ k: 'drum', s: 14, d: 0.6, t: 13, dir: 1, b: 3 }, { k: 'pot', s: 13.5, d: 1.5, t: 14, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.2, t: 14.5, dir: -1, b: 5 }],
+  [{ k: 'staff', s: 15, d: 0.8, t: 15, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 1.3, t: 15, dir: -1, b: 2 }, { k: 'plain', s: 14, d: 1.0, t: 15, dir: -1, b: 1.5 }],
+];
+const RIDERS = [
+  [],
+  [],
+  [{ w: 26, b: 1, d: 1.4 }, { w: 23, b: 6, d: 1.9 }, { w: 25, b: -1, d: 2.6 }],
+  [{ w: 30, b: 0, d: 0.6 }, { w: 27, b: 6, d: 1.0 }, { w: 29, b: -2, d: 1.5 }, { w: 25, b: 9, d: 2.0 }],
+];
 ---
 <div class="tale" aria-hidden="true" data-tale>
   <div class="tale__stage">
-    <div class="tale__scene">
-      <img class="tale__gate" src="/images/story/gate.webp" srcset="/images/story/gate-600.webp 585w, /images/story/gate.webp 1170w" sizes="(max-width: 767px) 100vw, 640px" alt="" loading="lazy" decoding="async" width="1170" height="1177" />
-      <div class="tale__dusk"></div>
-      <span class="tale__lamp" style="left:23%;top:61%"></span>
-      <span class="tale__lamp" style="left:79%;top:63%"></span>
-    </div>
+    {SCENES.map((sc, i) => (
+      <div class={`tale__scene tale__scene--${sc.img}`} data-scene={i} style={`--ar:${sc.w}/${sc.h}`}>
+        <div class="tale__pan">
+          <img src={`/images/story/${sc.img}.webp`} srcset={sc.img === 'gate' ? '/images/story/gate-600.webp 585w, /images/story/gate.webp 1170w' : `/images/story/${sc.img}-800.webp 720w, /images/story/${sc.img}.webp 1280w`} sizes="(max-width: 767px) 200vw, 1100px" alt="" loading="lazy" decoding="async" width={sc.w} height={sc.h} />
+          {sc.dusk && <>
+            <div class="tale__dusk"></div>
+            <span class="tale__lamp" style="left:23%;top:61%"></span>
+            <span class="tale__lamp" style="left:79%;top:63%;animation-delay:-1.3s"></span>
+          </>}
+          {WALKERS[i].map((w) => (
+            <div class={`tale__walk ${w.dir < 0 ? 'is-left' : ''}`} style={`--s:${w.s};--d:${w.d}s;--t:${w.t}s;--b:${w.b}%`}>
+              <svg class={`tale__man tale__man--${w.k}`} viewBox="0 0 40 100">
+                <g class="tale__bob">
+                  <path class="tale__leg tale__leg--a" d="M18 70 L17 97 L13 98" />
+                  <path class="tale__leg tale__leg--b" d="M22 70 L23 97 L27 98" />
+                  <path class="tale__robe" d="M15 22 C17 19 23 19 25 22 L30 74 C25 79 15 79 10 74 Z" />
+                  <circle class="tale__head" cx="20" cy="12.5" r="6" />
+                  <path class="tale__wrap" d="M13.6 11 C14 4.5 26 4.5 26.4 11 C23 9 17 9 13.6 11 Z" />
+                  <path class="tale__arm tale__arm--a" d="M17 25 L13 49" />
+                  {w.k === 'staff' && <path class="tale__staff" d="M31 14 L34 98" />}
+                  {w.k === 'pot' && <><path class="tale__arm tale__arm--up" d="M24 25 L28 11 L24 4" /><path class="tale__pot" d="M12 4 C12 -4 28 -4 28 4 C28 7 12 7 12 4 Z" /></>}
+                  {w.k === 'book' && <rect class="tale__book" x="24" y="34" width="9" height="12" rx="1" transform="rotate(-12 28 40)" />}
+                  {w.k === 'drum' && <><path class="tale__drum" d="M23 40 L33 40 L31 60 L25 60 Z" /><path class="tale__arm tale__arm--beat" d="M24 26 L30 38" /></>}
+                  {w.k !== 'pot' && w.k !== 'drum' && <path class="tale__arm tale__arm--b" d="M23 25 L27 49" />}
+                </g>
+              </svg>
+            </div>
+          ))}
+          {RIDERS[i].map((r) => (
+            <div class={`tale__run ${i === 3 ? 'is-left' : ''}`} style={`--w:${r.w};--b:${r.b}%;--d:${r.d}s`}>
+              <div class="tale__rider"><div class="tale__strip"></div></div>
+              <span class="tale__dust"></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
 
     <svg class="tale__birds" viewBox="0 0 120 40">
       <path d="M0,14 Q8,6 16,14 Q24,6 32,14" /><path d="M40,6 Q46,0 52,6 Q58,0 64,6" /><path d="M70,22 Q77,15 84,22 Q91,15 98,22" />
     </svg>
-
-    <div class="tale__charge tale__charge--out">
-      {charge1.map((r) => (
-        <div class="tale__run" style={`--w:${r.w};--y:${r.y};--d:${r.d}s`}>
-          <div class="tale__rider"><div class="tale__strip"></div></div>
-          <span class="tale__dust"></span>
-        </div>
-      ))}
-    </div>
-    <div class="tale__charge tale__charge--back">
-      {charge2.map((r) => (
-        <div class="tale__run" style={`--w:${r.w};--y:${r.y};--d:${r.d}s`}>
-          <div class="tale__rider"><div class="tale__strip"></div></div>
-          <span class="tale__dust"></span>
-        </div>
-      ))}
-    </div>
   </div>
 
   <div class="tale__caps">
-    {CAPTIONS.map((c, i) => <p class="tale__cap" data-cap={i}>{c}</p>)}
+    {SCENES.map((sc, i) => <p class="tale__cap" data-cap={i}>{sc.cap}</p>)}
   </div>
 </div>
 
 <script is:inline>
-  // Plays once the visitor has stayed on the opening screen for a while; any scroll, tap or key ends it.
+  // Plays once the visitor has stayed on the opening screen for about three seconds; any scroll, tap or key ends it.
   (function () {
     var tale = document.querySelector('[data-tale]'); if (!tale) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var hero = tale.closest('section'), timers = [], idle, playing = false;
+    var hero = tale.closest('section'), timers = [], idle, playing = false, warmed = false;
+    var WAIT = 3000, SCENE = 7600, FADE = 1400;
     var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
-    var cls = function (c, on) { tale.classList.toggle(c, on); };
+    var all = ['is-on', 'is-birds', 's-0', 's-1', 's-2', 's-3', 'c-0', 'c-1', 'c-2', 'c-3'];
+    // Fetch the drawings early so the first scene never appears half-loaded.
+    var warm = function (sel) {
+      tale.querySelectorAll(sel || 'img').forEach(function (im) { im.loading = 'eager'; if (im.decode) im.decode().catch(function () {}); });
+    };
     var stop = function () {
       timers.forEach(clearTimeout); timers = []; if (!playing) return;
       playing = false; hero.classList.remove('tale-on');
-      ['is-on', 'is-drawn', 'cap-0', 'cap-1', 'cap-2', 'cap-3', 'is-birds', 'is-out', 'is-dusk', 'is-back'].forEach(function (c) { cls(c, false); });
-      arm(25000);
+      all.forEach(function (c) { tale.classList.remove(c); });
+      arm(20000);
     };
     var play = function () {
-      if (playing || window.scrollY > innerHeight * 0.4 || document.hidden) return arm(6000);
-      playing = true;
-      tale.querySelectorAll('img').forEach(function (im) { im.loading = 'eager'; });
+      if (playing || window.scrollY > innerHeight * 0.4 || document.hidden) return arm(WAIT);
+      playing = true; if (!warmed) { warmed = true; warm(); }
       hero.classList.add('tale-on');
-      at(500, function () { cls('is-on', true); });
-      at(700, function () { cls('is-drawn', true); });
-      at(1600, function () { cls('cap-0', true); });
-      at(5000, function () { cls('is-birds', true); });
-      at(6600, function () { cls('cap-0', false); });
-      at(7400, function () { cls('cap-1', true); cls('is-out', true); });
-      at(13200, function () { cls('cap-1', false); });
-      at(13800, function () { cls('is-out', false); cls('is-dusk', true); cls('cap-2', true); });
-      at(19200, function () { cls('cap-2', false); cls('is-dusk', false); });
-      at(19900, function () { cls('cap-3', true); cls('is-back', true); });
-      at(27000, function () { cls('cap-3', false); });
-      at(27800, stop);
+      at(250, function () { tale.classList.add('is-on'); });
+      for (var i = 0; i < 4; i++) (function (i) {
+        var t = 350 + i * SCENE;
+        at(t, function () { tale.classList.add('s-' + i); if (i) tale.classList.remove('s-' + (i - 1)); });
+        at(t + 700, function () { tale.classList.add('c-' + i); });
+        at(t + SCENE - FADE, function () { tale.classList.remove('c-' + i); });
+        if (i === 0 || i === 3) at(t + 1200, function () { tale.classList.remove('is-birds'); void tale.offsetWidth; tale.classList.add('is-birds'); });
+      })(i);
+      at(350 + 4 * SCENE - 600, function () { tale.classList.remove('s-3'); });
+      at(350 + 4 * SCENE + 200, stop);
     };
     var arm = function (ms) { clearTimeout(idle); idle = setTimeout(play, ms); };
-    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
-      addEventListener(ev, function () { if (playing) stop(); else arm(6000); }, { passive: true });
+    ['scroll', 'pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) {
+      addEventListener(ev, function () { if (playing) stop(); else arm(WAIT); }, { passive: true });
     });
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
-    arm(6000);
+    if (document.readyState === 'complete') setTimeout(warm, 600, '[data-scene="0"] img'); else addEventListener('load', function () { setTimeout(warm, 600, '[data-scene="0"] img'); });
+    arm(WAIT);
   })();
 </script>
