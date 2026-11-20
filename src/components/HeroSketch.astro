@@ -4,7 +4,7 @@
 // the old city gate, Timbuktu's scholars, the royal procession of Benin, and the gate again at dusk.
 // Robed townspeople walk through every scene and riders gallop past, then the words return.
 // Scenes are public-domain engravings (Barth's Timbuktu, 1858; Dapper's Benin, 1668) redrawn in ink.
-// Riders are animated from Eadweard Muybridge's 1887 gallop photographs (public domain).
+// Riders and camels are animated from Eadweard Muybridge's 1887 motion photographs (public domain).
 
 const SCENES = [
   { img: 'gate', w: 1170, h: 1177, cap: 'Long ago, every journey began at the old city gate.' },
@@ -18,6 +18,13 @@ const WALKERS = [
   [{ k: 'book', s: 15, d: 0.2, t: 14, dir: -1, b: 5 }, { k: 'staff', s: 14, d: 1.4, t: 15, dir: 1, b: 3 }, { k: 'plain', s: 13, d: 2.4, t: 15.5, dir: 1, b: 2 }],
   [{ k: 'drum', s: 14, d: 0.6, t: 13, dir: 1, b: 3 }, { k: 'pot', s: 13.5, d: 1.5, t: 14, dir: 1, b: 1.5 }, { k: 'plain', s: 14, d: 0.2, t: 14.5, dir: -1, b: 5 }],
   [{ k: 'staff', s: 15, d: 0.8, t: 15, dir: -1, b: 4 }, { k: 'child', s: 9.5, d: 1.3, t: 15, dir: -1, b: 2 }, { k: 'plain', s: 14, d: 1.0, t: 15, dir: -1, b: 1.5 }],
+];
+// Camel caravan (Muybridge's 1887 walking camel, redrawn in ink): width (% of scene), baseline, delay.
+const CAMELS = [
+  [],
+  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }],
+  [],
+  [],
 ];
 const RIDERS = [
   [],
@@ -55,6 +62,9 @@ const RIDERS = [
                 </g>
               </svg>
             </div>
+          ))}
+          {CAMELS[i].map((c) => (
+            <div class="tale__camel" style={`--w:${c.w};--b:${c.b}%;--d:${c.d}s`}><div class="tale__camelstrip"></div></div>
           ))}
           {RIDERS[i].map((r) => (
             <div class={`tale__run ${i === 3 ? 'is-left' : ''}`} style={`--w:${r.w};--b:${r.b}%;--d:${r.d}s`}>

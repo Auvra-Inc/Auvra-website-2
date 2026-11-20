@@ -1566,6 +1566,12 @@ html { overflow-x: clip; }
   @keyframes rideR { 0% { opacity: 0; transform: translate3d(-110%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(420%, 0, 0); } }
   @keyframes rideL { 0% { opacity: 0; transform: translate3d(420%, 0, 0); } 6% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; transform: translate3d(-110%, 0, 0); } }
 
+  /* Camel caravan (Muybridge walking camel redrawn in ink). */
+  .tale__camel { position: absolute; left: 0; bottom: var(--b); width: calc(var(--w) * 1%); aspect-ratio: 260 / 149; overflow: hidden; opacity: 0; }
+  .tale__camelstrip { width: 1300%; height: 100%; background: url('/images/story/camel.webp') 0 0 / 100% 100% no-repeat; animation: gallop 1.15s steps(13) infinite; }
+  .tale.s-1 [data-scene='1'] .tale__camel { animation: caravan 15s linear var(--d) both; }
+  @keyframes caravan { 0% { opacity: 0; transform: translate3d(0%, 0, 0); } 6% { opacity: 1; } 100% { opacity: 1; transform: translate3d(430%, 0, 0); } }
+
   .tale__birds { position: absolute; top: 30%; left: 0; width: max(70px, 10vw); fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; opacity: 0; }
   .tale.is-birds .tale__birds { animation: birds 14s linear forwards; }
   @keyframes birds { 0% { opacity: 0; transform: translate3d(-20vw, 5vh, 0); } 10% { opacity: .85; } 85% { opacity: .85; } 100% { opacity: 0; transform: translate3d(105vw, -4vh, 0); } }
