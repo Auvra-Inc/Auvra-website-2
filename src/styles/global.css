@@ -1421,3 +1421,32 @@ html { overflow-x: clip; }
 @layer components { .footer-sub .subscribe--done { gap: 12px !important; } }
 
 @layer components { .js:not(.fonts-in) .hero-word { animation-play-state: paused; opacity: 0; } }
+
+/* ───────── Smoothing pass ─────────
+   Gentler, calmer motion everywhere: shorter travel, a soft ease-out with no snap at the end,
+   GPU-only transforms, and no element animated by two effects at once. */
+@layer components {
+  :root { --calm: cubic-bezier(.33, 1, .68, 1); }
+  .js .reveal { transform: translate3d(0, 16px, 0); transition: opacity .9s var(--calm), transform 1s var(--calm); backface-visibility: hidden; }
+  .js .reveal.is-in { transform: translate3d(0, 0, 0); }
+  .js .slide-in { transform: translate3d(16px, 0, 0); transition: opacity .8s var(--calm), transform .9s var(--calm); }
+  .js .slide-in.is-in { transform: none; }
+  .js .logo-film.reveal { transform: translate3d(0, 16px, 0); }
+
+  /* Images inside a block that is already fading in don't fade a second time. */
+  .reveal .img-wait { opacity: 1 !important; } .reveal .img-in { animation: none !important; }
+
+  /* Page titles and hero lines: a softer rise. */
+  @keyframes titleIn { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+  .js.fonts-in main h1:not(.hero-h1) { animation-duration: 1.1s; animation-timing-function: var(--calm); }
+  @keyframes heroWord { from { opacity: 0; transform: translate3d(0, 28%, 0); } }
+  .hero-word { animation-duration: 1s !important; animation-timing-function: var(--calm) !important; }
+  @keyframes riseIn { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
+
+  /* Hover and press: small, quick and soft. */
+  .btn, .poster-cta, .store, .ghost-cta, .tile, .how__card, .value-card { transition-timing-function: var(--calm); transition-duration: .35s; }
+  .btn:hover, .store:hover, .poster-cta:hover { transform: translate3d(0, -2px, 0); }
+
+  /* Light sweep on dark-section text: slower and subtler. */
+  .js .reveal.is-in .dark-lead, .dark-lead.is-in { animation-duration: 10s !important; }
+}

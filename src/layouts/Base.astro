@@ -86,7 +86,7 @@ const ld = [org, site, ...(noindex ? [] : [webpage]), ...(breadcrumb ? [breadcru
       (function () {
         var d = document.documentElement, done = false;
         var go = function () { if (!done) { done = true; d.classList.add('fonts-in'); } };
-        setTimeout(go, 1200);
+        setTimeout(go, 700);
         if (!document.fonts || !document.fonts.load) return go();
         var wait = function () { document.fonts.load('600 1em "Clash Display"').then(function (f) { f && f.length ? go() : setTimeout(wait, 60); }, go); };
         wait();
