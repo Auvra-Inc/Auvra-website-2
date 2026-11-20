@@ -44,14 +44,14 @@ const steps = [
   { n: 3, title: 'Record and upload', text: 'Add voice notes, photos and documents. Lens AI transcribes and translates them.', bg: '#0B6A70', chip: '#158890', accent: '#BFE0E1' },
   { n: 4, title: 'Pass it down', text: 'Your culture is preserved, credited to you, and ready for the next generation.', bg: '#E2583F', chip: '#F07B64', accent: '#FFF4D6' },
 ];
-// Mission stories: a full-width scene with a card of the same moment in front (illustrative examples).
+// Mission stories: a wide scene behind, and a different, related moment held in the card (illustrative examples).
 const MISSION = [
-  { photo: 'durbar', title: 'Keep the festival procession', meta: 'Ceremony · Contribution Badge' },
-  { photo: 'elder', title: 'Record an elder’s memory', meta: 'Oral history · Contribution Badge' },
-  { photo: 'hands-braid', title: 'Pass down family traditions', meta: 'Family · My Vault' },
-  { photo: 'drummer-blue', title: 'Credit the drummer’s rhythm', meta: 'Music · Heirloom Badge' },
-  { photo: 'procession', title: 'Honour the festival elders', meta: 'Community · Contribution Badge' },
-  { photo: 'hands-archive', title: 'Save the family letters', meta: 'Stewardship · My Vault' },
+  { photo: 'durbar', bg: 'warrior-dance', title: 'Keep the festival procession', meta: 'Ceremony · Contribution Badge' },
+  { photo: 'elder', bg: 'village', title: 'Record an elder’s memory', meta: 'Oral history · Contribution Badge' },
+  { photo: 'hands-braid', bg: 'reading-mum', title: 'Pass down family traditions', meta: 'Family · My Vault' },
+  { photo: 'drummer-blue', bg: 'drum-street', title: 'Credit the drummer’s rhythm', meta: 'Music · Heirloom Badge' },
+  { photo: 'procession', bg: 'crowd', title: 'Honour the festival elders', meta: 'Community · Contribution Badge' },
+  { photo: 'hands-archive', bg: 'photo-archive', title: 'Save the family letters', meta: 'Stewardship · My Vault' },
 ];
 const WALL_CARDS = ['singers', 'drum-flag', 'creator-filmcrew', 'drum-street', 'beadwork', 'red-cap', 'elder', 'white-agbada', 'dancers', 'procession', 'village', 'shrine', 'durbar', 'drummers-row'];
 const WALL_TOPICS = [
@@ -394,7 +394,7 @@ import { altFor, moodAlt } from '../data/alts.js';
   <!-- Mission film: one scene after another, each kept in a card -->
   <section class="mission" aria-labelledby="mission-film-title" data-mission data-pause-offscreen>
     <div class="mission__bgs" aria-hidden="true">
-      {MISSION.map((m, i) => <img src={`/images/photos/${m.photo}-960.webp`} srcset={photoSrcset(m.photo)} sizes="100vw" alt="" class={`mission__bg${i === 0 ? ' is-on' : ''}`} loading="lazy" decoding="async" />)}
+      {MISSION.map((m, i) => <img src={`/images/photos/${m.bg}-960.webp`} srcset={photoSrcset(m.bg)} sizes="100vw" alt="" class={`mission__bg${i === 0 ? ' is-on' : ''}`} loading="lazy" decoding="async" />)}
     </div>
     <div class="mission__shade" aria-hidden="true"></div>
     <div class="mission__head">
