@@ -1,41 +1,25 @@
 ---
-// "The Storyteller": a short illustrated story that plays in the hero when a visitor lingers for a few seconds.
-// The headline steps aside and one traveller carries his people's stories through four ink scenes:
-// he rides out through the old city gate, reaches Timbuktu, where scholars wrote knowledge into books,
-// then Benin, where the king's history lived in music and bronze, and comes home at dusk to tell them again.
-// Every moving figure is a real person or animal: Eadweard Muybridge's 1887 motion photographs
-// (a man riding a donkey, a walking camel, galloping horses with riders), redrawn frame by frame in ink.
-// Scenes are public-domain engravings (Barth's Timbuktu, 1858; Dapper's Benin, 1668) redrawn in ink.
+// "The Tale": a short illustrated story that plays in the hero when a visitor lingers for a few seconds.
+// The headline steps aside and two long ink scenes play, each with two captions:
+//   1. A camel caravan crosses to Timbuktu, where scholars wrote the stories it carried into books.
+//   2. The old city gate turns from day to lantern-lit dusk while elders keep the stories alive, then Auvra.
+// The camels are animated from Eadweard Muybridge's 1887 motion photographs (public domain), redrawn in ink.
+// Timbuktu is Heinrich Barth's 1858 engraving (public domain) redrawn in ink.
 
 const SCENES = [
-  { img: 'gate', w: 1170, h: 1177, caps: ['Long ago, a storyteller rode out through the old city gate, carrying his people’s stories.'] },
-  { img: 'timbuktu', w: 1280, h: 750, caps: ['In Timbuktu, scholars wrote stories like his into books that survive to this day.'] },
-  { img: 'benin', w: 1280, h: 736, caps: ['In Benin, he heard the king’s history told in music, procession and bronze.'] },
-  { img: 'gate', w: 1170, h: 1177, dusk: true, caps: ['He came home at dusk and told them all again, so no one would forget.', 'Today, Auvra keeps every story, for good.'] },
+  {
+    img: 'timbuktu', w: 1280, h: 750,
+    caps: ['For centuries, caravans carried stories across the Sahara to Timbuktu.', 'There, scholars wrote them into books that survive to this day.'],
+    camels: [{ w: 18, b: 3, d: 0 }, { w: 16.5, b: 5.5, d: 2.8 }, { w: 17.5, b: 2, d: 5.6 }, { w: 16, b: 4.5, d: 8.4 }],
+  },
+  {
+    img: 'gate', w: 1170, h: 1177, dusk: true,
+    caps: ['At the city gate, elders told them again each night, so no one would forget.', 'Today, Auvra keeps every story, for good.'],
+    camels: [],
+  },
 ];
-// The traveller in each scene: width (% of scene), baseline (% from bottom), delay, crossing time, direction.
-const TRAVELLER = [
-  { w: 25, b: 7, d: 0.6, t: 14, dir: 1 },
-  { w: 20, b: 9, d: -1.5, t: 15, dir: 1 },
-  { w: 20, b: 8, d: 0.4, t: 13, dir: 1 },
-  { w: 25, b: 7, d: 0.8, t: 16, dir: -1 },
-];
-// Camel caravan that he travels with in Timbuktu (Muybridge's walking camel).
-const CAMELS = [
-  [],
-  [{ w: 19, b: 2, d: -5 }, { w: 17, b: 4, d: -2 }, { w: 18, b: 1, d: 1 }, { w: 17, b: 3, d: 4.5 }],
-  [],
-  [],
-];
-// The king's horsemen in Benin (Muybridge's galloping horse and rider).
-const RIDERS = [
-  [],
-  [],
-  [{ w: 26, b: 1, d: 3.6 }, { w: 23, b: 6, d: 4.1 }, { w: 25, b: -1, d: 4.8 }, { w: 24, b: 3, d: 8.6 }],
-  [],
-];
-let capIndex = 0;
-const CAPS = SCENES.flatMap((sc) => sc.caps.map((c) => ({ text: c, i: capIndex++ })));
+let n = 0;
+const CAPS = SCENES.flatMap((sc) => sc.caps.map((text) => ({ text, i: n++ })));
 ---
 <div class="tale" aria-hidden="true" data-tale>
   <div class="tale__stage">
@@ -48,17 +32,8 @@ const CAPS = SCENES.flatMap((sc) => sc.caps.map((c) => ({ text: c, i: capIndex++
             <span class="tale__lamp" style="left:23%;top:61%"></span>
             <span class="tale__lamp" style="left:79%;top:63%;animation-delay:-1.3s"></span>
           </>}
-          {CAMELS[i].map((c) => (
+          {sc.camels.map((c) => (
             <div class="tale__camel" style={`--w:${c.w};--b:${c.b}%;--d:${c.d}s`}><div class="tale__camelstrip"></div></div>
-          ))}
-          <div class={`tale__trav ${TRAVELLER[i].dir < 0 ? 'is-left' : ''}`} style={`--w:${TRAVELLER[i].w}%;--b:${TRAVELLER[i].b}%;--d:${TRAVELLER[i].d}s;--t:${TRAVELLER[i].t}s`}>
-            <div class="tale__travbox"><div class="tale__travstrip"></div></div>
-          </div>
-          {RIDERS[i].map((r) => (
-            <div class="tale__run" style={`--w:${r.w};--b:${r.b}%;--d:${r.d}s`}>
-              <div class="tale__rider"><div class="tale__strip"></div></div>
-              <span class="tale__dust"></span>
-            </div>
           ))}
         </div>
       </div>
@@ -80,11 +55,9 @@ const CAPS = SCENES.flatMap((sc) => sc.caps.map((c) => ({ text: c, i: capIndex++
     var tale = document.querySelector('[data-tale]'); if (!tale) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var hero = tale.closest('section'), timers = [], idle, playing = false, warmed = false;
-    var WAIT = 3000, FADE = 1600;
-    // Scene lengths (ms); the last scene holds two captions.
-    var LEN = [13000, 13000, 13000, 17000];
+    var WAIT = 3000, LEN = 23000, FADE = 1500;
     var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
-    var all = ['is-on', 'is-birds', 's-0', 's-1', 's-2', 's-3', 'c-0', 'c-1', 'c-2', 'c-3', 'c-4'];
+    var all = ['is-on', 'is-birds', 's-0', 's-1', 'c-0', 'c-1', 'c-2', 'c-3'];
     var warm = function (sel) {
       tale.querySelectorAll(sel || 'img').forEach(function (im) { im.loading = 'eager'; if (im.decode) im.decode().catch(function () {}); });
     };
@@ -94,27 +67,25 @@ const CAPS = SCENES.flatMap((sc) => sc.caps.map((c) => ({ text: c, i: capIndex++
       all.forEach(function (c) { tale.classList.remove(c); });
       arm(20000);
     };
-    var cap = function (n, from, to) {
-      at(from, function () { tale.classList.add('c-' + n); });
-      at(to, function () { tale.classList.remove('c-' + n); });
+    var cap = function (k, from, to) {
+      at(from, function () { tale.classList.add('c-' + k); });
+      at(to, function () { tale.classList.remove('c-' + k); });
     };
     var play = function () {
       if (playing || window.scrollY > innerHeight * 0.4 || document.hidden) return arm(WAIT);
       playing = true; if (!warmed) { warmed = true; warm(); }
       hero.classList.add('tale-on');
       at(250, function () { tale.classList.add('is-on'); });
-      var t = 350;
-      LEN.forEach(function (len, i) {
-        (function (t, i, len) {
-          at(t, function () { tale.classList.add('s-' + i); if (i) tale.classList.remove('s-' + (i - 1)); });
-          if (i < 3) cap(i, t + 700, t + len - FADE);
-          else { cap(3, t + 700, t + 8200); cap(4, t + 9000, t + len - FADE); }
-          if (i === 0 || i === 3) at(t + 1200, function () { tale.classList.remove('is-birds'); void tale.offsetWidth; tale.classList.add('is-birds'); });
-        })(t, i, len);
-        t += len;
-      });
-      at(t - 600, function () { tale.classList.remove('s-3'); });
-      at(t + 200, stop);
+      for (var i = 0; i < 2; i++) (function (i) {
+        var t = 350 + i * LEN;
+        at(t, function () { tale.classList.add('s-' + i); if (i) tale.classList.remove('s-0'); });
+        // Two captions per scene, each held for about ten seconds.
+        cap(i * 2, t + 900, t + 10800);
+        cap(i * 2 + 1, t + 11800, t + LEN - FADE);
+        at(t + 2000, function () { tale.classList.remove('is-birds'); void tale.offsetWidth; tale.classList.add('is-birds'); });
+      })(i);
+      at(350 + 2 * LEN - 600, function () { tale.classList.remove('s-1'); });
+      at(350 + 2 * LEN + 200, stop);
     };
     var arm = function (ms) { clearTimeout(idle); idle = setTimeout(play, ms); };
     ['scroll', 'pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) {
