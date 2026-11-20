@@ -2,11 +2,12 @@ export const SITE = 'https://www.goauvra.com';
 
 // Central content and link config. Change store links here once the apps are live.
 export const STORE = {
-  // TODO(Emmanuel): replace with the live App Store / Google Play listing URLs.
-  // Until then both buttons open /download, which says the apps are coming soon.
+  // Google Play is live. The App Store button opens /download until the iPhone app is live;
+  // then set appStore to the listing URL and appStoreLive to true.
   appStore: '/download',
-  googlePlay: '/download',
-  live: false,
+  appStoreLive: false,
+  googlePlay: 'https://play.google.com/store/apps/details?id=com.desco.auvra',
+  googlePlayLive: true,
 };
 
 export const CONTACT_EMAIL = 'info@goauvra.com';
@@ -20,7 +21,7 @@ export const SOCIAL = [
 ];
 
 // Explore Auvra is the primary call to action. It never opens another page:
-// on iPhone/iPad it opens the App Store, on Android Google Play (once STORE.live is true),
+// on iPhone/iPad it opens the App Store, on Android Google Play (each once its store is live),
 // otherwise it scrolls to the store buttons in the footer (#get-app), present on every page.
 export const EXPLORE_HREF = '#get-app';
 
