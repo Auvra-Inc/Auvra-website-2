@@ -64,3 +64,25 @@ document.querySelectorAll('img[srcset]').forEach((img) => { if (!img.complete) i
 window.addEventListener('load', fitSizes);
 let fitT; window.addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeout(fitSizes, 200); });
 fitSizes();
+
+// Mission film: step through the scenes while the section is on screen.
+const mission = document.querySelector('[data-mission]');
+if (mission && !reduce) {
+  const bgs = mission.querySelectorAll('.mission__bg');
+  const slides = mission.querySelectorAll('.mission__slide');
+  const STEP = 4500; let i = 0, timer = 0, visible = false;
+  const show = (n) => {
+    bgs[i].classList.remove('is-on'); slides[i].classList.remove('is-on'); slides[i].setAttribute('aria-hidden', 'true');
+    i = n % slides.length;
+    bgs[i].classList.add('is-on'); slides[i].classList.add('is-on'); slides[i].removeAttribute('aria-hidden');
+    mission.classList.remove('is-playing'); void mission.offsetWidth; mission.classList.add('is-playing');
+    // warm the next pair so it is ready when its turn comes
+    const nx = (i + 1) % slides.length; [bgs[nx], slides[nx].querySelector('img')].forEach((im) => { if (im.loading === 'lazy') im.loading = 'eager'; });
+  };
+  const tick = () => { if (visible && !document.hidden) show(i + 1); timer = setTimeout(tick, STEP); };
+  mission.style.setProperty('--mission-step', STEP + 'ms');
+  new IntersectionObserver((es) => {
+    visible = es[0].isIntersecting;
+    if (visible && !timer) { show(0); [bgs[0], slides[0].querySelector('img')].forEach((im) => { im.loading = 'eager'; }); timer = setTimeout(tick, STEP); }
+  }, { threshold: 0.25 }).observe(mission);
+}
