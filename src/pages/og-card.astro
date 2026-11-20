@@ -15,7 +15,7 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; }
     body { width: 1200px; height: 630px; overflow: hidden; font-family: 'Clash Display', system-ui, sans-serif; color: #1C1A18; -webkit-font-smoothing: antialiased;
-      background: radial-gradient(120% 140% at 0% 0%, #FBF8F1 0%, #F4F0E8 55%, #EFE8DC 100%); position: relative; }
+      background: #FFFFFF; position: relative; }
     .grain { position: absolute; inset: 0; opacity: .5; mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .33 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
     .left { position: absolute; left: 76px; top: 64px; bottom: 60px; width: 560px; display: flex; flex-direction: column; }
@@ -28,14 +28,13 @@
     .foot i { width: 7px; height: 7px; border-radius: 50%; background: #0B6A70; display: block; }
     .foot em { font-style: normal; font-weight: 500; color: #7A7268; }
     .grid { position: absolute; right: 56px; top: 44px; bottom: 44px; width: 476px; display: grid; grid-template-columns: 1.18fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
-    .grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 26px; display: block; box-shadow: 0 18px 40px -18px rgba(28,26,24,.35); }
+    .grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 26px; display: block; box-shadow: 0 1px 0 rgba(28,26,24,.04); }
     .grid .tall { grid-row: 1 / span 2; }
     .grid .b { object-position: 50% 20%; }
     .grid .c { object-position: 50% 40%; }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
   <div class="left">
     <img class="logo" src="/brand/auvra-horizontal-carbon.svg" alt="Auvra" />
     <h1><span>Your story.</span><span class="serif">Your culture.</span><span>Your legacy.</span></h1>
